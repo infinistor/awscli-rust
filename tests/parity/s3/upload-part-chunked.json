@@ -1,0 +1,6 @@
+{
+  "op": "upload-part",
+  "responseHeaders": {
+    "ETag": "\"p1\""
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "status": 404,
+  "responseBody": "<Error><Code>NoSuchBucket</Code><Message>no bucket</Message></Error>",
+  "op": "head-bucket-exists"
+}

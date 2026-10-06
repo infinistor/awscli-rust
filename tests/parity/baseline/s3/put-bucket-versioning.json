@@ -1,0 +1,64 @@
+{
+  "port": 53856,
+  "requests": [
+    {
+      "line": "PUT /my-bucket/?versioning HTTP/1.1",
+      "headers": [
+        [
+          "x-amz-api-version",
+          "2006-03-01"
+        ],
+        [
+          "amz-sdk-invocation-id",
+          "a7ce582d-3e80-488b-8cee-c980398e3178"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "x-amz-checksum-crc32",
+          "C8vlPQ=="
+        ],
+        [
+          "x-amz-sdk-checksum-algorithm",
+          "CRC32"
+        ],
+        [
+          "Host",
+          "127.0.0.1:53856"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T112107Z"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-api-version;x-amz-checksum-crc32;x-amz-content-sha256;x-amz-date;x-amz-sdk-checksum-algorithm, Signature=3e0273fa0585b62d4364de10cdecd1a06fe161433e0a1ffb07c8240aa6090a7b"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 m/c,P,e,N,E,U,a"
+        ],
+        [
+          "Content-Length",
+          "123"
+        ],
+        [
+          "Content-Type",
+          "application/xml"
+        ]
+      ],
+      "body": "<VersioningConfiguration xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Status>Enabled</Status></VersioningConfiguration>"
+    }
+  ],
+  "result": {
+    "status": 200,
+    "ContentLength": 0
+  },
+  "error": null
+}

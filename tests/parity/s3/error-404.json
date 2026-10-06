@@ -1,0 +1,5 @@
+{
+  "op": "get-object",
+  "status": 404,
+  "responseBody": "<Error><Code>NoSuchKey</Code><Message>The specified key does not exist.</Message><RequestId>r1</RequestId></Error>"
+}

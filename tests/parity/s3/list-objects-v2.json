@@ -1,0 +1,4 @@
+{
+  "op": "list-objects-v2",
+  "responseBody": "<ListBucketResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>my-bucket</Name><KeyCount>0</KeyCount><IsTruncated>false</IsTruncated></ListBucketResult>"
+}

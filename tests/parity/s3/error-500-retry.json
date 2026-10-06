@@ -1,0 +1,5 @@
+{
+  "op": "head-object",
+  "status": 500,
+  "retry": 2
+}

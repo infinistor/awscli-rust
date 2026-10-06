@@ -1,0 +1,64 @@
+{
+  "port": 53858,
+  "requests": [
+    {
+      "line": "PUT /my-bucket/dir/key.txt HTTP/1.1",
+      "headers": [
+        [
+          "Expect",
+          "100-continue"
+        ],
+        [
+          "x-ifs-backend",
+          "NONE"
+        ],
+        [
+          "x-ksan-backend",
+          "NONE"
+        ],
+        [
+          "amz-sdk-invocation-id",
+          "f6d902e4-5242-411f-9bf7-f9bf6a03806a"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "Host",
+          "127.0.0.1:53858"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T112108Z"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-ifs-backend;x-ksan-backend, Signature=723523f2c8d77b29110c839284159d3cc56cc15b7a4d9ae9b2c97fb1e4a20346"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 m/c,P,e,N,E,a"
+        ],
+        [
+          "Content-Length",
+          "11"
+        ],
+        [
+          "Content-Type",
+          "text/plain"
+        ]
+      ],
+      "body": "hello world"
+    }
+  ],
+  "result": {
+    "status": 200,
+    "ContentLength": 0
+  },
+  "error": null
+}

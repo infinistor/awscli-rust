@@ -1,0 +1,4 @@
+{
+  "op": "get-object",
+  "responseBody": "hello world"
+}

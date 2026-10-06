@@ -1,0 +1,5 @@
+{
+  "op": "get-object-range",
+  "status": 206,
+  "responseBody": "hello"
+}

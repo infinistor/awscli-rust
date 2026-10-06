@@ -59,6 +59,7 @@ static class Program
 				return 0;
 			case "sign": Console.WriteLine(Sign(args[1])); return 0;
 			case "ksan": Console.WriteLine(Ksan(args[1])); return 0;
+			case "s3": Console.WriteLine(S3Probe(args[1])); return 0;
 			case "json":
 				// TestCore JsonExtensions.ToJsonString 형식 확인용: 파일의 각 줄(문자열)과 고정된 구조를 직렬화한다.
 				var strings = File.ReadAllLines(args[1]).Select(l => l.Replace("\\r", "\r").Replace("\\n", "\n").Replace("\\t", "\t").Replace("\\0", "\0").Replace("\\x01", "\u0001").Replace("\\x7f", "\u007f")).ToList();
@@ -142,6 +143,144 @@ static class Program
 		listener.Stop();
 		object request = server.Wait(TimeSpan.FromSeconds(5)) ? server.Result : null;
 		return JsonSerializer.Serialize(new { port, request, result, error }, Json);
+	}
+
+	public sealed class S3Case
+	{
+		public string Op { get; set; }
+		public bool Admin { get; set; }
+		public int Retry { get; set; } = 3;
+		public bool Checksum { get; set; }
+		public bool Chunked { get; set; } = true;
+		public string Bucket { get; set; } = "my-bucket";
+		public string Key { get; set; } = "dir/key.txt";
+		public string Body { get; set; } = "hello world";
+		public int Status { get; set; } = 200;
+		public string ResponseBody { get; set; } = "";
+		public Dictionary<string, string> ResponseHeaders { get; set; } = [];
+	}
+
+	// S3Client(AWSSDK)가 보내는 요청을 모두 기록한다. 같은 응답을 연결마다 돌려준다(재시도 확인용).
+	static string S3Probe(string casePath)
+	{
+		var spec = JsonSerializer.Deserialize<S3Case>(File.ReadAllText(casePath), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+		var listener = new System.Net.Sockets.TcpListener(System.Net.IPAddress.Loopback, 0);
+		listener.Start();
+		var port = ((System.Net.IPEndPoint)listener.LocalEndpoint).Port;
+		var requests = new System.Collections.Concurrent.ConcurrentQueue<object>();
+		var cts = new System.Threading.CancellationTokenSource();
+		var server = System.Threading.Tasks.Task.Run(async () =>
+		{
+			while (!cts.IsCancellationRequested)
+			{
+				System.Net.Sockets.TcpClient socket;
+				try { socket = await listener.AcceptTcpClientAsync(cts.Token); } catch { break; }
+				_ = System.Threading.Tasks.Task.Run(() => ServeS3(socket, spec, requests));
+			}
+		});
+
+		object result = null, error = null;
+		try
+		{
+			using var client = new TestCore.Client.S3Client(new UserData($"http://127.0.0.1:{port}", "", "AKIAEXAMPLE", "secretExample"), spec.Admin, spec.Retry, spec.Checksum);
+			object response = spec.Op switch
+			{
+				"list-buckets" => client.ListBuckets(),
+				"put-bucket" => client.PutBucket(spec.Bucket),
+				"head-bucket-exists" => client.DoesS3BucketExist(spec.Bucket),
+				"put-object" => client.PutObject(spec.Bucket, spec.Key, body: spec.Body, useChunkEncoding: spec.Chunked),
+				"put-object-checksum" => client.PutObject(new Amazon.S3.Model.PutObjectRequest { BucketName = spec.Bucket, Key = spec.Key, ContentBody = spec.Body, UseChunkEncoding = spec.Chunked, ChecksumAlgorithm = Amazon.S3.ChecksumAlgorithm.CRC32 }),
+				"get-object" => client.GetObject(spec.Bucket, spec.Key),
+				"get-object-range" => client.GetObject(spec.Bucket, spec.Key, range: new Amazon.S3.Model.ByteRange(0, 4)),
+				"head-object" => client.HeadObject(spec.Bucket, spec.Key),
+				"list-objects-v2" => client.ListObjectsV2(spec.Bucket, prefix: "dir/", delimiter: "/"),
+				"list-objects" => client.ListObjects(spec.Bucket, prefix: "dir/"),
+				"delete-object" => client.DeleteObject(spec.Bucket, spec.Key),
+				"delete-objects" => client.DeleteObjects(spec.Bucket, [new() { Key = "a" }, new() { Key = "b", VersionId = "v1" }], Quiet: true),
+				"upload-part" => client.UploadPart(spec.Bucket, spec.Key, "upload-1", 1, inputStream: new MemoryStream(System.Text.Encoding.UTF8.GetBytes(spec.Body)), useChunkEncoding: spec.Chunked),
+				"put-bucket-versioning" => client.PutBucketVersioning(spec.Bucket, Amazon.S3.VersionStatus.Enabled),
+				_ => throw new ArgumentException(spec.Op),
+			};
+			if (response is Amazon.Runtime.AmazonWebServiceResponse r) result = new { status = (int)r.HttpStatusCode, r.ContentLength };
+			else result = response;
+			if (response is IDisposable d) d.Dispose();
+		}
+		catch (Exception e)
+		{
+			var s3 = e as Amazon.S3.AmazonS3Exception;
+			error = new { type = e.GetType().FullName, message = e.Message, status = s3 == null ? (int?)null : (int)s3.StatusCode, s3?.ErrorCode };
+		}
+		System.Threading.Thread.Sleep(200);
+		cts.Cancel();
+		listener.Stop();
+		return JsonSerializer.Serialize(new { port, requests = requests.ToArray(), result, error }, Json);
+	}
+
+	static void ServeS3(System.Net.Sockets.TcpClient socket, S3Case spec, System.Collections.Concurrent.ConcurrentQueue<object> requests)
+	{
+		using var _ = socket;
+		using var stream = socket.GetStream();
+		while (true)
+		{
+			var buffer = new List<byte>();
+			var one = new byte[1];
+			while (!(buffer.Count >= 4 && buffer[^4] == '\r' && buffer[^3] == '\n' && buffer[^2] == '\r' && buffer[^1] == '\n'))
+			{
+				if (stream.Read(one, 0, 1) == 0) return;
+				buffer.Add(one[0]);
+			}
+			var head = System.Text.Encoding.UTF8.GetString(buffer.ToArray()).Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
+			var headers = head.Skip(1).Select(h => { var i = h.IndexOf(':'); return new[] { h[..i], h[(i + 1)..].Trim() }; }).ToList();
+			string Header(string name) => headers.Where(h => h[0].Equals(name, StringComparison.OrdinalIgnoreCase)).Select(h => h[1]).FirstOrDefault();
+			if (Header("Expect") == "100-continue")
+			{
+				var cont = System.Text.Encoding.ASCII.GetBytes("HTTP/1.1 100 Continue\r\n\r\n");
+				stream.Write(cont);
+			}
+			byte[] body;
+			if (Header("Transfer-Encoding") == "chunked")
+			{
+				var raw = new List<byte>();
+				// HTTP chunked 본문을 원문 그대로 기록한다(마지막 0 크기 청크와 트레일러까지).
+				var line = new List<byte>();
+				while (true)
+				{
+					line.Clear();
+					while (!(line.Count >= 2 && line[^2] == '\r' && line[^1] == '\n')) { if (stream.Read(one, 0, 1) == 0) return; line.Add(one[0]); }
+					raw.AddRange(line);
+					var size = Convert.ToInt32(System.Text.Encoding.ASCII.GetString(line.ToArray()).Trim().Split(';')[0], 16);
+					if (size == 0)
+					{
+						while (true)
+						{
+							line.Clear();
+							while (!(line.Count >= 2 && line[^2] == '\r' && line[^1] == '\n')) { if (stream.Read(one, 0, 1) == 0) return; line.Add(one[0]); }
+							raw.AddRange(line);
+							if (line.Count == 2) break;
+						}
+						break;
+					}
+					var chunk = new byte[size + 2];
+					for (var read = 0; read < chunk.Length;) read += stream.Read(chunk, read, chunk.Length - read);
+					raw.AddRange(chunk);
+				}
+				body = raw.ToArray();
+			}
+			else
+			{
+				var length = int.Parse(Header("Content-Length") ?? "0");
+				body = new byte[length];
+				for (var read = 0; read < length;) read += stream.Read(body, read, length - read);
+			}
+			requests.Enqueue(new { line = head[0], headers, body = System.Text.Encoding.UTF8.GetString(body) });
+
+			var responseBody = System.Text.Encoding.UTF8.GetBytes(spec.ResponseBody ?? "");
+			var extra = string.Concat(spec.ResponseHeaders.Select(h => $"{h.Key}: {h.Value}\r\n"));
+			var isHead = head[0].StartsWith("HEAD ");
+			var responseHead = $"HTTP/1.1 {spec.Status} Status\r\n{extra}Content-Length: {responseBody.Length}\r\n\r\n";
+			stream.Write(System.Text.Encoding.ASCII.GetBytes(responseHead));
+			if (!isHead) stream.Write(responseBody);
+		}
 	}
 
 	static object Capture(System.Net.Sockets.TcpListener listener, KsanCase spec)

@@ -1,0 +1,114 @@
+{
+  "port": 53832,
+  "requests": [
+    {
+      "line": "HEAD /my-bucket/dir/key.txt HTTP/1.1",
+      "headers": [
+        [
+          "amz-sdk-invocation-id",
+          "a23f3c6a-5208-4b46-9df2-cf28a21b9713"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=3"
+        ],
+        [
+          "Host",
+          "127.0.0.1:53832"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T112101Z"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=c6959ba247ea71c49a4a6e9b8ef5d6c14268115e0e39ed956f7d910d04dba4ab"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 m/c,P,e,N,E"
+        ]
+      ],
+      "body": ""
+    },
+    {
+      "line": "HEAD /my-bucket/dir/key.txt HTTP/1.1",
+      "headers": [
+        [
+          "amz-sdk-invocation-id",
+          "a23f3c6a-5208-4b46-9df2-cf28a21b9713"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=2; max=3"
+        ],
+        [
+          "Host",
+          "127.0.0.1:53832"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T112102Z"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=d6ad2b0bdfcc58d5a36f57c44dd4cc0b5bd6cb59e358cd234d7945e6405f7695"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 m/c,P,e,N,E"
+        ]
+      ],
+      "body": ""
+    },
+    {
+      "line": "HEAD /my-bucket/dir/key.txt HTTP/1.1",
+      "headers": [
+        [
+          "amz-sdk-invocation-id",
+          "a23f3c6a-5208-4b46-9df2-cf28a21b9713"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=3; max=3"
+        ],
+        [
+          "Host",
+          "127.0.0.1:53832"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T112102Z"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=d6ad2b0bdfcc58d5a36f57c44dd4cc0b5bd6cb59e358cd234d7945e6405f7695"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 m/c,P,e,N,E"
+        ]
+      ],
+      "body": ""
+    }
+  ],
+  "result": null,
+  "error": {
+    "type": "Amazon.S3.AmazonS3Exception",
+    "message": "Error making request with Error Code InternalServerError and Http Status Code InternalServerError. No further error information was returned by the service.",
+    "status": 500,
+    "ErrorCode": "InternalServerError"
+  }
+}

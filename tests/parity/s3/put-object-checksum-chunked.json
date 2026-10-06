@@ -1,0 +1,4 @@
+{
+  "op": "put-object-checksum",
+  "checksum": true
+}

@@ -7,3 +7,4 @@ tests/parity/uri/** -text
 tests/parity/config/** -text
 tests/parity/ksan/** -text
 tests/parity/json/** -text
+tests/parity/s3/** -text

@@ -9,6 +9,7 @@ publish.workspace = true
 [dependencies]
 awscli-rest-common.workspace = true
 awscli-rest-config.workspace = true
+aws-sdk-s3.workspace = true
 base64.workspace = true
 bytes.workspace = true
 chrono.workspace = true
@@ -46,6 +47,10 @@ path = "../../tests/parity/sign.rs"
 [[test]]
 name = "parity_ksan"
 path = "../../tests/parity/ksan.rs"
+
+[[test]]
+name = "parity_s3_client"
+path = "../../tests/parity/s3_client.rs"
 
 [lints]
 workspace = true

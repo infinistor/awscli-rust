@@ -1,0 +1,64 @@
+{
+  "port": 53828,
+  "requests": [
+    {
+      "line": "POST /my-bucket/?delete HTTP/1.1",
+      "headers": [
+        [
+          "x-amz-api-version",
+          "2006-03-01"
+        ],
+        [
+          "amz-sdk-invocation-id",
+          "e54b3ef2-0ebe-457b-bb9b-059fd4d15e84"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "x-amz-checksum-crc32",
+          "Xn5bMQ=="
+        ],
+        [
+          "x-amz-sdk-checksum-algorithm",
+          "CRC32"
+        ],
+        [
+          "Host",
+          "127.0.0.1:53828"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T112100Z"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "57aa45b0548b898441594ca77e8e3800a4cf451a422a19c3f7a211e8a116ffae"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-api-version;x-amz-checksum-crc32;x-amz-content-sha256;x-amz-date;x-amz-sdk-checksum-algorithm, Signature=a6889852aa5cbe990f89ba405bdbc2e8a6d0e1aeed4d5b0d196aec2830b4cb3c"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 m/c,P,e,N,E,U,a"
+        ],
+        [
+          "Content-Length",
+          "167"
+        ],
+        [
+          "Content-Type",
+          "application/xml"
+        ]
+      ],
+      "body": "<Delete xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Object><Key>a</Key></Object><Object><Key>b</Key><VersionId>v1</VersionId></Object><Quiet>true</Quiet></Delete>"
+    }
+  ],
+  "result": {
+    "status": 200,
+    "ContentLength": 63
+  },
+  "error": null
+}

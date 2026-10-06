@@ -1,0 +1,7 @@
+{
+  "op": "head-object",
+  "responseHeaders": {
+    "Last-Modified": "Tue, 02 Jan 2024 03:04:05 GMT",
+    "ETag": "\"abc\""
+  }
+}

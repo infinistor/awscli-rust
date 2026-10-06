@@ -1,0 +1,4 @@
+{
+  "op": "list-buckets",
+  "responseBody": "<ListAllMyBucketsResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Owner><ID>o</ID></Owner><Buckets><Bucket><Name>b1</Name><CreationDate>2024-01-02T03:04:05.000Z</CreationDate></Bucket></Buckets></ListAllMyBucketsResult>"
+}
