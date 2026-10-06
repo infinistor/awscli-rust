@@ -1,0 +1,41 @@
+{
+  "sections": [
+    {
+      "name": "Main User",
+      "values": [
+        {
+          "key": "URL",
+          "raw": "again",
+          "text": "again"
+        },
+        {
+          "key": "Tab",
+          "raw": " \t1\t",
+          "text": "1"
+        }
+      ]
+    },
+    {
+      "name": "Spaced",
+      "values": [
+        {
+          "key": "k",
+          "raw": " a=b=c",
+          "text": "a=b=c"
+        }
+      ]
+    }
+  ],
+  "probes": [
+    {
+      "name": "Main User",
+      "upper": false,
+      "lower": false
+    },
+    {
+      "name": "Spaced",
+      "upper": false,
+      "lower": false
+    }
+  ]
+}

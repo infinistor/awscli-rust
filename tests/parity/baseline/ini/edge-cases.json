@@ -1,0 +1,71 @@
+{
+  "sections": [
+    {
+      "name": "Main User",
+      "values": [
+        {
+          "key": "URL",
+          "raw": " http://a:8080  ",
+          "text": "http://a:8080"
+        },
+        {
+          "key": "AccessKey",
+          "raw": "abc",
+          "text": "abc"
+        },
+        {
+          "key": "Secret Key",
+          "raw": " \"x y\"",
+          "text": "\"x y\""
+        },
+        {
+          "key": "",
+          "raw": "emptykey",
+          "text": "emptykey"
+        }
+      ]
+    },
+    {
+      "name": "main user",
+      "values": [
+        {
+          "key": "URL",
+          "raw": "lower",
+          "text": "lower"
+        }
+      ]
+    },
+    {
+      "name": "Default",
+      "values": [
+        {
+          "key": "Retry",
+          "raw": " 3 ",
+          "text": "3"
+        },
+        {
+          "key": "After",
+          "raw": "broken",
+          "text": "broken"
+        }
+      ]
+    }
+  ],
+  "probes": [
+    {
+      "name": "Main User",
+      "upper": false,
+      "lower": true
+    },
+    {
+      "name": "main user",
+      "upper": false,
+      "lower": true
+    },
+    {
+      "name": "Default",
+      "upper": false,
+      "lower": false
+    }
+  ]
+}

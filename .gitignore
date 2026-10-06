@@ -6,3 +6,5 @@ config.ini
 results/
 worker-results/
 worker-data/
+tools/dotnet-oracle/bin/
+tools/dotnet-oracle/obj/

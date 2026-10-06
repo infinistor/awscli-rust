@@ -1,0 +1,306 @@
+{
+  "sections": [
+    {
+      "name": "Default",
+      "values": [
+        {
+          "key": "BucketName",
+          "raw": " bucket-source",
+          "text": "bucket-source"
+        },
+        {
+          "key": "ObjectPrefix",
+          "raw": " temp",
+          "text": "temp"
+        },
+        {
+          "key": "FileSize",
+          "raw": " 1024K",
+          "text": "1024K"
+        },
+        {
+          "key": "PartSize",
+          "raw": " 16M",
+          "text": "16M"
+        }
+      ]
+    },
+    {
+      "name": "ListObj",
+      "values": [
+        {
+          "key": "Filecount",
+          "raw": " 200000",
+          "text": "200000"
+        },
+        {
+          "key": "Prefix",
+          "raw": " temp/test1/",
+          "text": "temp/test1/"
+        },
+        {
+          "key": "Times",
+          "raw": " 1200",
+          "text": "1200"
+        },
+        {
+          "key": "Prepare",
+          "raw": " false",
+          "text": "false"
+        },
+        {
+          "key": "ThreadCount",
+          "raw": " 5",
+          "text": "5"
+        }
+      ]
+    },
+    {
+      "name": "UpDown",
+      "values": [
+        {
+          "key": "ReadRatio",
+          "raw": " 7",
+          "text": "7"
+        },
+        {
+          "key": "WriteRatio",
+          "raw": " 3",
+          "text": "3"
+        },
+        {
+          "key": "ThreadCount",
+          "raw": " 10",
+          "text": "10"
+        },
+        {
+          "key": "FileCount",
+          "raw": " 1",
+          "text": "1"
+        },
+        {
+          "key": "Times",
+          "raw": " 300",
+          "text": "300"
+        },
+        {
+          "key": "OneFolder",
+          "raw": " false",
+          "text": "false"
+        },
+        {
+          "key": "UseChunkEncoding",
+          "raw": " false",
+          "text": "false"
+        },
+        {
+          "key": "DisablePayloadSigning",
+          "raw": " false",
+          "text": "false"
+        },
+        {
+          "key": "DisableMD5Stream",
+          "raw": " false",
+          "text": "false"
+        }
+      ]
+    },
+    {
+      "name": "Copy",
+      "values": [
+        {
+          "key": "SourceBucket",
+          "raw": " encryption-bucket",
+          "text": "encryption-bucket"
+        },
+        {
+          "key": "SourceObject",
+          "raw": " 100G",
+          "text": "100G"
+        },
+        {
+          "key": "TargetObject",
+          "raw": " 100G",
+          "text": "100G"
+        }
+      ]
+    },
+    {
+      "name": "Mover",
+      "values": [
+        {
+          "key": "URL",
+          "raw": " http://localhost:7123",
+          "text": "http://localhost:7123"
+        },
+        {
+          "key": "UserId",
+          "raw": " 1234",
+          "text": "1234"
+        },
+        {
+          "key": "SourceBucket",
+          "raw": " mover-source",
+          "text": "mover-source"
+        },
+        {
+          "key": "TargetBucket",
+          "raw": " mover-target",
+          "text": "mover-target"
+        },
+        {
+          "key": "FileCount",
+          "raw": " 10",
+          "text": "10"
+        },
+        {
+          "key": "MaxFileSize",
+          "raw": " 1024",
+          "text": "1024"
+        }
+      ]
+    },
+    {
+      "name": "Compare",
+      "values": [
+        {
+          "key": "SourceBucket",
+          "raw": " bucket-source",
+          "text": "bucket-source"
+        },
+        {
+          "key": "TargetBucket",
+          "raw": " bucket-target",
+          "text": "bucket-target"
+        },
+        {
+          "key": "Versioning",
+          "raw": " true",
+          "text": "true"
+        },
+        {
+          "key": "DeleteMarker",
+          "raw": " true",
+          "text": "true"
+        },
+        {
+          "key": "DisableMD5Stream",
+          "raw": " false",
+          "text": "false"
+        },
+        {
+          "key": "VersionCheck",
+          "raw": " true",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "Main User",
+      "values": [
+        {
+          "key": "URL",
+          "raw": " http://localhost:8080",
+          "text": "http://localhost:8080"
+        },
+        {
+          "key": "AccessKey",
+          "raw": " aaaaaaaaaaaaaaa",
+          "text": "aaaaaaaaaaaaaaa"
+        },
+        {
+          "key": "SecretKey",
+          "raw": " aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ]
+    },
+    {
+      "name": "Alt User",
+      "values": [
+        {
+          "key": "URL",
+          "raw": " http://localhost:8080",
+          "text": "http://localhost:8080"
+        },
+        {
+          "key": "AccessKey",
+          "raw": " aaaaaaaaaaaaaaa",
+          "text": "aaaaaaaaaaaaaaa"
+        },
+        {
+          "key": "SecretKey",
+          "raw": " aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ]
+    },
+    {
+      "name": "Third User",
+      "values": [
+        {
+          "key": "URL",
+          "raw": " http://localhost:8080",
+          "text": "http://localhost:8080"
+        },
+        {
+          "key": "AccessKey",
+          "raw": " aaaaaaaaaaaaaaa",
+          "text": "aaaaaaaaaaaaaaa"
+        },
+        {
+          "key": "SecretKey",
+          "raw": " aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ]
+    }
+  ],
+  "probes": [
+    {
+      "name": "Default",
+      "upper": false,
+      "lower": false
+    },
+    {
+      "name": "ListObj",
+      "upper": false,
+      "lower": false
+    },
+    {
+      "name": "UpDown",
+      "upper": false,
+      "lower": false
+    },
+    {
+      "name": "Copy",
+      "upper": false,
+      "lower": false
+    },
+    {
+      "name": "Mover",
+      "upper": false,
+      "lower": false
+    },
+    {
+      "name": "Compare",
+      "upper": false,
+      "lower": false
+    },
+    {
+      "name": "Main User",
+      "upper": false,
+      "lower": false
+    },
+    {
+      "name": "Alt User",
+      "upper": false,
+      "lower": false
+    },
+    {
+      "name": "Third User",
+      "upper": false,
+      "lower": false
+    }
+  ]
+}

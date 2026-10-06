@@ -1,0 +1,66 @@
+{
+  "sections": [
+    {
+      "name": "worker",
+      "values": [
+        {
+          "key": "name",
+          "raw": " driver1",
+          "text": "driver1"
+        },
+        {
+          "key": "url",
+          "raw": " http://0.0.0.0:18088/driver",
+          "text": "http://0.0.0.0:18088/driver"
+        },
+        {
+          "key": "WorkPath",
+          "raw": " ./worker-data",
+          "text": "./worker-data"
+        },
+        {
+          "key": "ResultPath",
+          "raw": " ./worker-results",
+          "text": "./worker-results"
+        },
+        {
+          "key": "LeaseTimeoutSeconds",
+          "raw": " 15",
+          "text": "15"
+        },
+        {
+          "key": "BucketSuffix",
+          "raw": "",
+          "text": ""
+        },
+        {
+          "key": "# URL",
+          "raw": " http://127.0.0.1:9000",
+          "text": "http://127.0.0.1:9000"
+        },
+        {
+          "key": "# RegionName",
+          "raw": "",
+          "text": ""
+        },
+        {
+          "key": "# AccessKey",
+          "raw": " replace-with-worker-access-key",
+          "text": "replace-with-worker-access-key"
+        },
+        {
+          "key": "# SecretKey",
+          "raw": " replace-with-worker-secret-key",
+          "text": "replace-with-worker-secret-key"
+        }
+      ]
+    }
+  ],
+  "probes": [
+    {
+      "name": "worker",
+      "upper": false,
+      "lower": true
+    }
+  ]
+}
