@@ -1,0 +1,131 @@
+{
+  "Main": {
+    "BucketName": "full-bucket",
+    "ThreadPrefix": "TP",
+    "ObjectPrefix": "OBJ",
+    "FilePath": "/data/test-files",
+    "FileSize": 10000000,
+    "PartSize": 1000000000,
+    "TargetPath": "/data/target",
+    "IsAdmin": true,
+    "RetryCount": 7
+  },
+  "ListObj": {
+    "Prefix": "list/prefix/",
+    "Prepare": true,
+    "FileCount": 1000,
+    "Times": 60,
+    "ThreadCount": 4
+  },
+  "UpDown": {
+    "ReadRatio": 6,
+    "WriteRatio": 3,
+    "DeleteRatio": 1,
+    "ThreadCount": 8,
+    "FileCount": 50,
+    "DivisionCount": 500,
+    "Times": 120,
+    "BucketType": 3,
+    "ETagCheck": true,
+    "UseChunkEncoding": true,
+    "Save": null
+  },
+  "Mover": {
+    "URL": "http://mover:7123",
+    "UserId": "mover-user",
+    "SourceBucket": "mv-src",
+    "TargetBucket": "mv-dst",
+    "FileCount": 5,
+    "MaxFileSize": 2000000
+  },
+  "Compare": {
+    "SourceBucket": "cmp-src",
+    "TargetBucket": "cmp-dst",
+    "IsDeleteMarker": true,
+    "ETagCheck": true,
+    "ChecksumCheck": true,
+    "MetadataCheck": true,
+    "VersionCheck": true,
+    "ReplicationCheck": true,
+    "TagCheck": true
+  },
+  "UsedSize": {
+    "BucketPrefix": "used-",
+    "FileSize": 128000,
+    "MultiPartSize": 5000000
+  },
+  "Duplicate": {
+    "ObjectPath": "dup/object",
+    "LoopCount": 3,
+    "ObjectCount": 9
+  },
+  "AccessIps": {
+    "BucketPrefix": "ips-",
+    "AllFailed": true,
+    "TestListPath": "/tests/list.txt",
+    "JenkinsTestName": "ips-test",
+    "S3URL": [
+      "http://a:8080",
+      "http://b:8080",
+      "http://c:8080"
+    ],
+    "VolumeName": "vol1",
+    "MainUserName": "mu",
+    "SubUserName": "su",
+    "Password": "secret"
+  },
+  "DB": {
+    "Host": "dbhost",
+    "Port": 3306,
+    "User": "dbuser",
+    "Password": "dbpass",
+    "Database": "dbname"
+  },
+  "Portal": {
+    "URL": "http://portal:8000",
+    "ApiKey": "key123"
+  },
+  "Jenkins": {
+    "Host": "jhost",
+    "JenkinsPort": 3307,
+    "DBPort": 8080,
+    "User": "juser",
+    "Password": "jpass",
+    "Database": "jdb"
+  },
+  "MultiSystemUpload": {
+    "BucketType": 2,
+    "ThreadCount": 3,
+    "FileCount": 11,
+    "MultiGateway": {
+      "URL": "http://gw:9000",
+      "RegionName": "us-east-1",
+      "AccessKey": "mainak",
+      "SecretKey": "mainsk"
+    },
+    "OldSystem": {
+      "URL": "http://old:9000",
+      "RegionName": "us-east-1",
+      "AccessKey": "mainak",
+      "SecretKey": "mainsk"
+    },
+    "NewSystem": {
+      "URL": "http://new:9000",
+      "RegionName": "us-east-1",
+      "AccessKey": "mainak",
+      "SecretKey": "mainsk"
+    }
+  },
+  "MainUser": {
+    "URL": "http://main:8080",
+    "RegionName": "us-east-1",
+    "AccessKey": "mainak",
+    "SecretKey": "mainsk"
+  },
+  "AltUser": {
+    "URL": "http://alt:8080",
+    "RegionName": "ap-northeast-2",
+    "AccessKey": "altak",
+    "SecretKey": "altsk"
+  }
+}

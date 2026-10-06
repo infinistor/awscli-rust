@@ -1,0 +1,127 @@
+{
+  "Main": {
+    "BucketName": "b",
+    "ThreadPrefix": "TH",
+    "ObjectPrefix": "FILE",
+    "FilePath": "/f",
+    "FileSize": 1000,
+    "PartSize": 5242880,
+    "TargetPath": "",
+    "IsAdmin": false,
+    "RetryCount": 3
+  },
+  "ListObj": {
+    "Prefix": "",
+    "Prepare": false,
+    "FileCount": -1,
+    "Times": -1,
+    "ThreadCount": -1
+  },
+  "UpDown": {
+    "ReadRatio": 5,
+    "WriteRatio": 5,
+    "DeleteRatio": 0,
+    "ThreadCount": -1,
+    "FileCount": -1,
+    "DivisionCount": 1000,
+    "Times": -1,
+    "BucketType": 4,
+    "ETagCheck": false,
+    "UseChunkEncoding": false,
+    "Save": null
+  },
+  "Mover": {
+    "URL": "",
+    "UserId": "",
+    "SourceBucket": "",
+    "TargetBucket": "",
+    "FileCount": -1,
+    "MaxFileSize": 0
+  },
+  "Compare": {
+    "SourceBucket": "",
+    "TargetBucket": "",
+    "IsDeleteMarker": false,
+    "ETagCheck": false,
+    "ChecksumCheck": false,
+    "MetadataCheck": false,
+    "VersionCheck": false,
+    "ReplicationCheck": false,
+    "TagCheck": false
+  },
+  "UsedSize": {
+    "BucketPrefix": "",
+    "FileSize": 0,
+    "MultiPartSize": 0
+  },
+  "Duplicate": {
+    "ObjectPath": "",
+    "LoopCount": -1,
+    "ObjectCount": -1
+  },
+  "AccessIps": {
+    "BucketPrefix": "",
+    "AllFailed": false,
+    "TestListPath": "",
+    "JenkinsTestName": "",
+    "S3URL": [],
+    "VolumeName": "",
+    "MainUserName": "",
+    "SubUserName": "",
+    "Password": "qwe123"
+  },
+  "DB": {
+    "Host": "",
+    "Port": -1,
+    "User": "",
+    "Password": "",
+    "Database": ""
+  },
+  "Portal": {
+    "URL": "http://portal",
+    "ApiKey": "k"
+  },
+  "Jenkins": {
+    "Host": "j",
+    "JenkinsPort": 1,
+    "DBPort": 2,
+    "User": "u",
+    "Password": "p",
+    "Database": "d"
+  },
+  "MultiSystemUpload": {
+    "BucketType": 4,
+    "ThreadCount": 2,
+    "FileCount": 5,
+    "MultiGateway": {
+      "URL": "http://gw:1",
+      "RegionName": "custom-region",
+      "AccessKey": "custom-ak",
+      "SecretKey": "custom-sk"
+    },
+    "OldSystem": {
+      "URL": "http://old:2",
+      "RegionName": "custom-region",
+      "AccessKey": "custom-ak",
+      "SecretKey": "custom-sk"
+    },
+    "NewSystem": {
+      "URL": "http://new:3",
+      "RegionName": "custom-region",
+      "AccessKey": "custom-ak",
+      "SecretKey": "custom-sk"
+    }
+  },
+  "MainUser": {
+    "URL": "http://custom:9000",
+    "RegionName": "custom-region",
+    "AccessKey": "custom-ak",
+    "SecretKey": "custom-sk"
+  },
+  "AltUser": {
+    "URL": "http://alt:8080",
+    "RegionName": "alt-region",
+    "AccessKey": "alt-ak",
+    "SecretKey": "alt-sk"
+  }
+}

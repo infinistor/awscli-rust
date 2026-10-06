@@ -4,3 +4,4 @@ tests/parity/baseline/** -text
 tests/parity/checksum/** -text
 tests/parity/sign/** -text
 tests/parity/uri/** -text
+tests/parity/config/** -text

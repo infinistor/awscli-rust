@@ -1,0 +1,127 @@
+{
+  "Main": {
+    "BucketName": "b",
+    "ThreadPrefix": "TH",
+    "ObjectPrefix": "FILE",
+    "FilePath": "/f",
+    "FileSize": 1000,
+    "PartSize": 5242880,
+    "TargetPath": "",
+    "IsAdmin": false,
+    "RetryCount": 3
+  },
+  "ListObj": {
+    "Prefix": "",
+    "Prepare": false,
+    "FileCount": -1,
+    "Times": -1,
+    "ThreadCount": -1
+  },
+  "UpDown": {
+    "ReadRatio": 5,
+    "WriteRatio": 5,
+    "DeleteRatio": 0,
+    "ThreadCount": -1,
+    "FileCount": -1,
+    "DivisionCount": 1000,
+    "Times": -1,
+    "BucketType": 99,
+    "ETagCheck": false,
+    "UseChunkEncoding": false,
+    "Save": null
+  },
+  "Mover": {
+    "URL": "",
+    "UserId": "",
+    "SourceBucket": "",
+    "TargetBucket": "",
+    "FileCount": -1,
+    "MaxFileSize": 0
+  },
+  "Compare": {
+    "SourceBucket": "",
+    "TargetBucket": "",
+    "IsDeleteMarker": false,
+    "ETagCheck": false,
+    "ChecksumCheck": false,
+    "MetadataCheck": false,
+    "VersionCheck": false,
+    "ReplicationCheck": false,
+    "TagCheck": false
+  },
+  "UsedSize": {
+    "BucketPrefix": "",
+    "FileSize": 0,
+    "MultiPartSize": 0
+  },
+  "Duplicate": {
+    "ObjectPath": "",
+    "LoopCount": -1,
+    "ObjectCount": -1
+  },
+  "AccessIps": {
+    "BucketPrefix": "",
+    "AllFailed": false,
+    "TestListPath": "",
+    "JenkinsTestName": "",
+    "S3URL": [],
+    "VolumeName": "",
+    "MainUserName": "",
+    "SubUserName": "",
+    "Password": "qwe123"
+  },
+  "DB": {
+    "Host": "",
+    "Port": -1,
+    "User": "",
+    "Password": "",
+    "Database": ""
+  },
+  "Portal": {
+    "URL": "",
+    "ApiKey": ""
+  },
+  "Jenkins": {
+    "Host": "",
+    "JenkinsPort": -1,
+    "DBPort": -1,
+    "User": "",
+    "Password": "",
+    "Database": ""
+  },
+  "MultiSystemUpload": {
+    "BucketType": -5,
+    "ThreadCount": 2,
+    "FileCount": 3,
+    "MultiGateway": {
+      "URL": "",
+      "RegionName": "",
+      "AccessKey": "",
+      "SecretKey": ""
+    },
+    "OldSystem": {
+      "URL": "",
+      "RegionName": "",
+      "AccessKey": "",
+      "SecretKey": ""
+    },
+    "NewSystem": {
+      "URL": "",
+      "RegionName": "",
+      "AccessKey": "",
+      "SecretKey": ""
+    }
+  },
+  "MainUser": {
+    "URL": "",
+    "RegionName": "",
+    "AccessKey": "",
+    "SecretKey": ""
+  },
+  "AltUser": {
+    "URL": "",
+    "RegionName": "",
+    "AccessKey": "",
+    "SecretKey": ""
+  }
+}

@@ -6,6 +6,8 @@ TESTCore(.NET)와 awscli-rest의 외부 동작을 비교한다.
     -   `version.txt`: `TestCore --version` 출력 (`78004ff` 빌드)
     -   `help.txt`: `TestCore --help` 출력에서 로그 줄을 뺀 것 (`78004ff` 빌드, 4단계 옵션 파서 비교용)
     -   `ini/*.json`: `ini/*.ini`를 TESTCore `IniFile`로 읽은 결과
+    -   `config/*.json`: `config/*.ini`를 `Config.GetConfig`로 읽은 뒤 `Config.ToString()`한 JSON. 사용자 섹션을 지정한 경우 `<픽스처>.user-<이름>.json`(Windows는 파일 이름 대소문자를 구분하지 않으므로 이름이 겹치지 않게 한다). 로드에 실패한 입력은 `null`이다. `Default.FilePath`가 비어 있으면 원본이 현재 디렉터리를 쓰므로 `<CWD>`로 바꿔 저장했다.
+-   `config/`: Config 픽스처(`-text`로 보관).
 -   `ini/`: INI 파서 픽스처. 줄 끝과 BOM을 그대로 보관하도록 `.gitattributes`에서 `-text`로 지정했다.
 -   테스트 파일(`*.rs`)은 해당 크레이트의 `Cargo.toml`에 `[[test]]`로 등록한다.
 
