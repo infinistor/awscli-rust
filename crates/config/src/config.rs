@@ -293,7 +293,7 @@ impl Config {
 
     /// `Config.ToString()`: 들여쓰기가 적용된 JSON.
     pub fn to_json_string(&self) -> String {
-        serde_json::to_string_pretty(self).expect("Config 직렬화는 실패하지 않는다")
+        awscli_rest_common::to_dotnet_json(self)
     }
 }
 

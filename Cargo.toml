@@ -9,6 +9,7 @@ repository = "https://github.com/infinistor/awscli-rest"
 publish = false
 
 [workspace.dependencies]
+awscli-rest-common = { path = "crates/common" }
 awscli-rest-config = { path = "crates/config" }
 awscli-rest-model = { path = "crates/model" }
 awscli-rest-s3 = { path = "crates/s3" }

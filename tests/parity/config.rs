@@ -105,3 +105,16 @@ fn main_user_changes_are_seen_by_multi_system() {
         "http://old:2"
     );
 }
+
+/// `ToString()` 문자열이 .NET 출력과 바이트 단위로 같은지 확인한다(이스케이프·줄바꿈·숫자 형식 포함).
+/// 기준 출력은 오라클이 `Console.WriteLine`으로 찍은 원문이라 끝에 줄바꿈이 하나 붙어 있다.
+#[test]
+fn json_text_matches_dotnet() {
+    use awscli_rest_common::dotnet_json::NEW_LINE;
+    let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../tests/parity");
+    let config = Config::load(root.join("config/full.ini"), None).unwrap();
+    let expected = std::fs::read_to_string(root.join("baseline/config-raw/full.txt"))
+        .unwrap()
+        .replace("\r\n", NEW_LINE);
+    assert_eq!(format!("{}{NEW_LINE}", config.to_json_string()), expected);
+}

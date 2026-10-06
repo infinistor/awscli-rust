@@ -1,0 +1,49 @@
+{
+  "Strings": [
+    "plain ascii",
+    "\u0022quoted\u0022 and back\\slash",
+    "\u003Ctag\u003E \u0026 \u0027apos\u0027 \u002B \u0060tick\u0060",
+    "\uD55C\uAE00 \uD14C\uC2A4\uD2B8",
+    "emoji \uD83D\uDE00 surrogate",
+    "C:\\path\to\\file",
+    "ctrl \r\n\t \u0000 \u0001 \u007F",
+    "latin \u00E9 \u00FC \u00DF",
+    "/slash?=:;,!@#$%^*()[]{}|~",
+    ""
+  ],
+  "Empty": [],
+  "EmptyObject": {},
+  "Null": null,
+  "Numbers": [
+    0,
+    -1,
+    2147483647,
+    9223372036854775807,
+    1.5,
+    0.1,
+    1E+20,
+    1E-07,
+    123456789.125,
+    100000000000000,
+    1000000000000000,
+    123456789012345.6,
+    0.0001,
+    1E-05,
+    -2.5E-10,
+    1.7976931348623157E+308,
+    5E-324,
+    100,
+    -0
+  ],
+  "Bools": [
+    true,
+    false
+  ],
+  "Nested": {
+    "A": [
+      {
+        "B": 1
+      }
+    ]
+  }
+}

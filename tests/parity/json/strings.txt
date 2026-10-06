@@ -1,0 +1,10 @@
+plain ascii
+"quoted" and back\slash
+<tag> & 'apos' + `tick`
+한글 테스트
+emoji 😀 surrogate
+C:\path\to\file
+ctrl \r\n\t \0 \x01 \x7f
+latin é ü ß
+/slash?=:;,!@#$%^*()[]{}|~
+

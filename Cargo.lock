@@ -40,9 +40,18 @@ name = "awscli-rest-clients"
 version = "0.1.0"
 
 [[package]]
+name = "awscli-rest-common"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "awscli-rest-config"
 version = "0.1.0"
 dependencies = [
+ "awscli-rest-common",
  "chrono",
  "rand",
  "regex",
