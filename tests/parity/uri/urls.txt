@@ -87,3 +87,12 @@ http://h:1/b/%%%41%41?q
 http://h:1/b/a%%%41?q
 http://h:1/b/%2e%2E%2e/x?q
 http://h:1/b/x/%2E./y?q
+http://h:1/b/k?storagemove&StorageClass=GLACIER&encoding-type=url&VersionId=v 1
+http://h:1/b/k?a=한글&b=^|{}`<>"'&c=%41%7e%2F%zz%&d=\x
+http://h:1/b/k?x=a#b
+http://h:1/b/k?a=%%41&b=a%4%41
+http://h:1/b/k?list-tag-search&encoding-type=url&max-keys=5&tag=a+b%3Dc%26d%2F%ED%95%9C%EA%B8%80%2B~*
+http://h:1/b/k?q=../x/./y&r=%2e%2e
+http://h:1/b/k?
+http://h:1/b/k
+http://h:1

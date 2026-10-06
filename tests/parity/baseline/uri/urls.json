@@ -4,622 +4,783 @@
     "host": "localhost",
     "port": 80,
     "isDefaultPort": true,
-    "absolutePath": "/bucket/a%20b"
+    "absolutePath": "/bucket/a%20b",
+    "pathAndQuery": "/bucket/a%20b?storagemove"
   },
   {
     "url": "http://h:1/b/한글?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/%ED%95%9C%EA%B8%80"
+    "absolutePath": "/b/%ED%95%9C%EA%B8%80",
+    "pathAndQuery": "/b/%ED%95%9C%EA%B8%80?q"
   },
   {
     "url": "http://h:1/b/a%20b?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%20b"
+    "absolutePath": "/b/a%20b",
+    "pathAndQuery": "/b/a%20b?q"
   },
   {
     "url": "http://h:1/b/a%zz?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%25zz"
+    "absolutePath": "/b/a%25zz",
+    "pathAndQuery": "/b/a%25zz?q"
   },
   {
     "url": "http://h:1/b/a%41b?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/aAb"
+    "absolutePath": "/b/aAb",
+    "pathAndQuery": "/b/aAb?q"
   },
   {
     "url": "http://h:1/b/a+b?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a+b"
+    "absolutePath": "/b/a+b",
+    "pathAndQuery": "/b/a+b?q"
   },
   {
     "url": "http://h:1/b/a^b|c{d}`e?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%5Eb%7Cc%7Bd%7D%60e"
+    "absolutePath": "/b/a%5Eb%7Cc%7Bd%7D%60e",
+    "pathAndQuery": "/b/a%5Eb%7Cc%7Bd%7D%60e?q"
   },
   {
     "url": "http://h:1/b/a\\b?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a/b"
+    "absolutePath": "/b/a/b",
+    "pathAndQuery": "/b/a/b?q"
   },
   {
     "url": "http://h:1/b/./x/../y?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/y"
+    "absolutePath": "/b/y",
+    "pathAndQuery": "/b/y?q"
   },
   {
     "url": "http://h:1/b/x/./y/../z?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/x/z"
+    "absolutePath": "/b/x/z",
+    "pathAndQuery": "/b/x/z?q"
   },
   {
     "url": "http://h:1/b/a\"<>?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%22%3C%3E"
+    "absolutePath": "/b/a%22%3C%3E",
+    "pathAndQuery": "/b/a%22%3C%3E?q"
   },
   {
     "url": "http://h:1/b/~!@$&'()*,;=:?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/~!@$&'()*,;=:"
+    "absolutePath": "/b/~!@$&'()*,;=:",
+    "pathAndQuery": "/b/~!@$&'()*,;=:?q"
   },
   {
     "url": "http://h:1/b/[x]?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/[x]"
+    "absolutePath": "/b/[x]",
+    "pathAndQuery": "/b/[x]?q"
   },
   {
     "url": "http://h:1/b/tab\there?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/tab%09here"
+    "absolutePath": "/b/tab%09here",
+    "pathAndQuery": "/b/tab%09here?q"
   },
   {
     "url": "http://h:1/b/a%2Fb?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%2Fb"
+    "absolutePath": "/b/a%2Fb",
+    "pathAndQuery": "/b/a%2Fb?q"
   },
   {
     "url": "http://h:1/b/..?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/"
+    "absolutePath": "/",
+    "pathAndQuery": "/?q"
   },
   {
     "url": "http://h:1/b/%2e%2e/q?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/q"
+    "absolutePath": "/q",
+    "pathAndQuery": "/q?q"
   },
   {
     "url": "http://h:1/b/UP/Case?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/UP/Case"
+    "absolutePath": "/b/UP/Case",
+    "pathAndQuery": "/b/UP/Case?q"
   },
   {
     "url": "http://h:1/b/ü?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/%C3%BC"
+    "absolutePath": "/b/%C3%BC",
+    "pathAndQuery": "/b/%C3%BC?q"
   },
   {
     "url": "http://h:1/b/a%2fb?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%2fb"
+    "absolutePath": "/b/a%2fb",
+    "pathAndQuery": "/b/a%2fb?q"
   },
   {
     "url": "http://h:1/b/a%7eb?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a~b"
+    "absolutePath": "/b/a~b",
+    "pathAndQuery": "/b/a~b?q"
   },
   {
     "url": "http://h:1/b/a%5Bb?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%5Bb"
+    "absolutePath": "/b/a%5Bb",
+    "pathAndQuery": "/b/a%5Bb?q"
   },
   {
     "url": "http://h:1/b/a%C3%BCb?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%C3%BCb"
+    "absolutePath": "/b/a%C3%BCb",
+    "pathAndQuery": "/b/a%C3%BCb?q"
   },
   {
     "url": "http://h:1/b/a%?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%25"
+    "absolutePath": "/b/a%25",
+    "pathAndQuery": "/b/a%25?q"
   },
   {
     "url": "http://h:1/b/a%%41?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%25%41"
+    "absolutePath": "/b/a%25%41",
+    "pathAndQuery": "/b/a%25%41?q"
   },
   {
     "url": "http://h:1/b/a/./?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a/"
+    "absolutePath": "/b/a/",
+    "pathAndQuery": "/b/a/?q"
   },
   {
     "url": "http://h:1/b/a/.?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a/"
+    "absolutePath": "/b/a/",
+    "pathAndQuery": "/b/a/?q"
   },
   {
     "url": "http://h:1/b/a//b?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a//b"
+    "absolutePath": "/b/a//b",
+    "pathAndQuery": "/b/a//b?q"
   },
   {
     "url": "http://h:1/b/%2e?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/"
+    "absolutePath": "/b/",
+    "pathAndQuery": "/b/?q"
   },
   {
     "url": "http://h:1/b/.hidden?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/.hidden"
+    "absolutePath": "/b/.hidden",
+    "pathAndQuery": "/b/.hidden?q"
   },
   {
     "url": "http://h:1/b/a..b?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a..b"
+    "absolutePath": "/b/a..b",
+    "pathAndQuery": "/b/a..b?q"
   },
   {
     "url": "http://h:1/b/a/..?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/"
+    "absolutePath": "/b/",
+    "pathAndQuery": "/b/?q"
   },
   {
     "url": "http://h:1/b/a%00b?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%00b"
+    "absolutePath": "/b/a%00b",
+    "pathAndQuery": "/b/a%00b?q"
   },
   {
     "url": "http://h:1/b/a%25b?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%25b"
+    "absolutePath": "/b/a%25b",
+    "pathAndQuery": "/b/a%25b?q"
   },
   {
     "url": "http://h:1/b/a%2Db?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a-b"
+    "absolutePath": "/b/a-b",
+    "pathAndQuery": "/b/a-b?q"
   },
   {
     "url": "http://h:1/b/a%5fb?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a_b"
+    "absolutePath": "/b/a_b",
+    "pathAndQuery": "/b/a_b?q"
   },
   {
     "url": "http://h:1/b/a%30b?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a0b"
+    "absolutePath": "/b/a0b",
+    "pathAndQuery": "/b/a0b?q"
   },
   {
     "url": "http://h:1/b/a%3Ab?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%3Ab"
+    "absolutePath": "/b/a%3Ab",
+    "pathAndQuery": "/b/a%3Ab?q"
   },
   {
     "url": "http://h:1/b/a%40b?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%40b"
+    "absolutePath": "/b/a%40b",
+    "pathAndQuery": "/b/a%40b?q"
   },
   {
     "url": "http://h:1/b/a%2Bb?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%2Bb"
+    "absolutePath": "/b/a%2Bb",
+    "pathAndQuery": "/b/a%2Bb?q"
   },
   {
     "url": "http://h:1/b/%e2%82?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/%e2%82"
+    "absolutePath": "/b/%e2%82",
+    "pathAndQuery": "/b/%e2%82?q"
   },
   {
     "url": "http://h:1/b/a%7Fb?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%7Fb"
+    "absolutePath": "/b/a%7Fb",
+    "pathAndQuery": "/b/a%7Fb?q"
   },
   {
     "url": "http://h:1/b/a%20%20b?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%20%20b"
+    "absolutePath": "/b/a%20%20b",
+    "pathAndQuery": "/b/a%20%20b?q"
   },
   {
     "url": "http://h:1/b/a.%2e/b?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a../b"
+    "absolutePath": "/b/a../b",
+    "pathAndQuery": "/b/a../b?q"
   },
   {
     "url": "http://h:1/b/a/%2E/b?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a/b"
+    "absolutePath": "/b/a/b",
+    "pathAndQuery": "/b/a/b?q"
   },
   {
     "url": "http://h:1/b/end.?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/end."
+    "absolutePath": "/b/end.",
+    "pathAndQuery": "/b/end.?q"
   },
   {
     "url": "http://h:1/b/x/%2e%2E?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/"
+    "absolutePath": "/b/",
+    "pathAndQuery": "/b/?q"
   },
   {
     "url": "http://h:1/b/a b%41?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%20bA"
+    "absolutePath": "/b/a%20bA",
+    "pathAndQuery": "/b/a%20bA?q"
   },
   {
     "url": "http://h:1/b/한%41?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/%ED%95%9CA"
+    "absolutePath": "/b/%ED%95%9CA",
+    "pathAndQuery": "/b/%ED%95%9CA?q"
   },
   {
     "url": "http://h:1/b/a^%41?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%5EA"
+    "absolutePath": "/b/a%5EA",
+    "pathAndQuery": "/b/a%5EA?q"
   },
   {
     "url": "http://h:1/b/%41%?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/A%25"
+    "absolutePath": "/b/A%25",
+    "pathAndQuery": "/b/A%25?q"
   },
   {
     "url": "http://h:1/b/x%41/../y?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/y"
+    "absolutePath": "/b/y",
+    "pathAndQuery": "/b/y?q"
   },
   {
     "url": "http://h:1/b/a b/../c?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/c"
+    "absolutePath": "/b/c",
+    "pathAndQuery": "/b/c?q"
   },
   {
     "url": "http://h:1/b/a%/../c?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/c"
+    "absolutePath": "/b/c",
+    "pathAndQuery": "/b/c?q"
   },
   {
     "url": "http://h:1/b/한/./c?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/%ED%95%9C/c"
+    "absolutePath": "/b/%ED%95%9C/c",
+    "pathAndQuery": "/b/%ED%95%9C/c?q"
   },
   {
     "url": "http://h:1/b/a\\%41?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a/A"
+    "absolutePath": "/b/a/A",
+    "pathAndQuery": "/b/a/A?q"
   },
   {
     "url": "http://h:1/b/a\\b/../c?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a/c"
+    "absolutePath": "/b/a/c",
+    "pathAndQuery": "/b/a/c?q"
   },
   {
     "url": "http://h:1/b/%2e%2e/a b?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/a%20b"
+    "absolutePath": "/a%20b",
+    "pathAndQuery": "/a%20b?q"
   },
   {
     "url": "http://h:1/b/a%zz%2e%2e/x?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%25zz../x"
+    "absolutePath": "/b/a%25zz../x",
+    "pathAndQuery": "/b/a%25zz../x?q"
   },
   {
     "url": "http://h:1/b/a%20%41?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%20A"
+    "absolutePath": "/b/a%20A",
+    "pathAndQuery": "/b/a%20A?q"
   },
   {
     "url": "http://h:1/b/a%25%41b?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%25Ab"
+    "absolutePath": "/b/a%25Ab",
+    "pathAndQuery": "/b/a%25Ab?q"
   },
   {
     "url": "http://h:1/b/a%25x%41?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%25xA"
+    "absolutePath": "/b/a%25xA",
+    "pathAndQuery": "/b/a%25xA?q"
   },
   {
     "url": "http://h:1/b/%zzx%41?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/%25zzxA"
+    "absolutePath": "/b/%25zzxA",
+    "pathAndQuery": "/b/%25zzxA?q"
   },
   {
     "url": "http://h:1/b/a%zz/%41?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%25zz/A"
+    "absolutePath": "/b/a%25zz/A",
+    "pathAndQuery": "/b/a%25zz/A?q"
   },
   {
     "url": "http://h:1/b/a%/%41?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%25/%41"
+    "absolutePath": "/b/a%25/%41",
+    "pathAndQuery": "/b/a%25/%41?q"
   },
   {
     "url": "http://h:1/b/%41%zz?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/A%25zz"
+    "absolutePath": "/b/A%25zz",
+    "pathAndQuery": "/b/A%25zz?q"
   },
   {
     "url": "http://h:1/b/a%2F%41?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%2FA"
+    "absolutePath": "/b/a%2FA",
+    "pathAndQuery": "/b/a%2FA?q"
   },
   {
     "url": "http://h:1/b/%3A%41?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/%3AA"
+    "absolutePath": "/b/%3AA",
+    "pathAndQuery": "/b/%3AA?q"
   },
   {
     "url": "http://h:1/b/a%G1%41b?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%25G1Ab"
+    "absolutePath": "/b/a%25G1Ab",
+    "pathAndQuery": "/b/a%25G1Ab?q"
   },
   {
     "url": "http://h:1/b/a%4%41?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%254%41"
+    "absolutePath": "/b/a%254%41",
+    "pathAndQuery": "/b/a%254%41?q"
   },
   {
     "url": "http://h:1/b/a% x?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%25%20x"
+    "absolutePath": "/b/a%25%20x",
+    "pathAndQuery": "/b/a%25%20x?q"
   },
   {
     "url": "http://h:1/b/a%한x?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%25%ED%95%9Cx"
+    "absolutePath": "/b/a%25%ED%95%9Cx",
+    "pathAndQuery": "/b/a%25%ED%95%9Cx?q"
   },
   {
     "url": "http://h:1/b/a%^x?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%25%5Ex"
+    "absolutePath": "/b/a%25%5Ex",
+    "pathAndQuery": "/b/a%25%5Ex?q"
   },
   {
     "url": "http://h:1/b/a%\\x?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%25/x"
+    "absolutePath": "/b/a%25/x",
+    "pathAndQuery": "/b/a%25/x?q"
   },
   {
     "url": "http://h:1/b/a%x\\?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%25x/"
+    "absolutePath": "/b/a%25x/",
+    "pathAndQuery": "/b/a%25x/?q"
   },
   {
     "url": "http://h:1/b/a%4?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%254"
+    "absolutePath": "/b/a%254",
+    "pathAndQuery": "/b/a%254?q"
   },
   {
     "url": "http://h:1/b/a%x%?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%25x%25"
+    "absolutePath": "/b/a%25x%25",
+    "pathAndQuery": "/b/a%25x%25?q"
   },
   {
     "url": "http://h:1/b/a%.%2e/z?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%25.%2e/z"
+    "absolutePath": "/b/a%25.%2e/z",
+    "pathAndQuery": "/b/a%25.%2e/z?q"
   },
   {
     "url": "http://h:1/b/%.%2e/z?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/%25.%2e/z"
+    "absolutePath": "/b/%25.%2e/z",
+    "pathAndQuery": "/b/%25.%2e/z?q"
   },
   {
     "url": "http://h:1/b/a%/./z?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%25/z"
+    "absolutePath": "/b/a%25/z",
+    "pathAndQuery": "/b/a%25/z?q"
   },
   {
     "url": "http://h:1/b/a%%?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%25%25"
+    "absolutePath": "/b/a%25%25",
+    "pathAndQuery": "/b/a%25%25?q"
   },
   {
     "url": "http://[::1]:9000/b/k?q",
     "host": "[::1]",
     "port": 9000,
     "isDefaultPort": false,
-    "absolutePath": "/b/k"
+    "absolutePath": "/b/k",
+    "pathAndQuery": "/b/k?q"
   },
   {
     "url": "https://h:443/b/?tag-index",
     "host": "h",
     "port": 443,
     "isDefaultPort": true,
-    "absolutePath": "/b/"
+    "absolutePath": "/b/",
+    "pathAndQuery": "/b/?tag-index"
   },
   {
     "url": "http://192.168.0.1:8080/bucket?tag-index",
     "host": "192.168.0.1",
     "port": 8080,
     "isDefaultPort": false,
-    "absolutePath": "/bucket"
+    "absolutePath": "/bucket",
+    "pathAndQuery": "/bucket?tag-index"
   },
   {
     "url": "http://h:1/b/k#frag?x",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/k"
+    "absolutePath": "/b/k",
+    "pathAndQuery": "/b/k"
   },
   {
     "url": "http://h:1/b/%%%41%41?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/%25%25%41A"
+    "absolutePath": "/b/%25%25%41A",
+    "pathAndQuery": "/b/%25%25%41A?q"
   },
   {
     "url": "http://h:1/b/a%%%41?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/a%25%25%41"
+    "absolutePath": "/b/a%25%25%41",
+    "pathAndQuery": "/b/a%25%25%41?q"
   },
   {
     "url": "http://h:1/b/%2e%2E%2e/x?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/.../x"
+    "absolutePath": "/b/.../x",
+    "pathAndQuery": "/b/.../x?q"
   },
   {
     "url": "http://h:1/b/x/%2E./y?q",
     "host": "h",
     "port": 1,
     "isDefaultPort": false,
-    "absolutePath": "/b/y"
+    "absolutePath": "/b/y",
+    "pathAndQuery": "/b/y?q"
+  },
+  {
+    "url": "http://h:1/b/k?storagemove&StorageClass=GLACIER&encoding-type=url&VersionId=v 1",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/k",
+    "pathAndQuery": "/b/k?storagemove&StorageClass=GLACIER&encoding-type=url&VersionId=v%201"
+  },
+  {
+    "url": "http://h:1/b/k?a=한글&b=^|{}`<>\"'&c=%41%7e%2F%zz%&d=\\x",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/k",
+    "pathAndQuery": "/b/k?a=%ED%95%9C%EA%B8%80&b=%5E%7C%7B%7D%60%3C%3E%22'&c=A~%2F%25zz%25&d=%5Cx"
+  },
+  {
+    "url": "http://h:1/b/k?x=a#b",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/k",
+    "pathAndQuery": "/b/k?x=a"
+  },
+  {
+    "url": "http://h:1/b/k?a=%%41&b=a%4%41",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/k",
+    "pathAndQuery": "/b/k?a=%25%41&b=a%254%41"
+  },
+  {
+    "url": "http://h:1/b/k?list-tag-search&encoding-type=url&max-keys=5&tag=a+b%3Dc%26d%2F%ED%95%9C%EA%B8%80%2B~*",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/k",
+    "pathAndQuery": "/b/k?list-tag-search&encoding-type=url&max-keys=5&tag=a+b%3Dc%26d%2F%ED%95%9C%EA%B8%80%2B~*"
+  },
+  {
+    "url": "http://h:1/b/k?q=../x/./y&r=%2e%2e",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/k",
+    "pathAndQuery": "/b/k?q=../x/./y&r=.."
+  },
+  {
+    "url": "http://h:1/b/k?",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/k",
+    "pathAndQuery": "/b/k?"
+  },
+  {
+    "url": "http://h:1/b/k",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/k",
+    "pathAndQuery": "/b/k"
+  },
+  {
+    "url": "http://h:1",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/",
+    "pathAndQuery": "/"
   }
 ]

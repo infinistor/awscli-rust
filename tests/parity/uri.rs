@@ -24,6 +24,7 @@ fn uri_matches_dotnet() {
             "port": uri.port(),
             "isDefaultPort": uri.is_default_port(),
             "absolutePath": uri.absolute_path(),
+            "pathAndQuery": uri.path_and_query(),
         });
         if &actual != expected {
             failures.push(format!("{url}\n  expected {expected}\n  actual   {actual}"));

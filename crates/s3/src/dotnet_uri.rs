@@ -10,6 +10,9 @@
 //!    `%XX`는 풀지 않고 그대로 둔다(.NET 구현의 특성).
 //! 4. 제어 문자, 공백, `"<>^`{|}`, 비 ASCII 문자는 UTF-8 바이트별 `%XX`(대문자)로 바꾼다.
 //! 5. 마지막으로 RFC 3986 dot-segment(`.`, `..`)를 제거한다.
+//!
+//! 쿼리(`?` 뒤)도 2~4를 같게 적용하되, `\`는 `%5C`로 바꾸고 dot-segment는 그대로 둔다.
+//! `#` 뒤(fragment)는 버린다.
 
 use std::fmt;
 
@@ -46,7 +49,7 @@ impl DotnetUri {
         let (path_and_query, _fragment) = rest.split_once('#').unwrap_or((rest, ""));
         let (path, query) = path_and_query
             .split_once('?')
-            .map(|(p, q)| (p, format!("?{q}")))
+            .map(|(p, q)| (p, format!("?{}", escape(q, Part::Query))))
             .unwrap_or((path_and_query, String::new()));
 
         Ok(Self {
@@ -79,9 +82,14 @@ impl DotnetUri {
         &self.absolute_path
     }
 
-    /// 원본 쿼리 문자열(`?` 포함, 없으면 빈 문자열). 이스케이프는 아직 .NET과 맞추지 않았다.
-    pub fn raw_query(&self) -> &str {
+    /// `Uri.Query`: 이스케이프를 마친 쿼리(`?` 포함, 없으면 빈 문자열).
+    pub fn query(&self) -> &str {
         &self.query
+    }
+
+    /// `Uri.PathAndQuery`: HTTP 요청 줄에 실리는 값.
+    pub fn path_and_query(&self) -> String {
+        format!("{}{}", self.absolute_path, self.query)
     }
 
     pub fn scheme(&self) -> &str {
@@ -143,8 +151,23 @@ fn hex_pair(bytes: &[u8], at: usize) -> Option<u8> {
     Some((hi * 16 + lo) as u8)
 }
 
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum Part {
+    Path,
+    Query,
+}
+
 /// 위 규칙 1~5를 적용한다.
 pub fn normalize_path(path: &str) -> String {
+    let mut out = escape(path, Part::Path);
+    if !out.starts_with('/') {
+        out.insert(0, '/');
+    }
+    remove_dot_segments(&out)
+}
+
+/// 규칙 1~4. 쿼리에서는 `\`를 `%5C`로 바꾼다.
+fn escape(path: &str, part: Part) -> String {
     let bytes = path.as_bytes();
     let mut out = String::with_capacity(path.len() + 8);
     // 이 위치 전까지 시작하는 `%XX`는 풀지 않는다(잘못된 `%` 바로 뒤 두 글자).
@@ -169,7 +192,7 @@ pub fn normalize_path(path: &str) -> String {
                 }
             },
             '\\' => {
-                out.push('/');
+                out.push_str(if part == Part::Path { "/" } else { "%5C" });
                 i += 1;
             }
             c if needs_escape(c) => {
@@ -185,10 +208,7 @@ pub fn normalize_path(path: &str) -> String {
             }
         }
     }
-    if !out.starts_with('/') {
-        out.insert(0, '/');
-    }
-    remove_dot_segments(&out)
+    out
 }
 
 /// RFC 3986 5.2.4.
@@ -243,7 +263,7 @@ mod tests {
         let uri = DotnetUri::parse("https://h:443/b/?tag-index").unwrap();
         assert!(uri.is_default_port());
         assert_eq!(uri.absolute_path(), "/b/");
-        assert_eq!(uri.raw_query(), "?tag-index");
+        assert_eq!(uri.query(), "?tag-index");
     }
 
     #[test]
