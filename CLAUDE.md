@@ -30,3 +30,8 @@ TESTCore(.NET)를 Rust로 옮기는 프로젝트. 전체 계획과 단계는 [RU
     ```
 -   모듈 하나를 옮기면 원본과 비교하는 테스트를 함께 추가한다(`tests/parity/`).
 -   커밋은 모듈 단위로 하나씩, 메시지는 한국어로 TESTCore 저장소와 같은 형식으로 쓴다.
+
+## 개발 환경
+
+-   Windows에서는 cargo를 PowerShell에서 실행한다. Git Bash의 `/usr/bin/link`가 MSVC `link.exe`를 가려 링크가 실패한다.
+-   MSVC 타깃(`x86_64-pc-windows-msvc`)을 쓰며 Visual Studio Build Tools의 C++ 워크로드가 필요하다.

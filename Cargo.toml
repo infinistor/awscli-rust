@@ -1,0 +1,31 @@
+[workspace]
+resolver = "3"
+members = ["crates/*"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+repository = "https://github.com/infinistor/awscli-rest"
+publish = false
+
+[workspace.dependencies]
+awscli-rest-config = { path = "crates/config" }
+awscli-rest-model = { path = "crates/model" }
+awscli-rest-s3 = { path = "crates/s3" }
+awscli-rest-clients = { path = "crates/clients" }
+awscli-rest-scenarios = { path = "crates/scenarios" }
+awscli-rest-distributed = { path = "crates/distributed" }
+
+anyhow = "1"
+thiserror = "2"
+tokio = { version = "1", features = ["full"] }
+tokio-util = "0.7"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["fmt", "std"] }
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }

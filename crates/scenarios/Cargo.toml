@@ -1,0 +1,10 @@
+[package]
+name = "awscli-rest-scenarios"
+description = "부하·기능 테스트 시나리오 (TESTCore Test/*)"
+version.workspace = true
+edition.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true

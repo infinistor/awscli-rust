@@ -1,0 +1,24 @@
+[package]
+name = "awscli-rest-cli"
+description = "awscli-rest 실행 파일: 옵션 파서와 명령 디스패치 (TESTCore Program.cs, Cli/*, Commands/*)"
+version.workspace = true
+edition.workspace = true
+repository.workspace = true
+publish.workspace = true
+build = "build.rs"
+
+[[bin]]
+name = "awscli-rest"
+path = "src/main.rs"
+
+[[test]]
+name = "parity_version"
+path = "../../tests/parity/version.rs"
+
+[dependencies]
+chrono.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+
+[lints]
+workspace = true
