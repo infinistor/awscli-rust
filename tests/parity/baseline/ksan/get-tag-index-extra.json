@@ -1,0 +1,35 @@
+{
+  "port": 60399,
+  "request": {
+    "line": "GET /my-bucket/?tag-index HTTP/1.1",
+    "headers": [
+      [
+        "X-Amz-Content-SHA256",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      ],
+      [
+        "X-Amz-Date",
+        "20261006T091211Z"
+      ],
+      [
+        "Host",
+        "127.0.0.1:60399"
+      ],
+      [
+        "Authorization",
+        "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006//s3/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-content-sha256;x-amz-date, Signature=eeb9cf68d7558197f562035764c7767597e129cad43e6245b60150ec8f546506"
+      ],
+      [
+        "Content-Type",
+        "text/plain"
+      ],
+      [
+        "Content-Length",
+        "0"
+      ]
+    ],
+    "body": ""
+  },
+  "result": "{\r\n  \"Status\": \" Disabled \"\r\n}",
+  "error": null
+}

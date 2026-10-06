@@ -1,0 +1,8 @@
+{
+  "bucket": "my-bucket",
+  "key": "k",
+  "body": "<Error><Code>NoSuchKey</Code><Message>no key</Message><RequestId>r</RequestId></Error>",
+  "status": 404,
+  "storageClass": "GLACIER",
+  "op": "storage-move"
+}

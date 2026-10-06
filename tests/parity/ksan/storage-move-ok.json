@@ -1,0 +1,7 @@
+{
+  "storageClass": "GLACIER",
+  "bucket": "my-bucket",
+  "op": "storage-move",
+  "key": "dir a/한글.txt",
+  "versionId": "v1"
+}

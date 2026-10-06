@@ -1,0 +1,6 @@
+{
+  "storageClass": "STANDARD_IA",
+  "bucket": "my-bucket",
+  "op": "storage-move",
+  "key": "k"
+}

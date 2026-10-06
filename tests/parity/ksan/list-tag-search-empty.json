@@ -1,0 +1,6 @@
+{
+  "bucket": "my-bucket",
+  "op": "list-tag-search",
+  "tag": "k",
+  "body": "<ListBucketTagSearchResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><IsTruncated>false</IsTruncated></ListBucketTagSearchResult>"
+}

@@ -1,0 +1,35 @@
+{
+  "port": 54697,
+  "request": {
+    "line": "GET /my-bucket/?list-tag-search&encoding-type=url&max-keys=5&tag=k1%3Av1%2Ck2%3Av2 HTTP/1.1",
+    "headers": [
+      [
+        "X-Amz-Content-SHA256",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      ],
+      [
+        "X-Amz-Date",
+        "20261006T091215Z"
+      ],
+      [
+        "Host",
+        "127.0.0.1:54697"
+      ],
+      [
+        "Authorization",
+        "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006//s3/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-content-sha256;x-amz-date, Signature=26d3b10b0192dece7edf597a131c0720d37282682666c74356d3d8dbadbdb029"
+      ],
+      [
+        "Content-Type",
+        "text/plain"
+      ],
+      [
+        "Content-Length",
+        "0"
+      ]
+    ],
+    "body": ""
+  },
+  "result": "{\r\n  \"IsTruncated\": true,\r\n  \"Contents\": [\r\n    {\r\n      \"ETag\": \"\\u0022abc\\u0022\",\r\n      \"Key\": \"dir/\\uD55C\\uAE00 a.txt\",\r\n      \"LastModified\": \"2024-03-05T07:08:09.123Z\",\r\n      \"Owner\": {\r\n        \"DisplayName\": \"user1\",\r\n        \"Id\": null\r\n      },\r\n      \"Size\": 1048576,\r\n      \"StorageClass\": \"STANDARD\"\r\n    },\r\n    {\r\n      \"ETag\": null,\r\n      \"Key\": \"b\",\r\n      \"LastModified\": \"2024-12-31T23:59:59+09:00\",\r\n      \"Owner\": null,\r\n      \"Size\": 0,\r\n      \"StorageClass\": null\r\n    }\r\n  ]\r\n}",
+  "error": null
+}

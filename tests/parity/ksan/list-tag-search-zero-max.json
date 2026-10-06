@@ -1,0 +1,6 @@
+{
+  "bucket": "my-bucket",
+  "op": "list-tag-search",
+  "maxKeys": 0,
+  "tag": "k"
+}

@@ -1,0 +1,5 @@
+{
+  "bucket": "my-bucket",
+  "op": "get-tag-index",
+  "body": "<TagIndexingConfiguration><Status>Disabled</Status></TagIndexingConfiguration>"
+}

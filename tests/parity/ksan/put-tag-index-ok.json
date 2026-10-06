@@ -1,0 +1,4 @@
+{
+  "op": "put-tag-index",
+  "bucket": "my-bucket"
+}

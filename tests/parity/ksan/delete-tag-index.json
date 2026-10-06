@@ -1,0 +1,5 @@
+{
+  "bucket": "my-bucket",
+  "op": "delete-tag-index",
+  "status": 204
+}

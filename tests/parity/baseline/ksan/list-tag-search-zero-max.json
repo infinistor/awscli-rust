@@ -1,0 +1,12 @@
+{
+  "port": 54704,
+  "request": {
+    "error": "WSACancelBlockingCall를 호출하여 차단 작업이 중단되었습니다."
+  },
+  "result": null,
+  "error": {
+    "type": "System.ArgumentException",
+    "message": "MaxKeys 의 최소값은 1 입니다.",
+    "errorResponse": null
+  }
+}

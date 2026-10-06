@@ -1,0 +1,43 @@
+{
+  "port": 54705,
+  "request": {
+    "line": "POST /my-bucket/dir%20a/%ED%95%9C%EA%B8%80.txt?storagemove&StorageClass=GLACIER&encoding-type=url&VersionId=v1 HTTP/1.1",
+    "headers": [
+      [
+        "X-Amz-Content-SHA256",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      ],
+      [
+        "x-ifs-backend",
+        "NONE"
+      ],
+      [
+        "x-ksan-backend",
+        "NONE"
+      ],
+      [
+        "X-Amz-Date",
+        "20261006T091216Z"
+      ],
+      [
+        "Host",
+        "127.0.0.1:54705"
+      ],
+      [
+        "Authorization",
+        "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006//s3/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-ifs-backend;x-ksan-backend, Signature=92856f671f5ff387232359128ead227144cfff5c97450a694d0504dc5c48976f"
+      ],
+      [
+        "Content-Type",
+        "text/plain"
+      ],
+      [
+        "Content-Length",
+        "0"
+      ]
+    ],
+    "body": ""
+  },
+  "result": null,
+  "error": null
+}

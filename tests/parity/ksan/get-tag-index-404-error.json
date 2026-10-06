@@ -1,0 +1,6 @@
+{
+  "bucket": "my-bucket",
+  "op": "get-tag-index",
+  "status": 404,
+  "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist</Message><RequestId>req-1</RequestId></Error>"
+}

@@ -1,0 +1,35 @@
+{
+  "port": 54692,
+  "request": {
+    "line": "PUT /my-bucket?tag-index HTTP/1.1",
+    "headers": [
+      [
+        "X-Amz-Content-SHA256",
+        "579e54af06e20c5e1bd090ceb02d2bafc8a58240dc90395adb950683d192af7f"
+      ],
+      [
+        "X-Amz-Date",
+        "20261006T091214Z"
+      ],
+      [
+        "Host",
+        "127.0.0.1:54692"
+      ],
+      [
+        "Authorization",
+        "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006//s3/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-content-sha256;x-amz-date, Signature=8550ec95b669dec339883378d424202f8bdc5b474bb797a95c1cb09176d34af5"
+      ],
+      [
+        "Content-Type",
+        "text/plain"
+      ],
+      [
+        "Content-Length",
+        "271"
+      ]
+    ],
+    "body": "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<TagIndexingConfiguration xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\">\r\n  <Status>Enabled</Status>\r\n</TagIndexingConfiguration>"
+  },
+  "result": null,
+  "error": null
+}

@@ -1,0 +1,35 @@
+{
+  "port": 54701,
+  "request": {
+    "line": "GET /my-bucket/?list-tag-search&encoding-type=url&max-keys=1000&tag=a+b%3Dc%26d%2F%ED%95%9C%EA%B8%80%2B~* HTTP/1.1",
+    "headers": [
+      [
+        "X-Amz-Content-SHA256",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      ],
+      [
+        "X-Amz-Date",
+        "20261006T091216Z"
+      ],
+      [
+        "Host",
+        "127.0.0.1:54701"
+      ],
+      [
+        "Authorization",
+        "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006//s3/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-content-sha256;x-amz-date, Signature=5c1d085f23ed796794625b5a83673d5a47137f236b46c46b780b62c67f9d3be1"
+      ],
+      [
+        "Content-Type",
+        "text/plain"
+      ],
+      [
+        "Content-Length",
+        "0"
+      ]
+    ],
+    "body": ""
+  },
+  "result": "{\r\n  \"IsTruncated\": false,\r\n  \"Contents\": []\r\n}",
+  "error": null
+}

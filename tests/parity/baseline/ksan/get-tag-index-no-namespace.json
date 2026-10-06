@@ -1,0 +1,39 @@
+{
+  "port": 60397,
+  "request": {
+    "line": "GET /my-bucket/?tag-index HTTP/1.1",
+    "headers": [
+      [
+        "X-Amz-Content-SHA256",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      ],
+      [
+        "X-Amz-Date",
+        "20261006T091211Z"
+      ],
+      [
+        "Host",
+        "127.0.0.1:60397"
+      ],
+      [
+        "Authorization",
+        "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006//s3/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-content-sha256;x-amz-date, Signature=a5c43f48e465271c7ec67432aace4eba4e81412d20826d3d3949f12a0b35528c"
+      ],
+      [
+        "Content-Type",
+        "text/plain"
+      ],
+      [
+        "Content-Length",
+        "0"
+      ]
+    ],
+    "body": ""
+  },
+  "result": null,
+  "error": {
+    "type": "System.InvalidOperationException",
+    "message": "There is an error in XML document (1, 2).",
+    "errorResponse": null
+  }
+}

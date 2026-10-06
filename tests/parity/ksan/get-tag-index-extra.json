@@ -1,0 +1,5 @@
+{
+  "bucket": "my-bucket",
+  "op": "get-tag-index",
+  "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<TagIndexingConfiguration xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\">\n  <Other>x</Other>\n  <Status> Disabled </Status>\n</TagIndexingConfiguration>"
+}

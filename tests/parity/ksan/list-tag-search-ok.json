@@ -1,0 +1,7 @@
+{
+  "bucket": "my-bucket",
+  "op": "list-tag-search",
+  "maxKeys": 5,
+  "tag": "k1:v1,k2:v2",
+  "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ListBucketTagSearchResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><IsTruncated>true</IsTruncated><Contents><ETag>\"abc\"</ETag><Key>dir/한글 a.txt</Key><LastModified>2024-03-05T07:08:09.123Z</LastModified><Owner><DisplayName>user1</DisplayName><ID>id1</ID></Owner><Size>1048576</Size><StorageClass>STANDARD</StorageClass></Contents><Contents><Key>b</Key><LastModified>2024-12-31T23:59:59+09:00</LastModified><Size>0</Size></Contents></ListBucketTagSearchResult>"
+}
