@@ -1,0 +1,1 @@
+{"responseBody":"<ListVersionsResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>my-bucket</Name><IsTruncated>false</IsTruncated></ListVersionsResult>","op":"list-versions"}

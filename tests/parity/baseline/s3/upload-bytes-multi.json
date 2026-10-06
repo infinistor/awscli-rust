@@ -1,0 +1,261 @@
+{
+  "port": 56851,
+  "requests": [
+    {
+      "line": "POST /my-bucket/dir/key.txt?uploads HTTP/1.1",
+      "headers": [
+        [
+          "amz-sdk-invocation-id",
+          "ce31e689-fd5f-483e-b6de-449f1d18f187"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "Host",
+          "127.0.0.1:56851"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T115749Z"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=c57639f5deb08cd94303728b39f48e2f0069114c175315c4eb7a22acd7dafc3f"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 md/MultipartUploadCommand m/c,P,e,N,E,G"
+        ],
+        [
+          "Content-Length",
+          "0"
+        ],
+        [
+          "Content-Type",
+          "text/plain"
+        ]
+      ],
+      "body": ""
+    },
+    {
+      "line": "PUT /my-bucket/dir/key.txt?partNumber=1&uploadId=upload-1 HTTP/1.1",
+      "headers": [
+        [
+          "Expect",
+          "100-continue"
+        ],
+        [
+          "amz-sdk-invocation-id",
+          "9f82ceff-9714-434c-99c1-168ea9f7a57c"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "Host",
+          "127.0.0.1:56851"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T115749Z"
+        ],
+        [
+          "X-Amz-Decoded-Content-Length",
+          "10"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "STREAMING-AWS4-HMAC-SHA256-PAYLOAD"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-encoding;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-decoded-content-length, Signature=62f05d8e1bdc0dd63171521131e5c1a5ee450df13986ecfd8fd13d8ffd9b0b88"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 md/MultipartUploadCommand m/c,P,e,N,E,a,G"
+        ],
+        [
+          "Content-Length",
+          "182"
+        ],
+        [
+          "Content-Type",
+          "text/plain"
+        ],
+        [
+          "Content-Encoding",
+          "aws-chunked"
+        ]
+      ],
+      "body": "A;chunk-signature=86894ce6430f26b5ef65dc49b5739b65498663dd9db1602ddb8e198860e45044\r\nabcdefghij\r\n0;chunk-signature=6a366bae843fa198734fbd42c8a135b1719bb10bb05670bde99a7cfdf29438cf\r\n\r\n"
+    },
+    {
+      "line": "PUT /my-bucket/dir/key.txt?partNumber=2&uploadId=upload-1 HTTP/1.1",
+      "headers": [
+        [
+          "Expect",
+          "100-continue"
+        ],
+        [
+          "amz-sdk-invocation-id",
+          "ed4dc11a-66e0-41da-850b-fb45918f374d"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "Host",
+          "127.0.0.1:56851"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T115749Z"
+        ],
+        [
+          "X-Amz-Decoded-Content-Length",
+          "10"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "STREAMING-AWS4-HMAC-SHA256-PAYLOAD"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-encoding;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-decoded-content-length, Signature=03ba0ce9b2b1cb40062f8095ec07144b215e61b3e0466839788a5b4f7676a7ca"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 md/MultipartUploadCommand m/c,P,e,N,E,a,G"
+        ],
+        [
+          "Content-Length",
+          "182"
+        ],
+        [
+          "Content-Type",
+          "text/plain"
+        ],
+        [
+          "Content-Encoding",
+          "aws-chunked"
+        ]
+      ],
+      "body": "A;chunk-signature=4e325ae95fa3c4daedb47063af1461caa7dacd5ae7619a11d9a2527b49eb36ae\r\nklmnopqrst\r\n0;chunk-signature=daa63f7ac237775a49146493d770070eca35c5358f4575c01444c20823b42ddd\r\n\r\n"
+    },
+    {
+      "line": "PUT /my-bucket/dir/key.txt?partNumber=3&uploadId=upload-1 HTTP/1.1",
+      "headers": [
+        [
+          "Expect",
+          "100-continue"
+        ],
+        [
+          "amz-sdk-invocation-id",
+          "0904d177-f5d6-4f0e-be9d-86357799c645"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "Host",
+          "127.0.0.1:56851"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T115749Z"
+        ],
+        [
+          "X-Amz-Decoded-Content-Length",
+          "5"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "STREAMING-AWS4-HMAC-SHA256-PAYLOAD"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-encoding;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-decoded-content-length, Signature=f422bd76e0ecffd32bc2e8bb706f2bc3de48b2d9ac859bbe0c4211c6b5a56bce"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 md/MultipartUploadCommand m/c,P,e,N,E,a,G"
+        ],
+        [
+          "Content-Length",
+          "177"
+        ],
+        [
+          "Content-Type",
+          "text/plain"
+        ],
+        [
+          "Content-Encoding",
+          "aws-chunked"
+        ]
+      ],
+      "body": "5;chunk-signature=66142c2fa72a8ec2dd084a18bf2691ece6d6febd39644c4a62f2f05ca0aff028\r\nuvwxy\r\n0;chunk-signature=3f4988509ab8a772f491c73a57bfc739af4fdd927d6286c21e45d3624ee4f762\r\n\r\n"
+    },
+    {
+      "line": "POST /my-bucket/dir/key.txt?uploadId=upload-1 HTTP/1.1",
+      "headers": [
+        [
+          "x-amz-api-version",
+          "2006-03-01"
+        ],
+        [
+          "amz-sdk-invocation-id",
+          "7cb2f14b-6c90-4ef7-bb0b-41f015e96946"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "Host",
+          "127.0.0.1:56851"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T115749Z"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "3133f6ef6a1a46f8fc6bac0c0af7d0578d78c1260363571a25e975655ab81ffd"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-md5;content-type;host;x-amz-api-version;x-amz-content-sha256;x-amz-date, Signature=ec38f1ee483d40e11c8ed2ff15ef5b72b51b985508703c8ba26a2efb10770b2f"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 md/MultipartUploadCommand m/c,P,e,N,E,G"
+        ],
+        [
+          "Content-Length",
+          "288"
+        ],
+        [
+          "Content-Type",
+          "application/xml"
+        ],
+        [
+          "Content-MD5",
+          "HsWvVT9hnGSirgzdldeGdg=="
+        ]
+      ],
+      "body": "<CompleteMultipartUpload xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Part><ETag>\"part-etag\"</ETag><PartNumber>1</PartNumber></Part><Part><ETag>\"part-etag\"</ETag><PartNumber>2</PartNumber></Part><Part><ETag>\"part-etag\"</ETag><PartNumber>3</PartNumber></Part></CompleteMultipartUpload>"
+    }
+  ],
+  "result": "done",
+  "error": null
+}

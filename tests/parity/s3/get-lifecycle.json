@@ -1,0 +1,1 @@
+{"responseBody":"<LifecycleConfiguration xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Rule><ID>r</ID><Status>Enabled</Status><Filter><Prefix>p</Prefix></Filter><Expiration><Days>1</Days></Expiration></Rule></LifecycleConfiguration>","op":"get-lifecycle"}

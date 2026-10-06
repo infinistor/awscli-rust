@@ -1,0 +1,64 @@
+{
+  "port": 65143,
+  "requests": [
+    {
+      "line": "PUT /my-bucket/?lifecycle HTTP/1.1",
+      "headers": [
+        [
+          "x-amz-api-version",
+          "2006-03-01"
+        ],
+        [
+          "amz-sdk-invocation-id",
+          "c9319c52-7e7a-4167-86b1-d83edb2a93ff"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "x-amz-checksum-crc32",
+          "aEJHIQ=="
+        ],
+        [
+          "x-amz-sdk-checksum-algorithm",
+          "CRC32"
+        ],
+        [
+          "Host",
+          "127.0.0.1:65143"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T115652Z"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "4b3fc16f8fbf648aa906f5dfabe7817129e9ba1d7ab6da413f29a630f22d073c"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-api-version;x-amz-checksum-crc32;x-amz-content-sha256;x-amz-date;x-amz-sdk-checksum-algorithm, Signature=861ce108719bb5de8635afd4084ec0a025ff00c47438f903ccc3a2808775221f"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 m/c,P,e,N,E,U,a"
+        ],
+        [
+          "Content-Length",
+          "515"
+        ],
+        [
+          "Content-Type",
+          "application/xml"
+        ]
+      ],
+      "body": "<LifecycleConfiguration xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Rule><AbortIncompleteMultipartUpload><DaysAfterInitiation>3</DaysAfterInitiation></AbortIncompleteMultipartUpload><Expiration><Days>30</Days></Expiration><Filter><Prefix>logs/</Prefix></Filter><ID>expire-logs</ID><NoncurrentVersionExpiration><NoncurrentDays>7</NoncurrentDays></NoncurrentVersionExpiration><Status>Enabled</Status><Transition><Days>10</Days><StorageClass>STANDARD_IA</StorageClass></Transition></Rule></LifecycleConfiguration>"
+    }
+  ],
+  "result": {
+    "status": 200,
+    "ContentLength": 0
+  },
+  "error": null
+}

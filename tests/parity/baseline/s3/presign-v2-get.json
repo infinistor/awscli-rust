@@ -1,0 +1,6 @@
+{
+  "port": 59882,
+  "requests": [],
+  "result": "http://127.0.0.1:59882/my-bucket/dir/key.txt?AWSAccessKeyId=AKIAEXAMPLE&Expires=1893553445&Signature=bryfZupALVY9f3fv9wXThVvqIX8%3D",
+  "error": null
+}

@@ -1,0 +1,60 @@
+{
+  "port": 65184,
+  "requests": [
+    {
+      "line": "PUT /my-bucket/?inventory&id=inv1 HTTP/1.1",
+      "headers": [
+        [
+          "x-amz-api-version",
+          "2006-03-01"
+        ],
+        [
+          "amz-sdk-invocation-id",
+          "830abb4a-b5d0-4a15-853c-7d3ceda99cfb"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "Host",
+          "127.0.0.1:65184"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T115704Z"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "edda8801e4b4125dcc8b0163e8426306111387ee7a72ee14b9bd869851a250af"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-md5;content-type;host;x-amz-api-version;x-amz-content-sha256;x-amz-date, Signature=5cd5fdb98560780281b0428271aa6a214211b51f9d1ade5789adcc50f96b6502"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 m/c,P,e,N,E"
+        ],
+        [
+          "Content-Length",
+          "429"
+        ],
+        [
+          "Content-Type",
+          "application/xml"
+        ],
+        [
+          "Content-MD5",
+          "yvBVjlN1VZGoZrNTTeUWYA=="
+        ]
+      ],
+      "body": "<InventoryConfiguration xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Destination><S3BucketDestination><Bucket>arn:aws:s3:::dest-bucket</Bucket><Format>CSV</Format><Prefix>inv/</Prefix></S3BucketDestination></Destination><IncludedObjectVersions>All</IncludedObjectVersions><Filter><Prefix>data/</Prefix></Filter><Id>inv1</Id><IsEnabled>true</IsEnabled><Schedule><Frequency>Daily</Frequency></Schedule></InventoryConfiguration>"
+    }
+  ],
+  "result": {
+    "status": 200,
+    "ContentLength": 0
+  },
+  "error": null
+}

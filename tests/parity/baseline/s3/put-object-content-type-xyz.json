@@ -1,0 +1,64 @@
+{
+  "port": 56813,
+  "requests": [
+    {
+      "line": "PUT /my-bucket/dir/data.xyz HTTP/1.1",
+      "headers": [
+        [
+          "Expect",
+          "100-continue"
+        ],
+        [
+          "amz-sdk-invocation-id",
+          "6841a1dd-f389-485c-b65e-f04314d1d570"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "Host",
+          "127.0.0.1:56813"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T115737Z"
+        ],
+        [
+          "X-Amz-Decoded-Content-Length",
+          "11"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "STREAMING-AWS4-HMAC-SHA256-PAYLOAD"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-encoding;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-decoded-content-length, Signature=f68bc2e01043900c96da67cad6ba0abd2bce45e52ff1fc3e3e14aba58d5d67a8"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 m/c,P,e,N,E,a"
+        ],
+        [
+          "Content-Length",
+          "183"
+        ],
+        [
+          "Content-Type",
+          "chemical/x-pdb"
+        ],
+        [
+          "Content-Encoding",
+          "aws-chunked"
+        ]
+      ],
+      "body": "B;chunk-signature=8b63ac15a331d30b66b3b473a149d317b09873ec74565115545e72f2cf146aa4\r\nhello world\r\n0;chunk-signature=f38bfb9653449b16b67aaf4cac94104b9c748d4ae0c0be9f00736511a5c73c5c\r\n\r\n"
+    }
+  ],
+  "result": {
+    "status": 200,
+    "ContentLength": 0
+  },
+  "error": null
+}

@@ -1,0 +1,64 @@
+{
+  "port": 53749,
+  "requests": [
+    {
+      "line": "PUT /my-bucket/?cors HTTP/1.1",
+      "headers": [
+        [
+          "x-amz-api-version",
+          "2006-03-01"
+        ],
+        [
+          "amz-sdk-invocation-id",
+          "7e899b66-bfd8-4ebb-960d-c6ff1f2a7bc2"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "x-amz-checksum-crc32",
+          "iYGlZA=="
+        ],
+        [
+          "x-amz-sdk-checksum-algorithm",
+          "CRC32"
+        ],
+        [
+          "Host",
+          "127.0.0.1:53749"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T115648Z"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "520b0d68dd1711102d9f65f2998535e6879214b91212d45820f6d0c71a4c52cb"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-api-version;x-amz-checksum-crc32;x-amz-content-sha256;x-amz-date;x-amz-sdk-checksum-algorithm, Signature=40c60ef587df705bff2937061aec0008fbebcfad8f2d2a3df20f63dcea85ddb2"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 m/c,P,e,N,E,U,a"
+        ],
+        [
+          "Content-Length",
+          "340"
+        ],
+        [
+          "Content-Type",
+          "application/xml"
+        ]
+      ],
+      "body": "<CORSConfiguration xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><CORSRule><AllowedHeader>*</AllowedHeader><AllowedMethod>GET</AllowedMethod><AllowedMethod>PUT</AllowedMethod><AllowedOrigin>https://example.com</AllowedOrigin><ExposeHeader>ETag</ExposeHeader><ID>rule1</ID><MaxAgeSeconds>3000</MaxAgeSeconds></CORSRule></CORSConfiguration>"
+    }
+  ],
+  "result": {
+    "status": 200,
+    "ContentLength": 0
+  },
+  "error": null
+}

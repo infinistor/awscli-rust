@@ -1,0 +1,1 @@
+{"responseBody":"<WebsiteConfiguration xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><IndexDocument><Suffix>index.html</Suffix></IndexDocument></WebsiteConfiguration>","op":"get-bucket-website"}

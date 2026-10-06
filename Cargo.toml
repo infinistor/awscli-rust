@@ -39,6 +39,7 @@ http-body-util = "0.1"
 hyper = { version = "1", features = ["client", "http1"] }
 hyper-util = { version = "0.1", features = ["client-legacy", "http1", "tokio"] }
 quick-xml = "0.42"
+md-5 = "0.11"
 aws-sdk-s3 = { version = "1", features = ["behavior-version-latest"] }
 rand = "0.9"
 regex = "1"

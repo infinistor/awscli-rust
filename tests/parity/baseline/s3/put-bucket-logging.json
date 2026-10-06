@@ -1,0 +1,64 @@
+{
+  "port": 53737,
+  "requests": [
+    {
+      "line": "PUT /my-bucket/?logging HTTP/1.1",
+      "headers": [
+        [
+          "x-amz-api-version",
+          "2006-03-01"
+        ],
+        [
+          "amz-sdk-invocation-id",
+          "bc18586b-e8c5-4105-b35a-eb7ef0e5e86f"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "x-amz-checksum-crc32",
+          "iwpuqA=="
+        ],
+        [
+          "x-amz-sdk-checksum-algorithm",
+          "CRC32"
+        ],
+        [
+          "Host",
+          "127.0.0.1:53737"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T115644Z"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "8d17be5fd9aac53ffb0f449589b385cac425e74a2e2c2cdac1a974f1050cf1d8"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-api-version;x-amz-checksum-crc32;x-amz-content-sha256;x-amz-date;x-amz-sdk-checksum-algorithm, Signature=8f7e4b5029317bc3c94b40ebcd8f809b3c4776983d3bfe817dc31d460cd768ab"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 m/c,P,e,N,E,U,a"
+        ],
+        [
+          "Content-Length",
+          "197"
+        ],
+        [
+          "Content-Type",
+          "application/xml"
+        ]
+      ],
+      "body": "<BucketLoggingStatus xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><LoggingEnabled><TargetBucket>log-bucket</TargetBucket><TargetPrefix>logs/</TargetPrefix></LoggingEnabled></BucketLoggingStatus>"
+    }
+  ],
+  "result": {
+    "status": 200,
+    "ContentLength": 0
+  },
+  "error": null
+}

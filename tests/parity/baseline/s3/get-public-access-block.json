@@ -1,0 +1,44 @@
+{
+  "port": 65164,
+  "requests": [
+    {
+      "line": "GET /my-bucket/?publicAccessBlock HTTP/1.1",
+      "headers": [
+        [
+          "amz-sdk-invocation-id",
+          "f8fb7e68-0442-403c-afc0-74d6e8b543d9"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "Host",
+          "127.0.0.1:65164"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T115658Z"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=830ae10f9e75a2aacb90fb42debd921826d1a4ee0d0d92c9a320c4158b7b78af"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 m/c,P,e,N,E"
+        ]
+      ],
+      "body": ""
+    }
+  ],
+  "result": {
+    "status": 200,
+    "ContentLength": 0
+  },
+  "error": null
+}

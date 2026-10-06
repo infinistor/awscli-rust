@@ -55,34 +55,36 @@ pub struct S3Response<T> {
 #[derive(Debug, Clone)]
 pub struct S3Client {
     client: aws_sdk_s3::Client,
+    /// 관리자 헤더 인터셉터가 없는 클라이언트. .NET은 `BeforeRequestEvent`를 서명된 URL 생성에는 거치지 않으므로
+    /// `generate_presigned_url`만 이것을 쓴다.
+    plain_client: aws_sdk_s3::Client,
     is_admin: bool,
+    /// 서명된 URL을 서명 V2로 만들 때 쓰는 인증 정보와 주소(원본 `GetPreSignedURL`의 7일 초과 만료).
+    presign: presign::PresignContext,
 }
 
-/// 요청을 보내고 상태 코드와 함께 돌려준다. `$checksum`을 주면 이 요청만 요청 체크섬 설정을 바꾼다.
+/// 요청을 보내고 상태 코드와 함께 돌려준다.
+///
+/// - `checksum = ...`: 이 요청만 요청 체크섬 설정을 바꾼다.
+/// - `config = Builder`: 이 요청만 클라이언트 설정을 바꾼다(`checksum`과 함께 쓰지 않는다).
+/// - `mutate = |request| ...`: 서명 전에 요청(헤더 등)을 고친다.
 macro_rules! send {
-    ($builder:expr) => {{
+    ($builder:expr $(, checksum = $checksum:expr)? $(, config = $config:expr)? $(, mutate = $mutate:expr)? $(,)?) => {{
         let capture = $crate::s3_client::interceptors::StatusCapture::default();
         let slot = capture.slot();
-        let output = $builder
-            .customize()
-            .interceptor(capture)
-            .send()
-            .await
-            .map_err($crate::s3_client::S3Error::from)?;
-        Ok($crate::s3_client::S3Response {
-            status: slot.get(),
-            output,
-        })
-    }};
-    ($builder:expr, checksum = $checksum:expr) => {{
-        let capture = $crate::s3_client::interceptors::StatusCapture::default();
-        let slot = capture.slot();
-        let output = $builder
-            .customize()
-            .interceptor(capture)
-            .config_override(
+        let customized = $builder.customize().interceptor(capture);
+        $(
+            let customized = customized.config_override(
                 aws_sdk_s3::config::Builder::default().request_checksum_calculation($checksum),
-            )
+            );
+        )?
+        $(
+            let customized = customized.config_override($config);
+        )?
+        $(
+            let customized = customized.mutate_request($mutate);
+        )?
+        let output = customized
             .send()
             .await
             .map_err($crate::s3_client::S3Error::from)?;
@@ -94,9 +96,63 @@ macro_rules! send {
 }
 
 mod bucket;
+mod bucket_config;
+mod mime;
+mod multipart;
 mod object;
+mod object_config;
+mod presign;
+mod transfer;
 
+pub use multipart::PartETag;
 pub use object::PutBody;
+pub use presign::HttpVerb;
+
+/// SDK 빌더의 `build()` 오류(필수 값 누락)를 [`S3Error`]로 바꾼다.
+pub(crate) fn built<T>(result: Result<T, aws_sdk_s3::error::BuildError>) -> Result<T, S3Error> {
+    result.map_err(|e| S3Error::Request(e.to_string()))
+}
+
+/// 본문(XML 설정)의 `Content-MD5`를 서명 전에 넣는다. .NET SDK는 인벤토리·메트릭·분석 설정 저장과
+/// `CompleteMultipartUpload`에 `Content-MD5`를 보내지만 Rust SDK는 보내지 않는다.
+pub(crate) fn add_content_md5(request: &mut aws_sdk_s3::config::http::HttpRequest) {
+    use base64::Engine;
+    use md5::{Digest, Md5};
+    if let Some(body) = request.body().bytes() {
+        let digest = Md5::digest(body);
+        let value = base64::engine::general_purpose::STANDARD.encode(digest);
+        request.headers_mut().insert("content-md5", value);
+    }
+}
+
+/// 본문(XML)의 CRC32 체크섬 헤더를 서명 전에 넣는다. .NET SDK는 `PutBucketNotification`에 CRC32를 붙이지만
+/// `PutBucketNotificationConfiguration`은 Rust SDK에서 체크섬 설정을 지원하지 않는다.
+pub(crate) fn add_crc32(request: &mut aws_sdk_s3::config::http::HttpRequest) {
+    use base64::Engine;
+    const CRC32: crc::Crc<u32> = crc::Crc::<u32>::new(&crc::CRC_32_ISO_HDLC);
+    if let Some(body) = request.body().bytes() {
+        let value =
+            base64::engine::general_purpose::STANDARD.encode(CRC32.checksum(body).to_be_bytes());
+        let headers = request.headers_mut();
+        headers.insert("x-amz-checksum-crc32", value);
+        headers.insert("x-amz-sdk-checksum-algorithm", "CRC32");
+    }
+}
+
+/// `Content-Type`를 `value`로 정한다(.NET은 업로드 파트 요청에 항상 `text/plain`을 붙인다).
+pub(crate) fn set_content_type(
+    request: &mut aws_sdk_s3::config::http::HttpRequest,
+    value: &'static str,
+) {
+    request.headers_mut().insert("content-type", value);
+}
+
+/// 본문 없는 `POST`·`PUT`에 `Content-Length: 0`을 넣는다(.NET은 항상 보낸다).
+pub(crate) fn zero_content_length(request: &mut aws_sdk_s3::config::http::HttpRequest) {
+    if request.headers().get("content-length").is_none() {
+        request.headers_mut().insert("content-length", "0");
+    }
+}
 
 impl S3Client {
     /// 원본 `S3Client(UserData user, bool isAdmin = false, int retryCount = 3, bool calculateRequestChecksum = false)`.
@@ -169,12 +225,19 @@ impl S3Client {
                 .force_path_style(true),
             None => config.region(Region::new(DEFAULT_AWS_REGION)),
         };
+        let plain_client = aws_sdk_s3::Client::from_conf(config.clone().build());
         if is_admin {
             config = config.interceptor(AdminHeaders);
         }
         Self {
             client: aws_sdk_s3::Client::from_conf(config.build()),
+            plain_client,
             is_admin,
+            presign: presign::PresignContext {
+                access_key: access_key.to_string(),
+                secret_key: secret_key.to_string(),
+                endpoint: url.map(with_scheme),
+            },
         }
     }
 

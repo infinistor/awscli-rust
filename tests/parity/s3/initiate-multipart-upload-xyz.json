@@ -1,0 +1,1 @@
+{"key":"dir/data.xyz","responseBody":"<InitiateMultipartUploadResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Bucket>my-bucket</Bucket><Key>dir/key.txt</Key><UploadId>upload-1</UploadId></InitiateMultipartUploadResult>","op":"initiate-multipart-upload"}

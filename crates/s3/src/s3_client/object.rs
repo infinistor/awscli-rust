@@ -9,12 +9,13 @@ use aws_sdk_s3::operation::head_object::HeadObjectOutput;
 use aws_sdk_s3::operation::list_objects::ListObjectsOutput;
 use aws_sdk_s3::operation::list_objects_v2::ListObjectsV2Output;
 use aws_sdk_s3::operation::put_object::PutObjectOutput;
-use aws_sdk_s3::operation::upload_part::UploadPartOutput;
-use aws_sdk_s3::primitives::{ByteStream, SdkBody};
+use aws_sdk_s3::primitives::{ByteStream, Length, SdkBody};
 use aws_sdk_s3::types::{ChecksumMode, Delete, ObjectIdentifier, Tag};
 use bytes::Bytes;
 use http_body_util::Full;
+use tokio::io::{AsyncReadExt, AsyncSeekExt};
 
+use super::mime::put_object_content_type;
 use super::{S3Client, S3Error, S3Response, chunk_checksum};
 
 /// 업로드 본문. 원본 `PutObjectRequest`의 `ContentBody`, `FilePath`, `InputStream`에 대응한다.
@@ -29,14 +30,23 @@ pub enum PutBody {
 }
 
 impl PutBody {
-    /// SDK 본문으로 바꾼다. `streaming`이면 메모리 데이터도 스트림 본문으로 만든다. SDK는 스트림 본문을
+    /// SDK 본문으로 바꾼다. `streaming`이면 데이터를 스트림 본문으로 만든다. SDK는 스트림 본문을
     /// 체크섬 트레일러가 붙은 청크 서명(`STREAMING-AWS4-HMAC-SHA256-PAYLOAD-TRAILER`)으로 보내고,
-    /// 메모리 본문은 체크섬을 헤더에 넣어 한 번에 보낸다. 파일은 항상 스트림이다.
-    async fn into_stream(
+    /// 메모리 본문은 체크섬을 헤더에 넣어 한 번에 보낸다. `streaming`이 아니면 .NET처럼 본문 전체의
+    /// SHA256을 서명하므로 파일도 메모리로 읽는다.
+    ///
+    /// `position`/`size`는 원본 `UploadPart`의 `FilePosition`/`PartSize`: 파일은 `position`부터 `size`바이트
+    /// (`size < 0`이면 끝까지), 메모리 데이터는 앞에서 `size`바이트만 보낸다.
+    pub(crate) async fn into_stream(
         self,
         streaming: bool,
-    ) -> Result<(ByteStream, Option<&'static str>), S3Error> {
-        let memory = |bytes: Vec<u8>| {
+        position: i64,
+        size: i64,
+    ) -> Result<ByteStream, S3Error> {
+        let memory = |mut bytes: Vec<u8>| {
+            if let Ok(size) = usize::try_from(size) {
+                bytes.truncate(size);
+            }
             if streaming {
                 let bytes = Bytes::from(bytes);
                 ByteStream::new(SdkBody::retryable(move || {
@@ -46,16 +56,42 @@ impl PutBody {
                 ByteStream::from(bytes)
             }
         };
+        let io = |e: std::io::Error| S3Error::Request(e.to_string());
         Ok(match self {
-            Self::Text(text) => (memory(text.into_bytes()), Some("text/plain")),
-            Self::Bytes(bytes) => (memory(bytes), None),
-            Self::File(path) => (
-                ByteStream::from_path(&path)
-                    .await
-                    .map_err(|e| S3Error::Request(e.to_string()))?,
-                None,
-            ),
+            Self::Text(text) => memory(text.into_bytes()),
+            Self::Bytes(bytes) => memory(bytes),
+            Self::File(path) => {
+                let length = tokio::fs::metadata(&path).await.map_err(io)?.len();
+                let start = u64::try_from(position).unwrap_or(0).min(length);
+                let remaining = length - start;
+                let take = u64::try_from(size).map_or(remaining, |s| s.min(remaining));
+                if streaming {
+                    ByteStream::read_from()
+                        .path(&path)
+                        .offset(start)
+                        .length(Length::Exact(take))
+                        .build()
+                        .await
+                        .map_err(|e| S3Error::Request(e.to_string()))?
+                } else {
+                    let mut file = tokio::fs::File::open(&path).await.map_err(io)?;
+                    file.seek(std::io::SeekFrom::Start(start))
+                        .await
+                        .map_err(io)?;
+                    let mut buffer = Vec::new();
+                    file.take(take).read_to_end(&mut buffer).await.map_err(io)?;
+                    ByteStream::from(buffer)
+                }
+            }
         })
+    }
+
+    /// `PutObject`의 `Content-Type` 기본값(.NET은 파일이면 파일 경로, 아니면 키의 확장자로 정한다).
+    fn put_content_type(&self, key: &str) -> &'static str {
+        match self {
+            Self::File(path) => put_object_content_type(&path.to_string_lossy()),
+            _ => put_object_content_type(key),
+        }
     }
 }
 
@@ -74,7 +110,8 @@ impl S3Client {
         use_chunk_encoding: bool,
         tag_set: Option<Vec<Tag>>,
     ) -> Result<S3Response<PutObjectOutput>, S3Error> {
-        let (stream, content_type) = body.into_stream(use_chunk_encoding).await?;
+        let content_type = body.put_content_type(key);
+        let stream = body.into_stream(use_chunk_encoding, 0, -1).await?;
         let tagging = tag_set.map(|tags| {
             tags.iter()
                 .map(|t| format!("{}={}", url_encode(t.key()), url_encode(t.value())))
@@ -87,7 +124,7 @@ impl S3Client {
                 .bucket(bucket_name)
                 .key(key)
                 .body(stream)
-                .set_content_type(content_type.map(str::to_string))
+                .content_type(content_type)
                 .set_tagging(tagging),
             checksum = chunk_checksum(use_chunk_encoding)
         )
@@ -102,14 +139,15 @@ impl S3Client {
         use_chunk_encoding: bool,
         algorithm: aws_sdk_s3::types::ChecksumAlgorithm,
     ) -> Result<S3Response<PutObjectOutput>, S3Error> {
-        let (stream, content_type) = body.into_stream(use_chunk_encoding).await?;
+        let content_type = body.put_content_type(key);
+        let stream = body.into_stream(use_chunk_encoding, 0, -1).await?;
         send!(
             self.client
                 .put_object()
                 .bucket(bucket_name)
                 .key(key)
                 .body(stream)
-                .set_content_type(content_type.map(str::to_string))
+                .content_type(content_type)
                 .checksum_algorithm(algorithm),
             // .NET은 알고리즘을 지정하면 항상 체크섬을 계산한다(청크면 트레일러, 아니면 헤더).
             checksum = aws_sdk_s3::config::RequestChecksumCalculation::WhenSupported
@@ -243,30 +281,6 @@ impl S3Client {
                 .bucket(bucket_name)
                 .delete(delete)
                 .set_bypass_governance_retention((bypass == Some(true)).then_some(true))
-        )
-    }
-
-    /// 원본 `UploadPart(bucketName, key, uploadId, PartNumber, filePath, filePosition, inputStream, partSize, useChunkEncoding = true)`.
-    #[allow(clippy::too_many_arguments)]
-    pub async fn upload_part(
-        &self,
-        bucket_name: &str,
-        key: &str,
-        upload_id: &str,
-        part_number: i32,
-        body: PutBody,
-        use_chunk_encoding: bool,
-    ) -> Result<S3Response<UploadPartOutput>, S3Error> {
-        let (stream, _) = body.into_stream(use_chunk_encoding).await?;
-        send!(
-            self.client
-                .upload_part()
-                .bucket(bucket_name)
-                .key(key)
-                .upload_id(upload_id)
-                .part_number(part_number)
-                .body(stream),
-            checksum = chunk_checksum(use_chunk_encoding)
         )
     }
 }

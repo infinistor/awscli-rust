@@ -1,0 +1,1 @@
+{"responseBody":"<VersioningConfiguration xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Status>Enabled</Status></VersioningConfiguration>","op":"get-bucket-versioning"}

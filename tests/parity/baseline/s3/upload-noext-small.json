@@ -1,0 +1,61 @@
+{
+  "port": 56845,
+  "requests": [
+    {
+      "line": "PUT /my-bucket/dir/k.zzz HTTP/1.1",
+      "headers": [
+        [
+          "Expect",
+          "100-continue"
+        ],
+        [
+          "amz-sdk-invocation-id",
+          "e7467e01-d51c-4815-869b-a6fe71eac15a"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "Host",
+          "127.0.0.1:56845"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T115747Z"
+        ],
+        [
+          "X-Amz-Decoded-Content-Length",
+          "5"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "STREAMING-AWS4-HMAC-SHA256-PAYLOAD"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-encoding;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-decoded-content-length, Signature=bc7fb923d6393f1e4fa475ba434f9944dd2ee5c25f0b23771877c9d3a6b26d95"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 md/SimpleUploadCommand m/c,P,e,N,E,a,G"
+        ],
+        [
+          "Content-Length",
+          "177"
+        ],
+        [
+          "Content-Type",
+          "application/octet-stream"
+        ],
+        [
+          "Content-Encoding",
+          "aws-chunked"
+        ]
+      ],
+      "body": "5;chunk-signature=272b35bd947d526be6d5c3a007c56e65f86a25cb57d10c401a0d7e2fadec040b\r\nabcde\r\n0;chunk-signature=ab9575fef650ee047f2f7805c86f672338e8f53a4ac40127956776f8d3635dc0\r\n\r\n"
+    }
+  ],
+  "result": "done",
+  "error": null
+}

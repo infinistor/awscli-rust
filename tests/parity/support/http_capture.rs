@@ -38,16 +38,26 @@ pub struct CaptureServer {
 
 impl CaptureServer {
     pub async fn start(response: CannedResponse) -> Self {
+        Self::start_with_routes(response, Vec::new()).await
+    }
+
+    /// 요청 줄에 `contains`가 들어 있으면 해당 응답을, 아니면 `response`를 돌려준다(오라클의 `Routes`와 같다).
+    pub async fn start_with_routes(
+        response: CannedResponse,
+        routes: Vec<(String, CannedResponse)>,
+    ) -> Self {
         let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
         let port = listener.local_addr().unwrap().port();
         let requests = Arc::new(Mutex::new(Vec::new()));
         let shared = requests.clone();
+        let routes = Arc::new(routes);
         let task = tokio::spawn(async move {
             while let Ok((socket, _)) = listener.accept().await {
                 let requests = shared.clone();
                 let response = response.clone();
+                let routes = routes.clone();
                 tokio::spawn(async move {
-                    let _ = serve(socket, &response, &requests).await;
+                    let _ = serve(socket, &response, &routes, &requests).await;
                 });
             }
         });
@@ -85,6 +95,7 @@ async fn read_line(socket: &mut TcpStream) -> Option<Vec<u8>> {
 async fn serve(
     mut socket: TcpStream,
     response: &CannedResponse,
+    routes: &[(String, CannedResponse)],
     requests: &Mutex<Vec<CapturedRequest>>,
 ) -> Option<()> {
     loop {
@@ -151,6 +162,10 @@ async fn serve(
             socket.read_exact(&mut body).await.ok()?;
         }
         let is_head = request.line.starts_with("HEAD ");
+        let response = routes
+            .iter()
+            .find(|(contains, _)| request.line.contains(contains.as_str()))
+            .map_or(response, |(_, r)| r);
         requests.lock().unwrap().push(CapturedRequest {
             body: String::from_utf8_lossy(&body).into_owned(),
             ..request

@@ -1,0 +1,56 @@
+{
+  "port": 56819,
+  "requests": [
+    {
+      "line": "PUT /my-bucket/dir/key.txt HTTP/1.1",
+      "headers": [
+        [
+          "Expect",
+          "100-continue"
+        ],
+        [
+          "amz-sdk-invocation-id",
+          "481ece49-1d55-405e-91d4-ac3a05556222"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "Host",
+          "127.0.0.1:56819"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T115739Z"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "2070df23e0d957590bc67a03d7a244173059dd2a2ad4a8d5a01a3e6eed013fec"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-content-sha256;x-amz-date, Signature=248d2839d8adb0b5dfed7e8609fa1286d57a87358a1f170cf18f4445ac2202a3"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 m/c,P,e,N,E,a"
+        ],
+        [
+          "Content-Length",
+          "32"
+        ],
+        [
+          "Content-Type",
+          "text/plain"
+        ]
+      ],
+      "body": "abcdefghijklmnopqrstuvwxyzabcdef"
+    }
+  ],
+  "result": {
+    "status": 200,
+    "ContentLength": 0
+  },
+  "error": null
+}

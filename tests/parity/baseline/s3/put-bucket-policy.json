@@ -1,0 +1,60 @@
+{
+  "port": 65149,
+  "requests": [
+    {
+      "line": "PUT /my-bucket/?policy HTTP/1.1",
+      "headers": [
+        [
+          "amz-sdk-invocation-id",
+          "fe1889f0-fdb8-4be8-97ea-196159fad604"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "x-amz-checksum-crc32",
+          "R/qaEw=="
+        ],
+        [
+          "x-amz-sdk-checksum-algorithm",
+          "CRC32"
+        ],
+        [
+          "Host",
+          "127.0.0.1:65149"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T115653Z"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "8f907b489532ad56fb7c52f3acc89b27680ed51296bf03984ce78d2b7b96076a"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-checksum-crc32;x-amz-content-sha256;x-amz-date;x-amz-sdk-checksum-algorithm, Signature=ae32b45b4b2b5ca2a9442ef43bdacbeff8ae1a8d2f2aea6fd9b55126888685b7"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 m/c,P,e,N,E,U,a"
+        ],
+        [
+          "Content-Length",
+          "39"
+        ],
+        [
+          "Content-Type",
+          "text/plain"
+        ]
+      ],
+      "body": "{\"Version\":\"2012-10-17\",\"Statement\":[]}"
+    }
+  ],
+  "result": {
+    "status": 200,
+    "ContentLength": 0
+  },
+  "error": null
+}

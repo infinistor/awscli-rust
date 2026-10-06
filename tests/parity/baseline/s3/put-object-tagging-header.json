@@ -1,0 +1,68 @@
+{
+  "port": 65205,
+  "requests": [
+    {
+      "line": "PUT /my-bucket/dir/key.txt HTTP/1.1",
+      "headers": [
+        [
+          "Expect",
+          "100-continue"
+        ],
+        [
+          "x-amz-tagging",
+          "project=alpha&env=test%20%26%20dev"
+        ],
+        [
+          "amz-sdk-invocation-id",
+          "1a5184b9-a23d-4976-99b0-1bf08be7bbb2"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "Host",
+          "127.0.0.1:65205"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T115710Z"
+        ],
+        [
+          "X-Amz-Decoded-Content-Length",
+          "11"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "STREAMING-AWS4-HMAC-SHA256-PAYLOAD"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-encoding;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-decoded-content-length;x-amz-tagging, Signature=bdd8841b1df8c017669f3ff77a24ea21dbf95d6af3f353a31c6fa5ee0a83fbc3"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 m/c,P,e,N,E,a"
+        ],
+        [
+          "Content-Length",
+          "183"
+        ],
+        [
+          "Content-Type",
+          "text/plain"
+        ],
+        [
+          "Content-Encoding",
+          "aws-chunked"
+        ]
+      ],
+      "body": "B;chunk-signature=c11d0e82eda0ca797294396f8aeee906c0fc0f964c454839a03f91cb079ba250\r\nhello world\r\n0;chunk-signature=f7b2267f4f238e30337ce4735b083d7e60c4ce4dba84b034889e0fcf59912b42\r\n\r\n"
+    }
+  ],
+  "result": {
+    "status": 200,
+    "ContentLength": 0
+  },
+  "error": null
+}

@@ -1,0 +1,1 @@
+{"responseBody":"<ListAllMyDirectoryBucketsResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Buckets/></ListAllMyDirectoryBucketsResult>","op":"list-directory-buckets"}

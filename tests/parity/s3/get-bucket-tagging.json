@@ -1,0 +1,1 @@
+{"responseBody":"<Tagging xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><TagSet><Tag><Key>k</Key><Value>v</Value></Tag></TagSet></Tagging>","op":"get-bucket-tagging"}

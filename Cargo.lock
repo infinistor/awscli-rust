@@ -458,6 +458,7 @@ dependencies = [
  "http-body-util",
  "hyper 1.11.1",
  "hyper-util",
+ "md-5",
  "quick-xml",
  "serde",
  "serde_json",

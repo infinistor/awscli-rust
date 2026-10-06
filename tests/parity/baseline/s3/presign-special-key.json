@@ -1,0 +1,6 @@
+{
+  "port": 59880,
+  "requests": [],
+  "result": "http://127.0.0.1:59880/my-bucket/dir/%ED%95%9C%EA%B8%80%20a%2Bb.txt?X-Amz-Expires=3600&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAEXAMPLE%2F20261006%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261006T115728Z&X-Amz-SignedHeaders=host&X-Amz-Signature=06863d3e942babe8de35bcf8da397698a5a331cd2fd929decb581361c6dea72b",
+  "error": null
+}

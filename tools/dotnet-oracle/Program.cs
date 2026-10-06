@@ -17,7 +17,7 @@ using System.Text.Json;
 using TestCore.Data.Config;
 using TestCore.Util;
 
-static class Program
+static partial class Program
 {
 	static readonly JsonSerializerOptions Json = new() { WriteIndented = true, Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
 
@@ -158,6 +158,21 @@ static class Program
 		public int Status { get; set; } = 200;
 		public string ResponseBody { get; set; } = "";
 		public Dictionary<string, string> ResponseHeaders { get; set; } = [];
+		// 요청 줄에 Contains가 들어 있으면 해당 응답을 돌려준다(멀티파트 업로드처럼 요청마다 응답이 다른 경우).
+		public List<S3Route> Routes { get; set; } = [];
+		// Upload/Download 사례: 올릴 파일 크기(바이트), 분할 크기, 동시 요청 수.
+		public long FileSize { get; set; }
+		public long PartSize { get; set; } = 5 * 1024 * 1024;
+		public int ThreadCount { get; set; } = 10;
+		public string Ext { get; set; } = "bin";
+	}
+
+	public sealed class S3Route
+	{
+		public string Contains { get; set; }
+		public int Status { get; set; } = 200;
+		public string ResponseBody { get; set; } = "";
+		public Dictionary<string, string> ResponseHeaders { get; set; } = [];
 	}
 
 	// S3Client(AWSSDK)가 보내는 요청을 모두 기록한다. 같은 응답을 연결마다 돌려준다(재시도 확인용).
@@ -199,7 +214,7 @@ static class Program
 				"delete-objects" => client.DeleteObjects(spec.Bucket, [new() { Key = "a" }, new() { Key = "b", VersionId = "v1" }], Quiet: true),
 				"upload-part" => client.UploadPart(spec.Bucket, spec.Key, "upload-1", 1, inputStream: new MemoryStream(System.Text.Encoding.UTF8.GetBytes(spec.Body)), useChunkEncoding: spec.Chunked),
 				"put-bucket-versioning" => client.PutBucketVersioning(spec.Bucket, Amazon.S3.VersionStatus.Enabled),
-				_ => throw new ArgumentException(spec.Op),
+				_ => S3Ops(client, spec),
 			};
 			if (response is Amazon.Runtime.AmazonWebServiceResponse r) result = new { status = (int)r.HttpStatusCode, r.ContentLength };
 			else result = response;
@@ -274,10 +289,12 @@ static class Program
 			}
 			requests.Enqueue(new { line = head[0], headers, body = System.Text.Encoding.UTF8.GetString(body) });
 
-			var responseBody = System.Text.Encoding.UTF8.GetBytes(spec.ResponseBody ?? "");
-			var extra = string.Concat(spec.ResponseHeaders.Select(h => $"{h.Key}: {h.Value}\r\n"));
+			var route = spec.Routes.FirstOrDefault(r => head[0].Contains(r.Contains));
+			var status = route?.Status ?? spec.Status;
+			var responseBody = System.Text.Encoding.UTF8.GetBytes((route?.ResponseBody ?? spec.ResponseBody) ?? "");
+			var extra = string.Concat((route?.ResponseHeaders ?? spec.ResponseHeaders).Select(h => $"{h.Key}: {h.Value}\r\n"));
 			var isHead = head[0].StartsWith("HEAD ");
-			var responseHead = $"HTTP/1.1 {spec.Status} Status\r\n{extra}Content-Length: {responseBody.Length}\r\n\r\n";
+			var responseHead = $"HTTP/1.1 {status} Status\r\n{extra}Content-Length: {responseBody.Length}\r\n\r\n";
 			stream.Write(System.Text.Encoding.ASCII.GetBytes(responseHead));
 			if (!isHead) stream.Write(responseBody);
 		}

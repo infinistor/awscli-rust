@@ -1,0 +1,1 @@
+{"responseBody":"<ListInventoryConfigurationsResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><IsTruncated>false</IsTruncated></ListInventoryConfigurationsResult>","op":"list-bucket-inventory"}

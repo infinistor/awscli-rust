@@ -18,6 +18,8 @@ pub enum S3Error {
     Network(String),
     /// 요청을 만들 수 없는 경우(필수 값 누락 등).
     Request(String),
+    /// 호출 인자가 잘못된 경우(.NET `ArgumentException`).
+    Argument(String),
 }
 
 impl S3Error {
@@ -55,6 +57,7 @@ impl S3Error {
             },
             Self::Network(_) => "System.Net.Http.HttpRequestException",
             Self::Request(_) => "Amazon.Runtime.AmazonClientException",
+            Self::Argument(_) => "System.ArgumentException",
         }
     }
 }
@@ -78,7 +81,9 @@ impl fmt::Display for S3Error {
                  No further error information was returned by the service.",
                 status_name(*status)
             ),
-            Self::Network(message) | Self::Request(message) => f.write_str(message),
+            Self::Network(message) | Self::Request(message) | Self::Argument(message) => {
+                f.write_str(message)
+            }
         }
     }
 }

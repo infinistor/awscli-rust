@@ -1,0 +1,64 @@
+{
+  "port": 53741,
+  "requests": [
+    {
+      "line": "PUT /my-bucket/?notification HTTP/1.1",
+      "headers": [
+        [
+          "x-amz-api-version",
+          "2006-03-01"
+        ],
+        [
+          "amz-sdk-invocation-id",
+          "2774eb61-057c-4ef9-8d91-9c7daf71a2c5"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "x-amz-checksum-crc32",
+          "GIi6SQ=="
+        ],
+        [
+          "x-amz-sdk-checksum-algorithm",
+          "CRC32"
+        ],
+        [
+          "Host",
+          "127.0.0.1:53741"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T115645Z"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "3b91884d870ecd5f6fde538d12db1b97aad380a798bda146cfd3599381f043fe"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-api-version;x-amz-checksum-crc32;x-amz-content-sha256;x-amz-date;x-amz-sdk-checksum-algorithm, Signature=ca83d83a9f1cf6ca7172cda5b3875902e3d2733f747ac88d6f2a155a3812dc69"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 m/c,P,e,N,E,U,a"
+        ],
+        [
+          "Content-Length",
+          "565"
+        ],
+        [
+          "Content-Type",
+          "application/xml"
+        ]
+      ],
+      "body": "<NotificationConfiguration xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><CloudFunctionConfiguration><Event>s3:ObjectCreated:Put</Event><CloudFunction>arn:aws:lambda:us-east-1:123456789012:function:f</CloudFunction><Id>l1</Id></CloudFunctionConfiguration><QueueConfiguration><Event>s3:ObjectRemoved:*</Event><Id>q1</Id><Queue>arn:aws:sqs:us-east-1:123456789012:queue</Queue></QueueConfiguration><TopicConfiguration><Event>s3:ObjectCreated:*</Event><Id>t1</Id><Topic>arn:aws:sns:us-east-1:123456789012:topic</Topic></TopicConfiguration></NotificationConfiguration>"
+    }
+  ],
+  "result": {
+    "status": 200,
+    "ContentLength": 0
+  },
+  "error": null
+}

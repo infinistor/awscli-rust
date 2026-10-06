@@ -1,0 +1,64 @@
+{
+  "port": 65237,
+  "requests": [
+    {
+      "line": "PUT /my-bucket/?replication HTTP/1.1",
+      "headers": [
+        [
+          "x-amz-api-version",
+          "2006-03-01"
+        ],
+        [
+          "amz-sdk-invocation-id",
+          "265d0fc7-bc50-4e1e-8939-6514eade2d06"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "x-amz-checksum-crc32",
+          "8gqdJA=="
+        ],
+        [
+          "x-amz-sdk-checksum-algorithm",
+          "CRC32"
+        ],
+        [
+          "Host",
+          "127.0.0.1:65237"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T115718Z"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "148b123ee90ac99bc30f42889a769e5d80b5818957f5c5bca9f7623781ad97d4"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-api-version;x-amz-checksum-crc32;x-amz-content-sha256;x-amz-date;x-amz-sdk-checksum-algorithm, Signature=5cee0d8dd22957f583da02185cc068b5c9cd39d10b26ab63799eb9bcb2b473a4"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 m/c,P,e,N,E,U,a"
+        ],
+        [
+          "Content-Length",
+          "452"
+        ],
+        [
+          "Content-Type",
+          "application/xml"
+        ]
+      ],
+      "body": "<ReplicationConfiguration xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Role>arn:aws:iam::123456789012:role/replication</Role><Rule><DeleteMarkerReplication><Status>Disabled</Status></DeleteMarkerReplication><Destination><Bucket>arn:aws:s3:::dest-bucket</Bucket><StorageClass>STANDARD_IA</StorageClass></Destination><Filter><Prefix>docs/</Prefix></Filter><ID>rule1</ID><Priority>1</Priority><Status>Enabled</Status></Rule></ReplicationConfiguration>"
+    }
+  ],
+  "result": {
+    "status": 200,
+    "ContentLength": 0
+  },
+  "error": null
+}

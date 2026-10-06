@@ -1,0 +1,11 @@
+{
+  "port": 56830,
+  "requests": [],
+  "result": null,
+  "error": {
+    "type": "System.ArgumentException",
+    "message": "Please specify one of either an InputStream or a FilePath to be PUT as an S3 object.",
+    "status": null,
+    "ErrorCode": null
+  }
+}

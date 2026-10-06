@@ -1,0 +1,1 @@
+{"responseBody":"<CompleteMultipartUploadResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Bucket>my-bucket</Bucket><Key>dir/key.txt</Key><ETag>\"final\"</ETag></CompleteMultipartUploadResult>","op":"complete-multipart-upload"}

@@ -1,0 +1,56 @@
+{
+  "port": 65243,
+  "requests": [
+    {
+      "line": "POST /my-bucket/dir/key.txt?restore&versionId=v1 HTTP/1.1",
+      "headers": [
+        [
+          "x-amz-api-version",
+          "2006-03-01"
+        ],
+        [
+          "amz-sdk-invocation-id",
+          "b746b70b-7241-4cbf-8bc3-683fe8227342"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "Host",
+          "127.0.0.1:65243"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T115720Z"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "2ea3af146315054bed610e3fa1e35c3c5cd2d8abb45965722ce992ee22a1c0a8"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-api-version;x-amz-content-sha256;x-amz-date, Signature=8dfae35d5cce62cf74259eb3ca9f442e93927b13d69b29317093d6b4ab8ba3df"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 m/c,P,e,N,E,a"
+        ],
+        [
+          "Content-Length",
+          "95"
+        ],
+        [
+          "Content-Type",
+          "application/xml"
+        ]
+      ],
+      "body": "<RestoreRequest xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Days>7</Days></RestoreRequest>"
+    }
+  ],
+  "result": {
+    "status": 200,
+    "ContentLength": 0
+  },
+  "error": null
+}

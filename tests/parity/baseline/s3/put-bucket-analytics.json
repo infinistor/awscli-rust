@@ -1,0 +1,60 @@
+{
+  "port": 65201,
+  "requests": [
+    {
+      "line": "PUT /my-bucket/?analytics&id=a1 HTTP/1.1",
+      "headers": [
+        [
+          "x-amz-api-version",
+          "2006-03-01"
+        ],
+        [
+          "amz-sdk-invocation-id",
+          "93ef327e-dbd7-4329-9e14-cbe1481c8b59"
+        ],
+        [
+          "amz-sdk-request",
+          "attempt=1; max=4"
+        ],
+        [
+          "Host",
+          "127.0.0.1:65201"
+        ],
+        [
+          "X-Amz-Date",
+          "20261006T115709Z"
+        ],
+        [
+          "X-Amz-Content-SHA256",
+          "6ded604c6c77befae868830635fc47684fdf92fa31f180f1520c989afb73f504"
+        ],
+        [
+          "Authorization",
+          "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-md5;content-type;host;x-amz-api-version;x-amz-content-sha256;x-amz-date, Signature=931d803928ce563fb9609c5d6bf0ede04a8c3a84e9375805a85633d53e1f416a"
+        ],
+        [
+          "User-Agent",
+          "aws-sdk-dotnet-coreclr/4.0.101.4 ua/2.1 os/windows#10.0.26200.0 md/ARCH#X64 lang/.NET_Core#10.0.12 md/aws-sdk-dotnet-core#4.0.100.8 api/S3#4.0.101.4 md/ClientAsync cfg/init-coll#0 m/c,P,e,N,E"
+        ],
+        [
+          "Content-Length",
+          "421"
+        ],
+        [
+          "Content-Type",
+          "application/xml"
+        ],
+        [
+          "Content-MD5",
+          "D0a1PSDNPkMQSldfwodTYw=="
+        ]
+      ],
+      "body": "<AnalyticsConfiguration xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Filter><Prefix>data/</Prefix></Filter><Id>a1</Id><StorageClassAnalysis><DataExport><Destination><S3BucketDestination><Bucket>arn:aws:s3:::dest-bucket</Bucket><Format>CSV</Format><Prefix>analytics/</Prefix></S3BucketDestination></Destination><OutputSchemaVersion>V_1</OutputSchemaVersion></DataExport></StorageClassAnalysis></AnalyticsConfiguration>"
+    }
+  ],
+  "result": {
+    "status": 200,
+    "ContentLength": 0
+  },
+  "error": null
+}
