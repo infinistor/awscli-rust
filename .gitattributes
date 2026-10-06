@@ -1,3 +1,4 @@
 # parity 픽스처와 기준 출력은 줄 끝·BOM까지 원본 그대로 보관한다.
 tests/parity/ini/** -text
 tests/parity/baseline/** -text
+tests/parity/checksum/** -text

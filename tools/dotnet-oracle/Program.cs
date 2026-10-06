@@ -1,6 +1,9 @@
 // parity 기준 출력 생성기. 사용법:
 //   dotnet run -- ini <파일>             IniFile 파싱 결과(섹션·키·원본 값·ToString 값)를 JSON으로 출력
 //   dotnet run -- config <파일> [사용자]  Config.GetConfig 결과(Config.ToString JSON)를 출력
+//   dotnet run -- checksum <파일>         ChecksumCalculator로 모든 알고리즘의 체크섬을 출력
+//   dotnet run -- uri <URL>               System.Uri의 Host·Port·IsDefaultPort·AbsolutePath를 출력
+//   dotnet run -- sign <요청 JSON 파일>   Aws4SignerForAuthorizationHeader 서명 결과를 출력
 // 실행 시 TestCore.dll과 의존 어셈블리는 TESTCORE_BIN(기본: ../../../TESTCore/bin/TestCore)에서 읽는다.
 using System;
 using System.Collections.Generic;
@@ -30,7 +33,7 @@ static class Program
 
 	static int Usage()
 	{
-		Console.Error.WriteLine("usage: ini <file> | config <file> [user]");
+		Console.Error.WriteLine("usage: ini <file> | config <file> [user] | checksum <file> | uri <url> | sign <request.json>");
 		return 2;
 	}
 
@@ -45,7 +48,61 @@ static class Program
 				var ok = config.GetConfig(args[1], args.Length > 2 ? args[2] : null);
 				Console.WriteLine(ok ? config.ToString() : "null");
 				return ok ? 0 : 1;
+			case "checksum": Console.WriteLine(DumpChecksum(args[1])); return 0;
+			case "uri": Console.WriteLine(DumpUri(args[1])); return 0;
+			case "sign": Console.WriteLine(Sign(args[1])); return 0;
 			default: return Usage();
+		}
+	}
+
+	static string DumpChecksum(string path)
+	{
+		var result = new SortedDictionary<string, string>(StringComparer.Ordinal);
+		foreach (var algorithm in Enum.GetValues<S3ChecksumAlgorithm>())
+			if (algorithm != S3ChecksumAlgorithm.None)
+				result[algorithm.ToName()] = ChecksumCalculator.CalculateChecksum(path, algorithm);
+		return JsonSerializer.Serialize(result, Json);
+	}
+
+	static string DumpUri(string url)
+	{
+		var uri = new Uri(url);
+		return JsonSerializer.Serialize(new { url, host = uri.Host, port = uri.Port, isDefaultPort = uri.IsDefaultPort, absolutePath = uri.AbsolutePath }, Json);
+	}
+
+	public sealed class SignRequest
+	{
+		public string Method { get; set; }
+		public string Url { get; set; }
+		public string Service { get; set; }
+		public string Region { get; set; }
+		public string AccessKey { get; set; }
+		public string SecretKey { get; set; }
+		public string BodyHash { get; set; }
+		public string Query { get; set; }
+		public Dictionary<string, string> Headers { get; set; } = [];
+	}
+
+	// 서명기는 현재 시각을 쓰므로, 결과의 xAmzDate를 Rust 쪽 서명 시각으로 넘겨 비교한다.
+	static string Sign(string requestPath)
+	{
+		var request = JsonSerializer.Deserialize<SignRequest>(File.ReadAllText(requestPath), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+		var headers = new Dictionary<string, string>(request.Headers);
+		var signer = new TestCore.Signers.Aws4SignerForAuthorizationHeader
+		{
+			EndpointUri = new Uri(request.Url),
+			HttpMethod = request.Method,
+			Service = request.Service,
+			Region = request.Region,
+		};
+		try
+		{
+			var authorization = signer.ComputeSignature(headers, request.Query, request.BodyHash, request.AccessKey, request.SecretKey, false);
+			return JsonSerializer.Serialize(new { headers, authorization }, Json);
+		}
+		catch (Exception e)
+		{
+			return JsonSerializer.Serialize(new { headers, error = e.GetType().FullName }, Json);
 		}
 	}
 
