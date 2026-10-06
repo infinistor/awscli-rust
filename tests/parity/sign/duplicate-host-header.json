@@ -1,0 +1,1 @@
+{"method": "GET", "url": "http://h:1/b/", "region": "", "query": "", "accessKey": "AKIAEXAMPLE", "secretKey": "secret/Key+Example", "service": "s3", "bodyHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "headers": {"host": "h:1"}}

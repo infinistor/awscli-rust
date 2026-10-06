@@ -1,0 +1,10 @@
+{
+  "headers": {
+    "X-Amz-Content-SHA256": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+    "content-length": "4",
+    "content-type": "text/plain",
+    "X-Amz-Date": "20261006T082422Z",
+    "Host": "ksan:7070"
+  },
+  "authorization": "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006//s3/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-content-sha256;x-amz-date, Signature=87943fdb4ef18bc64665ee91fdde9ff74beae9a54206993beb7a4b085fc6f05a"
+}

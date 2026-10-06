@@ -1,0 +1,10 @@
+{
+  "headers": {
+    "X-Custom-Header": "  a   b \t c  ",
+    "Content-Type": "text/plain",
+    "x-amz-meta-uuid": "Abc",
+    "X-Amz-Date": "20261006T082424Z",
+    "Host": "s3.example.com"
+  },
+  "authorization": "AWS4-HMAC-SHA256 Credential=AKIAEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-date;x-amz-meta-uuid;x-custom-header, Signature=b70ba3eec961dfc113c2eba118c1ab23e6ffbedb7aeebd8fe37ceb108f2b3eb0"
+}

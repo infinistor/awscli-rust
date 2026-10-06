@@ -1,0 +1,1 @@
+{"method": "GET", "url": "https://S3.Example.com:443/b/k", "region": "us-east-1", "query": "z=1&a=x=y&m", "accessKey": "AKIAEXAMPLE", "secretKey": "secret/Key+Example", "service": "s3", "bodyHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "headers": {"X-Custom-Header": "  a   b \t c  ", "Content-Type": "text/plain", "x-amz-meta-uuid": "Abc"}}

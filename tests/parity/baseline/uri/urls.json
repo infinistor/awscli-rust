@@ -1,0 +1,625 @@
+[
+  {
+    "url": "http://LocalHost:80/bucket/a b?storagemove",
+    "host": "localhost",
+    "port": 80,
+    "isDefaultPort": true,
+    "absolutePath": "/bucket/a%20b"
+  },
+  {
+    "url": "http://h:1/b/한글?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/%ED%95%9C%EA%B8%80"
+  },
+  {
+    "url": "http://h:1/b/a%20b?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%20b"
+  },
+  {
+    "url": "http://h:1/b/a%zz?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%25zz"
+  },
+  {
+    "url": "http://h:1/b/a%41b?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/aAb"
+  },
+  {
+    "url": "http://h:1/b/a+b?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a+b"
+  },
+  {
+    "url": "http://h:1/b/a^b|c{d}`e?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%5Eb%7Cc%7Bd%7D%60e"
+  },
+  {
+    "url": "http://h:1/b/a\\b?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a/b"
+  },
+  {
+    "url": "http://h:1/b/./x/../y?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/y"
+  },
+  {
+    "url": "http://h:1/b/x/./y/../z?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/x/z"
+  },
+  {
+    "url": "http://h:1/b/a\"<>?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%22%3C%3E"
+  },
+  {
+    "url": "http://h:1/b/~!@$&'()*,;=:?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/~!@$&'()*,;=:"
+  },
+  {
+    "url": "http://h:1/b/[x]?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/[x]"
+  },
+  {
+    "url": "http://h:1/b/tab\there?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/tab%09here"
+  },
+  {
+    "url": "http://h:1/b/a%2Fb?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%2Fb"
+  },
+  {
+    "url": "http://h:1/b/..?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/"
+  },
+  {
+    "url": "http://h:1/b/%2e%2e/q?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/q"
+  },
+  {
+    "url": "http://h:1/b/UP/Case?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/UP/Case"
+  },
+  {
+    "url": "http://h:1/b/ü?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/%C3%BC"
+  },
+  {
+    "url": "http://h:1/b/a%2fb?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%2fb"
+  },
+  {
+    "url": "http://h:1/b/a%7eb?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a~b"
+  },
+  {
+    "url": "http://h:1/b/a%5Bb?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%5Bb"
+  },
+  {
+    "url": "http://h:1/b/a%C3%BCb?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%C3%BCb"
+  },
+  {
+    "url": "http://h:1/b/a%?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%25"
+  },
+  {
+    "url": "http://h:1/b/a%%41?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%25%41"
+  },
+  {
+    "url": "http://h:1/b/a/./?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a/"
+  },
+  {
+    "url": "http://h:1/b/a/.?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a/"
+  },
+  {
+    "url": "http://h:1/b/a//b?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a//b"
+  },
+  {
+    "url": "http://h:1/b/%2e?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/"
+  },
+  {
+    "url": "http://h:1/b/.hidden?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/.hidden"
+  },
+  {
+    "url": "http://h:1/b/a..b?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a..b"
+  },
+  {
+    "url": "http://h:1/b/a/..?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/"
+  },
+  {
+    "url": "http://h:1/b/a%00b?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%00b"
+  },
+  {
+    "url": "http://h:1/b/a%25b?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%25b"
+  },
+  {
+    "url": "http://h:1/b/a%2Db?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a-b"
+  },
+  {
+    "url": "http://h:1/b/a%5fb?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a_b"
+  },
+  {
+    "url": "http://h:1/b/a%30b?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a0b"
+  },
+  {
+    "url": "http://h:1/b/a%3Ab?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%3Ab"
+  },
+  {
+    "url": "http://h:1/b/a%40b?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%40b"
+  },
+  {
+    "url": "http://h:1/b/a%2Bb?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%2Bb"
+  },
+  {
+    "url": "http://h:1/b/%e2%82?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/%e2%82"
+  },
+  {
+    "url": "http://h:1/b/a%7Fb?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%7Fb"
+  },
+  {
+    "url": "http://h:1/b/a%20%20b?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%20%20b"
+  },
+  {
+    "url": "http://h:1/b/a.%2e/b?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a../b"
+  },
+  {
+    "url": "http://h:1/b/a/%2E/b?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a/b"
+  },
+  {
+    "url": "http://h:1/b/end.?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/end."
+  },
+  {
+    "url": "http://h:1/b/x/%2e%2E?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/"
+  },
+  {
+    "url": "http://h:1/b/a b%41?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%20bA"
+  },
+  {
+    "url": "http://h:1/b/한%41?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/%ED%95%9CA"
+  },
+  {
+    "url": "http://h:1/b/a^%41?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%5EA"
+  },
+  {
+    "url": "http://h:1/b/%41%?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/A%25"
+  },
+  {
+    "url": "http://h:1/b/x%41/../y?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/y"
+  },
+  {
+    "url": "http://h:1/b/a b/../c?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/c"
+  },
+  {
+    "url": "http://h:1/b/a%/../c?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/c"
+  },
+  {
+    "url": "http://h:1/b/한/./c?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/%ED%95%9C/c"
+  },
+  {
+    "url": "http://h:1/b/a\\%41?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a/A"
+  },
+  {
+    "url": "http://h:1/b/a\\b/../c?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a/c"
+  },
+  {
+    "url": "http://h:1/b/%2e%2e/a b?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/a%20b"
+  },
+  {
+    "url": "http://h:1/b/a%zz%2e%2e/x?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%25zz../x"
+  },
+  {
+    "url": "http://h:1/b/a%20%41?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%20A"
+  },
+  {
+    "url": "http://h:1/b/a%25%41b?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%25Ab"
+  },
+  {
+    "url": "http://h:1/b/a%25x%41?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%25xA"
+  },
+  {
+    "url": "http://h:1/b/%zzx%41?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/%25zzxA"
+  },
+  {
+    "url": "http://h:1/b/a%zz/%41?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%25zz/A"
+  },
+  {
+    "url": "http://h:1/b/a%/%41?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%25/%41"
+  },
+  {
+    "url": "http://h:1/b/%41%zz?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/A%25zz"
+  },
+  {
+    "url": "http://h:1/b/a%2F%41?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%2FA"
+  },
+  {
+    "url": "http://h:1/b/%3A%41?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/%3AA"
+  },
+  {
+    "url": "http://h:1/b/a%G1%41b?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%25G1Ab"
+  },
+  {
+    "url": "http://h:1/b/a%4%41?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%254%41"
+  },
+  {
+    "url": "http://h:1/b/a% x?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%25%20x"
+  },
+  {
+    "url": "http://h:1/b/a%한x?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%25%ED%95%9Cx"
+  },
+  {
+    "url": "http://h:1/b/a%^x?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%25%5Ex"
+  },
+  {
+    "url": "http://h:1/b/a%\\x?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%25/x"
+  },
+  {
+    "url": "http://h:1/b/a%x\\?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%25x/"
+  },
+  {
+    "url": "http://h:1/b/a%4?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%254"
+  },
+  {
+    "url": "http://h:1/b/a%x%?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%25x%25"
+  },
+  {
+    "url": "http://h:1/b/a%.%2e/z?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%25.%2e/z"
+  },
+  {
+    "url": "http://h:1/b/%.%2e/z?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/%25.%2e/z"
+  },
+  {
+    "url": "http://h:1/b/a%/./z?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%25/z"
+  },
+  {
+    "url": "http://h:1/b/a%%?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%25%25"
+  },
+  {
+    "url": "http://[::1]:9000/b/k?q",
+    "host": "[::1]",
+    "port": 9000,
+    "isDefaultPort": false,
+    "absolutePath": "/b/k"
+  },
+  {
+    "url": "https://h:443/b/?tag-index",
+    "host": "h",
+    "port": 443,
+    "isDefaultPort": true,
+    "absolutePath": "/b/"
+  },
+  {
+    "url": "http://192.168.0.1:8080/bucket?tag-index",
+    "host": "192.168.0.1",
+    "port": 8080,
+    "isDefaultPort": false,
+    "absolutePath": "/bucket"
+  },
+  {
+    "url": "http://h:1/b/k#frag?x",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/k"
+  },
+  {
+    "url": "http://h:1/b/%%%41%41?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/%25%25%41A"
+  },
+  {
+    "url": "http://h:1/b/a%%%41?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/a%25%25%41"
+  },
+  {
+    "url": "http://h:1/b/%2e%2E%2e/x?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/.../x"
+  },
+  {
+    "url": "http://h:1/b/x/%2E./y?q",
+    "host": "h",
+    "port": 1,
+    "isDefaultPort": false,
+    "absolutePath": "/b/y"
+  }
+]

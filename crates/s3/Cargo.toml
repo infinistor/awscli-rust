@@ -8,10 +8,14 @@ publish.workspace = true
 
 [dependencies]
 base64.workspace = true
+chrono.workspace = true
 crc.workspace = true
+hex.workspace = true
+hmac.workspace = true
 sha1.workspace = true
 sha2.workspace = true
 thiserror.workspace = true
+tracing.workspace = true
 
 [dev-dependencies]
 serde_json.workspace = true
@@ -20,6 +24,14 @@ tempfile.workspace = true
 [[test]]
 name = "parity_checksum"
 path = "../../tests/parity/checksum.rs"
+
+[[test]]
+name = "parity_uri"
+path = "../../tests/parity/uri.rs"
+
+[[test]]
+name = "parity_sign"
+path = "../../tests/parity/sign.rs"
 
 [lints]
 workspace = true

@@ -1,0 +1,8 @@
+{
+  "headers": {
+    "host": "h:1",
+    "X-Amz-Date": "20261006T082420Z",
+    "Host": "h:1"
+  },
+  "error": "System.ArgumentException"
+}

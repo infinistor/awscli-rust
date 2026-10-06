@@ -3,11 +3,13 @@
 //   dotnet run -- config <파일> [사용자]  Config.GetConfig 결과(Config.ToString JSON)를 출력
 //   dotnet run -- checksum <파일>         ChecksumCalculator로 모든 알고리즘의 체크섬을 출력
 //   dotnet run -- uri <URL>               System.Uri의 Host·Port·IsDefaultPort·AbsolutePath를 출력
+//   dotnet run -- uris <URL 목록 파일>    위 결과를 줄마다 계산해 JSON 배열로 출력
 //   dotnet run -- sign <요청 JSON 파일>   Aws4SignerForAuthorizationHeader 서명 결과를 출력
 // 실행 시 TestCore.dll과 의존 어셈블리는 TESTCORE_BIN(기본: ../../../TESTCore/bin/TestCore)에서 읽는다.
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text.Encodings.Web;
 using System.Text.Json;
@@ -50,6 +52,10 @@ static class Program
 				return ok ? 0 : 1;
 			case "checksum": Console.WriteLine(DumpChecksum(args[1])); return 0;
 			case "uri": Console.WriteLine(DumpUri(args[1])); return 0;
+			case "uris":
+				var lines = File.ReadAllLines(args[1]).Where(l => l.Length > 0).Select(l => JsonSerializer.Deserialize<JsonElement>(DumpUri(l)));
+				Console.WriteLine(JsonSerializer.Serialize(lines, Json));
+				return 0;
 			case "sign": Console.WriteLine(Sign(args[1])); return 0;
 			default: return Usage();
 		}
