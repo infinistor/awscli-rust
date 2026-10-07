@@ -7,23 +7,20 @@
 //! - 실패해도 멀티파트 업로드를 중단(`AbortMultipartUpload`)하지 않고, 예외는 잡지 않아 호출자(최상위)로 전파된다.
 //! - 버킷·키가 비어 있으면(`null` 또는 빈 문자열) 요청을 만들 때 `ArgumentException`이라 요청을 보내지 않는다
 //!   (`HeadObject`는 버킷 → 키, `CreateMultipartUpload`도 버킷 → 키 순서).
-//!
-//! 원본 버그(그대로 둔다)
-//!
-//! - `UploadPart(inputStream: part.ResponseStream)`의 입력은 응답 본문 스트림이라 탐색할 수 없다. 파트 크기를 정하지 않은 청크
-//!   업로드는 .NET SDK가 `PartialWrapperStream`으로 감싸려다 `InvalidOperationException`(`Base stream of PartialWrapperStream
-//!   must be seekable`)을 던진다. 그래서 크기가 0보다 큰 오브젝트는 첫 `GetObject(Range)` 응답을 받은 직후 이 예외로 끝나고
-//!   (`UploadPart`·`CompleteMultipartUpload` 요청은 나가지 않는다), 크기가 0일 때만 파트 없는 `CompleteMultipartUpload`까지 간다.
+//! - 범위 응답 본문은 메모리로 모두 읽은 뒤(`Utility.GetBodySplit`) `UploadPart`에 넘긴다. 원본은 응답 스트림을 그대로 넘겨
+//!   .NET SDK가 `PartialWrapperStream` 예외를 던지던 버그를 TESTCore `3c4b0ea`에서 고쳤다(사용자 결정).
+//! - 응답에 `PartNumber`가 없으면 .NET SDK는 요청한 번호로 채운다.
 //! - `Start(false)`(`GetObject` → `PutObject`)는 호출하는 곳이 없어 옮기지 않았다.
 
 use std::time::Instant;
 
 use awscli_rest_config::{CopyConfig, UserData};
 use awscli_rest_s3::S3Client;
-use awscli_rest_s3::s3_client::PartETag;
+use awscli_rest_s3::s3_client::{PartETag, PutBody};
 use tracing::info;
 
 use crate::ScenarioError;
+use crate::files::read_error;
 
 /// 원본 `Utility.GiB`.
 const GIB: i64 = 1024 * 1024 * 1024;
@@ -93,7 +90,7 @@ impl CopyTest {
             .map_err(|e| ScenarioError::s3(e, &[]))?;
         let size = metadata.output.content_length().unwrap_or(0);
 
-        let parts: Vec<PartETag> = Vec::new();
+        let mut parts: Vec<PartETag> = Vec::new();
 
         required(
             &config.target_bucket,
@@ -111,16 +108,16 @@ impl CopyTest {
             .map_err(|e| ScenarioError::s3(e, &[]))?;
         let upload_id = init.output.upload_id().unwrap_or_default().to_string();
 
-        let start = 0i64;
+        let mut part_number = 1;
+        let mut start = 0i64;
         let part_size = GIB;
-        if start < size {
+        while start < size {
             let mut end = start + part_size;
             if end > size {
                 end = size;
             }
 
-            // `using var part`: 응답 본문은 읽지 않고 버린다.
-            let _part = source_client
+            let part = source_client
                 .get_object(
                     &config.source_bucket,
                     &config.source_object,
@@ -129,12 +126,30 @@ impl CopyTest {
                 )
                 .await
                 .map_err(|e| ScenarioError::s3(e, &["NoSuchKey", "InvalidObjectState"]))?;
+            // UploadPart는 탐색 가능한 스트림이 필요하므로 응답 본문을 메모리로 읽어 둔다.
+            let body = part.output.body.collect().await.map_err(read_error)?;
 
-            // `UploadPart(inputStream: part.ResponseStream)`: 응답 스트림은 탐색할 수 없어 SDK가 요청을 만들다 던진다.
-            return Err(ScenarioError::new(
-                "System.InvalidOperationException",
-                "Base stream of PartialWrapperStream must be seekable",
-            ));
+            let part_response = target_client
+                .upload_part(
+                    &config.target_bucket,
+                    &config.target_object,
+                    &upload_id,
+                    part_number,
+                    PutBody::Bytes(body.into_bytes().to_vec()),
+                    0,
+                    -1,
+                    true,
+                )
+                .await
+                .map_err(|e| ScenarioError::s3(e, &[]))?;
+            parts.push(PartETag {
+                part_number: Some(part_number),
+                e_tag: part_response.output.e_tag().map(str::to_string),
+                ..PartETag::default()
+            });
+            part_number += 1;
+
+            start += part_size;
         }
         target_client
             .complete_multipart_upload(

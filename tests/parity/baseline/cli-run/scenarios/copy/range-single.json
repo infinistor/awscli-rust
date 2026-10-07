@@ -1,5 +1,5 @@
 {
-  "exitCode": -1,
+  "exitCode": 0,
   "requests": [
     {
       "body": null,
@@ -25,12 +25,33 @@
       "method": "GET",
       "path": "/srcb/a.bin",
       "query": []
+    },
+    {
+      "body": "10 bytes md5=a925576942e94b2ef57a066101b48876",
+      "headers": [],
+      "method": "PUT",
+      "path": "/tgtb/out.bin",
+      "query": [
+        "partNumber=1",
+        "uploadId=u1"
+      ]
+    },
+    {
+      "body": "<CompleteMultipartUpload><Part><ETag>\"p1etag\"</ETag><PartNumber>1</PartNumber></Part></CompleteMultipartUpload>",
+      "headers": [],
+      "method": "POST",
+      "path": "/tgtb/out.bin",
+      "query": [
+        "uploadId=u1"
+      ]
     }
   ],
   "stderr": [],
   "stdout": [
     "INFO  <TIME> : Main start",
     "INFO  <TIME> : RangeReadCopy Start",
-    "ERROR <TIME> : System.InvalidOperationException: Base stream of PartialWrapperStream must be seekable"
+    "INFO  <TIME> : CopyTest End. <N>ms",
+    "INFO  <TIME> : RangeReadCopy : complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
   ]
 }
