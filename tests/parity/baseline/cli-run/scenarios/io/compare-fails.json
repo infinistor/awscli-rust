@@ -1,0 +1,94 @@
+{
+  "exitCode": 0,
+  "outputs": {
+    "dl/a.txt": [
+      "XXX"
+    ],
+    "dl/sub/b.txt": [
+      "BBBB"
+    ]
+  },
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/io/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": "4 bytes md5=f50881ced34c7d9e6bce100bf33dec60",
+      "headers": [],
+      "method": "PUT",
+      "path": "/io/<DIR>%5C%5Csub%5Cb.txt",
+      "query": []
+    },
+    {
+      "body": "3 bytes md5=e1faffb3e614e6c2fba74296962386b7",
+      "headers": [],
+      "method": "PUT",
+      "path": "/io/<DIR>%5C%5Ca.txt",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/io/",
+      "query": [
+        "list-type=2",
+        "max-keys=1000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/io/a.txt",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/io/sub/b.txt",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/io/a.txt",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/io/sub/b.txt",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/io/",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "IO Test Start",
+    "Upload Complete",
+    "Download Complete",
+    "ERROR <TIME> : MD5 Compare Failed. (<DIR>\\srcdir\\a.txt : 4fr/s+YU5sL7p0KWliOGtw==, <DIR>\\dl\\a.txt : vJGJQGvoTsKXRkpRQiFAbQ==)",
+    "Compare Fail",
+    "Delete S3 Object List",
+    "Delete Complete",
+    "IO Test End",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "args": [
+    "--test-io",
+    "-b",
+    "io",
+    "--source=srcdir",
+    "--target=dl/"
+  ],
+  "dirs": [
+    "srcdir"
+  ]
+}

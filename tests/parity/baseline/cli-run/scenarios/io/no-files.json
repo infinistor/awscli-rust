@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/io/",
+      "query": [
+        "acl"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "IO Test Start",
+    "File Not Found",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

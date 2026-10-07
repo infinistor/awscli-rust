@@ -40,7 +40,17 @@ pub fn file_list(root: &str) -> Result<Vec<String>, ScenarioError> {
 }
 
 fn collect_files(dir: &Path, list: &mut Vec<String>) -> Result<(), ScenarioError> {
-    let entries = std::fs::read_dir(dir).map_err(|e| io_error(dir, &e))?;
+    let entries = std::fs::read_dir(dir).map_err(|e| {
+        if e.kind() == std::io::ErrorKind::NotFound {
+            // `DirectoryInfo.GetDirectories()`는 없는 폴더에 항상 `DirectoryNotFoundException`을 던진다.
+            ScenarioError::new(
+                "System.IO.DirectoryNotFoundException",
+                format!("Could not find a part of the path '{}'.", dir.display()),
+            )
+        } else {
+            io_error(dir, &e)
+        }
+    })?;
     let mut directories = Vec::new();
     let mut files = Vec::new();
     for entry in entries {

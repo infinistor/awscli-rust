@@ -3,6 +3,7 @@
 use std::time::Instant;
 
 use awscli_rest_scenarios::find_tag::FindTagTest;
+use awscli_rest_scenarios::io::IoTest;
 use awscli_rest_scenarios::multi_download::MultiDownloadTest;
 use awscli_rest_scenarios::multi_part::MultiPartTest;
 use awscli_rest_scenarios::multi_upload::MultiUploadTest;
@@ -18,11 +19,25 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
         MenuList::MultiUploadTest => multi_upload_test(ctx).await,
         MenuList::RangeReadTest => range_read_test(ctx).await,
         MenuList::FindTagTest => find_tag_test(ctx).await,
+        MenuList::IoTest => io_test(ctx).await,
         MenuList::DirectoryDownloadTest | MenuList::FileListDownloadTest => {
             download_test(ctx, menu).await
         }
         _ => not_ported(menu),
     }
+}
+
+/// 원본 `case MenuList.IoTest`. 인자를 검증하지 않는다(`--source`는 업로드 폴더, `--target`은 다운로드 폴더).
+async fn io_test(ctx: &mut CommandContext) -> CommandResult {
+    let o = &ctx.options;
+    let test = IoTest::new(ctx.config().main_user.clone());
+    test.start(
+        o.bucket_name.as_deref(),
+        o.source.as_deref(),
+        o.target.as_deref(),
+    )
+    .await?;
+    Ok(0)
 }
 
 /// 원본 `case MenuList.DirectoryDownloadTest`·`FileListDownloadTest`(검증은 `tests/mod.rs`).
