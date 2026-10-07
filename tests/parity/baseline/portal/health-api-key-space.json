@@ -1,0 +1,10 @@
+{
+  "port": 60653,
+  "requests": [],
+  "result": null,
+  "error": {
+    "type": "System.FormatException",
+    "message": "The format of value 'Bearer abc' is invalid."
+  },
+  "logs": []
+}

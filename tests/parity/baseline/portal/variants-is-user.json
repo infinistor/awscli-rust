@@ -1,0 +1,79 @@
+{
+  "variants": [
+    {
+      "responseBody": "{\"Result\":1,\"Data\":\"u\"}",
+      "result": true,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":null}",
+      "result": true,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":5}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.String. Path: $.Data | LineNumber: 0 | BytePositionInLine: 20."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":true}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.String. Path: $.Data | LineNumber: 0 | BytePositionInLine: 23."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":[]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.String. Path: $.Data | LineNumber: 0 | BytePositionInLine: 20."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"a\":1}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.String. Path: $.Data | LineNumber: 0 | BytePositionInLine: 20."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":0,\"Data\":\"u\"}",
+      "result": false,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":-1,\"Data\":\"u\"}",
+      "result": false,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":\"u\\u0000x\"}",
+      "result": true,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":\"unterminated}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Expected end of string, but instead reached end of data. Path: $.Data | LineNumber: 0 | BytePositionInLine: 33."
+      },
+      "logs": []
+    }
+  ]
+}

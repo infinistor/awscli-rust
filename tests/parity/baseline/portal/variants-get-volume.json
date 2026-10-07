@@ -1,0 +1,415 @@
+{
+  "variants": [
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Id\":1,\"Name\":\"n\",\"Status\":257,\"Permission\":0,\"QuotaSize\":100,\"UsedSize\":0.5,\"FreeSize\":99.5,\"SecurityLevel\":2,\"Remark\":null,\"Usage\":0.5,\"FileCount\":3,\"ReplicationType\":3}}",
+      "result": "{\r\n  \"Id\": 1,\r\n  \"Name\": \"n\",\r\n  \"Status\": 257,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 100,\r\n  \"UsedSize\": 0.5,\r\n  \"FreeSize\": 99.5,\r\n  \"SecurityLevel\": 2,\r\n  \"Remark\": null,\r\n  \"Usage\": 0.5,\r\n  \"FileCount\": 3,\r\n  \"ReplicationType\": 3\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":1000.50}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 1000.50,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":1E+2}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 100,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":1.5e2}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 150,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":1000E-2}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 10.00,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":0.0}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0.0,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":-0.0}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0.0,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":-12.5}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": -12.5,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":79228162514264337593543950335}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 79228162514264337593543950335,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":79228162514264337593543950336}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Decimal. Path: $.Data.QuotaSize | LineNumber: 0 | BytePositionInLine: 61."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":1E+29}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Decimal. Path: $.Data.QuotaSize | LineNumber: 0 | BytePositionInLine: 37."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":0.00000000000000000000000000001}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0.0000000000000000000000000000,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":0.0000000000000000000000000001}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0.0000000000000000000000000001,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":0.00000000000000000000000000005}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0.0000000000000000000000000000,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":0.00000000000000000000000000004}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0.0000000000000000000000000000,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":1E-30}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0.0000000000000000000000000000,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":5E-29}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0.0000000000000000000000000000,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":1.00000000000000000000000000005}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 1.0000000000000000000000000001,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":9.99999999999999999999999999999}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 10.000000000000000000000000000,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":12345678901234567890.123456789012345678901}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 12345678901234567890.123456789,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":\"5\"}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Decimal. Path: $.Data.QuotaSize | LineNumber: 0 | BytePositionInLine: 35."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":null}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Decimal. Path: $.Data.QuotaSize | LineNumber: 0 | BytePositionInLine: 36."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"QuotaSize\":true}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Decimal. Path: $.Data.QuotaSize | LineNumber: 0 | BytePositionInLine: 36."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Usage\":1e5}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 100000,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Usage\":1E-3}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0.001,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Usage\":3.4028235e38}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 3.4028235E+38,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Usage\":\"1\"}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Single. Path: $.Data.Usage | LineNumber: 0 | BytePositionInLine: 31."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Usage\":-0.0}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": -0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Usage\":16777217}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 16777216,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Id\":9223372036854775807}}",
+      "result": "{\r\n  \"Id\": 9223372036854775807,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Id\":9223372036854775808}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int64. Path: $.Data.Id | LineNumber: 0 | BytePositionInLine: 44."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Id\":-9223372036854775808}}",
+      "result": "{\r\n  \"Id\": -9223372036854775808,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Id\":1.0}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int64. Path: $.Data.Id | LineNumber: 0 | BytePositionInLine: 28."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Id\":1e2}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int64. Path: $.Data.Id | LineNumber: 0 | BytePositionInLine: 28."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Id\":-0}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"FileCount\":\"1\"}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int64. Path: $.Data.FileCount | LineNumber: 0 | BytePositionInLine: 35."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Status\":\"Online\"}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Data.EnumVolumeStatus. Path: $.Data.Status | LineNumber: 0 | BytePositionInLine: 37."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Status\":2147483647}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 2147483647,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Status\":2147483648}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Data.EnumVolumeStatus. Path: $.Data.Status | LineNumber: 0 | BytePositionInLine: 39."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Status\":-1}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": -1,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Status\":1.0}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Data.EnumVolumeStatus. Path: $.Data.Status | LineNumber: 0 | BytePositionInLine: 32."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Status\":null}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Data.EnumVolumeStatus. Path: $.Data.Status | LineNumber: 0 | BytePositionInLine: 33."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Permission\":[]}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Data.EnumVolumePermission. Path: $.Data.Permission | LineNumber: 0 | BytePositionInLine: 34."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":[]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Response.ResponseVolume. Path: $.Data | LineNumber: 0 | BytePositionInLine: 20."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":5}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Response.ResponseVolume. Path: $.Data | LineNumber: 0 | BytePositionInLine: 20."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":\"x\"}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Response.ResponseVolume. Path: $.Data | LineNumber: 0 | BytePositionInLine: 22."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":true}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Response.ResponseVolume. Path: $.Data | LineNumber: 0 | BytePositionInLine: 23."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":null}",
+      "result": null,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Name\":5}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.String. Path: $.Data.Name | LineNumber: 0 | BytePositionInLine: 28."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Name\":null}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Name\":\"\\u00e9\\ud83d\\ude00\"}}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": \"\\u00E9\\uD83D\\uDE00\",\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"data\":{\"Name\":\"x\"},\"Result\":1}",
+      "result": null,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Data\":{\"Name\":\"x\"},\"Result\":1}",
+      "result": "{\r\n  \"Id\": 0,\r\n  \"Name\": \"x\",\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Name\":\"x\"},\"Data\":{\"Id\":7}}",
+      "result": "{\r\n  \"Id\": 7,\r\n  \"Name\": null,\r\n  \"Status\": 0,\r\n  \"Permission\": 0,\r\n  \"QuotaSize\": 0,\r\n  \"UsedSize\": 0,\r\n  \"FreeSize\": 0,\r\n  \"SecurityLevel\": 0,\r\n  \"Remark\": null,\r\n  \"Usage\": 0,\r\n  \"FileCount\": 0,\r\n  \"ReplicationType\": 0\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Name\":\"x\"",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Expected depth to be zero at the end of the JSON payload. There is an open JSON object or array that should be closed. Path: $.Data | LineNumber: 0 | BytePositionInLine: 30."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Name\":\"x\",}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON object contains a trailing comma at the end which is not supported in this mode. Change the reader options. Path: $.Data | LineNumber: 0 | BytePositionInLine: 31."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Name\":\"x\"},}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON object contains a trailing comma at the end which is not supported in this mode. Change the reader options. Path: $ | LineNumber: 0 | BytePositionInLine: 32."
+      },
+      "logs": []
+    }
+  ]
+}

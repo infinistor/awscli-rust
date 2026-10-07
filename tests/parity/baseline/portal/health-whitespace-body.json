@@ -1,0 +1,22 @@
+{
+  "port": 60688,
+  "requests": [
+    {
+      "line": "GET //api/v1/Health HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:60688"
+        ],
+        [
+          "Authorization",
+          "test-api-key"
+        ]
+      ],
+      "body": ""
+    }
+  ],
+  "result": true,
+  "error": null,
+  "logs": []
+}

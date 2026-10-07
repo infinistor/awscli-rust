@@ -1,0 +1,12 @@
+{
+  "port": 58350,
+  "received": "svc.resume",
+  "result": -1,
+  "error": null,
+  "logs": [
+    {
+      "level": "ERROR",
+      "message": "Error resuming svc on 127.0.0.1:58350 => ERR: not paused"
+    }
+  ]
+}

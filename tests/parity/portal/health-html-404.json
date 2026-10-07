@@ -1,0 +1,5 @@
+{
+  "status": 404,
+  "op": "health",
+  "responseBody": "<html><body>Not Found</body></html>"
+}

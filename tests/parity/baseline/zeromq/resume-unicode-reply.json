@@ -1,0 +1,12 @@
+{
+  "port": 58336,
+  "received": "gateway.resume",
+  "result": -1,
+  "error": null,
+  "logs": [
+    {
+      "level": "ERROR",
+      "message": "Error resuming gateway on 127.0.0.1:58336 => 실패"
+    }
+  ]
+}

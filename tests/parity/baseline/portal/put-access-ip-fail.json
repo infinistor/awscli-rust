@@ -1,0 +1,33 @@
+{
+  "port": 60706,
+  "requests": [
+    {
+      "line": "POST //api/v1/AccessIps HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:60706"
+        ],
+        [
+          "Authorization",
+          "test-api-key"
+        ],
+        [
+          "Content-Type",
+          "text/plain; charset=utf-8"
+        ],
+        [
+          "Content-Length",
+          "99"
+        ]
+      ],
+      "body": "{\r\n  \"UserId\": \"vol1\",\r\n  \"TenantId\": \"user1\",\r\n  \"IpAddress\": \"10.0.0.1\",\r\n  \"BucketName\": \"bk\"\r\n}"
+    }
+  ],
+  "result": null,
+  "error": {
+    "type": "TestCore.Portal.PortalAccessIpsException",
+    "message": "ERROR(E100) : Something failed"
+  },
+  "logs": []
+}

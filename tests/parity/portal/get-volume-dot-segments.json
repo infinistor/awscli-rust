@@ -1,0 +1,5 @@
+{
+  "volume": "a/../b",
+  "op": "get-volume",
+  "responseBody": "{\"Result\":1}"
+}

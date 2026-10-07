@@ -1,0 +1,22 @@
+{
+  "port": 60607,
+  "requests": [
+    {
+      "line": "DELETE //api/v1/Volumes/my%20vol/%C3%A9A HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:60607"
+        ],
+        [
+          "Authorization",
+          "test-api-key"
+        ]
+      ],
+      "body": ""
+    }
+  ],
+  "result": null,
+  "error": null,
+  "logs": []
+}

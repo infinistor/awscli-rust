@@ -1,0 +1,15 @@
+{
+  "variants": [
+    "{\"Result\":1,\"Data\":\"u\"}",
+    "{\"Result\":1,\"Data\":null}",
+    "{\"Result\":1,\"Data\":5}",
+    "{\"Result\":1,\"Data\":true}",
+    "{\"Result\":1,\"Data\":[]}",
+    "{\"Result\":1,\"Data\":{\"a\":1}}",
+    "{\"Result\":0,\"Data\":\"u\"}",
+    "{\"Result\":-1,\"Data\":\"u\"}",
+    "{\"Result\":1,\"Data\":\"u\\u0000x\"}",
+    "{\"Result\":1,\"Data\":\"unterminated}"
+  ],
+  "op": "is-user"
+}

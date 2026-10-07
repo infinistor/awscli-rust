@@ -1,0 +1,4 @@
+{
+  "responseBody": "{\"result\":1,\"data\":{\"name\":\"x\",\"quotaSize\":5}}",
+  "op": "get-volume"
+}

@@ -13,17 +13,28 @@ awscli-rest-model.workspace = true
 awscli-rest-s3.workspace = true
 aws-sdk-s3.workspace = true
 base64.workspace = true
+bytes.workspace = true
 chrono.workspace = true
 hex.workspace = true
+http.workspace = true
+http-body-util.workspace = true
+hyper.workspace = true
+hyper-rustls.workspace = true
+hyper-util.workspace = true
 md-5.workspace = true
 rand.workspace = true
+rustls.workspace = true
+serde.workspace = true
+serde_json.workspace = true
 thiserror.workspace = true
 tokio.workspace = true
 tracing.workspace = true
+zeromq.workspace = true
 
 [dev-dependencies]
-serde_json.workspace = true
+rcgen.workspace = true
 tempfile.workspace = true
+tokio-rustls.workspace = true
 tracing-subscriber.workspace = true
 
 [[test]]
@@ -37,6 +48,18 @@ path = "../../tests/parity/local.rs"
 [[test]]
 name = "parity_multisystem"
 path = "../../tests/parity/multisystem.rs"
+
+[[test]]
+name = "parity_portal"
+path = "../../tests/parity/portal.rs"
+
+[[test]]
+name = "parity_mover"
+path = "../../tests/parity/mover.rs"
+
+[[test]]
+name = "parity_zeromq"
+path = "../../tests/parity/zeromq.rs"
 
 [lints]
 workspace = true

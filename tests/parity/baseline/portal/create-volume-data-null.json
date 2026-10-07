@@ -1,0 +1,33 @@
+{
+  "port": 60571,
+  "requests": [
+    {
+      "line": "POST //api/v1/Volumes HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:60571"
+        ],
+        [
+          "Authorization",
+          "test-api-key"
+        ],
+        [
+          "Content-Type",
+          "text/plain; charset=utf-8"
+        ],
+        [
+          "Content-Length",
+          "167"
+        ]
+      ],
+      "body": "{\r\n  \"Name\": \"vol1\",\r\n  \"ReplicationType\": 2,\r\n  \"QuotaSize\": 1000000000,\r\n  \"Permission\": 1,\r\n  \"Password\": \"pw\",\r\n  \"ConfirmPassword\": \"pw\",\r\n  \"SecurityLevel\": 0\r\n}"
+    }
+  ],
+  "result": null,
+  "error": {
+    "type": "System.NullReferenceException",
+    "message": "Object reference not set to an instance of an object."
+  },
+  "logs": []
+}

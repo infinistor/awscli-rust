@@ -1,0 +1,24 @@
+{
+  "request": {
+    "Target": {
+      "Bucket": "tb",
+      "Secret": "sk2",
+      "Access": "ak2",
+      "Endpoint": "http://t:9000",
+      "Prefix": "q/"
+    },
+    "UserId": "user1",
+    "Source": {
+      "Endpoint": "http://s:9000",
+      "Move_size": "10GB",
+      "Access": "ak",
+      "Secret": "sk",
+      "Prefix": "p/",
+      "Bucket": "sb",
+      "MountPoint": "/mnt/a"
+    },
+    "Type": "move"
+  },
+  "op": "start",
+  "responseBody": "null"
+}

@@ -1,0 +1,33 @@
+{
+  "port": 60712,
+  "requests": [
+    {
+      "line": "POST //api/v1/Volumes/vol1/Stop HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:60712"
+        ],
+        [
+          "Authorization",
+          "test-api-key"
+        ],
+        [
+          "Content-Type",
+          "text/plain; charset=utf-8"
+        ],
+        [
+          "Content-Length",
+          "0"
+        ]
+      ],
+      "body": ""
+    }
+  ],
+  "result": null,
+  "error": {
+    "type": "TestCore.Portal.PortalVolumeException",
+    "message": "ERROR(E100) : Something failed"
+  },
+  "logs": []
+}

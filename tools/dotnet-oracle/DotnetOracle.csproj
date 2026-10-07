@@ -24,5 +24,9 @@
 			<HintPath>$(TestCoreBin)\log4net.dll</HintPath>
 			<Private>false</Private>
 		</Reference>
+		<Reference Include="NetMQ">
+			<HintPath>$(TestCoreBin)\NetMQ.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
 	</ItemGroup>
 </Project>

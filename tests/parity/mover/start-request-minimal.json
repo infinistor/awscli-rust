@@ -1,0 +1,8 @@
+{
+  "request": {
+    "UserId": "u",
+    "Type": "t"
+  },
+  "op": "start",
+  "responseBody": "{\"JobId\":1}"
+}

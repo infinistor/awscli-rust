@@ -1,0 +1,5 @@
+{
+  "apiKey": "Bearer abc",
+  "op": "health",
+  "responseBody": "{\"Result\":1}"
+}

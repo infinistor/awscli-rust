@@ -1,0 +1,22 @@
+{
+  "port": 60631,
+  "requests": [
+    {
+      "line": "GET //api/v1/Volumes/vol1 HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:60631"
+        ],
+        [
+          "Authorization",
+          "test-api-key"
+        ]
+      ],
+      "body": ""
+    }
+  ],
+  "result": null,
+  "error": null,
+  "logs": []
+}

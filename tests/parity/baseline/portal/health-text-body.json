@@ -1,0 +1,25 @@
+{
+  "port": 60680,
+  "requests": [
+    {
+      "line": "GET //api/v1/Health HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:60680"
+        ],
+        [
+          "Authorization",
+          "test-api-key"
+        ]
+      ],
+      "body": ""
+    }
+  ],
+  "result": null,
+  "error": {
+    "type": "System.Text.Json.JsonException",
+    "message": "The JSON value could not be converted to TestCore.Portal.Response.PortalResponse. Path: $ | LineNumber: 0 | BytePositionInLine: 3."
+  },
+  "logs": []
+}

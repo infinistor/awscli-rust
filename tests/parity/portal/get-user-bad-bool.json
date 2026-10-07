@@ -1,0 +1,4 @@
+{
+  "responseBody": "{\"Result\":1,\"Data\":{\"Notification\":\"true\"}}",
+  "op": "get-user"
+}

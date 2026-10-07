@@ -1,0 +1,4 @@
+{
+  "responseBody": "{\"Result\":1,\"Data\":\"user1\"}",
+  "op": "is-user"
+}

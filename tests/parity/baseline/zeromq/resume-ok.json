@@ -1,0 +1,12 @@
+{
+  "port": 58326,
+  "received": "svc.resume",
+  "result": 0,
+  "error": null,
+  "logs": [
+    {
+      "level": "INFO",
+      "message": "Resumed svc on 127.0.0.1:58326"
+    }
+  ]
+}

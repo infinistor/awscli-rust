@@ -1,0 +1,18 @@
+{
+  "port": 64206,
+  "requests": [
+    {
+      "line": "GET /api/Status/user1 HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:64206"
+        ]
+      ],
+      "body": ""
+    }
+  ],
+  "result": null,
+  "error": null,
+  "logs": []
+}

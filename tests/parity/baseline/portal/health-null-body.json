@@ -1,0 +1,25 @@
+{
+  "port": 60676,
+  "requests": [
+    {
+      "line": "GET //api/v1/Health HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:60676"
+        ],
+        [
+          "Authorization",
+          "test-api-key"
+        ]
+      ],
+      "body": ""
+    }
+  ],
+  "result": null,
+  "error": {
+    "type": "System.NullReferenceException",
+    "message": "Object reference not set to an instance of an object."
+  },
+  "logs": []
+}

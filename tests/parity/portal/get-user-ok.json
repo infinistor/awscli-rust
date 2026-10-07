@@ -1,0 +1,4 @@
+{
+  "responseBody": "{\"Result\":1,\"Data\":{\"UserId\":\"user1\",\"UserName\":\"User One\",\"DisplayUserName\":\"user1 (User One)\",\"Notification\":true,\"NotiSect\":\"N\",\"UserSect\":\"U\",\"Role\":\"admin\",\"Email\":\"u@example.com\",\"Department\":\"dev\",\"Remark\":\"r\",\"RegDate\":\"2024-03-05T01:02:03.456Z\",\"ValidUser\":true,\"ReadOnly\":false,\"Extra\":[1,2,{\"a\":null}]}}",
+  "op": "get-user"
+}

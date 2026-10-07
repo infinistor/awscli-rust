@@ -1,0 +1,30 @@
+{
+  "port": 60569,
+  "requests": [
+    {
+      "line": "POST //api/v1/SystemUsers HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:60569"
+        ],
+        [
+          "Authorization",
+          "test-api-key"
+        ],
+        [
+          "Content-Type",
+          "text/plain; charset=utf-8"
+        ],
+        [
+          "Content-Length",
+          "173"
+        ]
+      ],
+      "body": "{\r\n  \"UserId\": \"user1\",\r\n  \"UserName\": \"user1\",\r\n  \"Password\": \"pw\",\r\n  \"ConfirmPassword\": \"pw\",\r\n  \"VolumeName\": \"vol1\",\r\n  \"QuotaSize\": 3000000000,\r\n  \"DiskSizeUnit\": 1\r\n}"
+    }
+  ],
+  "result": null,
+  "error": null,
+  "logs": []
+}

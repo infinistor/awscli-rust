@@ -1,0 +1,33 @@
+{
+  "port": 60567,
+  "requests": [
+    {
+      "line": "POST //api/v1/SystemUsers HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:60567"
+        ],
+        [
+          "Authorization",
+          "test-api-key"
+        ],
+        [
+          "Content-Type",
+          "text/plain; charset=utf-8"
+        ],
+        [
+          "Content-Length",
+          "173"
+        ]
+      ],
+      "body": "{\r\n  \"UserId\": \"user1\",\r\n  \"UserName\": \"user1\",\r\n  \"Password\": \"pw\",\r\n  \"ConfirmPassword\": \"pw\",\r\n  \"VolumeName\": \"vol1\",\r\n  \"QuotaSize\": 1000000000,\r\n  \"DiskSizeUnit\": 1\r\n}"
+    }
+  ],
+  "result": null,
+  "error": {
+    "type": "TestCore.Portal.PortalUserException",
+    "message": "ERROR(E100) : Something failed"
+  },
+  "logs": []
+}

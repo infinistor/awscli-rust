@@ -1,0 +1,12 @@
+{
+  "port": 58282,
+  "received": "svc.pause",
+  "result": -1,
+  "error": null,
+  "logs": [
+    {
+      "level": "ERROR",
+      "message": "Error pausing svc on 127.0.0.1:58282 => "
+    }
+  ]
+}

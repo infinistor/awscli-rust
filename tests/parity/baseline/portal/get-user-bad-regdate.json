@@ -1,0 +1,25 @@
+{
+  "port": 60611,
+  "requests": [
+    {
+      "line": "GET //api/v1/SystemUsers/user1 HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:60611"
+        ],
+        [
+          "Authorization",
+          "test-api-key"
+        ]
+      ],
+      "body": ""
+    }
+  ],
+  "result": null,
+  "error": {
+    "type": "System.Text.Json.JsonException",
+    "message": "The JSON value could not be converted to System.DateTime. Path: $.Data.RegDate | LineNumber: 0 | BytePositionInLine: 64."
+  },
+  "logs": []
+}

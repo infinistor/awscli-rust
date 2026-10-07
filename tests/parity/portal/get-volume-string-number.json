@@ -1,0 +1,4 @@
+{
+  "responseBody": "{\"Result\":1,\"Data\":{\"FileCount\":\"42\"}}",
+  "op": "get-volume"
+}

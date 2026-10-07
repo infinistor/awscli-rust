@@ -1,0 +1,891 @@
+{
+  "variants": [
+    {
+      "responseBody": "",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. Path: $ | LineNumber: 0 | BytePositionInLine: 0."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "   ",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. Path: $ | LineNumber: 0 | BytePositionInLine: 3."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "null",
+      "result": null,
+      "error": {
+        "type": "System.NullReferenceException",
+        "message": "Object reference not set to an instance of an object."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{}",
+      "result": false,
+      "error": null,
+      "logs": [
+        {
+          "level": "ERROR",
+          "message": "HealthCheck Error : Warning"
+        }
+      ]
+    },
+    {
+      "responseBody": "[]",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Response.PortalResponse. Path: $ | LineNumber: 0 | BytePositionInLine: 1."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "[1]",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Response.PortalResponse. Path: $ | LineNumber: 0 | BytePositionInLine: 1."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "5",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Response.PortalResponse. Path: $ | LineNumber: 0 | BytePositionInLine: 1."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "true",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Response.PortalResponse. Path: $ | LineNumber: 0 | BytePositionInLine: 4."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "\"x\"",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Response.PortalResponse. Path: $ | LineNumber: 0 | BytePositionInLine: 3."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "abc",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'a' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "<html>",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'<' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "]",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "']' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'}' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "404 page not found",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Response.PortalResponse. Path: $ | LineNumber: 0 | BytePositionInLine: 3."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1}",
+      "result": true,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"result\":1}",
+      "result": false,
+      "error": null,
+      "logs": [
+        {
+          "level": "ERROR",
+          "message": "HealthCheck Error : Warning"
+        }
+      ]
+    },
+    {
+      "responseBody": "{\"Result\":\"1\"}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Data.EnumResponseResult. Path: $.Result | LineNumber: 0 | BytePositionInLine: 13."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":2}",
+      "result": false,
+      "error": null,
+      "logs": [
+        {
+          "level": "ERROR",
+          "message": "HealthCheck Error : 2"
+        }
+      ]
+    },
+    {
+      "responseBody": "{\"Result\":1.5}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Data.EnumResponseResult. Path: $.Result | LineNumber: 0 | BytePositionInLine: 13."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1e0}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Data.EnumResponseResult. Path: $.Result | LineNumber: 0 | BytePositionInLine: 13."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":-0}",
+      "result": false,
+      "error": null,
+      "logs": [
+        {
+          "level": "ERROR",
+          "message": "HealthCheck Error : Warning"
+        }
+      ]
+    },
+    {
+      "responseBody": "{\"Result\":null}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Data.EnumResponseResult. Path: $.Result | LineNumber: 0 | BytePositionInLine: 14."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":9999999999}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Data.EnumResponseResult. Path: $.Result | LineNumber: 0 | BytePositionInLine: 20."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON object contains a trailing comma at the end which is not supported in this mode. Change the reader options. Path: $ | LineNumber: 0 | BytePositionInLine: 12."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1} x",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'x' is invalid after a single JSON value. Expected end of data. Path: $ | LineNumber: 0 | BytePositionInLine: 13."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'}' is invalid after a single JSON value. Expected end of data. Path: $ | LineNumber: 0 | BytePositionInLine: 12."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1}{",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'{' is invalid after a single JSON value. Expected end of data. Path: $ | LineNumber: 0 | BytePositionInLine: 12."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1} // c",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'/' is invalid after a single JSON value. Expected end of data. Path: $ | LineNumber: 0 | BytePositionInLine: 13."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "/* c */ {\"Result\":1}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'/' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Code\":5}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.String. Path: $.Code | LineNumber: 0 | BytePositionInLine: 20."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Code\":null}",
+      "result": true,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Message\":[1]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.String. Path: $.Message | LineNumber: 0 | BytePositionInLine: 23."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Message\":{\"a\":1}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.String. Path: $.Message | LineNumber: 0 | BytePositionInLine: 23."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"IsNeedLogin\":\"true\"}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Boolean. Path: $.IsNeedLogin | LineNumber: 0 | BytePositionInLine: 32."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"IsNeedLogin\":null}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Boolean. Path: $.IsNeedLogin | LineNumber: 0 | BytePositionInLine: 30."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"AccessDenied\":1}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Boolean. Path: $.AccessDenied | LineNumber: 0 | BytePositionInLine: 28."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Extra\":{\"a\":[1,2,,]}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "',' is an invalid start of a value. Path: $.Extra | LineNumber: 0 | BytePositionInLine: 30."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Extra\":tru}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'tru}' is an invalid JSON literal. Expected the literal 'true'. Path: $.Extra | LineNumber: 0 | BytePositionInLine: 23."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Extra\":[1 2]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'2' is invalid after a value. Expected either ',', '}', or ']'. Path: $.Extra | LineNumber: 0 | BytePositionInLine: 23."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"X\":[1,2",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'2' is an invalid end of a number. Expected a delimiter. Path: $.X | LineNumber: 0 | BytePositionInLine: 20."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"X\":[1,2,}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'}' is an invalid start of a value. Path: $.X | LineNumber: 0 | BytePositionInLine: 21."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Expected depth to be zero at the end of the JSON payload. There is an open JSON object or array that should be closed. Path: $ | LineNumber: 0 | BytePositionInLine: 1."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\"",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Expected a value, but instead reached end of data. Path: $ | LineNumber: 0 | BytePositionInLine: 9."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Expected depth to be zero at the end of the JSON payload. There is an open JSON object or array that should be closed. Path: $.Result | LineNumber: 0 | BytePositionInLine: 10."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'1' is an invalid end of a number. Expected a delimiter. Path: $.Result | LineNumber: 0 | BytePositionInLine: 11."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Expected start of a property name or value, but instead reached end of data. Path: $ | LineNumber: 0 | BytePositionInLine: 11."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Co",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Expected end of string, but instead reached end of data. Path: $ | LineNumber: 0 | BytePositionInLine: 15."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Code\":\"abc",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Expected end of string, but instead reached end of data. Path: $.Code | LineNumber: 0 | BytePositionInLine: 23."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Code\":\"abc\"",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Expected depth to be zero at the end of the JSON payload. There is an open JSON object or array that should be closed. Path: $ | LineNumber: 0 | BytePositionInLine: 24."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Code\":tru",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'tru' is an invalid JSON literal. Expected the literal 'true'. Path: $.Code | LineNumber: 0 | BytePositionInLine: 22."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Code\":tru}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'tru}' is an invalid JSON literal. Expected the literal 'true'. Path: $.Code | LineNumber: 0 | BytePositionInLine: 22."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Code\":nul}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'nul}' is an invalid JSON literal. Expected the literal 'null'. Path: $.Code | LineNumber: 0 | BytePositionInLine: 22."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Code\":fals}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'fals}' is an invalid JSON literal. Expected the literal 'false'. Path: $.Code | LineNumber: 0 | BytePositionInLine: 23."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Code\":trux}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'trux}' is an invalid JSON literal. Expected the literal 'true'. Path: $.Code | LineNumber: 0 | BytePositionInLine: 22."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{Result:1}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'R' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 0 | BytePositionInLine: 1."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{'Result':1}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "''' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 0 | BytePositionInLine: 1."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\" 1}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'1' is invalid after a property name. Expected a ':'. Path: $ | LineNumber: 0 | BytePositionInLine: 10."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1 \"Code\":\"a\"}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'\"' is invalid after a value. Expected either ',', '}', or ']'. Path: $ | LineNumber: 0 | BytePositionInLine: 12."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":01}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Invalid leading zero before '1'. Path: $.Result | LineNumber: 0 | BytePositionInLine: 11."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":-}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'}' is invalid within a number, immediately after a sign character ('+' or '-'). Expected a digit ('0'-'9'). Path: $.Result | LineNumber: 0 | BytePositionInLine: 11."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1.}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'}' is invalid within a number, immediately after a decimal point ('.'). Expected a digit ('0'-'9'). Path: $.Result | LineNumber: 0 | BytePositionInLine: 12."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1e}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'}' is invalid within a number, immediately after a sign character ('+' or '-'). Expected a digit ('0'-'9'). Path: $.Result | LineNumber: 0 | BytePositionInLine: 12."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":+1}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'+' is an invalid start of a value. Path: $.Result | LineNumber: 0 | BytePositionInLine: 10."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":.5}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'.' is an invalid start of a value. Path: $.Result | LineNumber: 0 | BytePositionInLine: 10."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1.5.2}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'.' is an invalid end of a number. Expected 'E' or 'e'. Path: $.Result | LineNumber: 0 | BytePositionInLine: 13."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1.5",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'5' is an invalid end of a number. Expected a delimiter. Path: $.Result | LineNumber: 0 | BytePositionInLine: 13."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1e5",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'5' is an invalid end of a number. Expected a delimiter. Path: $.Result | LineNumber: 0 | BytePositionInLine: 13."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1.5e",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Expected a digit ('0'-'9'), but instead reached end of data. Path: $.Result | LineNumber: 0 | BytePositionInLine: 14."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":12x}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'x' is an invalid end of a number. Expected a delimiter. Path: $.Result | LineNumber: 0 | BytePositionInLine: 12."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1.5x}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'x' is an invalid end of a number. Expected 'E' or 'e'. Path: $.Result | LineNumber: 0 | BytePositionInLine: 13."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1e5x}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'x' is an invalid end of a number. Expected a delimiter. Path: $.Result | LineNumber: 0 | BytePositionInLine: 13."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1.5e5.}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'.' is an invalid end of a number. Expected a delimiter. Path: $.Result | LineNumber: 0 | BytePositionInLine: 15."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":-1x}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'x' is an invalid end of a number. Expected a delimiter. Path: $.Result | LineNumber: 0 | BytePositionInLine: 12."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1.5e+}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'}' is invalid within a number, immediately after a sign character ('+' or '-'). Expected a digit ('0'-'9'). Path: $.Result | LineNumber: 0 | BytePositionInLine: 15."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1 x}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'x' is invalid after a value. Expected either ',', '}', or ']'. Path: $ | LineNumber: 0 | BytePositionInLine: 12."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":tru x}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'tru x}' is an invalid JSON literal. Expected the literal 'true'. Path: $.Result | LineNumber: 0 | BytePositionInLine: 13."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":tru\n}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'tru\n}' is an invalid JSON literal. Expected the literal 'true'. Path: $.Result | LineNumber: 0 | BytePositionInLine: 13."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":tru\t}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'tru\t}' is an invalid JSON literal. Expected the literal 'true'. Path: $.Result | LineNumber: 0 | BytePositionInLine: 13."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":tru/}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'tru/}' is an invalid JSON literal. Expected the literal 'true'. Path: $.Result | LineNumber: 0 | BytePositionInLine: 13."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":tru\r}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'tru\r}' is an invalid JSON literal. Expected the literal 'true'. Path: $.Result | LineNumber: 0 | BytePositionInLine: 13."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":tru\"x\"}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'tru\"x\"}' is an invalid JSON literal. Expected the literal 'true'. Path: $.Result | LineNumber: 0 | BytePositionInLine: 13."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":nul",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'nul' is an invalid JSON literal. Expected the literal 'null'. Path: $.Result | LineNumber: 0 | BytePositionInLine: 13."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":nul ,",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'nul ,' is an invalid JSON literal. Expected the literal 'null'. Path: $.Result | LineNumber: 0 | BytePositionInLine: 13."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":truex}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Data.EnumResponseResult. Path: $.Result | LineNumber: 0 | BytePositionInLine: 14."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":nulll}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Data.EnumResponseResult. Path: $.Result | LineNumber: 0 | BytePositionInLine: 14."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Code\":t}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'t}' is an invalid JSON literal. Expected the literal 'true'. Path: $.Code | LineNumber: 0 | BytePositionInLine: 20."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Code\":f",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'f' is an invalid JSON literal. Expected the literal 'false'. Path: $.Code | LineNumber: 0 | BytePositionInLine: 20."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "[tru",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Response.PortalResponse. Path: $ | LineNumber: 0 | BytePositionInLine: 1."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "[nul,",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Response.PortalResponse. Path: $ | LineNumber: 0 | BytePositionInLine: 1."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Code\":\"a\\qb\"}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'q' is an invalid escapable character within a JSON string. The string should be correctly escaped. Path: $.Code | LineNumber: 0 | BytePositionInLine: 22."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Code\":\"a\\u12\"}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'\"' is not a hex digit following '\\u' within a JSON string. The string should be correctly escaped. Path: $.Code | LineNumber: 0 | BytePositionInLine: 25."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Code\":\"a\tb\"}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'0x09' is invalid within a JSON string. The string should be correctly escaped. Path: $.Code | LineNumber: 0 | BytePositionInLine: 21."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Code\":\"a\\u0041\\n\\/b\"}",
+      "result": true,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Code\":\"\\ud83d\\ude00\"}",
+      "result": true,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Re\\u0073ult\":1}",
+      "result": true,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Message\":\"한글\",\"Code\":5}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.String. Path: $.Code | LineNumber: 0 | BytePositionInLine: 39."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\n  \"Result\": 1,\n  \"Code\": 5\n}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.String. Path: $.Code | LineNumber: 2 | BytePositionInLine: 11."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\r\n\"Result\":1,\r\n\"Message\":7}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.String. Path: $.Message | LineNumber: 2 | BytePositionInLine: 11."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Code\":\"x\"}   ",
+      "result": true,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "\t\n{\"Result\":1}",
+      "result": true,
+      "error": null,
+      "logs": []
+    }
+  ]
+}

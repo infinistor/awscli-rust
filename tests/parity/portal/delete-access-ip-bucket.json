@@ -1,0 +1,5 @@
+{
+  "bucket": "bk",
+  "op": "delete-access-ip",
+  "responseBody": "{\"Result\":1}"
+}

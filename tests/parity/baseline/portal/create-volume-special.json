@@ -1,0 +1,30 @@
+{
+  "port": 60582,
+  "requests": [
+    {
+      "line": "POST //api/v1/Volumes HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:60582"
+        ],
+        [
+          "Authorization",
+          "test-api-key"
+        ],
+        [
+          "Content-Type",
+          "text/plain; charset=utf-8"
+        ],
+        [
+          "Content-Length",
+          "231"
+        ]
+      ],
+      "body": "{\r\n  \"Name\": \"\\uD55C\\uAE00\\u0022\\u003C\\u0026\\u003E\\u002B\",\r\n  \"ReplicationType\": 2,\r\n  \"QuotaSize\": 18446744073709551615,\r\n  \"Permission\": 1,\r\n  \"Password\": \"p\\u0022w\\\\\",\r\n  \"ConfirmPassword\": \"p\\u0022w\\\\\",\r\n  \"SecurityLevel\": 0\r\n}"
+    }
+  ],
+  "result": null,
+  "error": null,
+  "logs": []
+}

@@ -1,0 +1,22 @@
+{
+  "port": 60625,
+  "requests": [
+    {
+      "line": "GET //api/v1/SystemUsers/user1 HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:60625"
+        ],
+        [
+          "Authorization",
+          "test-api-key"
+        ]
+      ],
+      "body": ""
+    }
+  ],
+  "result": "{\r\n  \"UserId\": \"u\",\r\n  \"UserName\": null,\r\n  \"DisplayUserName\": null,\r\n  \"Notification\": false,\r\n  \"NotiSect\": null,\r\n  \"UserSect\": null,\r\n  \"Role\": null,\r\n  \"Email\": null,\r\n  \"Department\": null,\r\n  \"Remark\": null,\r\n  \"RegDate\": \"0001-01-01T00:00:00\",\r\n  \"ValidUser\": false,\r\n  \"ReadOnly\": false\r\n}",
+  "error": null,
+  "logs": []
+}

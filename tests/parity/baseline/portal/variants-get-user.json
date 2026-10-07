@@ -1,0 +1,106 @@
+{
+  "variants": [
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Notification\":true,\"ValidUser\":true,\"ReadOnly\":true}}",
+      "result": "{\r\n  \"UserId\": null,\r\n  \"UserName\": null,\r\n  \"DisplayUserName\": null,\r\n  \"Notification\": true,\r\n  \"NotiSect\": null,\r\n  \"UserSect\": null,\r\n  \"Role\": null,\r\n  \"Email\": null,\r\n  \"Department\": null,\r\n  \"Remark\": null,\r\n  \"RegDate\": \"0001-01-01T00:00:00\",\r\n  \"ValidUser\": true,\r\n  \"ReadOnly\": true\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Notification\":1}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Boolean. Path: $.Data.Notification | LineNumber: 0 | BytePositionInLine: 36."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"ValidUser\":\"false\"}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Boolean. Path: $.Data.ValidUser | LineNumber: 0 | BytePositionInLine: 39."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"ReadOnly\":null}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Boolean. Path: $.Data.ReadOnly | LineNumber: 0 | BytePositionInLine: 35."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"UserId\":5}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.String. Path: $.Data.UserId | LineNumber: 0 | BytePositionInLine: 30."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Role\":[\"admin\"]}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.String. Path: $.Data.Role | LineNumber: 0 | BytePositionInLine: 28."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Email\":null,\"Remark\":\"\"}}",
+      "result": "{\r\n  \"UserId\": null,\r\n  \"UserName\": null,\r\n  \"DisplayUserName\": null,\r\n  \"Notification\": false,\r\n  \"NotiSect\": null,\r\n  \"UserSect\": null,\r\n  \"Role\": null,\r\n  \"Email\": null,\r\n  \"Department\": null,\r\n  \"Remark\": \"\",\r\n  \"RegDate\": \"0001-01-01T00:00:00\",\r\n  \"ValidUser\": false,\r\n  \"ReadOnly\": false\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"userid\":\"x\"}}",
+      "result": "{\r\n  \"UserId\": null,\r\n  \"UserName\": null,\r\n  \"DisplayUserName\": null,\r\n  \"Notification\": false,\r\n  \"NotiSect\": null,\r\n  \"UserSect\": null,\r\n  \"Role\": null,\r\n  \"Email\": null,\r\n  \"Department\": null,\r\n  \"Remark\": null,\r\n  \"RegDate\": \"0001-01-01T00:00:00\",\r\n  \"ValidUser\": false,\r\n  \"ReadOnly\": false\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"USERID\":\"x\"}}",
+      "result": "{\r\n  \"UserId\": null,\r\n  \"UserName\": null,\r\n  \"DisplayUserName\": null,\r\n  \"Notification\": false,\r\n  \"NotiSect\": null,\r\n  \"UserSect\": null,\r\n  \"Role\": null,\r\n  \"Email\": null,\r\n  \"Department\": null,\r\n  \"Remark\": null,\r\n  \"RegDate\": \"0001-01-01T00:00:00\",\r\n  \"ValidUser\": false,\r\n  \"ReadOnly\": false\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":[{\"UserId\":\"x\"}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Response.ResponseSystemUser. Path: $.Data | LineNumber: 0 | BytePositionInLine: 20."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":\"x\"}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Response.ResponseSystemUser. Path: $.Data | LineNumber: 0 | BytePositionInLine: 22."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":7}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Portal.Response.ResponseSystemUser. Path: $.Data | LineNumber: 0 | BytePositionInLine: 20."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":1,\"Data\":{\"Extra\":{\"deep\":[{\"a\":[1,2,{\"b\":null}]}]},\"UserId\":\"x\"}}",
+      "result": "{\r\n  \"UserId\": \"x\",\r\n  \"UserName\": null,\r\n  \"DisplayUserName\": null,\r\n  \"Notification\": false,\r\n  \"NotiSect\": null,\r\n  \"UserSect\": null,\r\n  \"Role\": null,\r\n  \"Email\": null,\r\n  \"Department\": null,\r\n  \"Remark\": null,\r\n  \"RegDate\": \"0001-01-01T00:00:00\",\r\n  \"ValidUser\": false,\r\n  \"ReadOnly\": false\r\n}",
+      "error": null,
+      "logs": []
+    }
+  ]
+}

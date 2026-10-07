@@ -1,0 +1,5 @@
+{
+  "jobId": 7,
+  "op": "status",
+  "responseBody": "{\"Result\":\"OK\",\"Items\":[{\"JobId\":7,\"Status\":\"Running\",\"Source\":\"s\",\"Target\":\"t\",\"StartTime\":\"2024-01-02 03:04:05\",\"EndTime\":\"\",\"ErrorDesc\":\"\",\"TotalCount\":10,\"TotalSize\":\"1.2 GB\",\"MovedCount\":5,\"MovedSize\":\"600 MB\",\"SkippedCount\":1,\"SkippedSize\":\"1 MB\",\"FailedCount\":2,\"FailedSize\":\"2 MB\",\"DeletedCount\":3,\"DeletedSize\":\"3 MB\",\"Progress\":\"50%\"}]}"
+}

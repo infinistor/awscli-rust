@@ -1,0 +1,37 @@
+{
+  "request": {
+    "UserId": "u",
+    "Type": "t"
+  },
+  "op": "start",
+  "variants": [
+    "",
+    "null",
+    "{}",
+    "[]",
+    "5",
+    "\"x\"",
+    "{\"JobId\":5}",
+    "{\"JobId\":\"5\"}",
+    "{\"JobId\":\"+5\"}",
+    "{\"JobId\":5,}",
+    "{\"JobId\":5.5}",
+    "{\"JobId\":\"5.5\"}",
+    "{\"JobId\":null}",
+    "{\"JobId\":99999999999}",
+    "{\"jobId\":5}",
+    "{\"Result\":\"OK\",\"Message\":\"m\",\"JobId\":5}",
+    "{\"Result\":5,\"JobId\":5}",
+    "{\"Result\":null}",
+    "{\"Message\":[\"a\"]}",
+    "{\"JobId\":5,\"JobId\":6}",
+    "{\"Extra\":{\"a\":[1,,]},\"JobId\":1}",
+    "{\"JobId\":5",
+    "{\"JobId\"",
+    "{\"JobId\":",
+    "{",
+    "{\"JobId\":tru}",
+    "{JobId:5}",
+    "{\"JobId\":5} x"
+  ]
+}

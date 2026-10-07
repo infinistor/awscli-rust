@@ -1,0 +1,5 @@
+{
+  "urlSuffix": "//",
+  "op": "is-user",
+  "responseBody": "{\"Result\":1}"
+}

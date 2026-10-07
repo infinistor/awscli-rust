@@ -1,0 +1,22 @@
+{
+  "port": 60692,
+  "requests": [
+    {
+      "line": "GET ///api/v1/SystemUsers//user1 HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:60692"
+        ],
+        [
+          "Authorization",
+          "test-api-key"
+        ]
+      ],
+      "body": ""
+    }
+  ],
+  "result": true,
+  "error": null,
+  "logs": []
+}
