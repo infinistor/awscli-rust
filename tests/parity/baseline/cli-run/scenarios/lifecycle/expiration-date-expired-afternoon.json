@@ -1,0 +1,42 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "versioning"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "lifecycle"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "marker=",
+        "max-keys=1000"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : LifecycleTest Start",
+    "INFO  <TIME> : Expiration Date : 2020-03-05 오후 3:04:09",
+    "INFO  <TIME> : late.txt is Not Deleted. LastModified : 2020-03-05 오후 3:04:08 / ExpiredDate : 2020-03-05 오후 3:04:09",
+    "ERROR <TIME> : Expired 1 Objects.",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

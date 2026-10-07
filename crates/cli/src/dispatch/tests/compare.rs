@@ -6,6 +6,7 @@ use awscli_rest_config::CopyConfig;
 use awscli_rest_scenarios::compare::CompareTest;
 use awscli_rest_scenarios::copy::CopyTest;
 use awscli_rest_scenarios::duplicate::DuplicateTest;
+use awscli_rest_scenarios::lifecycle::LifecycleTest;
 use tracing::info;
 
 use super::super::{CommandContext, CommandResult, not_ported};
@@ -48,6 +49,12 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                 &config.main_user,
             );
             test.start().await?;
+            Ok(0)
+        }
+        MenuList::LifecycleTest => {
+            let test = LifecycleTest::new(ctx.client().clone());
+            test.start(ctx.options.bucket_name.as_deref().unwrap_or_default())
+                .await?;
             Ok(0)
         }
         // TODO(5단계): 나머지 시나리오 실행.
