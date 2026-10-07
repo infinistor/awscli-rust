@@ -97,6 +97,7 @@ pub fn run(args: &[String]) -> i32 {
             config,
             options: command_options,
             client,
+            cancel: tokio_util::sync::CancellationToken::new(),
         };
         dispatch::execute(&mut context).await
     });

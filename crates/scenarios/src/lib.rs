@@ -7,5 +7,6 @@ pub mod clear;
 pub mod error;
 pub mod files;
 pub mod input;
+pub mod shutdown;
 
 pub use error::ScenarioError;

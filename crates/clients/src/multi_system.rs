@@ -64,6 +64,12 @@ fn log_exception(error: &S3Error) {
 }
 
 impl MultiSystemClient {
+    /// 종료 플래그를 상위 토큰(테스트·프로세스)에 묶는다. 상위가 취소되면 `Quit`이 된다.
+    pub fn with_quit(mut self, parent: &tokio_util::sync::CancellationToken) -> Self {
+        self.quit = QuitFlag::child_of(parent);
+        self
+    }
+
     #[allow(clippy::too_many_arguments)]
     pub fn new(
         config: MultiSystemClientConfig,

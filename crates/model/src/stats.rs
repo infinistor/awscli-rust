@@ -3,9 +3,10 @@
 //!
 //! 원본 수치는 모두 .NET `decimal`이라 `rust_decimal::Decimal`(같은 96비트·28자리 10진수)로 계산한다.
 
-use std::sync::atomic::{AtomicBool, AtomicI64, Ordering};
+use std::sync::atomic::{AtomicI64, Ordering};
 
 use rust_decimal::Decimal;
+use tokio_util::sync::CancellationToken;
 
 /// 원본 `SharpPoint`.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -305,22 +306,51 @@ pub trait TestClient: Send + Sync {
 }
 
 /// `Quit` 플래그 구현을 돕는 값. 원본 `bool Quit { get; set; }`.
-#[derive(Debug, Default)]
-pub struct QuitFlag(AtomicBool);
+///
+/// 종료 처리를 `CancellationToken` 하나로 통일한다. 시나리오가 [`QuitFlag::child_of`]로 상위 토큰(테스트·프로세스)에
+/// 묶으면, 테스트의 `TestStop`(이 플래그 하나)과 Ctrl+C(상위 토큰)가 같은 경로로 클라이언트를 멈춘다.
+#[derive(Debug, Clone, Default)]
+pub struct QuitFlag(CancellationToken);
 
 impl QuitFlag {
-    pub fn get(&self) -> bool {
-        self.0.load(Ordering::Relaxed)
+    /// 상위 토큰이 취소되면 함께 취소되는 플래그.
+    pub fn child_of(parent: &CancellationToken) -> Self {
+        Self(parent.child_token())
     }
 
+    pub fn get(&self) -> bool {
+        self.0.is_cancelled()
+    }
+
+    /// 원본 `Quit = value`. 취소는 되돌릴 수 없어 `false`는 무시한다(원본도 `Quit`을 `false`로 되돌리는 곳이 없다).
     pub fn set(&self, value: bool) {
-        self.0.store(value, Ordering::Relaxed);
+        if value {
+            self.0.cancel();
+        }
+    }
+
+    /// 플래그의 토큰(대기 중인 작업을 취소에 묶을 때).
+    pub fn token(&self) -> &CancellationToken {
+        &self.0
     }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn quit_flag_follows_parent_token() {
+        let parent = CancellationToken::new();
+        let a = QuitFlag::child_of(&parent);
+        let b = QuitFlag::child_of(&parent);
+        a.set(false);
+        assert!(!a.get());
+        a.set(true);
+        assert!(a.get() && !b.get() && !parent.is_cancelled());
+        parent.cancel();
+        assert!(b.get());
+    }
 
     #[test]
     fn average_uses_differences() {

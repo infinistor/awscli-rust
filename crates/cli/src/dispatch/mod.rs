@@ -22,6 +22,7 @@ mod util;
 
 use awscli_rest_config::Config;
 use awscli_rest_s3::S3Client;
+use tokio_util::sync::CancellationToken;
 
 use crate::menu::MenuList;
 use crate::options::CommandOptions;
@@ -36,6 +37,8 @@ pub struct CommandContext {
     pub options: CommandOptions,
     /// S3 클라이언트. 도움말 실행에서는 `None`.
     pub client: Option<S3Client>,
+    /// 프로세스 전체 취소 토큰. 시나리오가 Ctrl+C 처리기를 등록하면(`scenarios::shutdown`) 이 토큰이 취소된다.
+    pub cancel: CancellationToken,
 }
 
 impl CommandContext {

@@ -73,6 +73,12 @@ pub(crate) fn io_exception(error: &io::Error) -> String {
 }
 
 impl LocalClient {
+    /// 종료 플래그를 상위 토큰(테스트·프로세스)에 묶는다. 상위가 취소되면 `Quit`이 된다.
+    pub fn with_quit(mut self, parent: &tokio_util::sync::CancellationToken) -> Self {
+        self.quit = QuitFlag::child_of(parent);
+        self
+    }
+
     pub fn new(
         target_path: impl Into<PathBuf>,
         thread_number: i32,

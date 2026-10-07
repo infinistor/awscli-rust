@@ -79,6 +79,12 @@ impl TestClient for UpDownClient {
 }
 
 impl UpDownClient {
+    /// 종료 플래그를 상위 토큰(테스트·프로세스)에 묶는다. 상위가 취소되면 `Quit`이 된다.
+    pub fn with_quit(mut self, parent: &tokio_util::sync::CancellationToken) -> Self {
+        self.quit = QuitFlag::child_of(parent);
+        self
+    }
+
     pub fn new(
         bucket_name: impl Into<String>,
         thread_number: i32,
