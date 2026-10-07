@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : RangeReadCopy Start",
+    "ERROR <TIME> : System.ArgumentException: Key is a required property and must be set before making this call. (Parameter 'GetObjectMetadataRequest.Key')"
+  ]
+}
