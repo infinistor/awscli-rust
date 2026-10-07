@@ -1,0 +1,20 @@
+{
+  "args" : [
+    "--get-object-tagging",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1"
+  ],
+  "dump" : true,
+  "routes" : [
+    {
+      "contains" : "GET /bucket1/key1?tagging",
+      "responseBody" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Tagging xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><TagSet></TagSet></Tagging>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "args" : [
+    "--get-object",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1",
+    "-f",
+    "dl/part.txt",
+    "--start-byte",
+    "1",
+    "--end-byte",
+    "3"
+  ],
+  "routes" : [
+    {
+      "contains" : "GET /bucket1/key1",
+      "responseBody" : "ell",
+      "responseHeaders" : {
+        "Content-Range" : "bytes 1-3/5",
+        "Content-Type" : "text/plain",
+        "ETag" : "\"5d41402abc4b2a76b9719d911017c592\""
+      },
+      "status" : 206
+    }
+  ]
+}

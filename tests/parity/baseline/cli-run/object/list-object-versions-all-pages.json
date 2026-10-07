@@ -1,0 +1,42 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "key-marker=a.txt",
+        "max-keys=2",
+        "version-id-marker=v1",
+        "versions"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "max-keys=2",
+        "versions"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ListObjectVersions Start",
+    "Next Key Marker : a.txt, Next Version Id Marker : v1",
+    "--------------------------------------------------------------------------",
+    "a.txt v2 2026-03-05 05:06:07     5.000 Byte False Latest",
+    "a.txt v1 2026-03-04 05:06:07     4.000 Byte False ",
+    "b.txt v4 2026-03-06 05:06:07     0.000 Byte  True Latest",
+    "b.txt v3 2026-03-04 05:06:07     1.465 KiB False ",
+    "--------------------------------------------------------------------------",
+    "0 Folders, 4 Objects.",
+    "INFO  <TIME> : 4 files. 1509 Byte. ListingCount Count = 2. complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

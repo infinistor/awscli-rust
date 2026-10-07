@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [
+        "x-amz-copy-source: srcb%2Fold%2Fa%20b.txt",
+        "x-amz-metadata-directive: COPY"
+      ],
+      "method": "PUT",
+      "path": "/dst/new/copy.txt",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : CopyObject Start",
+    "INFO  <TIME> : Success! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

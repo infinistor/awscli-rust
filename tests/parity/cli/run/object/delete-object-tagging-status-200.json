@@ -1,0 +1,12 @@
+{
+  "args" : [
+    "--delete-object-tagging",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}

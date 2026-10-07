@@ -1,0 +1,14 @@
+{
+  "args" : [
+    "--put-object",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1",
+    "--body",
+    "x"
+  ],
+  "default" : {
+    "status" : 204
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/key1",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : GetObject Start",
+    "ERROR <TIME> : CRC32C 체크섬 검증 실패 : mnG7TA== != crc32c-wrong",
+    "ERROR <TIME> : CRC64NVME 체크섬 검증 실패 : M3eFcAZSQlc= != crc64-wrong",
+    "INFO  <TIME> : key1 Get Object! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

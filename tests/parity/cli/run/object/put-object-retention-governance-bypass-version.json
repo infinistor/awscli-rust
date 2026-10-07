@@ -1,0 +1,19 @@
+{
+  "args" : [
+    "--put-object-retention",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1",
+    "--date",
+    "2030-01-02T03:04:05Z",
+    "--lock-mode",
+    "Governance",
+    "--bypass",
+    "--version-id",
+    "v1"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}

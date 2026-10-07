@@ -110,7 +110,7 @@ mod presign;
 mod transfer;
 
 pub use multipart::PartETag;
-pub use object::PutBody;
+pub use object::{PutBody, PutObjectRequest};
 pub use presign::HttpVerb;
 
 /// SDK 빌더의 `build()` 오류(필수 값 누락)를 [`S3Error`]로 바꾼다.

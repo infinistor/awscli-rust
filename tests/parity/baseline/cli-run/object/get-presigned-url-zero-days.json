@@ -1,0 +1,10 @@
+{
+  "exitCode": 0,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "만료일은 1일 이상이어야 합니다.",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

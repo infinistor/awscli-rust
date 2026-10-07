@@ -1,0 +1,14 @@
+{
+  "args" : [
+    "--get-object",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1",
+    "-f",
+    "dl/e.txt"
+  ],
+  "default" : {
+    "status" : 202
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [
+        "x-ifs-backend: NONE",
+        "x-ksan-backend: NONE"
+      ],
+      "method": "POST",
+      "path": "/bucket1/key1",
+      "query": [
+        "StorageClass=GLACIER",
+        "encoding-type=url",
+        "storagemove"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : StorageMove Start",
+    "ERROR <TIME> : System.ArgumentException: Stream was not readable."
+  ]
+}

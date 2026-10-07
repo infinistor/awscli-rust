@@ -1,0 +1,9 @@
+{
+  "args" : [
+    "--put-object-legal-hold",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1"
+  ]
+}

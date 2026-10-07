@@ -1,0 +1,20 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "130 bytes md5=2299ef4a67d46c09f125ba88d86c34f3",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/key1",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "File MD5Digest = IpnvSmfUbAnxJbqI2Gw08w==",
+    "INFO  <TIME> : PutObject Start",
+    "INFO  <TIME> : key1 PutObject Success! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

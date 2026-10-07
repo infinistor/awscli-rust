@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutObjectLegalHold Start",
+    "ERROR <TIME> : System.ArgumentNullException: Value cannot be null. (Parameter 'key')"
+  ]
+}

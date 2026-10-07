@@ -1,0 +1,16 @@
+{
+  "args" : [
+    "--get-object-legal-hold",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1"
+  ],
+  "default" : {
+    "responseBody" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Error><Code>NoSuchObjectLockConfiguration</Code><Message>The specified object does not have a ObjectLock configuration</Message><RequestId>REQ1</RequestId><HostId>HOST1</HostId></Error>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 404
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/bucket1/key1",
+      "query": [
+        "tagging"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : DeleteObjectTagging Start",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: The specified key does not exist."
+  ]
+}

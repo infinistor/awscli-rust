@@ -1,0 +1,25 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [
+        "x-amz-server-side-encryption-customer-algorithm: AES256",
+        "x-amz-server-side-encryption-customer-key-md5: KYvwGXoFFJ42a2u2GDWhwQ==",
+        "x-amz-server-side-encryption-customer-key: MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDU2Nzg5MDE="
+      ],
+      "method": "HEAD",
+      "path": "/bucket1/key1",
+      "query": [
+        "versionId=v1"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : HeadObject Start",
+    "INFO  <TIME> : key1 Get Object Metadata! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "6 bytes md5=5ebe2294ecd0e0f08eab7690d2a6ee69",
+      "headers": [
+        "x-amz-server-side-encryption-customer-algorithm: AES256",
+        "x-amz-server-side-encryption-customer-key-md5: kAFQmDzST7DWlj99KOF/cg==",
+        "x-amz-server-side-encryption-customer-key: YWJj"
+      ],
+      "method": "PUT",
+      "path": "/bucket1/key1",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutObject Start",
+    "INFO  <TIME> : key1 PutObject Success! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

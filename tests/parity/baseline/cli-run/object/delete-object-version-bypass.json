@@ -1,0 +1,23 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [
+        "x-amz-bypass-governance-retention: true"
+      ],
+      "method": "DELETE",
+      "path": "/bucket1/key1",
+      "query": [
+        "versionId=v1"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : DeleteObject Start",
+    "INFO  <TIME> : key1 Delete Object! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

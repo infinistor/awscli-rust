@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<Tagging><TagSet><Tag><Key>0</Key><Value>zero</Value></Tag><Tag><Key>k 2</Key><Value>한글</Value></Tag></TagSet></Tagging>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/key1",
+      "query": [
+        "tagging"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutObjectTagging Start",
+    "INFO  <TIME> : key1 Put Object Tagging! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--list-object-versions",
+    "-b",
+    "bucket1",
+    "--print=false"
+  ],
+  "routes" : [
+    {
+      "contains" : "?versions",
+      "responseBody" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ListVersionsResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>bucket1</Name><Prefix></Prefix><KeyMarker></KeyMarker><VersionIdMarker></VersionIdMarker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Version><Key>a.txt</Key><VersionId>v2</VersionId><IsLatest>true</IsLatest><LastModified>2026-03-05T05:06:07.000Z</LastModified><ETag>&quot;d41d8cd98f00b204e9800998ecf8427e&quot;</ETag><Size>5</Size><StorageClass>STANDARD</StorageClass><Owner><ID>owner1</ID><DisplayName>owner</DisplayName></Owner></Version><Version><Key>a.txt</Key><VersionId>v1</VersionId><IsLatest>false</IsLatest><LastModified>2026-03-04T05:06:07.000Z</LastModified><ETag>&quot;d41d8cd98f00b204e9800998ecf8427e&quot;</ETag><Size>4</Size><StorageClass>STANDARD</StorageClass><Owner><ID>owner1</ID><DisplayName>owner</DisplayName></Owner></Version><DeleteMarker><Key>b.txt</Key><VersionId>v4</VersionId><IsLatest>true</IsLatest><LastModified>2026-03-06T05:06:07.000Z</LastModified><Owner><ID>owner1</ID><DisplayName>owner</DisplayName></Owner></DeleteMarker><Version><Key>b.txt</Key><VersionId>v3</VersionId><IsLatest>false</IsLatest><LastModified>2026-03-04T05:06:07.000Z</LastModified><ETag>&quot;d41d8cd98f00b204e9800998ecf8427e&quot;</ETag><Size>1500</Size><StorageClass>STANDARD</StorageClass><Owner><ID>owner1</ID><DisplayName>owner</DisplayName></Owner></Version><Version><Key>한글 파일.txt</Key><VersionId>v5</VersionId><IsLatest>true</IsLatest><LastModified>2026-03-05T05:06:07.000Z</LastModified><ETag>&quot;d41d8cd98f00b204e9800998ecf8427e&quot;</ETag><Size>2048</Size><StorageClass>STANDARD</StorageClass><Owner><ID>owner1</ID><DisplayName>owner</DisplayName></Owner></Version></ListVersionsResult>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

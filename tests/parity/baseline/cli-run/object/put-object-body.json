@@ -1,0 +1,19 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "11 bytes md5=5eb63bbbe01eeed093cb22bb8f5acdc3",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/key1",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutObject Start",
+    "INFO  <TIME> : key1 PutObject Success! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

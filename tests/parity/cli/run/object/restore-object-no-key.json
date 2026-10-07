@@ -1,0 +1,7 @@
+{
+  "args" : [
+    "--restore-object",
+    "-b",
+    "bucket1"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<Delete><Object><ETag>e</ETag><Key>k1</Key><LastModifiedTime>Fri, 02 Jan 2026 03:04:05 GMT</LastModifiedTime><Size>5</Size></Object><Quiet>false</Quiet></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/bucket1/",
+      "query": [
+        "delete"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : DeleteObject Start",
+    "INFO  <TIME> :  Delete Object! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

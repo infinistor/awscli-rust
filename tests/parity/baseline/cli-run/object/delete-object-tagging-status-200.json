@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/bucket1/key1",
+      "query": [
+        "tagging"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : DeleteObjectTagging Start",
+    "ERROR <TIME> : key1 Delete Object Tagging failed(OK)",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

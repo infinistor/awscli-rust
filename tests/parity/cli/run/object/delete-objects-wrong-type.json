@@ -1,0 +1,12 @@
+{
+  "args" : [
+    "--delete-objects",
+    "-b",
+    "bucket1",
+    "-f",
+    "keys.json"
+  ],
+  "files" : {
+    "keys.json" : "{ \"Key\": \"a\" }"
+  }
+}

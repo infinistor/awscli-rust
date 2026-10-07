@@ -1,0 +1,14 @@
+{
+  "args" : [
+    "--put-object-lock",
+    "-b",
+    "bucket1",
+    "--years",
+    "2",
+    "--lock-mode",
+    "Compliance"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}

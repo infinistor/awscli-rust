@@ -1,0 +1,23 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [
+        "x-amz-copy-source: bucket1%2Forig.txt?versionId=ver+1/2",
+        "x-amz-metadata-directive: COPY"
+      ],
+      "method": "PUT",
+      "path": "/bucket1/copy.txt",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : 원본과 복제본이 같은 버킷으로 복사됩니다.",
+    "INFO  <TIME> : CopyObject Start",
+    "INFO  <TIME> : Success! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "args" : [
+    "--put-object",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1",
+    "--body",
+    "x",
+    "--acl",
+    "public-read",
+    "--storage-class",
+    "STANDARD_IA"
+  ],
+  "default" : {
+    "responseHeaders" : {
+      "ETag" : "\"5d41402abc4b2a76b9719d911017c592\"",
+      "x-amz-version-id" : "vput1"
+    },
+    "status" : 200
+  },
+  "dump" : true
+}

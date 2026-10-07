@@ -1,0 +1,17 @@
+{
+  "args" : [
+    "--put-object-legal-hold",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1",
+    "-f",
+    "hold.json"
+  ],
+  "default" : {
+    "status" : 200
+  },
+  "files" : {
+    "hold.json" : "{ \"Status\": { \"value\": \"ON\" } }"
+  }
+}

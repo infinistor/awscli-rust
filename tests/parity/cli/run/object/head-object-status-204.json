@@ -1,0 +1,12 @@
+{
+  "args" : [
+    "--head-object",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1"
+  ],
+  "default" : {
+    "status" : 204
+  }
+}

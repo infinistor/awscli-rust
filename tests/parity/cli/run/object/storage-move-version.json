@@ -1,0 +1,16 @@
+{
+  "args" : [
+    "--storage-move",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1",
+    "--storage-class",
+    "STANDARD",
+    "--version-id",
+    "v1"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}

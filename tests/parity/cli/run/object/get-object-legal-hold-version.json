@@ -1,0 +1,22 @@
+{
+  "args" : [
+    "--get-object-legal-hold",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1",
+    "--version-id",
+    "v1",
+    "--print=false"
+  ],
+  "routes" : [
+    {
+      "contains" : "GET /bucket1/key1?legal-hold",
+      "responseBody" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<LegalHold xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Status>ON</Status></LegalHold>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

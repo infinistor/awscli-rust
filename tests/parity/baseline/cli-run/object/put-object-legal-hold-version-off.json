@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<LegalHold><Status>OFF</Status></LegalHold>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/key1",
+      "query": [
+        "legal-hold"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutObjectLegalHold Start",
+    "INFO  <TIME> : key1 Put Object LegalHold! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

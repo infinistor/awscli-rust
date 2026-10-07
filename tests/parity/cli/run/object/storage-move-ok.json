@@ -1,0 +1,14 @@
+{
+  "args" : [
+    "--storage-move",
+    "-b",
+    "bucket1",
+    "-k",
+    "dir/move me.txt",
+    "--storage-class",
+    "GLACIER"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}
