@@ -1,0 +1,2111 @@
+[
+  {
+    "prototype": "worker",
+    "names": [
+      "worker"
+    ],
+    "description": "분산 테스트 Worker HTTP 서버 실행",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "controller",
+    "names": [
+      "controller"
+    ],
+    "description": "설정된 Worker에서 테스트 실행 및 CSV/JSON 결과 수집",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "?|h|help",
+    "names": [
+      "?",
+      "h",
+      "help"
+    ],
+    "description": "Usage.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "v|version",
+    "names": [
+      "v",
+      "version"
+    ],
+    "description": "Show version information.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "abort-multipart-upload",
+    "names": [
+      "abort-multipart-upload"
+    ],
+    "description": "멀티파트업로드 중단 및 삭제",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "complete-multipart-upload",
+    "names": [
+      "complete-multipart-upload"
+    ],
+    "description": "멀티파트 업로드 종료. 파일 합치기",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "copy-object",
+    "names": [
+      "copy-object"
+    ],
+    "description": "객체 복사",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "create-bucket",
+    "names": [
+      "create-bucket"
+    ],
+    "description": "버킷 생성",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "create-multipart-upload",
+    "names": [
+      "create-multipart-upload"
+    ],
+    "description": "멀티파트 업로드 생성",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "delete-bucket",
+    "names": [
+      "delete-bucket"
+    ],
+    "description": "버킷 삭제",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "delete-bucket-analytics",
+    "names": [
+      "delete-bucket-analytics"
+    ],
+    "description": "버킷의 분석 설정 삭제",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "delete-bucket-cors",
+    "names": [
+      "delete-bucket-cors"
+    ],
+    "description": "CORS 설정 삭제",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "delete-bucket-encryption",
+    "names": [
+      "delete-bucket-encryption"
+    ],
+    "description": "버킷의 암호화 설정 삭제",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "delete-bucket-inventory",
+    "names": [
+      "delete-bucket-inventory"
+    ],
+    "description": "버킷의 인벤토리 설정 삭제",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "delete-bucket-lifecycle",
+    "names": [
+      "delete-bucket-lifecycle"
+    ],
+    "description": "버킷의 수명주기 설정 삭제",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "delete-bucket-metrics",
+    "names": [
+      "delete-bucket-metrics"
+    ],
+    "description": "버킷의 메트릭 설정 삭제",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "delete-bucket-ownership-controls",
+    "names": [
+      "delete-bucket-ownership-controls"
+    ],
+    "description": "버킷의 소유권 설정 삭제",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "delete-bucket-policy",
+    "names": [
+      "delete-bucket-policy"
+    ],
+    "description": "버킷의 정책 삭제",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "delete-bucket-replication",
+    "names": [
+      "delete-bucket-replication"
+    ],
+    "description": "버킷의 복제 설정 삭제",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "delete-bucket-tagging",
+    "names": [
+      "delete-bucket-tagging"
+    ],
+    "description": "버킷의 태그 삭제",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "delete-bucket-website",
+    "names": [
+      "delete-bucket-website"
+    ],
+    "description": "버킷의 웹사이트 설정 삭제",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "delete-object",
+    "names": [
+      "delete-object"
+    ],
+    "description": "객체 삭제",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "delete-object-tagging",
+    "names": [
+      "delete-object-tagging"
+    ],
+    "description": "객체의 태그 삭제",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "delete-objects",
+    "names": [
+      "delete-objects"
+    ],
+    "description": "다수의 객체 삭제",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "delete-public-access-block",
+    "names": [
+      "delete-public-access-block"
+    ],
+    "description": "버킷의 Public Access Block 설정 삭제",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-bucket-acl",
+    "names": [
+      "get-bucket-acl"
+    ],
+    "description": "버킷의 권한 정보 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-bucket-analytics",
+    "names": [
+      "get-bucket-analytics"
+    ],
+    "description": "버킷의 분석 설정 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-bucket-cors",
+    "names": [
+      "get-bucket-cors"
+    ],
+    "description": "버킷의 CORS 설정 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-bucket-encryption",
+    "names": [
+      "get-bucket-encryption"
+    ],
+    "description": "버킷의 암호화 설정 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-bucket-inventory",
+    "names": [
+      "get-bucket-inventory"
+    ],
+    "description": "버킷의 인벤토리 설정 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-bucket-lifecycle",
+    "names": [
+      "get-bucket-lifecycle"
+    ],
+    "description": "버킷의 수명주기 설정 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-bucket-logging",
+    "names": [
+      "get-bucket-logging"
+    ],
+    "description": "버킷의 로그 설정 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-bucket-metrics",
+    "names": [
+      "get-bucket-metrics"
+    ],
+    "description": "버킷의 메트릭 설정 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-bucket-location",
+    "names": [
+      "get-bucket-location"
+    ],
+    "description": "버킷의 리전 정보 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-bucket-notification",
+    "names": [
+      "get-bucket-notification"
+    ],
+    "description": "버킷의 알림 설정 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-bucket-ownership-controls",
+    "names": [
+      "get-bucket-ownership-controls"
+    ],
+    "description": "버킷의 소유권 설정 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-bucket-policy",
+    "names": [
+      "get-bucket-policy"
+    ],
+    "description": "버킷의 정책 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-bucket-policy-status",
+    "names": [
+      "get-bucket-policy-status"
+    ],
+    "description": "버킷의 정책 상태 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-bucket-replication",
+    "names": [
+      "get-bucket-replication"
+    ],
+    "description": "버킷의 복제 설정 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-bucket-tagging",
+    "names": [
+      "get-bucket-tagging"
+    ],
+    "description": "버킷의 태그 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-bucket-versioning",
+    "names": [
+      "get-bucket-versioning"
+    ],
+    "description": "버킷의 버전설정 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-bucket-website",
+    "names": [
+      "get-bucket-website"
+    ],
+    "description": "버킷의 웹사이트 설정 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-object",
+    "names": [
+      "get-object"
+    ],
+    "description": "객체 다운로드",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-object-acl",
+    "names": [
+      "get-object-acl"
+    ],
+    "description": "객체의 권한 설정 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-object-legal-hold",
+    "names": [
+      "get-object-legal-hold"
+    ],
+    "description": "객체의 보존(legal-hold) 설정 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-object-lock",
+    "names": [
+      "get-object-lock"
+    ],
+    "description": "객체의 잠금(lock) 설정 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-object-retention",
+    "names": [
+      "get-object-retention"
+    ],
+    "description": "객체의 보유(Retention) 설정 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-object-tagging",
+    "names": [
+      "get-object-tagging"
+    ],
+    "description": "객체의 태그 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-public-access-block",
+    "names": [
+      "get-public-access-block"
+    ],
+    "description": "객체의 Public Access Block 설정 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-presigned-url",
+    "names": [
+      "get-presigned-url"
+    ],
+    "description": "객체의 Presigned URL 생성(GET)",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "head-bucket",
+    "names": [
+      "head-bucket"
+    ],
+    "description": "버킷의 정보 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "head-object",
+    "names": [
+      "head-object"
+    ],
+    "description": "객체의 정보 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "restore-object",
+    "names": [
+      "restore-object"
+    ],
+    "description": "객체 복원",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "list-bucket-analytics",
+    "names": [
+      "list-bucket-analytics"
+    ],
+    "description": "버킷의 분석 설정 목록 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "list-bucket-inventory",
+    "names": [
+      "list-bucket-inventory"
+    ],
+    "description": "버킷 인벤토리 목록 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "list-bucket-metrics",
+    "names": [
+      "list-bucket-metrics"
+    ],
+    "description": "버킷 메트릭 목록 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "list-buckets",
+    "names": [
+      "list-buckets"
+    ],
+    "description": "버킷 목록 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "list-directory-buckets",
+    "names": [
+      "list-directory-buckets"
+    ],
+    "description": "버킷 목록 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "list-multipart-uploads",
+    "names": [
+      "list-multipart-uploads"
+    ],
+    "description": "멀티파트 업로드 목록 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "list-object-versions",
+    "names": [
+      "list-object-versions"
+    ],
+    "description": "객체 버전 목록 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "list-objects",
+    "names": [
+      "list-objects"
+    ],
+    "description": "객체 목록 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "list-objects-v2",
+    "names": [
+      "list-objects-v2"
+    ],
+    "description": "객체 목록 조회(V2)",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "list-parts",
+    "names": [
+      "list-parts"
+    ],
+    "description": "파츠 목록 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-bucket-acl",
+    "names": [
+      "put-bucket-acl"
+    ],
+    "description": "버킷의 권한 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-bucket-analytics",
+    "names": [
+      "put-bucket-analytics"
+    ],
+    "description": "버킷의 분석 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-bucket-cors",
+    "names": [
+      "put-bucket-cors"
+    ],
+    "description": "버킷의 CORS 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-bucket-encryption",
+    "names": [
+      "put-bucket-encryption"
+    ],
+    "description": "버킷의 기본 암호화 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-bucket-inventory",
+    "names": [
+      "put-bucket-inventory"
+    ],
+    "description": "버킷의 인벤토리 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-bucket-lifecycle",
+    "names": [
+      "put-bucket-lifecycle"
+    ],
+    "description": "버킷내의 객체 수명주기 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-bucket-logging",
+    "names": [
+      "put-bucket-logging"
+    ],
+    "description": "버킷의 로그 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-bucket-metrics",
+    "names": [
+      "put-bucket-metrics"
+    ],
+    "description": "버킷의 메트릭 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-bucket-notification",
+    "names": [
+      "put-bucket-notification"
+    ],
+    "description": "버킷의 알람 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-bucket-ownership",
+    "names": [
+      "put-bucket-ownership"
+    ],
+    "description": "버킷의 소유권 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-bucket-policy",
+    "names": [
+      "put-bucket-policy"
+    ],
+    "description": "버킷의 정책 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-bucket-replication",
+    "names": [
+      "put-bucket-replication"
+    ],
+    "description": "버킷의 복제기능 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-bucket-tagging",
+    "names": [
+      "put-bucket-tagging"
+    ],
+    "description": "버킷의 태그 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-bucket-versioning",
+    "names": [
+      "put-bucket-versioning"
+    ],
+    "description": "버킷의 버저닝 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-bucket-website",
+    "names": [
+      "put-bucket-website"
+    ],
+    "description": "버킷의 웹사이트 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-object",
+    "names": [
+      "put-object"
+    ],
+    "description": "객체 업로드",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-objects",
+    "names": [
+      "put-objects"
+    ],
+    "description": "폴더 업로드",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-object-acl",
+    "names": [
+      "put-object-acl"
+    ],
+    "description": "객체의 권한 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-object-legal-hold",
+    "names": [
+      "put-object-legal-hold"
+    ],
+    "description": "객체의 보존(legal-hold) 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-object-lock",
+    "names": [
+      "put-object-lock"
+    ],
+    "description": "객체의 잠금(lock) 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-object-retention",
+    "names": [
+      "put-object-retention"
+    ],
+    "description": "객체의 보유(Retention) 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-object-tagging",
+    "names": [
+      "put-object-tagging"
+    ],
+    "description": "객체의 태그 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-public-access-block",
+    "names": [
+      "put-public-access-block"
+    ],
+    "description": "객체의 Public Access Block 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "upload-part",
+    "names": [
+      "upload-part"
+    ],
+    "description": "파츠 업로드",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "upload-part-copy",
+    "names": [
+      "upload-part-copy"
+    ],
+    "description": "파츠 복제",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "storage-move",
+    "names": [
+      "storage-move"
+    ],
+    "description": "오브젝트의 스토리지 클래스 변경",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "set-object-lock",
+    "names": [
+      "set-object-lock"
+    ],
+    "description": "객체의 Legal Hold 설정(ON)",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "del-object-lock",
+    "names": [
+      "del-object-lock"
+    ],
+    "description": "객체의 Legal Hold 해제(OFF)",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "upload",
+    "names": [
+      "upload"
+    ],
+    "description": "AWS 상위레벨 API를 사용하여 업로드",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "download",
+    "names": [
+      "download"
+    ],
+    "description": "AWS 상위레벨 API를 사용하여 다운로드",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "delete-bucket-tagindex",
+    "names": [
+      "delete-bucket-tagindex"
+    ],
+    "description": "버킷의 태그 설정 삭제",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "get-bucket-tagindex",
+    "names": [
+      "get-bucket-tagindex"
+    ],
+    "description": "버킷의 태그 설정 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "list-bucket-tagsearch",
+    "names": [
+      "list-bucket-tagsearch"
+    ],
+    "description": "버킷에 존재하는 오브젝트의 태그 정보를 바탕으로 목록 조회",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "put-bucket-tagindex",
+    "names": [
+      "put-bucket-tagindex"
+    ],
+    "description": "버킷의 태그 설정 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "pause=",
+    "names": [
+      "pause"
+    ],
+    "description": "Value=ServiceType. S3backend 서비스 일시정지",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "resume=",
+    "names": [
+      "resume"
+    ],
+    "description": "Value=ServiceType. S3backend 서비스 재개",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "use-chunk-encoding=",
+    "names": [
+      "use-chunk-encoding"
+    ],
+    "description": "Value=true/false. Chunk Encoding 사용 여부",
+    "valueKind": "Required",
+    "valueType": "Boolean"
+  },
+  {
+    "prototype": "c|config=",
+    "names": [
+      "c",
+      "config"
+    ],
+    "description": "Value=설정파일 경로.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "s|save=",
+    "names": [
+      "s",
+      "save"
+    ],
+    "description": "Value=결과 저장 경로.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "admin",
+    "names": [
+      "admin"
+    ],
+    "description": "관리자 모드 활성화",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "b|bucket=",
+    "names": [
+      "b",
+      "bucket"
+    ],
+    "description": "Value=버킷 이름",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "access-key=",
+    "names": [
+      "access-key"
+    ],
+    "description": "value=Access Key",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "secret-key=",
+    "names": [
+      "secret-key"
+    ],
+    "description": "value=Secret Key",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "source=",
+    "names": [
+      "source"
+    ],
+    "description": "Value=원본 이름",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "target=",
+    "names": [
+      "target"
+    ],
+    "description": "Value=대상 이름",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "k|key=",
+    "names": [
+      "k",
+      "key"
+    ],
+    "description": "Value=객체 이름",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "source-key=",
+    "names": [
+      "source-key"
+    ],
+    "description": "Value=원본 객체 이름",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "f|file=",
+    "names": [
+      "f",
+      "file"
+    ],
+    "description": "Value=객체의 경로",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "p|path=",
+    "names": [
+      "p",
+      "path"
+    ],
+    "description": "Value=객체의 경로",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "upload-id=",
+    "names": [
+      "upload-id"
+    ],
+    "description": "Value=Upload Id.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "part-size=",
+    "names": [
+      "part-size"
+    ],
+    "description": "Value=Part Size(long type, ex> 50M)",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "start-byte=",
+    "names": [
+      "start-byte"
+    ],
+    "description": "Value=Start Point(long type, ex> 50M)",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "end-byte=",
+    "names": [
+      "end-byte"
+    ],
+    "description": "Value=end Point(long type, ex> 50M)",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "range-list=",
+    "names": [
+      "range-list"
+    ],
+    "description": "Value=Range List. ex> 8K,2M...",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "version-id=",
+    "names": [
+      "version-id"
+    ],
+    "description": "Value=Version Id.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "storage-class=",
+    "names": [
+      "storage-class"
+    ],
+    "description": "Value=STANDARD(default)/GLACIER",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "versioning=",
+    "names": [
+      "versioning"
+    ],
+    "description": "Value=Enabled/Suspended/Off.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "part-number=",
+    "names": [
+      "part-number"
+    ],
+    "description": "Value=int.",
+    "valueKind": "Required",
+    "valueType": "Int32"
+  },
+  {
+    "prototype": "acl=",
+    "names": [
+      "acl"
+    ],
+    "description": "Value=/private/public-read/public-read-write/authenticated-read/aws-exec-read/bucket-owner-read/bucket-owner-full-control/log-delivery-write",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "prefix=",
+    "names": [
+      "prefix"
+    ],
+    "description": "Value=Prefix.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "suffix=",
+    "names": [
+      "suffix"
+    ],
+    "description": "Value=Suffix.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "delimiter=",
+    "names": [
+      "delimiter"
+    ],
+    "description": "Value=Delimiter.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "marker=",
+    "names": [
+      "marker"
+    ],
+    "description": "Value=Marker.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "continuation-token=",
+    "names": [
+      "continuation-token"
+    ],
+    "description": "Value=ContinuationToken.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "days=",
+    "names": [
+      "days"
+    ],
+    "description": "Value=int.",
+    "valueKind": "Required",
+    "valueType": "Int32"
+  },
+  {
+    "prototype": "years=",
+    "names": [
+      "years"
+    ],
+    "description": "Value=int.",
+    "valueKind": "Required",
+    "valueType": "Int32"
+  },
+  {
+    "prototype": "date=",
+    "names": [
+      "date"
+    ],
+    "description": "Value=Date.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "body=",
+    "names": [
+      "body"
+    ],
+    "description": "Value=Content.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "tag=",
+    "names": [
+      "tag"
+    ],
+    "description": "Value=Tag.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "tag-set=",
+    "names": [
+      "tag-set"
+    ],
+    "description": "Value=Tags file.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "id=",
+    "names": [
+      "id"
+    ],
+    "description": "Value=Id.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "max-keys=",
+    "names": [
+      "max-keys"
+    ],
+    "description": "Value=MaxKeys. 최대 목록 갯수.",
+    "valueKind": "Required",
+    "valueType": "Int32"
+  },
+  {
+    "prototype": "print=",
+    "names": [
+      "print"
+    ],
+    "description": "Value=true/false. 목록 조회옵션. 결과 출력 여부를 결정(default = true)",
+    "valueKind": "Required",
+    "valueType": "Boolean"
+  },
+  {
+    "prototype": "url=",
+    "names": [
+      "url"
+    ],
+    "description": "Value=URL. MainUser의 URL 값을 강제로 변경.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "user=",
+    "names": [
+      "user"
+    ],
+    "description": "Value=User Name. 해당 유저를 MainUser로 변경.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "check",
+    "names": [
+      "check"
+    ],
+    "description": "Check Mode",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "ownership=",
+    "names": [
+      "ownership"
+    ],
+    "description": "Value=BucketOwnerEnforced/BucketOwnerPreferred/ObjectWriter",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "lock-enable",
+    "names": [
+      "lock-enable"
+    ],
+    "description": "버킷에 lock 모드 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "lock-mode=",
+    "names": [
+      "lock-mode"
+    ],
+    "description": "Value=LockMode. COMPLIANCE/GOVERNANCE. 버킷에 lock 모드 설정",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "encryption-key=",
+    "names": [
+      "encryption-key"
+    ],
+    "description": "Value=EncryptionKey.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "set-sse-s3=",
+    "names": [
+      "set-sse-s3"
+    ],
+    "description": "Value=true/false. 버킷에 sse-s3 설정 여부",
+    "valueKind": "Required",
+    "valueType": "Boolean"
+  },
+  {
+    "prototype": "manual-upload",
+    "names": [
+      "manual-upload"
+    ],
+    "description": "create-multipart-upload + upload-part + complete-multipart-upload",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "clear=",
+    "names": [
+      "clear"
+    ],
+    "description": "Value=true/false. 해당 유저의 모든 객체, True일 경우 버킷도 삭제.",
+    "valueKind": "Required",
+    "valueType": "Boolean"
+  },
+  {
+    "prototype": "start=",
+    "names": [
+      "start"
+    ],
+    "description": "Value= Start Count. Prepare의 시작 번호",
+    "valueKind": "Required",
+    "valueType": "Int32"
+  },
+  {
+    "prototype": "thread-prefix=",
+    "names": [
+      "thread-prefix"
+    ],
+    "description": " Value=스레드 접두어",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "thread=",
+    "names": [
+      "thread"
+    ],
+    "description": "Value= Thread Count.",
+    "valueKind": "Required",
+    "valueType": "Int32"
+  },
+  {
+    "prototype": "count=",
+    "names": [
+      "count"
+    ],
+    "description": "Value= File Count.",
+    "valueKind": "Required",
+    "valueType": "Int32"
+  },
+  {
+    "prototype": "size=",
+    "names": [
+      "size"
+    ],
+    "description": "Value=File Size. ex> 1k, 10M...",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "times=",
+    "names": [
+      "times"
+    ],
+    "description": "Value=Run Times. 초 단위로 테스트 수행시간 지정.",
+    "valueKind": "Required",
+    "valueType": "Int32"
+  },
+  {
+    "prototype": "flag=",
+    "names": [
+      "flag"
+    ],
+    "description": "Value=true/false.",
+    "valueKind": "Required",
+    "valueType": "Boolean"
+  },
+  {
+    "prototype": "bucket-type=",
+    "names": [
+      "bucket-type"
+    ],
+    "description": "Value= int. Bucket Type. [설정없음 = 0, 단일버킷업로드, 스레드당 버킷, 날짜당 폴더, Prefix, 현재시각 기준 생성]",
+    "valueKind": "Required",
+    "valueType": "Int32"
+  },
+  {
+    "prototype": "service-type=",
+    "names": [
+      "service-type"
+    ],
+    "description": "Value=ServiceType. Replication, Lifecycle, Logging",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "address=",
+    "names": [
+      "address"
+    ],
+    "description": "Value=Ip",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "port=",
+    "names": [
+      "port"
+    ],
+    "description": "Value=Port",
+    "valueKind": "Required",
+    "valueType": "Int32"
+  },
+  {
+    "prototype": "all",
+    "names": [
+      "all"
+    ],
+    "description": "목록을 불러올때 모든 목록을 불러오도록 설정",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "bulk",
+    "names": [
+      "bulk"
+    ],
+    "description": "1000개씩 묶어서 삭제할지 여부(--test-delete, --test-delete-version option)",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "bypass",
+    "names": [
+      "bypass"
+    ],
+    "description": "강제 삭제 모드",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "quiet",
+    "names": [
+      "quiet"
+    ],
+    "description": "삭제 실패한 목록만 전달 받는 모드",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "multipart",
+    "names": [
+      "multipart"
+    ],
+    "description": "테스트를 멀티파트로 업로드",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "not-empty",
+    "names": [
+      "not-empty"
+    ],
+    "description": "업로드할 오브젝트의 내용물을 매번 생성하도록 지정.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "debug",
+    "names": [
+      "debug"
+    ],
+    "description": "디버그용 로그 출력.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "checksum",
+    "names": [
+      "checksum"
+    ],
+    "description": "체크섬 모드 활성화",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "checksum-type=",
+    "names": [
+      "checksum-type"
+    ],
+    "description": "체크섬 타입: CRC32, CRC32C, CRC64NVME, SHA1, SHA256, None",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "md5sum",
+    "names": [
+      "md5sum"
+    ],
+    "description": "MD5 체크섬 계산 및 전송",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "r|read=",
+    "names": [
+      "r",
+      "read"
+    ],
+    "description": "Read=value. 읽기 비율",
+    "valueKind": "Required",
+    "valueType": "Int32"
+  },
+  {
+    "prototype": "w|write=",
+    "names": [
+      "w",
+      "write"
+    ],
+    "description": "Write=value. 쓰기 비율",
+    "valueKind": "Required",
+    "valueType": "Int32"
+  },
+  {
+    "prototype": "d|delete=",
+    "names": [
+      "d",
+      "delete"
+    ],
+    "description": "Delete=value. 삭제 비율",
+    "valueKind": "Required",
+    "valueType": "Int32"
+  },
+  {
+    "prototype": "bucket-clear=",
+    "names": [
+      "bucket-clear"
+    ],
+    "description": " Value=버킷 이름. 버킷에 존재하는 모든 객체를 삭제. 버킷 보존.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "current-clear=",
+    "names": [
+      "current-clear"
+    ],
+    "description": " Value=버킷 이름. 버킷에 존재하는 모든 현재 버전 객체를 삭제. 버킷 보존.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "noncurrent-clear=",
+    "names": [
+      "noncurrent-clear"
+    ],
+    "description": " Value=버킷 이름. 버킷에 존재하는 모든 이전 버전 객체를 삭제. 버킷 보존.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "marker-clear=",
+    "names": [
+      "marker-clear"
+    ],
+    "description": " Value=버킷 이름. 버킷에 존재하는 모든 Delete Marker 삭제. 버킷 보존.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-access-ips",
+    "names": [
+      "test-access-ips"
+    ],
+    "description": "ip 접근제어 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-replication",
+    "names": [
+      "test-replication"
+    ],
+    "description": "s3 복제 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-list-object",
+    "names": [
+      "test-list-object"
+    ],
+    "description": "ListObject 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-range-copy",
+    "names": [
+      "test-range-copy"
+    ],
+    "description": "원본 객체를 Range로 읽어 다운로드 한뒤 멀티파트 업로드",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-upload",
+    "names": [
+      "test-upload"
+    ],
+    "description": "AWS 상위레벨 API를 사용하여 업로드 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-download",
+    "names": [
+      "test-download"
+    ],
+    "description": "AWS 상위레벨 API를 사용하여 다운로드 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-prepare",
+    "names": [
+      "test-prepare"
+    ],
+    "description": "일정 갯수만큼 업로드. 이미 파일이 업로드 되어있다면 업로드 하지않음.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-prepare-dir",
+    "names": [
+      "test-prepare-dir"
+    ],
+    "description": "일정 갯수만큼 폴더(디렉터리 마커) 생성. 이미 존재하면 생성하지 않음.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-new-put",
+    "names": [
+      "test-new-put"
+    ],
+    "description": "Prepare와 동일. 매 PutObject마다 새 S3Client 생성.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-put",
+    "names": [
+      "test-put"
+    ],
+    "description": "PutObject 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-head",
+    "names": [
+      "test-head"
+    ],
+    "description": "Head 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-get",
+    "names": [
+      "test-get"
+    ],
+    "description": "GetObject 테스트. 테스트 전에 Prepare, put 등으로 테스트 환경을 구성하고 진행하지 않으면 실패.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-get-v2",
+    "names": [
+      "test-get-v2"
+    ],
+    "description": "Sequential GetObject 테스트. 테스트 전에 Prepare, put 등으로 테스트 환경을 구성하고 진행하지 않으면 실패.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-new-get",
+    "names": [
+      "test-new-get"
+    ],
+    "description": "test-get-v2와 동일. 매 GetObject마다 새 S3Client 생성.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-get-v3",
+    "names": [
+      "test-get-v3"
+    ],
+    "description": "ListObject => GetObject 테스트. 테스트 전에 Prepare, put 등으로 테스트 환경을 구성하고 진행하지 않으면 실패.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-get-all",
+    "names": [
+      "test-get-all"
+    ],
+    "description": "Sequential GetObject 테스트. 테스트 전에 Prepare, put 등으로 테스트 환경을 구성하고 진행하지 않으면 실패.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-delete",
+    "names": [
+      "test-delete"
+    ],
+    "description": "DeleteObject 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-delete-v2",
+    "names": [
+      "test-delete-v2"
+    ],
+    "description": "Prepare로 업로드한 오브젝트를 순차적으로 삭제하고 모두 삭제하면 종료하는 테스트. 테스트 전에 Prepare, put 등으로 테스트 환경을 구성하고 진행하지 않으면 실패.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-new-del",
+    "names": [
+      "test-new-del"
+    ],
+    "description": "test-delete-v2와 동일. 매 DeleteObject마다 새 S3Client 생성.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-delete-version",
+    "names": [
+      "test-delete-version"
+    ],
+    "description": "DeleteObjectVersion 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-delete-directory",
+    "names": [
+      "test-delete-directory"
+    ],
+    "description": "ListObject를 이용하여 디렉토리를 삭제하는 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-mix",
+    "names": [
+      "test-mix"
+    ],
+    "description": "PutObject, GetObject를 설정한 비율로 테스트 설정한 시간만큼 동작. GetObject는 업로드한 파일 목록 내에서 무작위로 실행.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-mix-v2",
+    "names": [
+      "test-mix-v2"
+    ],
+    "description": "Read, Write를 설정한 갯수만큼 스레드를 생성하여 테스트. Prepare로 테스트 환경을 구성하고 진행해야 함. GetObject는 업로드한 파일 목록 내에서 무작위로 실행.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-new-mix",
+    "names": [
+      "test-new-mix"
+    ],
+    "description": "test-all과 동일. 매 Put/Get/Delete마다 새 S3Client 생성.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-put-get",
+    "names": [
+      "test-put-get"
+    ],
+    "description": "PutObject, GetObject를 순차로 테스트.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-all",
+    "names": [
+      "test-all"
+    ],
+    "description": "PutObject, GetObject, DeleteObject를 순차로 실행하는 테스트.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-full",
+    "names": [
+      "test-full"
+    ],
+    "description": "모든 테스트를 순차로 실행하는 테스트.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-io",
+    "names": [
+      "test-io"
+    ],
+    "description": "특정 폴더의 내용을 모두 업로드한뒤 다운로드하여 md5sum으로 비교하는 테스트.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-mover",
+    "names": [
+      "test-mover"
+    ],
+    "description": "ifsMover용 테스트.",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-put-tag",
+    "names": [
+      "test-put-tag"
+    ],
+    "description": "PutObject시 Tag를 포함하여 업로드",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-compare=",
+    "names": [
+      "test-compare"
+    ],
+    "description": "Value=true(Alt User)/false(Main User Only). 원본과 대상 버킷의 모든 객체가 동일한지 비교.(default = true)",
+    "valueKind": "Required",
+    "valueType": "Boolean"
+  },
+  {
+    "prototype": "test-find-tag=",
+    "names": [
+      "test-find-tag"
+    ],
+    "description": "test-put-tag에서 업로드한 Tag를 조회하는 테스트.",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-multi-delete",
+    "names": [
+      "test-multi-delete"
+    ],
+    "description": "단일 버킷, DeleteObject만 하는 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-used-size",
+    "names": [
+      "test-used-size"
+    ],
+    "description": "버킷의 UsedSize가 일치하는지 확인하는 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-duplicate",
+    "names": [
+      "test-duplicate"
+    ],
+    "description": "중복 업로드 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-multi-upload",
+    "names": [
+      "test-multi-upload"
+    ],
+    "description": "동시 업로드 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-directory-download",
+    "names": [
+      "test-directory-download"
+    ],
+    "description": "폴더 다운로드 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-file-list=",
+    "names": [
+      "test-file-list"
+    ],
+    "description": "value=File List Path. 파일목록을 읽어와서 멀티 다운로드 테스트",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-range-read",
+    "names": [
+      "test-range-read"
+    ],
+    "description": "단일 오브젝트를 Range 단위로 순차 읽기",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-multipart-upload",
+    "names": [
+      "test-multipart-upload"
+    ],
+    "description": "멀티파트업로드 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-multipart-upload-v2",
+    "names": [
+      "test-multipart-upload-v2"
+    ],
+    "description": "멀티파트업로드 및 다운로드 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-multi-system-list",
+    "names": [
+      "test-multi-system-list"
+    ],
+    "description": "다중 시스템 업로드 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-multi-system-upload",
+    "names": [
+      "test-multi-system-upload"
+    ],
+    "description": "다중 시스템 업로드 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-multi-system-up-down",
+    "names": [
+      "test-multi-system-up-down"
+    ],
+    "description": "다중 시스템 업로드, 다운로드 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-multi-system-all",
+    "names": [
+      "test-multi-system-all"
+    ],
+    "description": "다중 시스템 업로드, 다운로드, 삭제 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-compare-lifecycle",
+    "names": [
+      "test-compare-lifecycle"
+    ],
+    "description": "만료기한 확인",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-aws",
+    "names": [
+      "test-aws"
+    ],
+    "description": "AWS Multi test",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "target-path=",
+    "names": [
+      "target-path"
+    ],
+    "description": "로컬 테스트 타겟 경로",
+    "valueKind": "Required",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-local-prepare",
+    "names": [
+      "test-local-prepare"
+    ],
+    "description": "로컬 파일시스템 Prepare 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-local-put",
+    "names": [
+      "test-local-put"
+    ],
+    "description": "로컬 파일시스템 PutOnly 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-local-get",
+    "names": [
+      "test-local-get"
+    ],
+    "description": "로컬 파일시스템 랜덤 GetOnly 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-local-get-v2",
+    "names": [
+      "test-local-get-v2"
+    ],
+    "description": "로컬 파일시스템 순차 GetOnly 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-local-put-get",
+    "names": [
+      "test-local-put-get"
+    ],
+    "description": "로컬 파일시스템 PutGet 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-local-delete",
+    "names": [
+      "test-local-delete"
+    ],
+    "description": "로컬 파일시스템 Delete 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-local-multipart-prepare",
+    "names": [
+      "test-local-multipart-prepare"
+    ],
+    "description": "로컬 파일시스템 멀티파트 Prepare 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-local-multipart-put",
+    "names": [
+      "test-local-multipart-put"
+    ],
+    "description": "로컬 파일시스템 멀티파트 PutOnly 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-local-multipart-get",
+    "names": [
+      "test-local-multipart-get"
+    ],
+    "description": "로컬 파일시스템 멀티파트 랜덤 GetOnly 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-local-multipart-get-v2",
+    "names": [
+      "test-local-multipart-get-v2"
+    ],
+    "description": "로컬 파일시스템 멀티파트 순차 GetOnly 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  },
+  {
+    "prototype": "test-local-multipart-put-get",
+    "names": [
+      "test-local-multipart-put-get"
+    ],
+    "description": "로컬 파일시스템 멀티파트 PutGet 테스트",
+    "valueKind": "None",
+    "valueType": "String"
+  }
+]

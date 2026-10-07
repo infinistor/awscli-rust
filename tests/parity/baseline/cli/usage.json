@@ -1,0 +1,1502 @@
+[
+  {
+    "name": "USAGE_BUCKET_NAME",
+    "value": "\t--bucket < : 버킷명>\n",
+    "constant": false
+  },
+  {
+    "name": "USAGE_THREAD_COUNT",
+    "value": "\t--thread <int> : 스레드 개수\n",
+    "constant": false
+  },
+  {
+    "name": "USAGE_SIZE",
+    "value": "\t--size <string> : 파일 크기\n",
+    "constant": false
+  },
+  {
+    "name": "USAGE_FILE_COUNT",
+    "value": "\t--count <int> : 파일 개수\n",
+    "constant": false
+  },
+  {
+    "name": "USAGE_TIMES",
+    "value": "\t--times <int> : 테스트 수행 시간(초)\n",
+    "constant": false
+  },
+  {
+    "name": "USAGE_CONFIG",
+    "value": "\t[--config <string>] : 설정 파일 경로. default = config.ini\n",
+    "constant": false
+  },
+  {
+    "name": "USAGE_PREFIX",
+    "value": "\t[--prefix <string>] : 객체명 Prefix.\n",
+    "constant": false
+  },
+  {
+    "name": "USAGE_PATH",
+    "value": "\t[--path <string>] : temp 파일 경로. default = ./test/\n",
+    "constant": false
+  },
+  {
+    "name": "USAGE_START",
+    "value": "\t[--start <int>] : 시작 번호\n",
+    "constant": false
+  },
+  {
+    "name": "ABORT_MULTIPART_UPLOAD",
+    "value": "abort-multipart-upload",
+    "constant": true
+  },
+  {
+    "name": "COMPLETE_MULTIPART_UPLOAD",
+    "value": "complete-multipart-upload",
+    "constant": true
+  },
+  {
+    "name": "COPY_OBJECT",
+    "value": "copy-object",
+    "constant": true
+  },
+  {
+    "name": "CREATE_BUCKET",
+    "value": "create-bucket",
+    "constant": true
+  },
+  {
+    "name": "CREATE_MULTIPART_UPLOAD",
+    "value": "create-multipart-upload",
+    "constant": true
+  },
+  {
+    "name": "DELETE_BUCKET",
+    "value": "delete-bucket",
+    "constant": true
+  },
+  {
+    "name": "DELETE_BUCKET_ANALYTICS",
+    "value": "delete-bucket-analytics",
+    "constant": true
+  },
+  {
+    "name": "DELETE_BUCKET_CORS",
+    "value": "delete-bucket-cors",
+    "constant": true
+  },
+  {
+    "name": "DELETE_BUCKET_ENCRYPTION",
+    "value": "delete-bucket-encryption",
+    "constant": true
+  },
+  {
+    "name": "DELETE_BUCKET_INVENTORY",
+    "value": "delete-bucket-inventory",
+    "constant": true
+  },
+  {
+    "name": "DELETE_BUCKET_LIFECYCLE",
+    "value": "delete-bucket-lifecycle",
+    "constant": true
+  },
+  {
+    "name": "DELETE_BUCKET_METRICS",
+    "value": "delete-bucket-metrics",
+    "constant": true
+  },
+  {
+    "name": "DELETE_BUCKET_OWNERSHIP_CONTROLS",
+    "value": "delete-bucket-ownership-controls",
+    "constant": true
+  },
+  {
+    "name": "DELETE_BUCKET_POLICY",
+    "value": "delete-bucket-policy",
+    "constant": true
+  },
+  {
+    "name": "DELETE_BUCKET_REPLICATION",
+    "value": "delete-bucket-replication",
+    "constant": true
+  },
+  {
+    "name": "DELETE_BUCKET_TAGGING",
+    "value": "delete-bucket-tagging",
+    "constant": true
+  },
+  {
+    "name": "DELETE_BUCKET_WEBSITE",
+    "value": "delete-bucket-website",
+    "constant": true
+  },
+  {
+    "name": "DELETE_OBJECT",
+    "value": "delete-object",
+    "constant": true
+  },
+  {
+    "name": "DELETE_OBJECT_TAGGING",
+    "value": "delete-object-tagging",
+    "constant": true
+  },
+  {
+    "name": "DELETE_OBJECTS",
+    "value": "delete-objects",
+    "constant": true
+  },
+  {
+    "name": "DELETE_PUBLIC_ACCESS_BLOCK",
+    "value": "delete-public-access-block",
+    "constant": true
+  },
+  {
+    "name": "GET_BUCKET_ACL",
+    "value": "get-bucket-acl",
+    "constant": true
+  },
+  {
+    "name": "GET_BUCKET_ANALYTICS",
+    "value": "get-bucket-analytics",
+    "constant": true
+  },
+  {
+    "name": "GET_BUCKET_CORS",
+    "value": "get-bucket-cors",
+    "constant": true
+  },
+  {
+    "name": "GET_BUCKET_ENCRYPTION",
+    "value": "get-bucket-encryption",
+    "constant": true
+  },
+  {
+    "name": "GET_BUCKET_INVENTORY",
+    "value": "get-bucket-inventory",
+    "constant": true
+  },
+  {
+    "name": "GET_BUCKET_LIFECYCLE",
+    "value": "get-bucket-lifecycle",
+    "constant": true
+  },
+  {
+    "name": "GET_BUCKET_LOGGING",
+    "value": "get-bucket-logging",
+    "constant": true
+  },
+  {
+    "name": "GET_BUCKET_METRICS",
+    "value": "get-bucket-metrics",
+    "constant": true
+  },
+  {
+    "name": "GET_BUCKET_LOCATION",
+    "value": "get-bucket-location",
+    "constant": true
+  },
+  {
+    "name": "GET_BUCKET_NOTIFICATION",
+    "value": "get-bucket-notification",
+    "constant": true
+  },
+  {
+    "name": "GET_BUCKET_OWNERSHIP_CONTROLS",
+    "value": "get-bucket-ownership-controls",
+    "constant": true
+  },
+  {
+    "name": "GET_BUCKET_POLICY",
+    "value": "get-bucket-policy",
+    "constant": true
+  },
+  {
+    "name": "GET_BUCKET_POLICY_STATUS",
+    "value": "get-bucket-policy-status",
+    "constant": true
+  },
+  {
+    "name": "GET_BUCKET_REPLICATION",
+    "value": "get-bucket-replication",
+    "constant": true
+  },
+  {
+    "name": "GET_BUCKET_TAGGING",
+    "value": "get-bucket-tagging",
+    "constant": true
+  },
+  {
+    "name": "GET_BUCKET_VERSIONING",
+    "value": "get-bucket-versioning",
+    "constant": true
+  },
+  {
+    "name": "GET_BUCKET_WEBSITE",
+    "value": "get-bucket-website",
+    "constant": true
+  },
+  {
+    "name": "GET_OBJECT",
+    "value": "get-object",
+    "constant": true
+  },
+  {
+    "name": "GET_OBJECT_ACL",
+    "value": "get-object-acl",
+    "constant": true
+  },
+  {
+    "name": "GET_OBJECT_LEGAL_HOLD",
+    "value": "get-object-legal-hold",
+    "constant": true
+  },
+  {
+    "name": "GET_OBJECT_LOCK",
+    "value": "get-object-lock",
+    "constant": true
+  },
+  {
+    "name": "GET_OBJECT_RETENTION",
+    "value": "get-object-retention",
+    "constant": true
+  },
+  {
+    "name": "GET_OBJECT_TAGGING",
+    "value": "get-object-tagging",
+    "constant": true
+  },
+  {
+    "name": "GET_PUBLIC_ACCESS_BLOCK",
+    "value": "get-public-access-block",
+    "constant": true
+  },
+  {
+    "name": "GET_PRESIGNED_URL",
+    "value": "get-presigned-url",
+    "constant": true
+  },
+  {
+    "name": "HEAD_BUCKET",
+    "value": "head-bucket",
+    "constant": true
+  },
+  {
+    "name": "HEAD_OBJECT",
+    "value": "head-object",
+    "constant": true
+  },
+  {
+    "name": "RESTORE_OBJECT",
+    "value": "restore-object",
+    "constant": true
+  },
+  {
+    "name": "LIST_BUCKET_ANALYTICS",
+    "value": "list-bucket-analytics",
+    "constant": true
+  },
+  {
+    "name": "LIST_BUCKETS",
+    "value": "list-buckets",
+    "constant": true
+  },
+  {
+    "name": "LIST_DIRECTORY_BUCKETS",
+    "value": "list-directory-buckets",
+    "constant": true
+  },
+  {
+    "name": "LIST_BUCKET_INVENTORY",
+    "value": "list-bucket-inventory",
+    "constant": true
+  },
+  {
+    "name": "LIST_BUCKET_METRICS",
+    "value": "list-bucket-metrics",
+    "constant": true
+  },
+  {
+    "name": "LIST_MULTIPART_UPLOADS",
+    "value": "list-multipart-uploads",
+    "constant": true
+  },
+  {
+    "name": "LIST_OBJECT_VERSIONS",
+    "value": "list-object-versions",
+    "constant": true
+  },
+  {
+    "name": "LIST_OBJECTS",
+    "value": "list-objects",
+    "constant": true
+  },
+  {
+    "name": "LIST_OBJECTS_V2",
+    "value": "list-objects-v2",
+    "constant": true
+  },
+  {
+    "name": "LIST_PARTS",
+    "value": "list-parts",
+    "constant": true
+  },
+  {
+    "name": "PUT_BUCKET_ACL",
+    "value": "put-bucket-acl",
+    "constant": true
+  },
+  {
+    "name": "PUT_BUCKET_ANALYTICS",
+    "value": "put-bucket-analytics",
+    "constant": true
+  },
+  {
+    "name": "PUT_BUCKET_CORS",
+    "value": "put-bucket-cors",
+    "constant": true
+  },
+  {
+    "name": "PUT_BUCKET_ENCRYPTION",
+    "value": "put-bucket-encryption",
+    "constant": true
+  },
+  {
+    "name": "PUT_BUCKET_INVENTORY",
+    "value": "put-bucket-inventory",
+    "constant": true
+  },
+  {
+    "name": "PUT_BUCKET_LIFECYCLE",
+    "value": "put-bucket-lifecycle",
+    "constant": true
+  },
+  {
+    "name": "PUT_BUCKET_LOGGING",
+    "value": "put-bucket-logging",
+    "constant": true
+  },
+  {
+    "name": "PUT_BUCKET_METRICS",
+    "value": "put-bucket-metrics",
+    "constant": true
+  },
+  {
+    "name": "PUT_BUCKET_NOTIFICATION",
+    "value": "put-bucket-notification",
+    "constant": true
+  },
+  {
+    "name": "PUT_BUCKET_OWNERSHIP_CONTROLS",
+    "value": "put-bucket-ownership",
+    "constant": true
+  },
+  {
+    "name": "PUT_BUCKET_POLICY",
+    "value": "put-bucket-policy",
+    "constant": true
+  },
+  {
+    "name": "PUT_BUCKET_REPLICATION",
+    "value": "put-bucket-replication",
+    "constant": true
+  },
+  {
+    "name": "PUT_BUCKET_TAGGING",
+    "value": "put-bucket-tagging",
+    "constant": true
+  },
+  {
+    "name": "PUT_BUCKET_VERSIONING",
+    "value": "put-bucket-versioning",
+    "constant": true
+  },
+  {
+    "name": "PUT_BUCKET_WEBSITE",
+    "value": "put-bucket-website",
+    "constant": true
+  },
+  {
+    "name": "PUT_OBJECT",
+    "value": "put-object",
+    "constant": true
+  },
+  {
+    "name": "PUT_OBJECTS",
+    "value": "put-objects",
+    "constant": true
+  },
+  {
+    "name": "PUT_OBJECT_ACL",
+    "value": "put-object-acl",
+    "constant": true
+  },
+  {
+    "name": "PUT_OBJECT_LEGAL_HOLD",
+    "value": "put-object-legal-hold",
+    "constant": true
+  },
+  {
+    "name": "PUT_OBJECT_LOCK",
+    "value": "put-object-lock",
+    "constant": true
+  },
+  {
+    "name": "PUT_OBJECT_RETENTION",
+    "value": "put-object-retention",
+    "constant": true
+  },
+  {
+    "name": "PUT_OBJECT_TAGGING",
+    "value": "put-object-tagging",
+    "constant": true
+  },
+  {
+    "name": "PUT_PUBLIC_ACCESS_BLOCK",
+    "value": "put-public-access-block",
+    "constant": true
+  },
+  {
+    "name": "UPLOAD_PART",
+    "value": "upload-part",
+    "constant": true
+  },
+  {
+    "name": "UPLOAD_PART_COPY",
+    "value": "upload-part-copy",
+    "constant": true
+  },
+  {
+    "name": "DELETE_BUCKET_TAG_INDEX",
+    "value": "delete-bucket-tagindex",
+    "constant": true
+  },
+  {
+    "name": "GET_BUCKET_TAG_INDEX",
+    "value": "get-bucket-tagindex",
+    "constant": true
+  },
+  {
+    "name": "PUT_BUCKET_TAG_INDEX",
+    "value": "put-bucket-tagindex",
+    "constant": true
+  },
+  {
+    "name": "LIST_BUCKET_TAG_SEARCH",
+    "value": "list-bucket-tagsearch",
+    "constant": true
+  },
+  {
+    "name": "STORAGE_MOVE",
+    "value": "storage-move",
+    "constant": true
+  },
+  {
+    "name": "UPLOAD",
+    "value": "upload",
+    "constant": true
+  },
+  {
+    "name": "DOWNLOAD",
+    "value": "download",
+    "constant": true
+  },
+  {
+    "name": "MANUAL_UPLOAD",
+    "value": "manual-upload",
+    "constant": true
+  },
+  {
+    "name": "MANUAL_DOWNLOAD",
+    "value": "manual-download",
+    "constant": true
+  },
+  {
+    "name": "TEST_ACCESS_IPS",
+    "value": "test-access-ips",
+    "constant": true
+  },
+  {
+    "name": "TEST_REPLICATION",
+    "value": "test-replication",
+    "constant": true
+  },
+  {
+    "name": "TEST_RANGE_COPY",
+    "value": "test-range-copy",
+    "constant": true
+  },
+  {
+    "name": "TEST_COMPARE",
+    "value": "test-compare",
+    "constant": true
+  },
+  {
+    "name": "TEST_LIST_OBJECT",
+    "value": "test-list-object",
+    "constant": true
+  },
+  {
+    "name": "TEST_UPLOAD",
+    "value": "test-upload",
+    "constant": true
+  },
+  {
+    "name": "TEST_DOWNLOAD",
+    "value": "test-download",
+    "constant": true
+  },
+  {
+    "name": "TEST_PREPARE",
+    "value": "test-prepare",
+    "constant": true
+  },
+  {
+    "name": "TEST_PREPARE_DIR",
+    "value": "test-prepare-dir",
+    "constant": true
+  },
+  {
+    "name": "TEST_NEW_PUT",
+    "value": "test-new-put",
+    "constant": true
+  },
+  {
+    "name": "TEST_PUT",
+    "value": "test-put",
+    "constant": true
+  },
+  {
+    "name": "TEST_HEAD",
+    "value": "test-head",
+    "constant": true
+  },
+  {
+    "name": "TEST_GET",
+    "value": "test-get",
+    "constant": true
+  },
+  {
+    "name": "TEST_GET_V2",
+    "value": "test-get-v2",
+    "constant": true
+  },
+  {
+    "name": "TEST_NEW_GET",
+    "value": "test-new-get",
+    "constant": true
+  },
+  {
+    "name": "TEST_GET_V3",
+    "value": "test-get-v3",
+    "constant": true
+  },
+  {
+    "name": "TEST_GET_ALL",
+    "value": "test-get-all",
+    "constant": true
+  },
+  {
+    "name": "TEST_GET_LIST",
+    "value": "test-get-list",
+    "constant": true
+  },
+  {
+    "name": "TEST_DELETE",
+    "value": "test-delete",
+    "constant": true
+  },
+  {
+    "name": "TEST_DELETE_V2",
+    "value": "test-delete-v2",
+    "constant": true
+  },
+  {
+    "name": "TEST_NEW_DEL",
+    "value": "test-new-del",
+    "constant": true
+  },
+  {
+    "name": "TEST_DELETE_VERSION",
+    "value": "test-delete-version",
+    "constant": true
+  },
+  {
+    "name": "TEST_DELETE_DIRECTORY",
+    "value": "test-delete-directory",
+    "constant": true
+  },
+  {
+    "name": "TEST_MIX",
+    "value": "test-mix",
+    "constant": true
+  },
+  {
+    "name": "TEST_MIX_V2",
+    "value": "test-mix-v2",
+    "constant": true
+  },
+  {
+    "name": "TEST_NEW_MIX",
+    "value": "test-new-mix",
+    "constant": true
+  },
+  {
+    "name": "TEST_PUT_GET",
+    "value": "test-put-get",
+    "constant": true
+  },
+  {
+    "name": "TEST_ALL",
+    "value": "test-all",
+    "constant": true
+  },
+  {
+    "name": "TEST_FULL",
+    "value": "test-full",
+    "constant": true
+  },
+  {
+    "name": "TEST_IO",
+    "value": "test-io",
+    "constant": true
+  },
+  {
+    "name": "TEST_MOVER",
+    "value": "test-mover",
+    "constant": true
+  },
+  {
+    "name": "TEST_PUT_TAG",
+    "value": "test-put-tag",
+    "constant": true
+  },
+  {
+    "name": "TEST_FIND_TAG",
+    "value": "test-find-tag",
+    "constant": true
+  },
+  {
+    "name": "TEST_MULTI_DELETE",
+    "value": "test-multi-delete",
+    "constant": true
+  },
+  {
+    "name": "TEST_USED_SIZE",
+    "value": "test-used-size",
+    "constant": true
+  },
+  {
+    "name": "TEST_DUPLICATE",
+    "value": "test-duplicate",
+    "constant": true
+  },
+  {
+    "name": "TEST_MULTI_UPLOAD",
+    "value": "test-multi-upload",
+    "constant": true
+  },
+  {
+    "name": "TEST_DIRECTORY_DOWNLOAD",
+    "value": "test-directory-download",
+    "constant": true
+  },
+  {
+    "name": "TEST_FILE_LIST_DOWNLOAD",
+    "value": "test-file-list",
+    "constant": true
+  },
+  {
+    "name": "TEST_MULTIPART_UPLOAD",
+    "value": "test-multipart-upload",
+    "constant": true
+  },
+  {
+    "name": "TEST_MULTIPART_UPLOAD_DOWNLOAD",
+    "value": "test-multipart-upload-v2",
+    "constant": true
+  },
+  {
+    "name": "TEST_MULTI_SYSTEM_LIST",
+    "value": "test-multi-system-list",
+    "constant": true
+  },
+  {
+    "name": "TEST_MULTI_SYSTEM_UPLOAD",
+    "value": "test-multi-system-upload",
+    "constant": true
+  },
+  {
+    "name": "TEST_MULTI_SYSTEM_UP_DOWN",
+    "value": "test-multi-system-up-down",
+    "constant": true
+  },
+  {
+    "name": "TEST_MULTI_SYSTEM_ALL",
+    "value": "test-multi-system-all",
+    "constant": true
+  },
+  {
+    "name": "TEST_COMPARE_LIFECYCLE",
+    "value": "test-compare-lifecycle",
+    "constant": true
+  },
+  {
+    "name": "TEST_RANGE_READ",
+    "value": "test-range-read",
+    "constant": true
+  },
+  {
+    "name": "TEST_AWS",
+    "value": "test-aws",
+    "constant": true
+  },
+  {
+    "name": "TEST_LOCAL_PREPARE",
+    "value": "test-local-prepare",
+    "constant": true
+  },
+  {
+    "name": "TEST_LOCAL_PUT",
+    "value": "test-local-put",
+    "constant": true
+  },
+  {
+    "name": "TEST_LOCAL_GET",
+    "value": "test-local-get",
+    "constant": true
+  },
+  {
+    "name": "TEST_LOCAL_GET_V2",
+    "value": "test-local-get-v2",
+    "constant": true
+  },
+  {
+    "name": "TEST_LOCAL_PUT_GET",
+    "value": "test-local-put-get",
+    "constant": true
+  },
+  {
+    "name": "TEST_LOCAL_DELETE",
+    "value": "test-local-delete",
+    "constant": true
+  },
+  {
+    "name": "TEST_LOCAL_MULTIPART_PREPARE",
+    "value": "test-local-multipart-prepare",
+    "constant": true
+  },
+  {
+    "name": "TEST_LOCAL_MULTIPART_PUT",
+    "value": "test-local-multipart-put",
+    "constant": true
+  },
+  {
+    "name": "TEST_LOCAL_MULTIPART_GET",
+    "value": "test-local-multipart-get",
+    "constant": true
+  },
+  {
+    "name": "TEST_LOCAL_MULTIPART_GET_V2",
+    "value": "test-local-multipart-get-v2",
+    "constant": true
+  },
+  {
+    "name": "TEST_LOCAL_MULTIPART_PUT_GET",
+    "value": "test-local-multipart-put-get",
+    "constant": true
+  },
+  {
+    "name": "SET_SSE_S3",
+    "value": "set-sse-s3",
+    "constant": true
+  },
+  {
+    "name": "SET_OBJECT_LOCK",
+    "value": "set-object-lock",
+    "constant": true
+  },
+  {
+    "name": "DEL_OBJECT_LOCK",
+    "value": "del-object-lock",
+    "constant": true
+  },
+  {
+    "name": "UTIL_CLEAR",
+    "value": "clear",
+    "constant": true
+  },
+  {
+    "name": "UTIL_BUCKET_CLEAR",
+    "value": "bucket-clear",
+    "constant": true
+  },
+  {
+    "name": "UTIL_CURRENT_CLEAR",
+    "value": "current-clear",
+    "constant": true
+  },
+  {
+    "name": "UTIL_NONCURRENT_CLEAR",
+    "value": "noncurrent-clear",
+    "constant": true
+  },
+  {
+    "name": "UTIL_MARKER_CLEAR",
+    "value": "marker-clear",
+    "constant": true
+  },
+  {
+    "name": "USE_CHUNK_ENCODING",
+    "value": "use-chunk-encoding",
+    "constant": true
+  },
+  {
+    "name": "CONFIG",
+    "value": "config",
+    "constant": true
+  },
+  {
+    "name": "SAVE",
+    "value": "save",
+    "constant": true
+  },
+  {
+    "name": "ADMIN",
+    "value": "admin",
+    "constant": true
+  },
+  {
+    "name": "ACCESS_KEY",
+    "value": "access-key",
+    "constant": true
+  },
+  {
+    "name": "SECRET_KEY",
+    "value": "secret-key",
+    "constant": true
+  },
+  {
+    "name": "BUCKET",
+    "value": "bucket",
+    "constant": true
+  },
+  {
+    "name": "KEY",
+    "value": "key",
+    "constant": true
+  },
+  {
+    "name": "FILE",
+    "value": "file",
+    "constant": true
+  },
+  {
+    "name": "PATH",
+    "value": "path",
+    "constant": true
+  },
+  {
+    "name": "BODY",
+    "value": "body",
+    "constant": true
+  },
+  {
+    "name": "VERSION_ID",
+    "value": "version-id",
+    "constant": true
+  },
+  {
+    "name": "DAYS",
+    "value": "days",
+    "constant": true
+  },
+  {
+    "name": "YEARS",
+    "value": "years",
+    "constant": true
+  },
+  {
+    "name": "DATE",
+    "value": "date",
+    "constant": true
+  },
+  {
+    "name": "UPLOAD_ID",
+    "value": "upload-id",
+    "constant": true
+  },
+  {
+    "name": "PART_SIZE",
+    "value": "part-size",
+    "constant": true
+  },
+  {
+    "name": "START_BYTE",
+    "value": "start-byte",
+    "constant": true
+  },
+  {
+    "name": "END_BYTE",
+    "value": "end-byte",
+    "constant": true
+  },
+  {
+    "name": "SOURCE",
+    "value": "source",
+    "constant": true
+  },
+  {
+    "name": "TARGET",
+    "value": "target",
+    "constant": true
+  },
+  {
+    "name": "SOURCE_KEY",
+    "value": "source-key",
+    "constant": true
+  },
+  {
+    "name": "ACL",
+    "value": "acl",
+    "constant": true
+  },
+  {
+    "name": "BYPASS",
+    "value": "bypass",
+    "constant": true
+  },
+  {
+    "name": "ENCRYPTION_KEY",
+    "value": "encryption-key",
+    "constant": true
+  },
+  {
+    "name": "QUIET",
+    "value": "quiet",
+    "constant": true
+  },
+  {
+    "name": "PREFIX",
+    "value": "prefix",
+    "constant": true
+  },
+  {
+    "name": "SUFFIX",
+    "value": "suffix",
+    "constant": true
+  },
+  {
+    "name": "CONTINUATION_TOKEN",
+    "value": "continuation-token",
+    "constant": true
+  },
+  {
+    "name": "DELIMITER",
+    "value": "delimiter",
+    "constant": true
+  },
+  {
+    "name": "MARKER",
+    "value": "marker",
+    "constant": true
+  },
+  {
+    "name": "MAX_KEYS",
+    "value": "max-keys",
+    "constant": true
+  },
+  {
+    "name": "PART_NUMBER",
+    "value": "part-number",
+    "constant": true
+  },
+  {
+    "name": "VERSIONING",
+    "value": "versioning",
+    "constant": true
+  },
+  {
+    "name": "TAGS",
+    "value": "tag",
+    "constant": true
+  },
+  {
+    "name": "TAG_SET",
+    "value": "tag-set",
+    "constant": true
+  },
+  {
+    "name": "STORAGE_CLASS",
+    "value": "storage-class",
+    "constant": true
+  },
+  {
+    "name": "CURRENT",
+    "value": "current",
+    "constant": true
+  },
+  {
+    "name": "SIZE",
+    "value": "size",
+    "constant": true
+  },
+  {
+    "name": "TIMES",
+    "value": "times",
+    "constant": true
+  },
+  {
+    "name": "ID",
+    "value": "id",
+    "constant": true
+  },
+  {
+    "name": "THREAD_COUNT",
+    "value": "thread",
+    "constant": true
+  },
+  {
+    "name": "COUNT",
+    "value": "count",
+    "constant": true
+  },
+  {
+    "name": "START",
+    "value": "start",
+    "constant": true
+  },
+  {
+    "name": "FLAG",
+    "value": "flag",
+    "constant": true
+  },
+  {
+    "name": "NOT_EMPTY",
+    "value": "not-empty",
+    "constant": true
+  },
+  {
+    "name": "RANGE_LIST",
+    "value": "range-list",
+    "constant": true
+  },
+  {
+    "name": "BUCKET_TYPE",
+    "value": "bucket-type",
+    "constant": true
+  },
+  {
+    "name": "THREAD_PREFIX",
+    "value": "thread-prefix",
+    "constant": true
+  },
+  {
+    "name": "PRINT",
+    "value": "print",
+    "constant": true
+  },
+  {
+    "name": "ALL",
+    "value": "all",
+    "constant": true
+  },
+  {
+    "name": "BULK",
+    "value": "bulk",
+    "constant": true
+  },
+  {
+    "name": "URL",
+    "value": "url",
+    "constant": true
+  },
+  {
+    "name": "USER",
+    "value": "user",
+    "constant": true
+  },
+  {
+    "name": "CHECK",
+    "value": "check",
+    "constant": true
+  },
+  {
+    "name": "OWNERSHIP",
+    "value": "ownership",
+    "constant": true
+  },
+  {
+    "name": "LOCK_ENABLE",
+    "value": "lock-enable",
+    "constant": true
+  },
+  {
+    "name": "LOCK_MODE",
+    "value": "lock-mode",
+    "constant": true
+  },
+  {
+    "name": "DEBUG",
+    "value": "debug",
+    "constant": true
+  },
+  {
+    "name": "CHECKSUM",
+    "value": "checksum",
+    "constant": true
+  },
+  {
+    "name": "CHECKSUM_TYPE",
+    "value": "checksum-type",
+    "constant": true
+  },
+  {
+    "name": "MD5SUM",
+    "value": "md5sum",
+    "constant": true
+  },
+  {
+    "name": "MULTIPART",
+    "value": "multipart",
+    "constant": true
+  },
+  {
+    "name": "READ",
+    "value": "read",
+    "constant": true
+  },
+  {
+    "name": "WRITE",
+    "value": "write",
+    "constant": true
+  },
+  {
+    "name": "DELETE",
+    "value": "delete",
+    "constant": true
+  },
+  {
+    "name": "TARGET_PATH",
+    "value": "target-path",
+    "constant": true
+  },
+  {
+    "name": "ERROR_BUCKET",
+    "value": "--bucket 버킷 이름을 입력해야 합니다.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_FILE_SIZE",
+    "value": "--size 파일 크기를 입력해야 합니다.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_KEY",
+    "value": "--key 객체 이름을 입력해야 합니다.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_CONFIG_PATH",
+    "value": "--file 설정파일 경로를 입력해야 합니다.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_FILE_PATH",
+    "value": "--file 파일 경로를 입력해야 합니다.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_PATH",
+    "value": "--path 파일 경로를 입력해야 합니다.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_VERSION_ID",
+    "value": "--version-id 값이 올바르지 않습니다.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_UPLOAD_ID",
+    "value": "--upload-id 업로드 아이디를 입력해야 합니다.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_FILE",
+    "value": "파일을 찾을 수 없습니다.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_VERSIONING",
+    "value": "--versioning 값을 입력해야 합니다.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_PART_NUMBER",
+    "value": "--part-number 파트번호를 입력해야 합니다.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_SOURCE_BUCKET",
+    "value": "--source 버킷 이름을 입력해야 합니다.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_SOURCE_KEY",
+    "value": "--source-key 객체 이름을 입력해야 합니다.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_ID",
+    "value": "--id 아이디를 입력해야 합니다.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_THREAD_COUNT",
+    "value": "--thread-count 스레드 개수를 입력해야 합니다.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_SIZE",
+    "value": "--size 사이즈를 입력해야 합니다.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_SERVICE_TYPE",
+    "value": "--service-type 서비스 타입을 입력해야 합니다.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_ADDRESS",
+    "value": "--address 주소를 입력해야 합니다.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_PORT",
+    "value": "--port 포트를 입력해야 합니다.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_INVALID_CONFIG",
+    "value": "설정값이 올바르지 않습니다. -? 옵션을 통해 설정값을 확인하세요.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_OWNERSHIP",
+    "value": "--ownership 값을 입력해야 합니다.",
+    "constant": true
+  },
+  {
+    "name": "ERROR_TARGET_PATH",
+    "value": "--target-path 타겟 경로를 입력해야 합니다.",
+    "constant": true
+  },
+  {
+    "name": "CONFIG_USAGE_PREFIX",
+    "value": "\n----- Config Setting -------\n",
+    "constant": true
+  },
+  {
+    "name": "CONFIG_USAGE_SUFFIX",
+    "value": "----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_ACCESS_IPS",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\n[Jenkins]Host = [string] : 호스트\nJenkinsPort = [int] : Jenkins Port\nPort = [int] : 포트\nUser = [string] : 사용자명\nPassword = [string] : 비밀번호\nDatabase = [string] : Database\n[AccessIps]AllFailed = [bool] : 모든 테스트가 실패해야 하는지 여부\nTestListPath = [string] : 테스트 리스트 파일 경로\nJenkinsTestName = [string] : Jenkins Test Name\nS3URLs = [string] : S3 URL\nVolume = [string] : 볼륨 이름\nMainUser = [string] : Main User Name\nSubUser = [string] : Sub User Name\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_COMPARE",
+    "value": "\n----- Config Setting -------\n[Compare]SourceBucket = [string] : 원본 버킷명\nTargetBucket = [string] : 대상 버킷명\nDeleteMarker = [bool] : delete marker 비교 여부\nETagCheck = [bool] : etag 비교 여부\nChecksumCheck = [bool] : checksum 비교 여부\nVersionCheck = [bool] : 버전 비교 여부\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_LIST_OBJECT",
+    "value": "\n----- Config Setting -------\n[ListObj]FileCount = [int] : 스레드 당 생성할 파일 개수\nPrefix = [string] : 조회하거나 생성할 오브젝트 접두어\nTimes = [int] : 테스트 할 시간 (단위 : sec)\nPrepare = [bool] : 테스트 시작전 오브젝트 생성 여부\nThreadCount = [int] : 테스트할 쓰레드 갯수\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_UPLOAD",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\nFileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\nRetry = [int] : 재시도 횟수\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\nThreadCount = [int] : 쓰레드 개수\nFileCount = [int] : 스레드 당 생성할 파일 개수\nDivisionCount[int] : 오브젝트의 폴더 분리 분기\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_DOWNLOAD",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\nFileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\nRetry = [int] : 재시도 횟수\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\nThreadCount = [int] : 쓰레드 개수\nFileCount = [int] : 스레드 당 생성할 파일 개수\nDivisionCount[int] : 오브젝트의 폴더 분리 분기\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_UP_CURL",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\nFileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\nRetry = [int] : 재시도 횟수\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\nThreadCount = [int] : 쓰레드 개수\nFileCount = [int] : 스레드 당 생성할 파일 개수\nDivisionCount[int] : 오브젝트의 폴더 분리 분기\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_DOWN_CURL",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\nFileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\nRetry = [int] : 재시도 횟수\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\nThreadCount = [int] : 쓰레드 개수\nFileCount = [int] : 스레드 당 생성할 파일 개수\nDivisionCount[int] : 오브젝트의 폴더 분리 분기\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_PREPARE",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\nFileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\nRetry = [int] : 재시도 횟수\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\nThreadCount = [int] : 쓰레드 개수\nFileCount = [int] : 스레드 당 생성할 파일 개수\nDivisionCount[int] : 오브젝트의 폴더 분리 분기\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_PUT",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\nFileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\nRetry = [int] : 재시도 횟수\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\nThreadCount = [int] : 쓰레드 개수\nTimes = [int] : 테스트 할 시간(sec)\nDivisionCount[int] : 오브젝트의 폴더 분리 분기\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_HEAD",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\nFileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\nRetry = [int] : 재시도 횟수\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\nThreadCount = [int] : 쓰레드 개수\nFileCount = [int] : 스레드 당 생성할 파일 개수\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_GET",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\nFileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\nRetry = [int] : 재시도 횟수\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\nThreadCount = [int] : 쓰레드 개수\nFileCount = [int] : 스레드 당 생성할 파일 개수\nDivisionCount[int] : 오브젝트의 폴더 분리 분기\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_DELETE",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_DELETE_VERSION",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_DELETE_DIRECTORY",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\nThreadCount = [int] : 쓰레드 개수\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_MIX",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\nFileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\nRetry = [int] : 재시도 횟수\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\nThreadCount = [int] : 쓰레드 개수\nTimes = [int] : 테스트 할 시간(sec)\nDivisionCount[int] : 오브젝트의 폴더 분리 분기\nETagCheck = [bool] : ETag 비교 여부\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_MIX_V2",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\nFileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\nRetry = [int] : 재시도 횟수\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\nThreadCount = [int] : 쓰레드 개수\nFileCount = [int] : 스레드 당 생성할 파일 개수\nTimes = [int] : 테스트 할 시간(sec)\nDivisionCount[int] : 오브젝트의 폴더 분리 분기\nETagCheck = [bool] : ETag 비교 여부\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_PUT_GET",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\nFileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\nRetry = [int] : 재시도 횟수\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\nThreadCount = [int] : 쓰레드 개수\nTimes = [int] : 테스트 할 시간(sec)\nDivisionCount[int] : 오브젝트의 폴더 분리 분기\nETagCheck = [bool] : ETag 비교 여부\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_ALL",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\nFileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\nRetry = [int] : 재시도 횟수\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\nThreadCount = [int] : 쓰레드 개수\nTimes = [int] : 테스트 할 시간(sec)\nDivisionCount[int] : 오브젝트의 폴더 분리 분기\nETagCheck = [bool] : ETag 비교 여부\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_MOVER",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\nFileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\nRetry = [int] : 재시도 횟수\n[Mover]URL = [string] : URL\nUser = [string] : 사용자명\nSourceBucket = [string] : 원본 버킷명\nTargetBucket = [string] : 대상 버킷명\nFileCount = [int] : 스레드 당 생성할 파일 개수\nMaxFileSize = [int] : 이동할 파일의 최대 크기\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_PUT_TAG",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\nFileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\nRetry = [int] : 재시도 횟수\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\nThreadCount = [int] : 쓰레드 개수\nFileCount = [int] : 스레드 당 생성할 파일 개수\nDivisionCount[int] : 오브젝트의 폴더 분리 분기\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_FIND_TAG",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\nFileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\nRetry = [int] : 재시도 횟수\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\nThreadCount = [int] : 쓰레드 개수\nFileCount = [int] : 스레드 당 생성할 파일 개수\nDivisionCount[int] : 오브젝트의 폴더 분리 분기\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_ONLY_GET",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nRetry = [int] : 재시도 횟수\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\nThreadCount = [int] : 쓰레드 개수\nTimes = [int] : 테스트 할 시간(sec)\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_ONLY_HEAD",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nRetry = [int] : 재시도 횟수\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\nThreadCount = [int] : 쓰레드 개수\nTimes = [int] : 테스트 할 시간(sec)\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_ONLY_PUT",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\nFileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\nRetry = [int] : 재시도 횟수\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\nThreadCount = [int] : 쓰레드 개수\nTimes = [int] : 테스트 할 시간(sec)\nDivisionCount[int] : 오브젝트의 폴더 분리 분기\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_MULTI_DELETE",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\n[UpDown]ThreadCount = [int] : 쓰레드 개수\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_USED_SIZE",
+    "value": "\n----- Config Setting -------\n[UsedSize]BucketPrefix = [string] : 버킷 접두어\nFileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\nPartSize = [string] : 멀티파트 업로드 시 파트 크기(ex> 128K, 10M, 1G)\n[DB]\nHost = [string] : 호스트\nPort = [int] : 포트\nUser = [string] : 사용자명\nPassword = [string] : 비밀번호\nDatabase = [string] : Database\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_DUPLICATE",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\nFileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\n[Duplicate]ObjectPath = [string] : 오브젝트 경로\nLoopCount = [int] : 반복 횟수\nObjectCount = [int] : 오브젝트 생성 개수\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_MULTIPART_UPLOAD",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\nFileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\nPartSize = [string] : 멀티파트 업로드 시 파트 크기(ex> 128K, 10M, 1G)\nRetry = [int] : 재시도 횟수\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\nThreadCount = [int] : 쓰레드 개수\nFileCount = [int] : 스레드 당 생성할 파일 개수\nDivisionCount[int] : 오브젝트의 폴더 분리 분기\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_MULTIPART_UPLOAD_V2",
+    "value": "\n----- Config Setting -------\n[Default]BucketName = [string] : 버킷 이름\nObjectPrefix = [string] : 생성할 오브젝트 접두어\nFileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\nPartSize = [string] : 멀티파트 업로드 시 파트 크기(ex> 128K, 10M, 1G)\nRetry = [int] : 재시도 횟수\n[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)\nThreadCount = [int] : 쓰레드 개수\nFileCount = [int] : 스레드 당 생성할 파일 개수\nDivisionCount[int] : 오브젝트의 폴더 분리 분기\n[Main User]\nAccessKey = [string] : AccessKey\nSecretKey = [string] : SecretKey\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_LOCAL_PREPARE",
+    "value": "\n----- Config Setting -------\n[Default]FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\n[UpDown]ThreadCount = [int] : 쓰레드 개수\nFileCount = [int] : 스레드 당 생성할 파일 개수\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_LOCAL_PUT",
+    "value": "\n----- Config Setting -------\n[Default]FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\n[UpDown]ThreadCount = [int] : 쓰레드 개수\nTimes = [int] : 테스트 할 시간(sec)\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_LOCAL_GET",
+    "value": "\n----- Config Setting -------\n[Default]FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\n[UpDown]ThreadCount = [int] : 쓰레드 개수\nTimes = [int] : 테스트 할 시간(sec)\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_LOCAL_GET_V2",
+    "value": "\n----- Config Setting -------\n[Default]FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\n[UpDown]ThreadCount = [int] : 쓰레드 개수\nFileCount = [int] : 스레드 당 생성할 파일 개수\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_LOCAL_PUT_GET",
+    "value": "\n----- Config Setting -------\n[Default]FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)\n[UpDown]ThreadCount = [int] : 쓰레드 개수\nTimes = [int] : 테스트 할 시간(sec)\nETagCheck = [bool] : ETag 비교 여부\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "TEST_USAGE_LOCAL_DELETE",
+    "value": "\n----- Config Setting -------\n[Default][UpDown]ThreadCount = [int] : 쓰레드 개수\n----------------------------\n",
+    "constant": true
+  },
+  {
+    "name": "SERVICE_TYPE",
+    "value": "service-type",
+    "constant": true
+  },
+  {
+    "name": "ADDRESS",
+    "value": "address",
+    "constant": true
+  },
+  {
+    "name": "PORT",
+    "value": "port",
+    "constant": true
+  },
+  {
+    "name": "BACKEND_PAUSE",
+    "value": "pause",
+    "constant": true
+  },
+  {
+    "name": "BACKEND_RESUME",
+    "value": "resume",
+    "constant": true
+  }
+]

@@ -1,0 +1,2408 @@
+[
+  {
+    "args": [],
+    "options": {},
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--help"
+    ],
+    "options": {
+      "Help": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "-?"
+    ],
+    "options": {
+      "Help": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "/h"
+    ],
+    "options": {
+      "Help": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "-help"
+    ],
+    "options": {
+      "Help": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--h"
+    ],
+    "options": {
+      "Help": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "/?"
+    ],
+    "options": {
+      "Help": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--HELP"
+    ],
+    "options": {},
+    "extra": [
+      "--HELP"
+    ],
+    "error": null
+  },
+  {
+    "args": [
+      "---help"
+    ],
+    "options": {},
+    "extra": [
+      "---help"
+    ],
+    "error": null
+  },
+  {
+    "args": [
+      "--version"
+    ],
+    "options": {
+      "Version": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "-v"
+    ],
+    "options": {
+      "Version": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "/version"
+    ],
+    "options": {
+      "Version": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--worker"
+    ],
+    "options": {
+      "Worker": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--controller",
+      "--help"
+    ],
+    "options": {
+      "Help": true,
+      "Controller": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--list-buckets",
+      "--bucket",
+      "b1"
+    ],
+    "options": {
+      "BucketName": "b1",
+      "Menu": "ListBuckets"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--list-buckets",
+      "--bucket=b1"
+    ],
+    "options": {
+      "BucketName": "b1",
+      "Menu": "ListBuckets"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--bucket:b1"
+    ],
+    "options": {
+      "BucketName": "b1"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "-bmybucket"
+    ],
+    "options": {
+      "BucketName": "mybucket"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "-b",
+      "x"
+    ],
+    "options": {
+      "BucketName": "x"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "/bucket",
+      "x"
+    ],
+    "options": {
+      "BucketName": "x"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "/b=x"
+    ],
+    "options": {
+      "BucketName": "x"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "-b:x"
+    ],
+    "options": {
+      "BucketName": "x"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "-b="
+    ],
+    "options": {
+      "BucketName": ""
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--bucket="
+    ],
+    "options": {
+      "BucketName": ""
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--bucket=a=b"
+    ],
+    "options": {
+      "BucketName": "a=b"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--bucket:a:b"
+    ],
+    "options": {
+      "BucketName": "a:b"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--bucket=한글"
+    ],
+    "options": {
+      "BucketName": "한글"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "-b",
+      "--help"
+    ],
+    "options": {
+      "BucketName": "--help"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--bucket"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Missing required value for option '--bucket'.",
+      "optionName": "--bucket"
+    }
+  },
+  {
+    "args": [
+      "-b"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Missing required value for option '-b'.",
+      "optionName": "-b"
+    }
+  },
+  {
+    "args": [
+      "--part-number"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Missing required value for option '--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--part-number",
+      "--bucket"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `--bucket' to type Int32 for option `--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--foo"
+    ],
+    "options": {},
+    "extra": [
+      "--foo"
+    ],
+    "error": null
+  },
+  {
+    "args": [
+      "foo"
+    ],
+    "options": {},
+    "extra": [
+      "foo"
+    ],
+    "error": null
+  },
+  {
+    "args": [
+      "-"
+    ],
+    "options": {},
+    "extra": [
+      "-"
+    ],
+    "error": null
+  },
+  {
+    "args": [
+      "/"
+    ],
+    "options": {},
+    "extra": [
+      "/"
+    ],
+    "error": null
+  },
+  {
+    "args": [
+      "--"
+    ],
+    "options": {},
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--",
+      "--help"
+    ],
+    "options": {},
+    "extra": [
+      "--help"
+    ],
+    "error": null
+  },
+  {
+    "args": [
+      "--bucket",
+      "--",
+      "x"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Missing required value for option '--bucket'.",
+      "optionName": "--bucket"
+    }
+  },
+  {
+    "args": [
+      "a",
+      "--help",
+      "b"
+    ],
+    "options": {
+      "Help": true
+    },
+    "extra": [
+      "a",
+      "b"
+    ],
+    "error": null
+  },
+  {
+    "args": [
+      "--list-buckets",
+      "--create-bucket"
+    ],
+    "options": {
+      "Menu": "CreateBucket"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-number=x"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `x' to type Int32 for option `--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--part-number",
+      "12"
+    ],
+    "options": {
+      "PartNumber": 12
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-number= 12 "
+    ],
+    "options": {
+      "PartNumber": 12
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-number=0x1F"
+    ],
+    "options": {
+      "PartNumber": 31
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-number=0X1f"
+    ],
+    "options": {
+      "PartNumber": 31
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-number=#ff"
+    ],
+    "options": {
+      "PartNumber": 255
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-number=&hFF"
+    ],
+    "options": {
+      "PartNumber": 255
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-number=&H10"
+    ],
+    "options": {
+      "PartNumber": 16
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-number=0xFFFFFFFF"
+    ],
+    "options": {
+      "PartNumber": -1
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-number=0x100000000"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `0x100000000' to type Int32 for option `--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--part-number=0x7fffffff"
+    ],
+    "options": {
+      "PartNumber": 2147483647
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-number=+5"
+    ],
+    "options": {
+      "PartNumber": 5
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-number=-5"
+    ],
+    "options": {
+      "PartNumber": -5
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-number=- 5"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `- 5' to type Int32 for option `--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--part-number=2147483647"
+    ],
+    "options": {
+      "PartNumber": 2147483647
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-number=2147483648"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `2147483648' to type Int32 for option `--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--part-number=-2147483648"
+    ],
+    "options": {
+      "PartNumber": -2147483648
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-number=-2147483649"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `-2147483649' to type Int32 for option `--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--part-number="
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `' to type Int32 for option `--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--part-number= "
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string ` ' to type Int32 for option `--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--part-number=1.0"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `1.0' to type Int32 for option `--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--part-number=0x"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `0x' to type Int32 for option `--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--part-number=#"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `#' to type Int32 for option `--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--part-number=#-1"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `#-1' to type Int32 for option `--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--part-number=#+a"
+    ],
+    "options": {
+      "PartNumber": 10
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-number=0x0x10"
+    ],
+    "options": {
+      "PartNumber": 16
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-number=0x 10"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `0x 10' to type Int32 for option `--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--part-number=1_000"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `1_000' to type Int32 for option `--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--part-number=1,000"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `1,000' to type Int32 for option `--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--part-number=\u00A012\u00A0"
+    ],
+    "options": {
+      "PartNumber": 12
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-number=\u3000 7"
+    ],
+    "options": {
+      "PartNumber": 7
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-number=１２"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `１２' to type Int32 for option `--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--part-number=007"
+    ],
+    "options": {
+      "PartNumber": 7
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-number=12\u0000"
+    ],
+    "options": {
+      "PartNumber": 12
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-number=1e3"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `1e3' to type Int32 for option `--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--part-number=--5"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `--5' to type Int32 for option `--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--part-number=5-"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `5-' to type Int32 for option `--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--part-number=(5)"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `(5)' to type Int32 for option `--part-number'.",
+      "optionName": "--part-number"
+    }
+  },
+  {
+    "args": [
+      "--print=false"
+    ],
+    "options": {
+      "Print": false
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--print=TRUE"
+    ],
+    "options": {},
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--print= True "
+    ],
+    "options": {},
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--print=yes"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `yes' to type Boolean for option `--print'.",
+      "optionName": "--print"
+    }
+  },
+  {
+    "args": [
+      "--print=1"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `1' to type Boolean for option `--print'.",
+      "optionName": "--print"
+    }
+  },
+  {
+    "args": [
+      "--print="
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `' to type Boolean for option `--print'.",
+      "optionName": "--print"
+    }
+  },
+  {
+    "args": [
+      "--use-chunk-encoding=true"
+    ],
+    "options": {
+      "UseChunkEncoding": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--use-chunk-encoding=False"
+    ],
+    "options": {},
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--print=fAlSe"
+    ],
+    "options": {
+      "Print": false
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--admin+"
+    ],
+    "options": {
+      "Admin": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--admin-"
+    ],
+    "options": {
+      "Admin": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--bucket+"
+    ],
+    "options": {
+      "BucketName": "--bucket+"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--bucket-"
+    ],
+    "options": {},
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--port-"
+    ],
+    "options": {
+      "Port": 0
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--port+"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `--port+' to type Int32 for option `--port+'.",
+      "optionName": "--port+"
+    }
+  },
+  {
+    "args": [
+      "--print-"
+    ],
+    "options": {
+      "Print": false
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--print+"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `--print+' to type Boolean for option `--print+'.",
+      "optionName": "--print+"
+    }
+  },
+  {
+    "args": [
+      "--admin+=x"
+    ],
+    "options": {
+      "Admin": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "-v+"
+    ],
+    "options": {
+      "Version": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "-b-"
+    ],
+    "options": {},
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--test-"
+    ],
+    "options": {},
+    "extra": [
+      "--test-"
+    ],
+    "error": null
+  },
+  {
+    "args": [
+      "-vh"
+    ],
+    "options": {
+      "Help": true,
+      "Version": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "-vx"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Cannot use unregistered option 'x' in bundle '-vx'.",
+      "optionName": null
+    }
+  },
+  {
+    "args": [
+      "-hb"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Missing required value for option '-b'.",
+      "optionName": "-b"
+    }
+  },
+  {
+    "args": [
+      "-hbname"
+    ],
+    "options": {
+      "Help": true,
+      "BucketName": "name"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "-kfoo=bar"
+    ],
+    "options": {
+      "Key": "foo=bar"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "-kfoo:bar"
+    ],
+    "options": {
+      "Key": "foo:bar"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "-x"
+    ],
+    "options": {},
+    "extra": [
+      "-x"
+    ],
+    "error": null
+  },
+  {
+    "args": [
+      "-xv"
+    ],
+    "options": {},
+    "extra": [
+      "-xv"
+    ],
+    "error": null
+  },
+  {
+    "args": [
+      "-r10"
+    ],
+    "options": {
+      "Read": 10
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "-r",
+      "5",
+      "-w5",
+      "-d=3"
+    ],
+    "options": {
+      "Read": 5,
+      "Write": 5,
+      "Delete": 3
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "-rx"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Could not convert string `x' to type Int32 for option `-r'.",
+      "optionName": "-r"
+    }
+  },
+  {
+    "args": [
+      "-vr"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Missing required value for option '-r'.",
+      "optionName": "-r"
+    }
+  },
+  {
+    "args": [
+      "-vr7"
+    ],
+    "options": {
+      "Version": true,
+      "Read": 7
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "-c"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Missing required value for option '-c'.",
+      "optionName": "-c"
+    }
+  },
+  {
+    "args": [
+      "-vc",
+      "my.ini"
+    ],
+    "options": {
+      "Version": true,
+      "ConfigPath": "my.ini"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--admin=xyz"
+    ],
+    "options": {
+      "Admin": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--help=1"
+    ],
+    "options": {
+      "Help": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--list-buckets:x"
+    ],
+    "options": {
+      "Menu": "ListBuckets"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-size=5M"
+    ],
+    "options": {
+      "PartSize": 5000000
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-size=1KiB"
+    ],
+    "options": {
+      "PartSize": 1024
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--size=10k"
+    ],
+    "options": {
+      "FileSize": 10000
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--start-byte=0"
+    ],
+    "options": {
+      "StartByte": 0
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--end-byte=1G"
+    ],
+    "options": {
+      "EndByte": 1000000000
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--size=2TB"
+    ],
+    "options": {
+      "FileSize": 2000000000000
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--size=3mi"
+    ],
+    "options": {
+      "FileSize": 3145728
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--size=4Gi"
+    ],
+    "options": {
+      "FileSize": 4294967296
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--size=1T"
+    ],
+    "options": {
+      "FileSize": 1000000000000
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--range-list=8K,2M,1"
+    ],
+    "options": {
+      "RangeList": [
+        8000,
+        2000000,
+        1
+      ]
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--range-list=1K",
+      "--range-list=2K"
+    ],
+    "options": {
+      "RangeList": [
+        1000,
+        2000
+      ]
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--range-list="
+    ],
+    "options": {
+      "RangeList": [
+        0
+      ]
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-size="
+    ],
+    "options": {
+      "PartSize": 0
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-size-"
+    ],
+    "options": {
+      "PartSize": 0
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-size= "
+    ],
+    "options": {
+      "PartSize": 0
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--thread=0"
+    ],
+    "options": {
+      "Thread": 1
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--thread=-3"
+    ],
+    "options": {
+      "Thread": 1
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--thread=8"
+    ],
+    "options": {
+      "Thread": 8
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--count=0"
+    ],
+    "options": {
+      "Count": 1
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--count=5"
+    ],
+    "options": {
+      "Count": 5
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--start=-1"
+    ],
+    "options": {},
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--start=4"
+    ],
+    "options": {
+      "StartCount": 4
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--times=60"
+    ],
+    "options": {
+      "Times": 60
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--read=1",
+      "--write=2",
+      "--delete=3"
+    ],
+    "options": {
+      "Read": 1,
+      "Write": 2,
+      "Delete": 3
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--port=9000"
+    ],
+    "options": {
+      "Port": 9000
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--checksum-type=crc32"
+    ],
+    "options": {
+      "ChecksumType": "CRC32"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--checksum-type= sha256 "
+    ],
+    "options": {
+      "ChecksumType": "SHA256"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--checksum-type=None"
+    ],
+    "options": {},
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--checksum-type=none"
+    ],
+    "options": {},
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--checksum-type=Crc32c"
+    ],
+    "options": {
+      "ChecksumType": "CRC32C"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--checksum-type=crc64nvme"
+    ],
+    "options": {
+      "ChecksumType": "CRC64NVME"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--checksum-type=SHA1"
+    ],
+    "options": {
+      "ChecksumType": "SHA1"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--checksum-type=md5"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "지원하지 않는 체크섬 타입입니다. CRC32, CRC32C, CRC64NVME, SHA1, SHA256, None 중 하나를 지정하세요.",
+      "optionName": "checksum-type"
+    }
+  },
+  {
+    "args": [
+      "--checksum-type-"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "지원하지 않는 체크섬 타입입니다. CRC32, CRC32C, CRC64NVME, SHA1, SHA256, None 중 하나를 지정하세요.",
+      "optionName": "checksum-type"
+    }
+  },
+  {
+    "args": [
+      "--checksum-type="
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "지원하지 않는 체크섬 타입입니다. CRC32, CRC32C, CRC64NVME, SHA1, SHA256, None 중 하나를 지정하세요.",
+      "optionName": "checksum-type"
+    }
+  },
+  {
+    "args": [
+      "--checksum"
+    ],
+    "options": {
+      "Checksum": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--md5sum"
+    ],
+    "options": {
+      "Md5sum": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--bucket-type=3"
+    ],
+    "options": {
+      "BucketType": 3
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--bucket-type=9"
+    ],
+    "options": {},
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--bucket-type=-1"
+    ],
+    "options": {},
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--bucket-type=0"
+    ],
+    "options": {
+      "BucketType": 0
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--lock-enable"
+    ],
+    "options": {
+      "Flag": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--quiet"
+    ],
+    "options": {
+      "Flag": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--flag=false",
+      "--quiet"
+    ],
+    "options": {
+      "Flag": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--quiet",
+      "--flag=false"
+    ],
+    "options": {},
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--set-sse-s3=false"
+    ],
+    "options": {
+      "Menu": "Encryption"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--set-sse-s3=true"
+    ],
+    "options": {
+      "Flag": true,
+      "Menu": "Encryption"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--clear=true"
+    ],
+    "options": {
+      "Flag": true,
+      "Menu": "Clear"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--clear=false"
+    ],
+    "options": {
+      "Menu": "Clear"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--bucket-clear=b2"
+    ],
+    "options": {
+      "BucketName": "b2",
+      "Menu": "BucketClear"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--bucket=b1",
+      "--marker-clear=b3"
+    ],
+    "options": {
+      "BucketName": "b3",
+      "Menu": "MarkerClear"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--current-clear=c",
+      "--bucket=d"
+    ],
+    "options": {
+      "BucketName": "d",
+      "Menu": "CurrentClear"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--noncurrent-clear=n"
+    ],
+    "options": {
+      "BucketName": "n",
+      "Menu": "NoncurrentClear"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--pause=Replication"
+    ],
+    "options": {
+      "ServiceType": "Replication",
+      "Menu": "S3backendPause"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--resume"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "Mono.Options.OptionException",
+      "message": "Missing required value for option '--resume'.",
+      "optionName": "--resume"
+    }
+  },
+  {
+    "args": [
+      "--resume=Lifecycle"
+    ],
+    "options": {
+      "ServiceType": "Lifecycle",
+      "Menu": "S3backendResume"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--test-compare=false"
+    ],
+    "options": {
+      "Menu": "CompareTest"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--test-compare=true"
+    ],
+    "options": {
+      "Another": true,
+      "Menu": "CompareTest"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--test-find-tag=k=v"
+    ],
+    "options": {
+      "Tags": "k=v",
+      "Menu": "FindTagTest"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--test-file-list=list.txt"
+    ],
+    "options": {
+      "Path": "list.txt",
+      "Menu": "FileListDownloadTest"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--test-put"
+    ],
+    "options": {
+      "Menu": "PutTest"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--test-local-multipart-put-get"
+    ],
+    "options": {
+      "Menu": "LocalMultipartPutGetTest"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--manual-upload"
+    ],
+    "options": {
+      "Menu": "ManualUpload"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--set-object-lock"
+    ],
+    "options": {
+      "Menu": "SetObjectLock"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--marker=m1"
+    ],
+    "options": {
+      "Darker": "m1"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--tag=a=b",
+      "--tag-set=f.json"
+    ],
+    "options": {
+      "Tags": "f.json"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--tag-set=f.json",
+      "--tag=a=b"
+    ],
+    "options": {
+      "Tags": "a=b"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--ownership=ObjectWriter"
+    ],
+    "options": {
+      "Ownership": "ObjectWriter"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--ownership=foo"
+    ],
+    "options": {
+      "Ownership": "foo"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--ownership-"
+    ],
+    "options": {},
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--bypass"
+    ],
+    "options": {
+      "Bypass": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--config=x.ini",
+      "-s",
+      "out"
+    ],
+    "options": {
+      "ConfigPath": "x.ini",
+      "Save": "out"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "-c",
+      "y.ini"
+    ],
+    "options": {
+      "ConfigPath": "y.ini"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--target-path=/tmp/x"
+    ],
+    "options": {
+      "TargetPath": "/tmp/x"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--max-keys=10"
+    ],
+    "options": {
+      "MaxKeys": 10
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--days=7",
+      "--years=1"
+    ],
+    "options": {
+      "Days": 7,
+      "Years": 1
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--date=2026-01-01"
+    ],
+    "options": {
+      "Date": "2026-01-01"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--lock-mode=GOVERNANCE"
+    ],
+    "options": {
+      "LockMode": "GOVERNANCE"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--access-key=ak",
+      "--secret-key=sk",
+      "--url=http://h:1",
+      "--user=u"
+    ],
+    "options": {
+      "Url": "http://h:1",
+      "AccessKey": "ak",
+      "SecretKey": "sk",
+      "UserName": "u"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--encryption-key=e"
+    ],
+    "options": {
+      "EncryptionKey": "e"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--source=s",
+      "--target=t",
+      "--source-key=sk",
+      "-k",
+      "key",
+      "-f",
+      "file",
+      "-p",
+      "path"
+    ],
+    "options": {
+      "Source": "s",
+      "Target": "t",
+      "Key": "key",
+      "SourceKey": "sk",
+      "FilePath": "file",
+      "Path": "path"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--upload-id=u1",
+      "--version-id=v1",
+      "--storage-class=GLACIER",
+      "--versioning=Enabled",
+      "--acl=private"
+    ],
+    "options": {
+      "StrACL": "private",
+      "Versioning": "Enabled",
+      "VersionId": "v1",
+      "StorageClass": "GLACIER",
+      "UploadId": "u1"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--prefix=p",
+      "--suffix=s",
+      "--delimiter=/",
+      "--continuation-token=t",
+      "--body=hello",
+      "--id=i"
+    ],
+    "options": {
+      "Body": "hello",
+      "Id": "i",
+      "Prefix": "p",
+      "Suffix": "s",
+      "Delimiter": "/",
+      "ContinuationToken": "t"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--thread-prefix=tp",
+      "--service-type=Logging",
+      "--address=127.0.0.1",
+      "--all",
+      "--bulk",
+      "--check"
+    ],
+    "options": {
+      "ALL": true,
+      "Check": true,
+      "Bulk": true,
+      "ThreadPrefix": "tp",
+      "ServiceType": "Logging",
+      "Address": "127.0.0.1"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--multipart",
+      "--not-empty",
+      "--debug"
+    ],
+    "options": {
+      "Random": true,
+      "Multipart": true,
+      "Debug": true
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--get-object",
+      "-b",
+      "bk",
+      "-k",
+      "obj",
+      "--version-id",
+      "v"
+    ],
+    "options": {
+      "BucketName": "bk",
+      "Key": "obj",
+      "VersionId": "v",
+      "Menu": "GetObject"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--put-object",
+      "--bucket=b",
+      "--key=k",
+      "--file=f.bin",
+      "--checksum-type=crc32",
+      "--use-chunk-encoding=true"
+    ],
+    "options": {
+      "BucketName": "b",
+      "Key": "k",
+      "FilePath": "f.bin",
+      "ChecksumType": "CRC32",
+      "UseChunkEncoding": true,
+      "Menu": "PutObject"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--part-size=abc"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "System.FormatException",
+      "message": "The input string 'abc' was not in a correct format.",
+      "optionName": null
+    }
+  },
+  {
+    "args": [
+      "--size=99999999999999999999"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "System.OverflowException",
+      "message": "Value was either too large or too small for an Int64.",
+      "optionName": null
+    }
+  },
+  {
+    "args": [
+      "--size=12XB"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "System.FormatException",
+      "message": "The input string '12XB' was not in a correct format.",
+      "optionName": null
+    }
+  },
+  {
+    "args": [
+      "--range-list-"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "System.NullReferenceException",
+      "message": "Object reference not set to an instance of an object.",
+      "optionName": null
+    }
+  },
+  {
+    "args": [
+      "--range-list=1K,x"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "System.FormatException",
+      "message": "The input string 'x' was not in a correct format.",
+      "optionName": null
+    }
+  },
+  {
+    "args": [
+      "--start-byte=1.5M"
+    ],
+    "options": null,
+    "extra": null,
+    "error": {
+      "type": "System.FormatException",
+      "message": "The input string '1.5' was not in a correct format.",
+      "optionName": null
+    }
+  },
+  {
+    "args": [
+      "--size=-5"
+    ],
+    "options": {
+      "FileSize": -5
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--checksum-type=crc32\n"
+    ],
+    "options": {
+      "ChecksumType": "CRC32"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--bucket=x\n"
+    ],
+    "options": {
+      "BucketName": "x"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--bucket=x\ny"
+    ],
+    "options": {},
+    "extra": [
+      "--bucket=x\ny"
+    ],
+    "error": null
+  },
+  {
+    "args": [
+      "--help\n"
+    ],
+    "options": {},
+    "extra": [
+      "--help\n"
+    ],
+    "error": null
+  },
+  {
+    "args": [
+      "--bucket=x\r"
+    ],
+    "options": {
+      "BucketName": "x\r"
+    },
+    "extra": [],
+    "error": null
+  },
+  {
+    "args": [
+      "--=x"
+    ],
+    "options": {},
+    "extra": [
+      "--=x"
+    ],
+    "error": null
+  },
+  {
+    "args": [
+      "--:x"
+    ],
+    "options": {},
+    "extra": [
+      "--:x"
+    ],
+    "error": null
+  },
+  {
+    "args": [
+      "-=x"
+    ],
+    "options": {},
+    "extra": [
+      "-=x"
+    ],
+    "error": null
+  },
+  {
+    "args": [
+      "/=x"
+    ],
+    "options": {},
+    "extra": [
+      "/=x"
+    ],
+    "error": null
+  }
+]

@@ -15,3 +15,4 @@ tests/parity/multisystem/** -text
 tests/parity/portal/** -text
 tests/parity/mover/** -text
 tests/parity/zeromq/** -text
+tests/parity/cli/** -text

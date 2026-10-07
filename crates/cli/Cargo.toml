@@ -7,6 +7,9 @@ repository.workspace = true
 publish.workspace = true
 build = "build.rs"
 
+[lib]
+path = "src/lib.rs"
+
 [[bin]]
 name = "awscli-rest"
 path = "src/main.rs"
@@ -15,10 +18,25 @@ path = "src/main.rs"
 name = "parity_version"
 path = "../../tests/parity/version.rs"
 
+[[test]]
+name = "parity_cli_parse"
+path = "../../tests/parity/cli_parse.rs"
+
+[[test]]
+name = "parity_cli_help"
+path = "../../tests/parity/cli_help.rs"
+
 [dependencies]
+awscli-rest-common.workspace = true
+awscli-rest-config.workspace = true
+awscli-rest-s3.workspace = true
+thiserror.workspace = true
 chrono.workspace = true
 tracing.workspace = true
 tracing-subscriber.workspace = true
 
 [lints]
 workspace = true
+
+[dev-dependencies]
+serde_json.workspace = true

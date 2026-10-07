@@ -487,7 +487,12 @@ dependencies = [
 name = "awscli-rest-cli"
 version = "0.1.0"
 dependencies = [
+ "awscli-rest-common",
+ "awscli-rest-config",
+ "awscli-rest-s3",
  "chrono",
+ "serde_json",
+ "thiserror 2.0.21",
  "tracing",
  "tracing-subscriber",
 ]

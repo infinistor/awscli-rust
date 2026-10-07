@@ -1,8 +1,6 @@
 //! awscli-rest 진입점 (TESTCore `Program.cs`).
 
-mod app;
-mod logging;
-mod version;
+use awscli_rest_cli::{app, logging};
 
 fn main() {
     logging::init();

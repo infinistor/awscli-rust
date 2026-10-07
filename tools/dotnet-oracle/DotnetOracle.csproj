@@ -24,6 +24,10 @@
 			<HintPath>$(TestCoreBin)\log4net.dll</HintPath>
 			<Private>false</Private>
 		</Reference>
+		<Reference Include="Mono.Options">
+			<HintPath>$(TestCoreBin)\Mono.Options.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
 		<Reference Include="NetMQ">
 			<HintPath>$(TestCoreBin)\NetMQ.dll</HintPath>
 			<Private>false</Private>
