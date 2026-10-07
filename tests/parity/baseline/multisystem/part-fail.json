@@ -1,0 +1,22 @@
+{
+  "quit": true,
+  "requests": [
+    "old POST /my-bucket/TH_001/00000/obj_00000?uploads HTTP/1.1",
+    "old PUT /my-bucket/TH_001/00000/obj_00000?partNumber=1&uploadId=up-1 HTTP/1.1",
+    "old PUT /my-bucket/TH_001/00000/obj_00000?partNumber=2&uploadId=up-1 HTTP/1.1"
+  ],
+  "counters": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+  ],
+  "logs": [
+    "Amazon.S3.AmazonS3Exception: Error making request with Error Code ServiceUnavailable and Http Status Code ServiceUnavailable. No further error information was returned by the service."
+  ],
+  "error": null
+}

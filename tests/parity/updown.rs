@@ -7,143 +7,20 @@
 
 use std::collections::BTreeSet;
 use std::path::Path;
+#[path = "support/route_server.rs"]
+mod route_server;
+
 use std::sync::{Arc, Mutex, OnceLock};
 
 use awscli_rest_clients::UpDownClient;
 use awscli_rest_config::{EnumBucketTypes, UpDownClientConfig, UserData};
 use awscli_rest_model::TestClient;
+use route_server::{Hook, RouteServer, routes};
 use serde_json::Value;
-use tokio::io::{AsyncReadExt, AsyncWriteExt};
-use tokio::net::{TcpListener, TcpStream};
 use tracing::field::{Field, Visit};
 use tracing::{Event, Level, Subscriber};
 use tracing_subscriber::Layer;
 use tracing_subscriber::layer::{Context, SubscriberExt};
-
-#[derive(Clone)]
-struct Route {
-    contains: String,
-    status: u16,
-    body: String,
-    headers: Vec<(String, String)>,
-}
-
-fn routes(spec: &Value) -> Vec<Route> {
-    spec["routes"]
-        .as_array()
-        .unwrap()
-        .iter()
-        .map(|r| Route {
-            contains: r["contains"].as_str().unwrap().to_string(),
-            status: r["status"].as_u64().unwrap() as u16,
-            body: r
-                .get("responseBody")
-                .and_then(Value::as_str)
-                .unwrap_or("")
-                .to_string(),
-            headers: r
-                .get("responseHeaders")
-                .and_then(Value::as_object)
-                .map(|h| {
-                    h.iter()
-                        .map(|(k, v)| (k.clone(), v.as_str().unwrap().to_string()))
-                        .collect()
-                })
-                .unwrap_or_default(),
-        })
-        .collect()
-}
-
-type Hook = Arc<dyn Fn() + Send + Sync>;
-
-async fn read_line(socket: &mut TcpStream) -> Option<String> {
-    let mut line = Vec::new();
-    let mut byte = [0u8; 1];
-    while !line.ends_with(b"\r\n") {
-        if socket.read(&mut byte).await.ok()? == 0 {
-            return None;
-        }
-        line.push(byte[0]);
-    }
-    String::from_utf8(line).ok()
-}
-
-async fn serve(
-    mut socket: TcpStream,
-    routes: Arc<Vec<Route>>,
-    lines: Arc<Mutex<Vec<String>>>,
-    hook: Hook,
-) -> Option<()> {
-    loop {
-        let mut head = Vec::new();
-        loop {
-            let line = read_line(&mut socket).await?;
-            if line == "\r\n" {
-                break;
-            }
-            head.push(line.trim_end().to_string());
-        }
-        let header = |name: &str| {
-            head.iter().skip(1).find_map(|h| {
-                let (n, v) = h.split_once(':')?;
-                n.eq_ignore_ascii_case(name).then(|| v.trim().to_string())
-            })
-        };
-        if header("Expect").is_some_and(|v| v.eq_ignore_ascii_case("100-continue")) {
-            socket
-                .write_all(b"HTTP/1.1 100 Continue\r\n\r\n")
-                .await
-                .ok()?;
-        }
-        if header("Transfer-Encoding").is_some_and(|v| v.eq_ignore_ascii_case("chunked")) {
-            loop {
-                let size_line = read_line(&mut socket).await?;
-                let size = usize::from_str_radix(size_line.trim().split(';').next()?, 16).ok()?;
-                if size == 0 {
-                    while read_line(&mut socket).await? != "\r\n" {}
-                    break;
-                }
-                let mut chunk = vec![0u8; size + 2];
-                socket.read_exact(&mut chunk).await.ok()?;
-            }
-        } else {
-            let length: usize = header("Content-Length")
-                .and_then(|v| v.parse().ok())
-                .unwrap_or(0);
-            let mut body = vec![0u8; length];
-            socket.read_exact(&mut body).await.ok()?;
-        }
-        let line = head[0].clone();
-        lines.lock().unwrap().push(line.clone());
-        hook();
-
-        let route = routes
-            .iter()
-            .find(|r| line.contains(&r.contains))
-            .cloned()
-            .unwrap();
-        let extra: String = route
-            .headers
-            .iter()
-            .map(|(n, v)| format!("{n}: {v}\r\n"))
-            .collect();
-        let has_length = route
-            .headers
-            .iter()
-            .any(|(n, _)| n.eq_ignore_ascii_case("Content-Length"));
-        let length = if has_length {
-            String::new()
-        } else {
-            format!("Content-Length: {}\r\n", route.body.len())
-        };
-        let response = format!("HTTP/1.1 {} Status\r\n{extra}{length}\r\n", route.status);
-        socket.write_all(response.as_bytes()).await.ok()?;
-        if !line.starts_with("HEAD ") {
-            socket.write_all(route.body.as_bytes()).await.ok()?;
-        }
-        socket.flush().await.ok()?;
-    }
-}
 
 /// ERROR 로그 메시지를 모은다.
 #[derive(Default)]
@@ -224,8 +101,6 @@ async fn run_case(name: &str, logs: &Arc<ErrorLogs>) -> Vec<String> {
         .unwrap_or("hello world");
     std::fs::write(&file_path, content).unwrap();
 
-    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let port = listener.local_addr().unwrap().port();
     let lines = Arc::new(Mutex::new(Vec::new()));
     let client_slot: Arc<OnceLock<Arc<UpDownClient>>> = Arc::new(OnceLock::new());
     let quit_after = int("quitAfter", 0) as usize;
@@ -233,7 +108,7 @@ async fn run_case(name: &str, logs: &Arc<ErrorLogs>) -> Vec<String> {
     let hook: Hook = {
         let slot = client_slot.clone();
         let counter = counter.clone();
-        Arc::new(move || {
+        Arc::new(move |_: &str| {
             let n = counter.fetch_add(1, std::sync::atomic::Ordering::SeqCst) + 1;
             if n == quit_after
                 && let Some(client) = slot.get()
@@ -242,15 +117,8 @@ async fn run_case(name: &str, logs: &Arc<ErrorLogs>) -> Vec<String> {
             }
         })
     };
-    let routes = Arc::new(routes(&spec));
-    let server = {
-        let lines = lines.clone();
-        tokio::spawn(async move {
-            while let Ok((socket, _)) = listener.accept().await {
-                tokio::spawn(serve(socket, routes.clone(), lines.clone(), hook.clone()));
-            }
-        })
-    };
+    let server = RouteServer::start(routes(&spec["routes"]), lines.clone(), hook).await;
+    let port = server.port;
 
     let bucket_type = EnumBucketTypes::from_name(
         spec.get("bucketType")
@@ -328,7 +196,7 @@ async fn run_case(name: &str, logs: &Arc<ErrorLogs>) -> Vec<String> {
         other => panic!("알 수 없는 op: {other}"),
     };
     tokio::time::sleep(std::time::Duration::from_millis(50)).await;
-    server.abort();
+    drop(server);
 
     let mut failures = Vec::new();
     // `mix`·`mix-v2`는 읽을 객체를 무작위로 고르므로 GET 대상 이름은 비교하지 않는다.

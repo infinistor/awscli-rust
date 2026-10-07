@@ -1,0 +1,20 @@
+{
+  "quit": true,
+  "requests": [
+    "gateway PUT /my-bucket/TH_001/00000/obj_00000 HTTP/1.1"
+  ],
+  "counters": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+  ],
+  "logs": [
+    "Amazon.S3.AmazonS3Exception: boom"
+  ],
+  "error": null
+}

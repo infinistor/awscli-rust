@@ -1,0 +1,19 @@
+{
+  "quit": true,
+  "requests": [
+    "gateway PUT /my-bucket/TH_001/00000/obj_00000 HTTP/1.1",
+    "gateway PUT /my-bucket/TH_001/00000/obj_00001 HTTP/1.1"
+  ],
+  "counters": [
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2
+  ],
+  "logs": [],
+  "error": null
+}

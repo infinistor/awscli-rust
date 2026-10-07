@@ -420,6 +420,7 @@ dependencies = [
  "awscli-rest-config",
  "awscli-rest-model",
  "awscli-rest-s3",
+ "base64",
  "chrono",
  "hex",
  "md-5",

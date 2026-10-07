@@ -1,0 +1,24 @@
+{
+  "quit": true,
+  "requests": [
+    "old PUT /my-bucket/TH_001/00000/obj_00000 HTTP/1.1",
+    "gateway GET /my-bucket/TH_001/00000/obj_00000 HTTP/1.1",
+    "new PUT /my-bucket/TH_001/00000/obj_00001 HTTP/1.1",
+    "gateway GET /my-bucket/TH_001/00000/obj_00001 HTTP/1.1"
+  ],
+  "counters": [
+    2,
+    0,
+    0,
+    2,
+    0,
+    0,
+    0,
+    2
+  ],
+  "logs": [
+    "GetObject Failed. S3://my-bucket/TH_001/00000/obj_00000 - md5sum does not match!(XrY7u+Ae7tCTyyK7j1rNww== != 5eb63bbbe01eeed093cb22bb8f5acdc3)",
+    "GetObject Failed. S3://my-bucket/TH_001/00000/obj_00001 - md5sum does not match!(XrY7u+Ae7tCTyyK7j1rNww== != 5eb63bbbe01eeed093cb22bb8f5acdc3)"
+  ],
+  "error": null
+}

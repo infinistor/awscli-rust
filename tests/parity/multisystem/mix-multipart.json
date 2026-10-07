@@ -1,0 +1,120 @@
+{
+  "systems": {
+    "old": [
+      {
+        "contains": "?uploads",
+        "status": 200,
+        "responseBody": "<InitiateMultipartUploadResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Bucket>my-bucket</Bucket><Key>k</Key><UploadId>up-1</UploadId></InitiateMultipartUploadResult>"
+      },
+      {
+        "contains": "partNumber=",
+        "status": 200,
+        "responseHeaders": {
+          "ETag": "\"p\""
+        }
+      },
+      {
+        "contains": "POST /",
+        "status": 200,
+        "responseBody": "<CompleteMultipartUploadResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Bucket>my-bucket</Bucket><Key>k</Key><ETag>\"c\"</ETag></CompleteMultipartUploadResult>"
+      },
+      {
+        "contains": "DELETE ",
+        "status": 204
+      },
+      {
+        "contains": "PUT ",
+        "status": 200,
+        "responseHeaders": {
+          "ETag": "\"5eb63bbbe01eeed093cb22bb8f5acdc3\""
+        }
+      },
+      {
+        "contains": "GET /",
+        "status": 200,
+        "responseBody": "hello world",
+        "responseHeaders": {
+          "ETag": "\"5eb63bbbe01eeed093cb22bb8f5acdc3\""
+        }
+      }
+    ],
+    "new": [
+      {
+        "contains": "?uploads",
+        "status": 200,
+        "responseBody": "<InitiateMultipartUploadResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Bucket>my-bucket</Bucket><Key>k</Key><UploadId>up-1</UploadId></InitiateMultipartUploadResult>"
+      },
+      {
+        "contains": "partNumber=",
+        "status": 200,
+        "responseHeaders": {
+          "ETag": "\"p\""
+        }
+      },
+      {
+        "contains": "POST /",
+        "status": 200,
+        "responseBody": "<CompleteMultipartUploadResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Bucket>my-bucket</Bucket><Key>k</Key><ETag>\"c\"</ETag></CompleteMultipartUploadResult>"
+      },
+      {
+        "contains": "DELETE ",
+        "status": 204
+      },
+      {
+        "contains": "PUT ",
+        "status": 200,
+        "responseHeaders": {
+          "ETag": "\"5eb63bbbe01eeed093cb22bb8f5acdc3\""
+        }
+      },
+      {
+        "contains": "GET /",
+        "status": 200,
+        "responseBody": "hello world",
+        "responseHeaders": {
+          "ETag": "\"5eb63bbbe01eeed093cb22bb8f5acdc3\""
+        }
+      }
+    ],
+    "gateway": [
+      {
+        "contains": "?uploads",
+        "status": 200,
+        "responseBody": "<InitiateMultipartUploadResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Bucket>my-bucket</Bucket><Key>k</Key><UploadId>up-1</UploadId></InitiateMultipartUploadResult>"
+      },
+      {
+        "contains": "partNumber=",
+        "status": 200,
+        "responseHeaders": {
+          "ETag": "\"p\""
+        }
+      },
+      {
+        "contains": "POST /",
+        "status": 200,
+        "responseBody": "<CompleteMultipartUploadResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Bucket>my-bucket</Bucket><Key>k</Key><ETag>\"c\"</ETag></CompleteMultipartUploadResult>"
+      },
+      {
+        "contains": "DELETE ",
+        "status": 204
+      },
+      {
+        "contains": "PUT ",
+        "status": 200,
+        "responseHeaders": {
+          "ETag": "\"5eb63bbbe01eeed093cb22bb8f5acdc3\""
+        }
+      },
+      {
+        "contains": "GET /",
+        "status": 200,
+        "responseBody": "hello world",
+        "responseHeaders": {
+          "ETag": "\"5eb63bbbe01eeed093cb22bb8f5acdc3\""
+        }
+      }
+    ]
+  },
+  "fileCount": 1,
+  "op": "mix-multipart"
+}

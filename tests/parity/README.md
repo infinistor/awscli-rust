@@ -26,7 +26,7 @@ dotnet tools/dotnet-oracle/bin/Debug/net10.0/DotnetOracle.dll config tests/parit
 pwsh tools/dotnet-oracle/gen-updown-cases.ps1   # UpDownClient 사례와 기준 출력
 ```
 
-`78004ff` 빌드로 만든 기준 출력(`version.txt`, `help.txt`, ini·config·checksum·sign·uri·ksan·s3·json·stats)은 그 뒤 HEAD(`8d27dc2`)까지 바뀐 파일(`UpDownClient.cs`, `MultiSystemClient.cs`, `MultiSystemTest.cs`)과 관계없어 그대로 쓴다. `updown/`은 HEAD 빌드로 만들었다.
+`78004ff` 빌드로 만든 기준 출력(`version.txt`, `help.txt`, ini·config·checksum·sign·uri·ksan·s3·json·stats)은 그 뒤 HEAD(`8d27dc2`)까지 바뀐 파일(`UpDownClient.cs`, `MultiSystemClient.cs`, `MultiSystemTest.cs`)과 관계없어 그대로 쓴다. `updown/`, `local/`, `multisystem/`은 HEAD 빌드로 만들었다.
 
 Windows에서 .NET 콘솔은 파이프 출력에 시스템 코드 페이지(CP949)를 쓰므로 `TestCore.exe` 출력은 UTF-8로 바꿔서 수집한다(오라클은 UTF-8로 출력한다).
 

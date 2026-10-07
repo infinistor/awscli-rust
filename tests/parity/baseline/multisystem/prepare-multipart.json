@@ -1,0 +1,32 @@
+{
+  "quit": true,
+  "requests": [
+    "old POST /my-bucket/TH_001/00000/obj_00000?uploads HTTP/1.1",
+    "old PUT /my-bucket/TH_001/00000/obj_00000?partNumber=1&uploadId=up-1 HTTP/1.1",
+    "old PUT /my-bucket/TH_001/00000/obj_00000?partNumber=2&uploadId=up-1 HTTP/1.1",
+    "old PUT /my-bucket/TH_001/00000/obj_00000?partNumber=3&uploadId=up-1 HTTP/1.1",
+    "old POST /my-bucket/TH_001/00000/obj_00000?uploadId=up-1 HTTP/1.1",
+    "new POST /my-bucket/TH_001/00000/obj_00001?uploads HTTP/1.1",
+    "new PUT /my-bucket/TH_001/00000/obj_00001?partNumber=1&uploadId=up-1 HTTP/1.1",
+    "new PUT /my-bucket/TH_001/00000/obj_00001?partNumber=2&uploadId=up-1 HTTP/1.1",
+    "new PUT /my-bucket/TH_001/00000/obj_00001?partNumber=3&uploadId=up-1 HTTP/1.1",
+    "new POST /my-bucket/TH_001/00000/obj_00001?uploadId=up-1 HTTP/1.1",
+    "old POST /my-bucket/TH_001/00000/obj_00002?uploads HTTP/1.1",
+    "old PUT /my-bucket/TH_001/00000/obj_00002?partNumber=1&uploadId=up-1 HTTP/1.1",
+    "old PUT /my-bucket/TH_001/00000/obj_00002?partNumber=2&uploadId=up-1 HTTP/1.1",
+    "old PUT /my-bucket/TH_001/00000/obj_00002?partNumber=3&uploadId=up-1 HTTP/1.1",
+    "old POST /my-bucket/TH_001/00000/obj_00002?uploadId=up-1 HTTP/1.1"
+  ],
+  "counters": [
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    9,
+    3
+  ],
+  "logs": [],
+  "error": null
+}

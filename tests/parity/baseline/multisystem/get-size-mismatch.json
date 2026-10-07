@@ -1,0 +1,20 @@
+{
+  "quit": true,
+  "requests": [
+    "gateway GET /my-bucket/TH_001/00000/obj_00000 HTTP/1.1"
+  ],
+  "counters": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+  ],
+  "logs": [
+    "GetObject Failed. S3://my-bucket/TH_001/00000/obj_00000 - FileSize does not match!(5 != 11)"
+  ],
+  "error": null
+}
