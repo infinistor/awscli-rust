@@ -9,7 +9,7 @@
 use std::fmt::Debug;
 
 use awscli_rest_common::to_dotnet_json;
-use chrono::{DateTime, Timelike, Utc};
+use chrono::{DateTime, Utc};
 use serde::ser::{Serialize, SerializeMap, SerializeSeq, Serializer};
 
 /// 원본 `LINE`(74자).
@@ -61,15 +61,7 @@ pub fn invariant_time(time: &aws_sdk_s3::primitives::DateTime) -> String {
 /// ko-KR `DateTime.ToString()`: `yyyy-MM-dd tt h:mm:ss`(`tt`는 오전/오후, UTC).
 pub fn ko_kr_time(time: &aws_sdk_s3::primitives::DateTime) -> String {
     utc_time(time).map_or_else(String::new, |t| {
-        let (pm, hour) = t.hour12();
-        format!(
-            "{} {} {}:{:02}:{:02}",
-            t.format("%Y-%m-%d"),
-            if pm { "오후" } else { "오전" },
-            hour,
-            t.minute(),
-            t.second()
-        )
+        awscli_rest_common::dotnet_format::ko_kr_datetime(&t)
     })
 }
 

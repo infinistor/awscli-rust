@@ -20,6 +20,8 @@ use awscli_rest_config::{AccessIpsConfig, PortalConfig, UserData};
 use awscli_rest_s3::S3Client;
 use tracing::{error, info};
 
+use awscli_rest_common::dotnet_format::bool_text as dotnet_bool;
+
 use crate::ScenarioError;
 use crate::input::{null_reference, read_all_text};
 use crate::util::get_new_bucket;
@@ -643,11 +645,6 @@ fn index_out_of_range() -> ScenarioError {
         "System.ArgumentOutOfRangeException",
         "Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')",
     )
-}
-
-/// .NET `bool.ToString()`.
-fn dotnet_bool(value: bool) -> &'static str {
-    if value { "True" } else { "False" }
 }
 
 #[cfg(test)]

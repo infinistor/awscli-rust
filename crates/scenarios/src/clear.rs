@@ -18,6 +18,7 @@
 use std::sync::Arc;
 
 use aws_sdk_s3::types::{AccessControlPolicy, Grant, Grantee, ObjectLockEnabled, Permission, Type};
+use awscli_rest_common::dotnet_format::bool_text as dotnet_bool;
 use awscli_rest_common::dotnet_http::status_name;
 use awscli_rest_s3::{S3Client, S3Error};
 use tokio::sync::Semaphore;
@@ -25,16 +26,10 @@ use tokio::task::JoinSet;
 use tracing::{error, info, warn};
 
 use crate::ScenarioError;
+use crate::input::null_reference;
 
 /// 삭제할 (키, 버전 ID).
 type Keys = Vec<(String, Option<String>)>;
-
-use crate::input::null_reference;
-
-/// .NET `bool.ToString()`
-fn dotnet_bool(value: bool) -> &'static str {
-    if value { "True" } else { "False" }
-}
 
 /// 원본 `ClearTest`. `_tasks`는 `WaitTasks`에서 실행할 삭제 작업이다.
 pub struct ClearTest {

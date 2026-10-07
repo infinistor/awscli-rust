@@ -45,6 +45,28 @@ pub fn decimal_text(value: Decimal) -> String {
     }
 }
 
+/// .NET `bool.ToString()`: `True`/`False`.
+pub fn bool_text(value: bool) -> &'static str {
+    if value { "True" } else { "False" }
+}
+
+/// ko-KR `DateTime.ToString()`: `yyyy-MM-dd tt h:mm:ss`(`tt`는 오전/오후). 받은 시각을 그대로 쓴다.
+pub fn ko_kr_datetime<Tz: chrono::TimeZone>(time: &chrono::DateTime<Tz>) -> String
+where
+    Tz::Offset: std::fmt::Display,
+{
+    use chrono::Timelike;
+    let (pm, hour) = time.hour12();
+    format!(
+        "{} {} {}:{:02}:{:02}",
+        time.format("%Y-%m-%d"),
+        if pm { "오후" } else { "오전" },
+        hour,
+        time.minute(),
+        time.second()
+    )
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

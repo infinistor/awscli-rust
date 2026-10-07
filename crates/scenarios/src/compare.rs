@@ -25,7 +25,7 @@ use aws_sdk_s3::operation::list_object_versions::ListObjectVersionsOutput;
 use aws_sdk_s3::types::{ChecksumType, Tag};
 use awscli_rest_config::{CompareConfig, UserData};
 use awscli_rest_s3::S3Client;
-use chrono::{DateTime, Timelike, Utc};
+use chrono::{DateTime, Utc};
 use tracing::{error, info};
 
 use crate::ScenarioError;
@@ -38,15 +38,7 @@ fn client_of(user: &UserData) -> S3Client {
 
 /// .NET `DateTime.ToString()`(ko-KR, `yyyy-MM-dd tt h:mm:ss`). 시각은 UTC 그대로.
 pub(crate) fn ko_kr_datetime(time: DateTime<Utc>) -> String {
-    let (pm, hour) = time.hour12();
-    format!(
-        "{} {} {}:{:02}:{:02}",
-        time.format("%Y-%m-%d"),
-        if pm { "오후" } else { "오전" },
-        hour,
-        time.minute(),
-        time.second()
-    )
+    awscli_rest_common::dotnet_format::ko_kr_datetime(&time)
 }
 
 /// SDK 시각을 [`ko_kr_datetime`]으로. `DateTime?`가 `null`이면 빈 문자열(문자열 보간).
