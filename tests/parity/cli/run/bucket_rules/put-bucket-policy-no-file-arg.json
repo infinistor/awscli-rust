@@ -1,0 +1,7 @@
+{
+  "args" : [
+    "--put-bucket-policy",
+    "-b",
+    "bucket1"
+  ]
+}

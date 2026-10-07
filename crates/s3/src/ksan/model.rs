@@ -25,7 +25,7 @@ fn parse_bool(element: &Element) -> Result<bool, XmlError> {
     match element.text.trim() {
         "true" | "1" => Ok(true),
         "false" | "0" => Ok(false),
-        _ => Err(XmlError(element.position)),
+        _ => Err(XmlError(element.end_position)),
     }
 }
 
@@ -35,7 +35,7 @@ fn parse_i32(element: &Element) -> Result<i32, XmlError> {
         .text
         .trim()
         .parse()
-        .map_err(|_| XmlError(element.position))
+        .map_err(|_| XmlError(element.end_position))
 }
 
 /// 원본 `TagIndexingConfiguration`.
@@ -149,7 +149,7 @@ impl Content {
                 "Key" => content.key = Some(child.text.clone()),
                 "LastModified" => {
                     content.last_modified = DotnetDateTime::parse_xml(&child.text)
-                        .map_err(|_| XmlError(child.position))?;
+                        .map_err(|_| XmlError(child.end_position))?;
                 }
                 "Owner" => {
                     content.owner = Some(Owner {

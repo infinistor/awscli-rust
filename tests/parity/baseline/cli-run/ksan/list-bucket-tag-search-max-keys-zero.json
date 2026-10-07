@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ListBucketTagSearch Start",
+    "ERROR <TIME> : System.ArgumentException: MaxKeys 의 최소값은 1 입니다."
+  ]
+}

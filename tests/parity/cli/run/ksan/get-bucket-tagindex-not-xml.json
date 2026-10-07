@@ -1,0 +1,14 @@
+{
+  "args" : [
+    "--get-bucket-tagindex",
+    "-b",
+    "bucket1"
+  ],
+  "routes" : [
+    {
+      "contains" : "?tag-index HTTP",
+      "responseBody" : "not xml",
+      "status" : 200
+    }
+  ]
+}

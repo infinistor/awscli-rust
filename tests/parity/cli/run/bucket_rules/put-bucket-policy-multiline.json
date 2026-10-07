@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--put-bucket-policy",
+    "-b",
+    "bucket1",
+    "-f",
+    "in.json"
+  ],
+  "files" : {
+    "in.json" : "{\r\n  \"Version\": \"2012-10-17\",\r\n  \"Statement\": []\r\n}\r\n"
+  },
+  "routes" : [
+    {
+      "contains" : "?policy HTTP",
+      "status" : 200
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "args" : [
+    "--put-bucket-tagging",
+    "-b",
+    "bucket1",
+    "-f",
+    "none.json"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--get-bucket-policy-status",
+    "-b",
+    "bucket1"
+  ],
+  "dump" : true,
+  "routes" : [
+    {
+      "contains" : "?policyStatus HTTP",
+      "responseBody" : "",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 404
+    }
+  ]
+}

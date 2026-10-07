@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--put-bucket-tagging",
+    "-b",
+    "bucket1",
+    "-f",
+    "in.json"
+  ],
+  "files" : {
+    "in.json" : "{\"TagSet\":[{\"Key\":\"0\",\"Value\":\"0\"},{\"Key\":\"env\",\"Value\":\"test & <dev>\"},{\"Key\":\"한글\",\"Value\":\"값\"}]}"
+  },
+  "routes" : [
+    {
+      "contains" : "?tagging HTTP",
+      "status" : 200
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "args" : [
+    "--set-sse-s3=true",
+    "-b",
+    "bucket1"
+  ],
+  "routes" : [
+    {
+      "contains" : "?encryption HTTP",
+      "status" : 200
+    }
+  ]
+}

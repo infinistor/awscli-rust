@@ -1,0 +1,12 @@
+{
+  "args" : [
+    "--put-bucket-lifecycle",
+    "-b",
+    "bucket1",
+    "-f",
+    "in.json"
+  ],
+  "files" : {
+    "in.json" : "{\"Rules\":[{\"Id\":\"r\""
+  }
+}

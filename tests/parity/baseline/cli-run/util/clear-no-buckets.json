@@ -1,0 +1,23 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Clear Start",
+    "INFO  <TIME> : AllClear(, 1000, False, 20)",
+    "INFO  <TIME> : AllClear completed - Total deleted objects: 0",
+    "INFO  <TIME> : Clear complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

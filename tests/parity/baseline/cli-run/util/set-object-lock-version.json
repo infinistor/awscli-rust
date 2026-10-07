@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<LegalHold><Status>ON</Status></LegalHold>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/obj.txt",
+      "query": [
+        "legal-hold",
+        "versionId=ver%201"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Set Object Legal Hold (ON) Start",
+    "INFO  <TIME> : obj.txt Set Object Legal Hold (ON)! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

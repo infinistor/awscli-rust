@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--get-bucket-lifecycle",
+    "-b",
+    "bucket1",
+    "--print=false"
+  ],
+  "routes" : [
+    {
+      "contains" : "?lifecycle HTTP",
+      "responseBody" : "<LifecycleConfiguration xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Rule><ID>rule1</ID><Filter><Prefix>logs/</Prefix></Filter><Status>Enabled</Status><Expiration><Days>30</Days></Expiration><NoncurrentVersionExpiration><NoncurrentDays>7</NoncurrentDays><NewerNoncurrentVersions>2</NewerNoncurrentVersions></NoncurrentVersionExpiration></Rule><Rule><ID>rule2</ID><Filter><Prefix></Prefix></Filter><Status>Disabled</Status><Expiration><Date>2030-01-02T00:00:00.000Z</Date></Expiration><AbortIncompleteMultipartUpload><DaysAfterInitiation>3</DaysAfterInitiation></AbortIncompleteMultipartUpload></Rule><Rule><ID>rule3</ID><Status>Enabled</Status><Expiration><ExpiredObjectDeleteMarker>true</ExpiredObjectDeleteMarker></Expiration></Rule></LifecycleConfiguration>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

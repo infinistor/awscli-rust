@@ -1,0 +1,16 @@
+{
+  "args" : [
+    "--list-bucket-tagsearch",
+    "-b",
+    "bucket1",
+    "--tag",
+    "k:v"
+  ],
+  "routes" : [
+    {
+      "contains" : "list-tag-search",
+      "responseBody" : "nope",
+      "status" : 200
+    }
+  ]
+}

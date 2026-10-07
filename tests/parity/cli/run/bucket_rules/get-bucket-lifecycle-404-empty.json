@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--get-bucket-lifecycle",
+    "-b",
+    "bucket1"
+  ],
+  "dump" : true,
+  "routes" : [
+    {
+      "contains" : "?lifecycle HTTP",
+      "responseBody" : "",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 404
+    }
+  ]
+}

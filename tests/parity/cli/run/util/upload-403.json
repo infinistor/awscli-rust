@@ -1,0 +1,24 @@
+{
+  "args" : [
+    "--upload",
+    "-b",
+    "bucket1",
+    "-f",
+    "small.txt",
+    "-k",
+    "k"
+  ],
+  "files" : {
+    "small.txt" : "hello upload"
+  },
+  "routes" : [
+    {
+      "contains" : "PUT /bucket1/k",
+      "responseBody" : "<Error><Code>AccessDenied</Code><Message>Access Denied</Message><RequestId>REQ1</RequestId></Error>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 403
+    }
+  ]
+}

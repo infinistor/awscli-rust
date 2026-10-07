@@ -1,0 +1,21 @@
+{
+  "args" : [
+    "--download",
+    "-b",
+    "bucket1",
+    "-k",
+    "obj.txt",
+    "-f",
+    "out/sub/file.bin"
+  ],
+  "routes" : [
+    {
+      "contains" : "GET /bucket1/obj.txt",
+      "responseBody" : "hello",
+      "responseHeaders" : {
+        "ETag" : "\"5d41402abc4b2a76b9719d911017c592\""
+      },
+      "status" : 200
+    }
+  ]
+}

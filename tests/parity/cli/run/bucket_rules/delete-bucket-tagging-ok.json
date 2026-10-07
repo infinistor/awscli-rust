@@ -1,0 +1,13 @@
+{
+  "args" : [
+    "--delete-bucket-tagging",
+    "-b",
+    "bucket1"
+  ],
+  "routes" : [
+    {
+      "contains" : "?tagging HTTP",
+      "status" : 204
+    }
+  ]
+}

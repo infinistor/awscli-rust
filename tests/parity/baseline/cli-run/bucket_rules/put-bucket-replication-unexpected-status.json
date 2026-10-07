@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<ReplicationConfiguration><Role>arn:aws:iam::123456789012:role/rep</Role><Rule><DeleteMarkerReplication><Status>Disabled</Status></DeleteMarkerReplication><Destination><Account>123456789012</Account><Bucket>arn:aws:s3:::TargetBucketName</Bucket><StorageClass>STANDARD</StorageClass></Destination><ID>Rule1</ID><Priority>1</Priority><Status>Enabled</Status></Rule></ReplicationConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "replication"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketReplication Start",
+    "ERROR <TIME> : bucket1 Put Bucket Replication failed(NoContent)",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

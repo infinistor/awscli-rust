@@ -1,0 +1,23 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "encoding-type=url",
+        "list-tag-search",
+        "max-keys=1000",
+        "tag=k%3Av"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ListBucketTagSearch Start",
+    "ERROR <TIME> : System.InvalidOperationException: There is an error in XML document (1, 102)."
+  ]
+}

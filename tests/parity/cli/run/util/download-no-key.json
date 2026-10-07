@@ -1,0 +1,9 @@
+{
+  "args" : [
+    "--download",
+    "-b",
+    "bucket1",
+    "-f",
+    "out.txt"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "args" : [
+    "--del-object-lock",
+    "-b",
+    "bucket1",
+    "-k",
+    "a b/한글+x&y.txt"
+  ],
+  "routes" : [
+    {
+      "contains" : "?legal-hold",
+      "status" : 200
+    }
+  ]
+}

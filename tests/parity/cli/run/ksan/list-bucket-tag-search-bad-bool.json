@@ -1,0 +1,19 @@
+{
+  "args" : [
+    "--list-bucket-tagsearch",
+    "-b",
+    "bucket1",
+    "--tag",
+    "k:v"
+  ],
+  "routes" : [
+    {
+      "contains" : "list-tag-search",
+      "responseBody" : "<ListBucketTagSearchResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><IsTruncated>maybe</IsTruncated><Contents><Key>k</Key></Contents></ListBucketTagSearchResult>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

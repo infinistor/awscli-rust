@@ -1,0 +1,53 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "lifecycle"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : GetBucketLifecycleConfiguration Start",
+    "{",
+    "  \"Rules\": [",
+    "    {",
+    "      \"Id\": \"t\",",
+    "      \"Status\": \"Enabled\",",
+    "      \"Expiration\": {",
+    "        \"Days\": 1,",
+    "        \"Date\": null,",
+    "        \"ExpiredObjectDeleteMarker\": null",
+    "      },",
+    "      \"NoncurrentVersionExpiration\": null,",
+    "      \"Filter\": {",
+    "        \"Prefix\": null",
+    "      },",
+    "      \"AbortIncompleteMultipartUpload\": null",
+    "    },",
+    "    {",
+    "      \"Id\": \"and\",",
+    "      \"Status\": \"Enabled\",",
+    "      \"Expiration\": {",
+    "        \"Days\": 1,",
+    "        \"Date\": null,",
+    "        \"ExpiredObjectDeleteMarker\": null",
+    "      },",
+    "      \"NoncurrentVersionExpiration\": null,",
+    "      \"Filter\": {",
+    "        \"Prefix\": null",
+    "      },",
+    "      \"AbortIncompleteMultipartUpload\": null",
+    "    }",
+    "  ]",
+    "}",
+    "INFO  <TIME> : bucket1 Get Bucket Lifecycle! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--upload",
+    "-b",
+    "bucket1",
+    "-f",
+    "sub/inner.dat"
+  ],
+  "files" : {
+    "sub/inner.dat" : "hello upload"
+  },
+  "routes" : [
+    {
+      "contains" : "PUT /bucket1/inner.dat",
+      "status" : 200
+    }
+  ]
+}

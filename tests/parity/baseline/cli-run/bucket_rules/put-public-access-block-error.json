@@ -1,0 +1,20 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": "<PublicAccessBlockConfiguration><BlockPublicAcls>true</BlockPublicAcls><BlockPublicPolicy>true</BlockPublicPolicy><IgnorePublicAcls>true</IgnorePublicAcls><RestrictPublicBuckets>false</RestrictPublicBuckets></PublicAccessBlockConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "publicAccessBlock"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutPublicAccessBlock Start",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: Access Denied"
+  ]
+}

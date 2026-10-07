@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--get-public-access-block",
+    "-b",
+    "bucket1"
+  ],
+  "dump" : true,
+  "routes" : [
+    {
+      "contains" : "?publicAccessBlock HTTP",
+      "responseBody" : "<PublicAccessBlockConfiguration xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><BlockPublicAcls>true</BlockPublicAcls><IgnorePublicAcls>true</IgnorePublicAcls><BlockPublicPolicy>false</BlockPublicPolicy><RestrictPublicBuckets>false</RestrictPublicBuckets></PublicAccessBlockConfiguration>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

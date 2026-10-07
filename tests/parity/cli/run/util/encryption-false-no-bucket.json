@@ -1,0 +1,5 @@
+{
+  "args" : [
+    "--set-sse-s3=false"
+  ]
+}

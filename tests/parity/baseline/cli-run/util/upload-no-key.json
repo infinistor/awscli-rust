@@ -1,0 +1,19 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "12 bytes md5=bb90d3de01263ed27b959cb2eff027f9",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/small.txt",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Upload Start",
+    "INFO  <TIME> : Upload : complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/bucket1/",
+      "query": [
+        "publicAccessBlock"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : DeletePublicAccessBlock Start",
+    "ERROR <TIME> : bucket1 Delete Bucket AccessBlock failed(OK)",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

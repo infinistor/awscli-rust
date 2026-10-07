@@ -1,0 +1,12 @@
+{
+  "args" : [
+    "--put-public-access-block",
+    "-b",
+    "bucket1",
+    "-f",
+    "in.json"
+  ],
+  "files" : {
+    "in.json" : "{\"BlockPublicAcls\":tru"
+  }
+}

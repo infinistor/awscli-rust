@@ -1,0 +1,19 @@
+{
+  "args" : [
+    "--set-object-lock",
+    "-b",
+    "bucket1",
+    "-k",
+    "obj.txt"
+  ],
+  "routes" : [
+    {
+      "contains" : "?legal-hold HTTP",
+      "responseBody" : "<Error><Code>AccessDenied</Code><Message>Access Denied</Message><RequestId>REQ1</RequestId></Error>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 403
+    }
+  ]
+}

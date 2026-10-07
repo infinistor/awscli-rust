@@ -1,0 +1,20 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": "<TagIndexingConfiguration><Status>Enabled</Status></TagIndexingConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1",
+      "query": [
+        "tag-index"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketTagIndex Start",
+    "ERROR <TIME> : System.ArgumentException: Stream was not readable."
+  ]
+}

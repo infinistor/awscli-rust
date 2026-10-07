@@ -1,0 +1,14 @@
+{
+  "args" : [
+    "--upload",
+    "-b",
+    "bucket1",
+    "-f",
+    "empty.bin",
+    "-k",
+    "empty.bin"
+  ],
+  "files" : {
+    "empty.bin" : ""
+  }
+}

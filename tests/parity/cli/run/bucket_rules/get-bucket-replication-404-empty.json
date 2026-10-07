@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--get-bucket-replication",
+    "-b",
+    "bucket1"
+  ],
+  "dump" : true,
+  "routes" : [
+    {
+      "contains" : "?replication HTTP",
+      "responseBody" : "",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 404
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "ERROR <TIME> : System.Text.Json.JsonException: The JSON value could not be converted to System.Nullable`1[System.Int32]. Path: $.Rules[0].Expiration.Days | LineNumber: 0 | BytePositionInLine: 44."
+  ]
+}

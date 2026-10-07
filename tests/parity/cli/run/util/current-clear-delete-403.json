@@ -1,0 +1,23 @@
+{
+  "args" : [
+    "--current-clear=bucket1"
+  ],
+  "routes" : [
+    {
+      "contains" : "GET /bucket1/",
+      "responseBody" : "<ListBucketResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>bucket1</Name><Prefix></Prefix><Marker></Marker><MaxKeys>2</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>c.txt</Key><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>&quot;e&quot;</ETag><Size>1</Size><StorageClass>STANDARD</StorageClass></Contents><Contents><Key>d.txt</Key><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>&quot;e&quot;</ETag><Size>1</Size><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    },
+    {
+      "contains" : "?delete HTTP",
+      "responseBody" : "<Error><Code>AccessDenied</Code><Message>Access Denied</Message><RequestId>REQ1</RequestId></Error>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 403
+    }
+  ]
+}

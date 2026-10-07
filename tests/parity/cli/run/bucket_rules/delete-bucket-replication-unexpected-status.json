@@ -1,0 +1,13 @@
+{
+  "args" : [
+    "--delete-bucket-replication",
+    "-b",
+    "bucket1"
+  ],
+  "routes" : [
+    {
+      "contains" : "?replication HTTP",
+      "status" : 200
+    }
+  ]
+}

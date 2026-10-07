@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<PublicAccessBlockConfiguration></PublicAccessBlockConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "publicAccessBlock"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutPublicAccessBlock Start",
+    "INFO  <TIME> : bucket1 Put Public Access Block! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

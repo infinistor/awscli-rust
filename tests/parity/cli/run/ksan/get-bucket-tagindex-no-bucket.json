@@ -1,0 +1,15 @@
+{
+  "args" : [
+    "--get-bucket-tagindex"
+  ],
+  "routes" : [
+    {
+      "contains" : "?tag-index HTTP",
+      "responseBody" : "<TagIndexingConfiguration xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Status>Enabled</Status></TagIndexingConfiguration>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

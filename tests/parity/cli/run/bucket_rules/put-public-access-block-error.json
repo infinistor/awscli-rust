@@ -1,0 +1,22 @@
+{
+  "args" : [
+    "--put-public-access-block",
+    "-b",
+    "bucket1",
+    "-f",
+    "in.json"
+  ],
+  "files" : {
+    "in.json" : "{\"BlockPublicAcls\":true,\"IgnorePublicAcls\":true,\"BlockPublicPolicy\":true,\"RestrictPublicBuckets\":false}"
+  },
+  "routes" : [
+    {
+      "contains" : "?publicAccessBlock HTTP",
+      "responseBody" : "<Error><Code>AccessDenied</Code><Message>Access Denied</Message><RequestId>REQ1</RequestId></Error>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 403
+    }
+  ]
+}

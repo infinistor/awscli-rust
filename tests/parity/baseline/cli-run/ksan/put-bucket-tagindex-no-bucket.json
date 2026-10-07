@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketTagIndex Start",
+    "ERROR <TIME> : System.ArgumentException: 버킷 이름이 비어있습니다."
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<Delete><Object><Key>m1</Key><VersionId>v1</VersionId></Object><Object><Key>m2</Key><VersionId>v2</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/bucket1/",
+      "query": [
+        "delete"
+      ]
+    },
+    {
+      "body": "<Delete><Object><Key>m3</Key><VersionId>v3</VersionId></Object><Object><Key>m4</Key><VersionId>v4</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/bucket1/",
+      "query": [
+        "delete"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "key-marker=",
+        "max-keys=1000",
+        "version-id-marker=",
+        "versions"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "key-marker=b.log",
+        "max-keys=1000",
+        "version-id-marker=v2",
+        "versions"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : MarkerClear Start",
+    "INFO  <TIME> : MarkerClear(bucket1)",
+    "INFO  <TIME> : WaitTasks(2)",
+    "INFO  <TIME> : DeleteObjects(bucket1, 2) success",
+    "INFO  <TIME> : DeleteObjects(bucket1, 2) success",
+    "INFO  <TIME> : Finish",
+    "INFO  <TIME> : MarkerClear completed - Total deleted objects: 4",
+    "INFO  <TIME> : MarkerClear(bucket1) : complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

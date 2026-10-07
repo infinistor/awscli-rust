@@ -1,0 +1,9 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "ERROR <TIME> : System.Text.Json.JsonException: 'tru' is an invalid JSON literal. Expected the literal 'true'. Path: $.BlockPublicAcls | LineNumber: 0 | BytePositionInLine: 22."
+  ]
+}

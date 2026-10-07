@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<TagIndexingConfiguration><Status>Enabled</Status></TagIndexingConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1",
+      "query": [
+        "tag-index"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketTagIndex Start",
+    "INFO  <TIME> : Success! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

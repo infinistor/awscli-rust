@@ -1,0 +1,7 @@
+{
+  "args" : [
+    "--upload",
+    "-b",
+    "bucket1"
+  ]
+}

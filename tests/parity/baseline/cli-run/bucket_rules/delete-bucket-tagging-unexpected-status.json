@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/bucket1/",
+      "query": [
+        "tagging"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : DeleteBucketTagging Start",
+    "ERROR <TIME> : bucket1 Delete Bucket Tagging failed(OK)",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--put-public-access-block",
+    "-b",
+    "bucket1",
+    "-f",
+    "in.json"
+  ],
+  "files" : {
+    "in.json" : "{\"BlockPublicAcls\":true,\"IgnorePublicAcls\":true,\"BlockPublicPolicy\":true,\"RestrictPublicBuckets\":false}"
+  },
+  "routes" : [
+    {
+      "contains" : "?publicAccessBlock HTTP",
+      "status" : 204
+    }
+  ]
+}

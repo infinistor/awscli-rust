@@ -1,0 +1,9 @@
+{
+  "args" : [
+    "--download",
+    "-k",
+    "obj.txt",
+    "-f",
+    "out.txt"
+  ]
+}

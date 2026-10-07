@@ -1,0 +1,9 @@
+{
+  "args" : [
+    "--put-bucket-lifecycle",
+    "-b",
+    "bucket1",
+    "-f",
+    "none.json"
+  ]
+}
