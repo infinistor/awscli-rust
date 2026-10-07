@@ -1,0 +1,24 @@
+{
+  "exitCode": 0,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Local Sequential Read Test Initialize",
+    "INFO  <TIME> : Local Sequential Read Test Start",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " [READ V2 TEST FINAL RESULTS]",
+    " Total Target    :         4",
+    " Read Success    :         4",
+    " Read Error      :         0",
+    " Remaining       :         0",
+    " Total Average   :<N> file/sec",
+    " Total Bandwidth :<N>/s",
+    " Success Ratio   :   100.000 %",
+    " Total Time      :<N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : Local Sequential Read Test End",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

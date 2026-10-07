@@ -634,6 +634,7 @@ dependencies = [
  "chrono",
  "md-5",
  "rand 0.9.5",
+ "rust_decimal",
  "tempfile",
  "tokio",
  "tokio-util",

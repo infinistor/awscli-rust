@@ -1,0 +1,16 @@
+{
+  "exitCode": 0,
+  "outputs": {
+    "target": [
+      "<없음>"
+    ]
+  },
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Local Sequential Read Test Initialize",
+    "ERROR <TIME> : Target directory not found: target",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

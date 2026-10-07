@@ -1,0 +1,17 @@
+{
+  "exitCode": 0,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Local PutGet Test Initialize",
+    "INFO  <TIME> : Local PutGet Test Start",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " [MIX TEST FINAL RESULTS]",
+    " Total Time       :<N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : Local PutGet Test End",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

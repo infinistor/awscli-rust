@@ -1,0 +1,23 @@
+{
+  "exitCode": 0,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Local Delete Test Initialize",
+    "INFO  <TIME> : Local Delete Test Start",
+    "WARN  <TIME> : Thread 0: No files found in target directory",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " [DELETE TEST FINAL RESULTS]",
+    " Delete Success  :         0",
+    " Delete Error    :         0",
+    " Total Average   :<N> file/sec",
+    " Total Bandwidth :<N>/s",
+    " Success Ratio   :     0.000 %",
+    " Total Time      :<N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : Local Delete Test End",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

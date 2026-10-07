@@ -1,0 +1,19 @@
+{
+  "exitCode": 0,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Local Random Read Test Initialize",
+    "INFO  <TIME> : Local Random Read Test Start",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " [READ TEST FINAL RESULTS]",
+    " Total Average   :<N> file/sec",
+    " Total Bandwidth :<N>/s",
+    " Total Time      :<N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : Local Random Read Test End",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

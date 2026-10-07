@@ -1,0 +1,20 @@
+{
+  "exitCode": 0,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Local Put Test Initialize",
+    "INFO  <TIME> : Local Put Test Start",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " [WRITE TEST FINAL RESULTS]",
+    " Total Average   :<N> file/sec",
+    " Total Bandwidth :<N>/s",
+    " Total Time      :<N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : 테스트 결과가 JSON 파일로 저장되었습니다: out\\Local_Local_Write_<TS>.json",
+    "INFO  <TIME> : Local Put Test End",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

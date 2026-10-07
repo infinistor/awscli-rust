@@ -369,16 +369,21 @@ static STATS_LINE: LazyLock<Regex> = LazyLock::new(|| {
     Regex::new(r#"(?i)average|bandwidth|times|elapsed|\bsec\b|/s\b|"time"|"(end|start)time""#)
         .unwrap()
 });
-/// 숫자(소수, 단위 포함).
+/// 숫자(소수, 단위 포함). 자릿수에 따라 달라지는 앞쪽 맞춤 공백도 함께 가린다.
 static STATS_NUMBER: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r"-?\d[\d,]*(\.\d+)?( ?(Byte|[KMGTPEZY]i?B)\b)?").unwrap());
+    LazyLock::new(|| Regex::new(r" *-?\d[\d,]*(\.\d+)?( ?(Byte|[KMGTPEZY]i?B)\b)?").unwrap());
 
 /// `stats` 사례: 통계 줄의 숫자를 가린다.
 fn mask_stats(line: &str, context: &Context<'_>) -> String {
-    if context.stats && STATS_LINE.is_match(line) {
-        STATS_NUMBER.replace_all(line, "<N>").into_owned()
+    if !context.stats {
+        return line.to_string();
+    }
+    // 저장한 결과 파일 이름의 시각(`_yyyyMMdd_HHmmss`)도 실행마다 다르다.
+    let line = TIMESTAMP.replace_all(line, "<TS>");
+    if STATS_LINE.is_match(&line) {
+        STATS_NUMBER.replace_all(&line, "<N>").into_owned()
     } else {
-        line.to_string()
+        line.into_owned()
     }
 }
 

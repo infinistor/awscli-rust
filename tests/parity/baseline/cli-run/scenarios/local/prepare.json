@@ -1,0 +1,73 @@
+{
+  "exitCode": 0,
+  "outputs": {
+    "out/Local_Local_Prepare_<TS>.json": [
+      "{",
+      "  \"read\": 0,",
+      "  \"readFailed\": 0,",
+      "  \"head\": 0,",
+      "  \"headFailed\": 0,",
+      "  \"write\": 6,",
+      "  \"writeFailed\": 0,",
+      "  \"delete\": 0,",
+      "  \"deleteFailed\": 0,",
+      "  \"list\": 0,",
+      "  \"listFailed\": 0,",
+      "  \"total\": 6,",
+      "  \"totalFailed\": 0,",
+      "  \"time\":<N>",
+      "  \"startTime\":<N>",
+      "  \"endTime\":<N>",
+      "  \"testType\": \"Local Prepare\",",
+      "  \"threadCount\": 2,",
+      "  \"fileSize\": 64,",
+      "  \"readRatio\": 5,",
+      "  \"writeRatio\": 5,",
+      "  \"deleteRatio\": 0,",
+      "  \"bucketType\": \"One\",",
+      "  \"bucketName\": \"\",",
+      "  \"objectPrefix\": \"temp\",",
+      "  \"threadPrefix\": \"TH\"",
+      "}"
+    ],
+    "target/TH_000-temp_00000": [
+      "abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz01"
+    ],
+    "target/TH_000-temp_00001": [
+      "abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz01"
+    ],
+    "target/TH_000-temp_00002": [
+      "abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz01"
+    ],
+    "target/TH_001-temp_00000": [
+      "abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz01"
+    ],
+    "target/TH_001-temp_00001": [
+      "abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz01"
+    ],
+    "target/TH_001-temp_00002": [
+      "abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz01"
+    ]
+  },
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Local Prepare Test Initialize",
+    "INFO  <TIME> : Local Prepare Test Start",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " [PREPARE TEST FINAL RESULTS]",
+    " Total Target    :         6",
+    " Write Success   :         6",
+    " Write Error     :         0",
+    " Total Average   :<N> file/sec",
+    " Total Bandwidth :<N>/s",
+    " Success Ratio   :   100.000 %",
+    " Total Time      :<N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : 테스트 결과가 JSON 파일로 저장되었습니다: out\\Local_Local_Prepare_<TS>.json",
+    "INFO  <TIME> : Local Prepare Test End",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}
