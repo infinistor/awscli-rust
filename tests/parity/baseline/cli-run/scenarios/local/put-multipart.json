@@ -9,9 +9,9 @@
     "INFO  <TIME> : ",
     "--------------------------------------------------------------",
     " [WRITE TEST FINAL RESULTS]",
-    " Total Average   :<N> file/sec",
-    " Total Bandwidth :<N>/s",
-    " Total Time      :<N> sec",
+    " Total Average   : <N> file/sec",
+    " Total Bandwidth : <N>/s",
+    " Total Time      : <N> sec",
     "--------------------------------------------------------------",
     "INFO  <TIME> : Local Put Test End",
     "INFO  <TIME> : Main complete time = <N>ms"

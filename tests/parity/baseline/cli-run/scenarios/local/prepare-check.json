@@ -26,10 +26,10 @@
     " Total Target    :         4",
     " Write Success   :         1",
     " Write Error     :         0",
-    " Total Average   :<N> file/sec",
-    " Total Bandwidth :<N>/s",
+    " Total Average   : <N> file/sec",
+    " Total Bandwidth : <N>/s",
     " Success Ratio   :   100.000 %",
-    " Total Time      :<N> sec",
+    " Total Time      : <N> sec",
     "--------------------------------------------------------------",
     "INFO  <TIME> : Local Prepare Test End",
     "INFO  <TIME> : Main complete time = <N>ms"

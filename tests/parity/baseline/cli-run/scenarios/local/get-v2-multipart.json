@@ -13,10 +13,10 @@
     " Read Success    :         3",
     " Read Error      :         0",
     " Remaining       :         0",
-    " Total Average   :<N> file/sec",
-    " Total Bandwidth :<N>/s",
+    " Total Average   : <N> file/sec",
+    " Total Bandwidth : <N>/s",
     " Success Ratio   :   100.000 %",
-    " Total Time      :<N> sec",
+    " Total Time      : <N> sec",
     "--------------------------------------------------------------",
     "INFO  <TIME> : Local Sequential Read Test End",
     "INFO  <TIME> : Main complete time = <N>ms"

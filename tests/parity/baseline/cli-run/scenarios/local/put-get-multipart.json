@@ -9,7 +9,7 @@
     "INFO  <TIME> : ",
     "--------------------------------------------------------------",
     " [MIX TEST FINAL RESULTS]",
-    " Total Time       :<N> sec",
+    " Total Time       : <N> sec",
     "--------------------------------------------------------------",
     "INFO  <TIME> : Local PutGet Test End",
     "INFO  <TIME> : Main complete time = <N>ms"

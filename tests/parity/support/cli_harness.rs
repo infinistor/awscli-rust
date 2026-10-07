@@ -465,7 +465,16 @@ fn mask_stats(line: &str, context: &Context<'_>) -> String {
     // 저장한 결과 파일 이름의 시각(`_yyyyMMdd_HHmmss`)도 실행마다 다르다.
     let line = TIMESTAMP.replace_all(line, "<TS>");
     if STATS_LINE.is_match(&line) {
-        STATS_NUMBER.replace_all(&line, "<N>").into_owned()
+        // 앞 공백은 한 칸으로 남긴다(`Average :    12.3` → `Average : <N>`).
+        STATS_NUMBER
+            .replace_all(&line, |caps: &regex::Captures<'_>| {
+                if caps[0].starts_with(' ') {
+                    " <N>"
+                } else {
+                    "<N>"
+                }
+            })
+            .into_owned()
     } else {
         line.into_owned()
     }

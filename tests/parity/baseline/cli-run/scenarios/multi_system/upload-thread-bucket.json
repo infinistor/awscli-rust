@@ -85,9 +85,9 @@
     "--------------------------------------------------------------",
     " Remaining Count :         0",
     " Write Count     :         2 (+ 2)",
-    " Write Average   :<N> file/sec",
-    " Bandwidth       :<N>/s",
-    " Times           :<N> sec",
+    " Write Average   : <N> file/sec",
+    " Bandwidth       : <N>/s",
+    " Times           : <N> sec",
     "--------------------------------------------------------------",
     "INFO  <TIME> : End",
     "INFO  <TIME> : Main complete time = <N>ms"

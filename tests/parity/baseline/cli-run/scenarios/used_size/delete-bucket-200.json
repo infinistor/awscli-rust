@@ -707,9 +707,9 @@
   "stdout": [
     "INFO  <TIME> : Main start",
     "ERROR <TIME> : DeleteBucket(used-source) Fail(OK)",
-    "INFO  <TIME> : Test End. Elapsed Time:<N> sec",
+    "INFO  <TIME> : Test End. Elapsed Time: <N> sec",
     "ERROR <TIME> : DeleteBucket(used-source) Fail(OK)",
-    "INFO  <TIME> : Versions Test End. Elapsed Time:<N> sec",
+    "INFO  <TIME> : Versions Test End. Elapsed Time: <N> sec",
     "INFO  <TIME> : Main complete time = <N>ms"
   ]
 }
