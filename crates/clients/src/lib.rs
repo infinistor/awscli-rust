@@ -10,7 +10,7 @@
 pub mod curl;
 pub mod file_util;
 mod http;
-pub mod json;
+pub use awscli_rest_common::json;
 pub mod khttp;
 pub mod local;
 pub mod mover;

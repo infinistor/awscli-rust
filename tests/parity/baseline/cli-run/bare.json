@@ -1,0 +1,966 @@
+{
+  "abort-multipart-upload": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "complete-multipart-upload": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "copy-object": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "create-bucket": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "create-multipart-upload": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "del-object-lock": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "delete-bucket": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "delete-bucket-analytics": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "delete-bucket-cors": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "delete-bucket-encryption": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "delete-bucket-inventory": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "delete-bucket-lifecycle": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "delete-bucket-metrics": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "delete-bucket-ownership-controls": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "delete-bucket-policy": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "delete-bucket-replication": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "delete-bucket-tagging": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "delete-bucket-tagindex": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "INFO  <TIME> : DeleteBucketTagIndex Start",
+      "ERROR <TIME> : System.ArgumentNullException: Value cannot be null. (Parameter 's')",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "delete-bucket-website": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "delete-object": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "delete-object-tagging": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "delete-objects": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "delete-public-access-block": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "download": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-bucket-acl": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-bucket-analytics": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-bucket-cors": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-bucket-encryption": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-bucket-inventory": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-bucket-lifecycle": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-bucket-location": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-bucket-logging": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-bucket-metrics": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-bucket-notification": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-bucket-ownership-controls": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-bucket-policy": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-bucket-policy-status": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-bucket-replication": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-bucket-tagging": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-bucket-tagindex": {
+    "exitCode": 0,
+    "requests": [
+      {
+        "body": null,
+        "headers": [],
+        "method": "GET",
+        "path": "//",
+        "query": [
+          "tag-index"
+        ]
+      }
+    ],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "INFO  <TIME> : GetBucketTagIndex Start",
+      "ERROR <TIME> : System.InvalidOperationException: There is an error in XML document (0, 0).",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-bucket-versioning": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-bucket-website": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-object": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-object-acl": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-object-legal-hold": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-object-lock": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-object-retention": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-object-tagging": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-presigned-url": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "get-public-access-block": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "head-bucket": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "head-object": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "list-bucket-analytics": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "list-bucket-inventory": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "list-bucket-metrics": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "list-bucket-tagsearch": {
+    "exitCode": -1,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "INFO  <TIME> : ListBucketTagSearch Start",
+      "ERROR <TIME> : System.ArgumentException: 버킷 이름이 비어있습니다."
+    ]
+  },
+  "list-buckets": {
+    "exitCode": 0,
+    "requests": [
+      {
+        "body": null,
+        "headers": [],
+        "method": "GET",
+        "path": "/",
+        "query": [
+          "max-buckets=1000"
+        ]
+      }
+    ],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "INFO  <TIME> : ListingBuckets Start",
+      "버킷이 없습니다.",
+      "INFO  <TIME> : List Bucket(0)! complete time = <N>ms",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "list-directory-buckets": {
+    "exitCode": -1,
+    "requests": [
+      {
+        "body": null,
+        "headers": [],
+        "method": "GET",
+        "path": "/",
+        "query": [
+          "max-directory-buckets=1000"
+        ]
+      }
+    ],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "INFO  <TIME> : ListDirectoryBuckets Start",
+      "ERROR <TIME> : System.NullReferenceException: Object reference not set to an instance of an object."
+    ]
+  },
+  "list-multipart-uploads": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "list-object-versions": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "list-objects": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "list-objects-v2": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "list-parts": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-bucket-acl": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-bucket-analytics": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-bucket-cors": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-bucket-encryption": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-bucket-inventory": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-bucket-lifecycle": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-bucket-logging": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-bucket-metrics": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-bucket-notification": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-bucket-ownership": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-bucket-policy": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-bucket-replication": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-bucket-tagging": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-bucket-tagindex": {
+    "exitCode": -1,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "INFO  <TIME> : PutBucketTagIndex Start",
+      "ERROR <TIME> : System.ArgumentException: 버킷 이름이 비어있습니다."
+    ]
+  },
+  "put-bucket-versioning": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-bucket-website": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-object": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-object-acl": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-object-legal-hold": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-object-lock": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-object-retention": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-object-tagging": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-objects": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "put-public-access-block": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "restore-object": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "set-object-lock": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "storage-move": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "upload": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "upload-part": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  },
+  "upload-part-copy": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket 버킷 이름을 입력해야 합니다.",
+      "INFO  <TIME> : Main complete time = <N>ms"
+    ]
+  }
+}

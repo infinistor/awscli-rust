@@ -1,0 +1,2793 @@
+{
+  "abort-multipart-upload": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--abort-multipart-upload",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t--upload-id <string>"
+    ]
+  },
+  "bucket-clear": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--bucket-clear <string> : Value=버킷 이름. 버킷에 존재하는 모든 객체를 삭제. 버킷 보존.",
+      "\t[--prefix < : 객체명 Prefix>]",
+      "\t[--suffix < : 객체명 Suffix>]",
+      "\t[--max-keys < : 삭제할 객체 개수. (default : 1000)>]int",
+      "\t[--flag < : 버킷 삭제 여부. True일 경우 버킷도 삭제.>]bool"
+    ]
+  },
+  "clear": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--clear <bool> : Value=true/false. 해당 유저의 모든 객체, True일 경우 버킷도 삭제.",
+      "\t[--prefix < : 버킷명 Prefix>]",
+      "\t--thread <int> : 스레드 개수",
+      "\t[--max-keys < : 삭제할 객체 개수. (default : 1000)>]int"
+    ]
+  },
+  "complete-multipart-upload": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--complete-multipart-upload",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t--file <string>",
+      "",
+      "Parts",
+      "{",
+      "  \"Parts\": [",
+      "    {",
+      "      \"ChecksumCRC32\": null,",
+      "      \"ChecksumCRC32C\": null,",
+      "      \"ChecksumCRC64NVME\": null,",
+      "      \"ChecksumMD5\": null,",
+      "      \"ChecksumSHA1\": null,",
+      "      \"ChecksumSHA256\": null,",
+      "      \"ChecksumSHA512\": null,",
+      "      \"ChecksumXXHASH128\": null,",
+      "      \"ChecksumXXHASH3\": null,",
+      "      \"ChecksumXXHASH64\": null,",
+      "      \"ETag\": \"ETag 1\",",
+      "      \"PartNumber\": 1",
+      "    },",
+      "    {",
+      "      \"ChecksumCRC32\": null,",
+      "      \"ChecksumCRC32C\": null,",
+      "      \"ChecksumCRC64NVME\": null,",
+      "      \"ChecksumMD5\": null,",
+      "      \"ChecksumSHA1\": null,",
+      "      \"ChecksumSHA256\": null,",
+      "      \"ChecksumSHA512\": null,",
+      "      \"ChecksumXXHASH128\": null,",
+      "      \"ChecksumXXHASH3\": null,",
+      "      \"ChecksumXXHASH64\": null,",
+      "      \"ETag\": \"ETag 2\",",
+      "      \"PartNumber\": 2",
+      "    },",
+      "    {",
+      "      \"ChecksumCRC32\": null,",
+      "      \"ChecksumCRC32C\": null,",
+      "      \"ChecksumCRC64NVME\": null,",
+      "      \"ChecksumMD5\": null,",
+      "      \"ChecksumSHA1\": null,",
+      "      \"ChecksumSHA256\": null,",
+      "      \"ChecksumSHA512\": null,",
+      "      \"ChecksumXXHASH128\": null,",
+      "      \"ChecksumXXHASH3\": null,",
+      "      \"ChecksumXXHASH64\": null,",
+      "      \"ETag\": \"ETag 3\",",
+      "      \"PartNumber\": 3",
+      "    }",
+      "  ]",
+      "}"
+    ]
+  },
+  "copy-object": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--copy-object",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t--source <string>",
+      "\t--source-key <string>",
+      "\t[--version-id <string>]"
+    ]
+  },
+  "create-bucket": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--create-bucket",
+      "\t--bucket <string>",
+      "\t[--acl <string>] : 버킷에 적용할 ACL",
+      "\t[--ownership <string>] : 버킷에 적용할 소유자",
+      "\t[--lock-enable <string>] : 버킷에 lock 모드 설정"
+    ]
+  },
+  "create-multipart-upload": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--create-multipart-upload",
+      "\t--bucket <string>",
+      "\t--key <string>"
+    ]
+  },
+  "current-clear": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--current-clear <string> : 버킷에 존재하는 현재 버전 객체 삭제. 버킷 보존.",
+      "\t--thread <int> : 스레드 개수"
+    ]
+  },
+  "del-object-lock": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--del-object-lock",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t[--version-id <string>]"
+    ]
+  },
+  "delete-bucket": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--delete-bucket",
+      "\t--bucket <string>"
+    ]
+  },
+  "delete-bucket-analytics": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--delete-bucket-analytics",
+      "\t--bucket <string>",
+      "\t--id <string>"
+    ]
+  },
+  "delete-bucket-cors": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--delete-bucket-cors",
+      "\t--bucket <string>"
+    ]
+  },
+  "delete-bucket-encryption": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--delete-bucket-encryption",
+      "\t--bucket <string>"
+    ]
+  },
+  "delete-bucket-inventory": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--delete-bucket-inventory",
+      "\t--bucket <string>",
+      "\t--id <string>"
+    ]
+  },
+  "delete-bucket-lifecycle": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--delete-bucket-lifecycle",
+      "\t--bucket <string>"
+    ]
+  },
+  "delete-bucket-metrics": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--delete-bucket-metrics",
+      "\t--bucket <string>",
+      "\t--id <string>"
+    ]
+  },
+  "delete-bucket-ownership-controls": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--delete-bucket-ownership-controls",
+      "\t--bucket <string>"
+    ]
+  },
+  "delete-bucket-policy": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--delete-bucket-policy",
+      "\t--bucket <string>"
+    ]
+  },
+  "delete-bucket-replication": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--delete-bucket-replication",
+      "\t--bucket <string>"
+    ]
+  },
+  "delete-bucket-tagging": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--delete-bucket-tagging",
+      "\t--bucket <string>"
+    ]
+  },
+  "delete-bucket-tagindex": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--delete-bucket-tagindex",
+      "\t--bucket <string>"
+    ]
+  },
+  "delete-bucket-website": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--delete-bucket-website",
+      "\t--bucket <string>"
+    ]
+  },
+  "delete-object": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--delete-object",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t[--version-id <string>] : 삭제할 객체 버전",
+      "\t[--bypass]"
+    ]
+  },
+  "delete-object-tagging": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--delete-object-tagging",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t[--version-id <string>] : 삭제할 객체 버전",
+      "\t[--bypass]"
+    ]
+  },
+  "delete-objects": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--delete-objects",
+      "\t--bucket <string>",
+      "\t--file <string>",
+      "\t[--quiet] : 무응답 모드",
+      "\t[--bypass]",
+      "",
+      "List",
+      "[",
+      "  {",
+      "    \"ETag\": null,",
+      "    \"Key\": \"Key1\",",
+      "    \"LastModifiedTime\": null,",
+      "    \"Size\": null,",
+      "    \"VersionId\": \"VersionId1\"",
+      "  },",
+      "  {",
+      "    \"ETag\": null,",
+      "    \"Key\": \"Key2\",",
+      "    \"LastModifiedTime\": null,",
+      "    \"Size\": null,",
+      "    \"VersionId\": \"VersionId2\"",
+      "  }",
+      "]"
+    ]
+  },
+  "delete-public-access-block": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--delete-public-access-block",
+      "\t--bucket <string>"
+    ]
+  },
+  "download": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--download",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t--file <string>"
+    ]
+  },
+  "get-bucket-acl": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-bucket-acl",
+      "\t--bucket <string>"
+    ]
+  },
+  "get-bucket-analytics": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-bucket-analytics",
+      "\t--bucket <string>",
+      "\t--id <string> : 분석 구성 식별자"
+    ]
+  },
+  "get-bucket-cors": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-bucket-cors",
+      "\t--bucket <string>"
+    ]
+  },
+  "get-bucket-encryption": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-bucket-encryption",
+      "\t--bucket <string>"
+    ]
+  },
+  "get-bucket-inventory": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-bucket-encryption",
+      "\t--bucket <string>",
+      "\t--id <string> : 인벤토리 구성 식별자"
+    ]
+  },
+  "get-bucket-lifecycle": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-bucket-lifecycle",
+      "\t--bucket <string>"
+    ]
+  },
+  "get-bucket-location": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-bucket-location",
+      "\t--bucket <string>"
+    ]
+  },
+  "get-bucket-logging": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-bucket-logging",
+      "\t--bucket <string>"
+    ]
+  },
+  "get-bucket-metrics": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-bucket-metrics",
+      "\t--bucket <string>",
+      "\t--id <string> : 메트릭 구성 식별자"
+    ]
+  },
+  "get-bucket-notification": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-bucket-notification",
+      "\t--bucket <string>"
+    ]
+  },
+  "get-bucket-ownership-controls": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-bucket-ownership-controls",
+      "\t--bucket <string>"
+    ]
+  },
+  "get-bucket-policy": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-bucket-policy",
+      "\t--bucket <string>"
+    ]
+  },
+  "get-bucket-policy-status": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-bucket-policy-status",
+      "\t--bucket <string>"
+    ]
+  },
+  "get-bucket-replication": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-bucket-replication",
+      "\t--bucket <string>"
+    ]
+  },
+  "get-bucket-tagging": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-bucket-tagging",
+      "\t--bucket <string>"
+    ]
+  },
+  "get-bucket-tagindex": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-bucket-tagindex",
+      "\t--bucket <string>",
+      "\t[--max-keys <int>]"
+    ]
+  },
+  "get-bucket-versioning": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-bucket-versioning",
+      "\t--bucket <string>"
+    ]
+  },
+  "get-bucket-website": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-bucket-website",
+      "\t--bucket <string>"
+    ]
+  },
+  "get-object": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-object",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t[--version-id <string>] : 객체 버전",
+      "\t[--file <string>] : 저장할 파일 경로",
+      "\t[--encryption-key <string>] : 암호화 키",
+      "\t[--size <string>] : 저장할 파일 크기(ex> 1KB, 10M)",
+      "\t[--start-byte <string>] : 시작 바이트(ex> 1KB, 10M)",
+      "\t[--end-byte <string>] : 끝 바이트(ex> 1KB, 10M)"
+    ]
+  },
+  "get-object-acl": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-object-acl",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t[--version-id <string>]"
+    ]
+  },
+  "get-object-legal-hold": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-object-legal-hold",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t[--version-id <string>]"
+    ]
+  },
+  "get-object-lock": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-object-lock",
+      "\t--bucket <string>"
+    ]
+  },
+  "get-object-retention": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-object-retention",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t[--version-id <string>]"
+    ]
+  },
+  "get-object-tagging": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-object-tagging",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t[--version-id <string>]"
+    ]
+  },
+  "get-presigned-url": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-presigned-url",
+      "\t--key <string>",
+      "\t--bucket <string>",
+      "\t--days <int> : 만료일"
+    ]
+  },
+  "get-public-access-block": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--get-public-access-block",
+      "\t--bucket <string>"
+    ]
+  },
+  "head-bucket": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--head-bucket",
+      "\t--bucket <string>"
+    ]
+  },
+  "head-object": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--head-object",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t[--version-id <string>]",
+      "\t[--encryption-key <string>]"
+    ]
+  },
+  "list-bucket-analytics": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--list-bucket-analytics",
+      "\t--bucket <string>"
+    ]
+  },
+  "list-bucket-inventory": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--list-bucket-inventory",
+      "\t--bucket <string>"
+    ]
+  },
+  "list-bucket-metrics": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--list-bucket-metrics",
+      "\t--bucket <string>"
+    ]
+  },
+  "list-bucket-tagsearch": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--list-bucket-tagsearch",
+      "\t--bucket <string>",
+      "\t--tag <string> : 태그 설정 정보(ex> tag1:value1,tag2:value2)",
+      "\t[--max-keys <int>]"
+    ]
+  },
+  "list-buckets": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--list-buckets",
+      "\t[--prefix <string>]",
+      "\t[--continuation-token <string>]",
+      "\t[--max-keys <int>]"
+    ]
+  },
+  "list-directory-buckets": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--list-directory-buckets",
+      "\t[--continuation-token <string>]",
+      "\t[--max-keys <int>]"
+    ]
+  },
+  "list-multipart-uploads": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--list-multipart-uploads",
+      "\t--bucket <string>",
+      "\t[--prefix <string>]",
+      "\t[--delimiter <string>]",
+      "\t[--upload-id <string>] : 업로드 아이디",
+      "\t[--marker <string>] : Next Key Marker",
+      "\t[--max-keys <int>]"
+    ]
+  },
+  "list-object-versions": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--list-object-versions",
+      "\t--bucket <string>",
+      "\t[--prefix <string>]",
+      "\t[--delimiter <string>]",
+      "\t[--version-id <string>] : Next Version Id Marker",
+      "\t[--marker <string>] : Next Key Marker",
+      "\t[--max-keys <int>]"
+    ]
+  },
+  "list-objects": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--list-objects",
+      "\t--bucket <string>",
+      "\t[--prefix <string>]",
+      "\t[--delimiter <string>]",
+      "\t[--marker <string>] : Next Key Marker",
+      "\t[--max-keys <int>]"
+    ]
+  },
+  "list-objects-v2": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--list-objects-v2",
+      "\t--bucket <string>",
+      "\t[--prefix <string>]",
+      "\t[--delimiter <string>]",
+      "\t[--marker <string>] : Start After",
+      "\t[--max-keys <int>]"
+    ]
+  },
+  "list-parts": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--list-parts",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t--upload-id <string>",
+      "\t[--part-number <string>]",
+      " : Next Part Number\t[--max-keys <int>]"
+    ]
+  },
+  "manual-upload": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--manual-upload",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t--file <string>",
+      "\t[--part-size <string>]"
+    ]
+  },
+  "marker-clear": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--marker-clear <string> : 버킷에 존재하는 모든 Delete Marker 삭제. 버킷 보존.",
+      "\t--thread <int> : 스레드 개수"
+    ]
+  },
+  "noncurrent-clear": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--noncurrent-clear <string> : 버킷에 존재하는 이전 버전 객체 삭제. 버킷 보존.",
+      "\t--thread <int> : 스레드 개수"
+    ]
+  },
+  "pause": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--pause",
+      "\t--service-type <replication, lifecycle>",
+      "\t--address <string>",
+      "\t--port <int>"
+    ]
+  },
+  "put-bucket-acl": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-bucket-acl",
+      "\t--bucket <string>",
+      "\t[--acl <string>] : 권한 설정 정보",
+      "\t[--file <string>] : 권한 설정 파일 경로",
+      "",
+      "Grant",
+      "{",
+      "  \"Owner\": {",
+      "    \"DisplayName\": \"MainDisplayName\",",
+      "    \"Id\": \"MainUserId\"",
+      "  },",
+      "  \"Grants\": [",
+      "    {",
+      "      \"Permission\": \"FULL_CONTROL\",",
+      "      \"Grantee\": {",
+      "        \"CanonicalUser\": \"AltUserId\",",
+      "        \"DisplayName\": \"AltDisplayName\",",
+      "        \"EmailAddress\": null,",
+      "        \"Type\": {",
+      "          \"Value\": \"CanonicalUser\"",
+      "        },",
+      "        \"URI\": null",
+      "      }",
+      "    }",
+      "  ]",
+      "}"
+    ]
+  },
+  "put-bucket-analytics": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-bucket-analytics",
+      "\t--bucket <string>",
+      "\t--file <string> : 분석 설정 파일 경로",
+      "",
+      "AnalyticsConfig",
+      "{",
+      "  \"Id\": \"analytics1\",",
+      "  \"Filter\": {",
+      "    \"Prefix\": \"prefix1\",",
+      "    \"Tag\": [",
+      "      {",
+      "        \"Key\": \"key1\",",
+      "        \"Value\": \"value1\"",
+      "      }",
+      "    ]",
+      "  },",
+      "  \"Destination\": null",
+      "}"
+    ]
+  },
+  "put-bucket-cors": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-bucket-cors",
+      "\t--bucket <string>",
+      "\t--file <string> : CORS 설정 파일 경로",
+      "",
+      "CORSConfig",
+      "{",
+      "  \"Rules\": [",
+      "    {",
+      "      \"AllowedHeaders\": null,",
+      "      \"AllowedMethods\": [",
+      "        \"GET\",",
+      "        \"PUT\"",
+      "      ],",
+      "      \"AllowedOrigins\": [",
+      "        \"*.get\",",
+      "        \"*.put\"",
+      "      ],",
+      "      \"ExposeHeaders\": null,",
+      "      \"Id\": null,",
+      "      \"MaxAgeSeconds\": null",
+      "    }",
+      "  ]",
+      "}"
+    ]
+  },
+  "put-bucket-encryption": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-bucket-encryption",
+      "\t--bucket <string>",
+      "\t--file <string> : 암호화 설정 파일 경로",
+      "",
+      "SSEConfig",
+      "{",
+      "  \"ServerSideEncryptionRules\": [",
+      "    {",
+      "      \"BlockedEncryptionTypes\": null,",
+      "      \"BucketKeyEnabled\": null,",
+      "      \"ServerSideEncryptionByDefault\": {",
+      "        \"ServerSideEncryptionAlgorithm\": {",
+      "          \"Value\": \"AES256\"",
+      "        },",
+      "        \"ServerSideEncryptionKeyManagementServiceKeyId\": null",
+      "      }",
+      "    }",
+      "  ]",
+      "}"
+    ]
+  },
+  "put-bucket-inventory": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-bucket-inventory",
+      "\t--bucket <string>",
+      "\t--id <string>",
+      "\t--file <string> : 인벤토리 설정 파일 경로",
+      "",
+      "InventoryConfig",
+      "{",
+      "  \"IsEnabled\": true,",
+      "  \"Id\": \"inventory1\",",
+      "  \"Destination\": {",
+      "    \"AccountId\": null,",
+      "    \"BucketName\": \"arn:aws:s3:::test1\",",
+      "    \"Format\": \"CSV\",",
+      "    \"Prefix\": \"test1/\",",
+      "    \"Encryption\": null",
+      "  },",
+      "  \"Schedule\": \"Daily\",",
+      "  \"InventoryOptionalFields\": [",
+      "    \"Size\",",
+      "    \"LastModifiedDate\"",
+      "  ]",
+      "}"
+    ]
+  },
+  "put-bucket-lifecycle": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-bucket-lifecycle",
+      "\t--bucket <string>",
+      "\t--file <string> : 라이프사이클 설정 파일 경로",
+      "",
+      "LifeCycle",
+      "{",
+      "  \"Rules\": [",
+      "    {",
+      "      \"Id\": \"rule1\",",
+      "      \"Status\": \"Enabled\",",
+      "      \"Expiration\": {",
+      "        \"Days\": 1,",
+      "        \"Date\": null,",
+      "        \"ExpiredObjectDeleteMarker\": null",
+      "      },",
+      "      \"NoncurrentVersionExpiration\": {",
+      "        \"NoncurrentDays\": 1,",
+      "        \"NewerNoncurrentVersions\": null",
+      "      },",
+      "      \"Filter\": null,",
+      "      \"AbortIncompleteMultipartUpload\": null",
+      "    },",
+      "    {",
+      "      \"Id\": \"rule2\",",
+      "      \"Status\": \"Enabled\",",
+      "      \"Expiration\": {",
+      "        \"Days\": null,",
+      "        \"Date\": null,",
+      "        \"ExpiredObjectDeleteMarker\": true",
+      "      },",
+      "      \"NoncurrentVersionExpiration\": null,",
+      "      \"Filter\": null,",
+      "      \"AbortIncompleteMultipartUpload\": {",
+      "        \"DaysAfterInitiation\": 1",
+      "      }",
+      "    }",
+      "  ]",
+      "}"
+    ]
+  },
+  "put-bucket-logging": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-bucket-logging",
+      "\t--bucket <string>",
+      "\t--file <string> : 로깅 설정 파일 경로",
+      "",
+      "Logging",
+      "{",
+      "  \"Grants\": null,",
+      "  \"TargetBucketName\": \"BucketName\",",
+      "  \"TargetObjectKeyFormat\": null,",
+      "  \"TargetPrefix\": \"logs\"",
+      "}"
+    ]
+  },
+  "put-bucket-metrics": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-bucket-metrics",
+      "\t--bucket <string>",
+      "\t--file <string> : 메트릭스 설정 파일 경로",
+      "",
+      "MetricsConfig",
+      "{",
+      "  \"Id\": \"metrics1\",",
+      "  \"Filter\": {",
+      "    \"Prefix\": \"prefix1\",",
+      "    \"Tag\": [",
+      "      {",
+      "        \"Key\": \"key1\",",
+      "        \"Value\": \"value1\"",
+      "      }",
+      "    ]",
+      "  }",
+      "}"
+    ]
+  },
+  "put-bucket-notification": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-bucket-notification",
+      "\t--bucket <string>",
+      "\t--file <string> : 알림 설정 파일 경로",
+      "",
+      "Notification",
+      "{",
+      "  \"TopicConfigurations\": [",
+      "    {",
+      "      \"Id\": \"id\",",
+      "      \"Topic\": \"arn:aws:string\",",
+      "      \"Events\": [",
+      "        \"s3:ObjectCreated:*\",",
+      "        \"s3:Replication:OperationReplicatedAfterThreshold\",",
+      "        \"s3:Replication:OperationMissedThreshold\",",
+      "        \"s3:Replication:OperationNotTracked\",",
+      "        \"s3:Replication:OperationFailedReplication\",",
+      "        \"s3:Replication:*\",",
+      "        \"s3:ObjectRestore:Completed\",",
+      "        \"s3:ObjectRestore:*\",",
+      "        \"s3:ObjectRestore:Post\",",
+      "        \"s3:ObjectRemoved:DeleteMarkerCreated\",",
+      "        \"s3:ObjectRemoved:Delete\",",
+      "        \"s3:ObjectRemoved:*\",",
+      "        \"s3:ObjectCreated:CompleteMultipartUpload\",",
+      "        \"s3:ObjectCreated:Copy\",",
+      "        \"s3:ObjectCreated:Post\",",
+      "        \"s3:ObjectCreated:Put\",",
+      "        \"s3:ReducedRedundancyLostObject\"",
+      "      ],",
+      "      \"Filter\": {",
+      "        \"S3KeyFilter\": {",
+      "          \"FilterRules\": [",
+      "            {",
+      "              \"Name\": \"\\u0022prefix\\u0022|\\u0022suffix\\u0022\",",
+      "              \"Value\": \"value\"",
+      "            }",
+      "          ]",
+      "        }",
+      "      }",
+      "    }",
+      "  ],",
+      "  \"QueueConfigurations\": [",
+      "    {",
+      "      \"Id\": \"id\",",
+      "      \"Queue\": \"arn:aws:string\",",
+      "      \"Events\": [",
+      "        \"s3:ObjectCreated:*\",",
+      "        \"s3:Replication:OperationReplicatedAfterThreshold\",",
+      "        \"s3:Replication:OperationMissedThreshold\",",
+      "        \"s3:Replication:OperationNotTracked\",",
+      "        \"s3:Replication:OperationFailedReplication\",",
+      "        \"s3:Replication:*\",",
+      "        \"s3:ObjectRestore:Completed\",",
+      "        \"s3:ObjectRestore:*\",",
+      "        \"s3:ObjectRestore:Post\",",
+      "        \"s3:ObjectRemoved:DeleteMarkerCreated\",",
+      "        \"s3:ObjectRemoved:Delete\",",
+      "        \"s3:ObjectRemoved:*\",",
+      "        \"s3:ObjectCreated:CompleteMultipartUpload\",",
+      "        \"s3:ObjectCreated:Copy\",",
+      "        \"s3:ObjectCreated:Post\",",
+      "        \"s3:ObjectCreated:Put\",",
+      "        \"s3:ReducedRedundancyLostObject\"",
+      "      ],",
+      "      \"Filter\": {",
+      "        \"S3KeyFilter\": {",
+      "          \"FilterRules\": [",
+      "            {",
+      "              \"Name\": \"\\u0022prefix\\u0022|\\u0022suffix\\u0022\",",
+      "              \"Value\": \"string\"",
+      "            }",
+      "          ]",
+      "        }",
+      "      }",
+      "    }",
+      "  ],",
+      "  \"LambdaFunctionConfigurations\": [",
+      "    {",
+      "      \"Id\": \"string\",",
+      "      \"FunctionArn\": \"arn:aws:string\",",
+      "      \"Events\": [",
+      "        \"s3:ObjectCreated:*\",",
+      "        \"s3:Replication:OperationReplicatedAfterThreshold\",",
+      "        \"s3:Replication:OperationMissedThreshold\",",
+      "        \"s3:Replication:OperationNotTracked\",",
+      "        \"s3:Replication:OperationFailedReplication\",",
+      "        \"s3:Replication:*\",",
+      "        \"s3:ObjectRestore:Completed\",",
+      "        \"s3:ObjectRestore:*\",",
+      "        \"s3:ObjectRestore:Post\",",
+      "        \"s3:ObjectRemoved:DeleteMarkerCreated\",",
+      "        \"s3:ObjectRemoved:Delete\",",
+      "        \"s3:ObjectRemoved:*\",",
+      "        \"s3:ObjectCreated:CompleteMultipartUpload\",",
+      "        \"s3:ObjectCreated:Copy\",",
+      "        \"s3:ObjectCreated:Post\",",
+      "        \"s3:ObjectCreated:Put\",",
+      "        \"s3:ReducedRedundancyLostObject\"",
+      "      ],",
+      "      \"Filter\": {",
+      "        \"S3KeyFilter\": {",
+      "          \"FilterRules\": [",
+      "            {",
+      "              \"Name\": \"\\u0022prefix\\u0022|\\u0022suffix\\u0022\",",
+      "              \"Value\": \"string\"",
+      "            }",
+      "          ]",
+      "        }",
+      "      }",
+      "    }",
+      "  ],",
+      "  \"ExpectedBucketOwner\": null",
+      "}"
+    ]
+  },
+  "put-bucket-ownership": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-bucket-ownership",
+      "\t--bucket <string>",
+      "\t--ownership <string>"
+    ]
+  },
+  "put-bucket-policy": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-bucket-policy",
+      "\t--bucket <string>",
+      "\t--file <string> : 정책 파일 경로",
+      "",
+      "Policy",
+      "System.Collections.Generic.Dictionary`2[System.String,System.Object]"
+    ]
+  },
+  "put-bucket-replication": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-bucket-replication",
+      "\t--bucket <string>",
+      "\t--file <string> : 복제 설정 파일 경로",
+      "",
+      "Replication",
+      "{",
+      "  \"Role\": \"arn:aws:iam::635518764071:role/awsreplicationtest\",",
+      "  \"Rules\": [",
+      "    {",
+      "      \"DeleteMarkerReplication\": {",
+      "        \"Status\": {",
+      "          \"Value\": \"Disabled\"",
+      "        }",
+      "      },",
+      "      \"Destination\": {",
+      "        \"AccessControlTranslation\": null,",
+      "        \"AccountId\": null,",
+      "        \"BucketArn\": \"arn:aws:s3:::TargetBucketName\",",
+      "        \"EncryptionConfiguration\": null,",
+      "        \"Metrics\": null,",
+      "        \"ReplicationTime\": null,",
+      "        \"StorageClass\": null",
+      "      },",
+      "      \"ExistingObjectReplication\": null,",
+      "      \"Filter\": null,",
+      "      \"Id\": \"Rule1\",",
+      "      \"Prefix\": null,",
+      "      \"Priority\": 1,",
+      "      \"SourceSelectionCriteria\": null,",
+      "      \"Status\": {",
+      "        \"Value\": \"Enabled\"",
+      "      }",
+      "    }",
+      "  ]",
+      "}"
+    ]
+  },
+  "put-bucket-tagging": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-bucket-tagging",
+      "\t--bucket <string>",
+      "\t--file <string> : 태깅 설정 파일 경로",
+      "",
+      "Tagging",
+      "{",
+      "  \"TagSet\": [",
+      "    {",
+      "      \"Key\": \"0\",",
+      "      \"Value\": \"0\"",
+      "    },",
+      "    {",
+      "      \"Key\": \"1\",",
+      "      \"Value\": \"1\"",
+      "    },",
+      "    {",
+      "      \"Key\": \"2\",",
+      "      \"Value\": \"2\"",
+      "    },",
+      "    {",
+      "      \"Key\": \"3\",",
+      "      \"Value\": \"3\"",
+      "    },",
+      "    {",
+      "      \"Key\": \"4\",",
+      "      \"Value\": \"4\"",
+      "    }",
+      "  ]",
+      "}"
+    ]
+  },
+  "put-bucket-tagindex": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-bucket-tagindex",
+      "\t--bucket <string>"
+    ]
+  },
+  "put-bucket-versioning": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-bucket-versioning",
+      "\t--bucket <string>",
+      "\t--versioning <string>"
+    ]
+  },
+  "put-bucket-website": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-bucket-website",
+      "\t--bucket <string>",
+      "\t--file <string> : 웹사이트 설정 파일 경로",
+      "",
+      "Website",
+      "{",
+      "  \"ErrorDocument\": \"400\",",
+      "  \"IndexDocumentSuffix\": \"a\",",
+      "  \"RedirectAllRequestsTo\": null,",
+      "  \"RoutingRules\": null",
+      "}"
+    ]
+  },
+  "put-object": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-object",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t[--checksum-type <string>] : 체크섬 타입",
+      "\t[--acl <string>]",
+      "\t[--body <string>]",
+      "\t[--file <string>] : 파일 경로",
+      "\t[--md5sum] : MD5 체크섬 계산 및 전송",
+      "\t[--lock-enable] : Lock 모드 업로드. 파일의 ContentMD5 추가 전달.",
+      "\t[--storage-class <string>]",
+      "\t[--encryption-key <string>]",
+      "\t[--tag-set <string>] : 태그 설정 정보(ex>tag1=value1,tag2=value2)"
+    ]
+  },
+  "put-object-acl": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-object-acl",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t[--acl <string>] : 권한 설정 정보",
+      "\t[--file <string>] : 권한 설정 파일 경로",
+      "",
+      "Grant",
+      "{",
+      "  \"Grants\": [",
+      "    {",
+      "      \"Grantee\": {",
+      "        \"CanonicalUser\": \"AltUserId\",",
+      "        \"DisplayName\": \"AltDisplayName\",",
+      "        \"EmailAddress\": null,",
+      "        \"Type\": {",
+      "          \"Value\": \"CanonicalUser\"",
+      "        },",
+      "        \"URI\": null",
+      "      },",
+      "      \"Permission\": {",
+      "        \"HeaderName\": \"x-amz-grant-full-control\",",
+      "        \"Value\": \"FULL_CONTROL\"",
+      "      }",
+      "    }",
+      "  ],",
+      "  \"Owner\": {",
+      "    \"DisplayName\": \"MainDisplayName\",",
+      "    \"Id\": \"MainUserId\"",
+      "  }",
+      "}"
+    ]
+  },
+  "put-object-legal-hold": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-object-legal-hold",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t--file <string> : LegalHold 설정 파일 경로",
+      "",
+      "LegalHold",
+      "{",
+      "  \"Status\": {",
+      "    \"Value\": \"ON\"",
+      "  }",
+      "}"
+    ]
+  },
+  "put-object-lock": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-object-lock",
+      "\t--bucket <string>",
+      "\t[--days <string>] : 보관 기간(일)",
+      "\t[--years <string>] : 보관 기간(년)",
+      "\t[--lock-mode <string>] : 버킷에 lock 모드 설정(Compliance/Governance). 기본값은 Compliance"
+    ]
+  },
+  "put-object-retention": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-object-retention",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t--date <string> : 보관 만료 날짜(ex> 2025-01-01)",
+      "\t[--lock-mode <string>] : 버킷에 lock 모드 설정(Compliance/Governance). 기본값은 Compliance",
+      "\t[--bypass]"
+    ]
+  },
+  "put-object-tagging": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-object-tagging",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t--file <string> : 태그 설정 파일 경로",
+      "",
+      "Tagging",
+      "{",
+      "  \"TagSet\": [",
+      "    {",
+      "      \"Key\": \"0\",",
+      "      \"Value\": \"0\"",
+      "    },",
+      "    {",
+      "      \"Key\": \"1\",",
+      "      \"Value\": \"1\"",
+      "    },",
+      "    {",
+      "      \"Key\": \"2\",",
+      "      \"Value\": \"2\"",
+      "    },",
+      "    {",
+      "      \"Key\": \"3\",",
+      "      \"Value\": \"3\"",
+      "    },",
+      "    {",
+      "      \"Key\": \"4\",",
+      "      \"Value\": \"4\"",
+      "    }",
+      "  ]",
+      "}"
+    ]
+  },
+  "put-objects": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-objects",
+      "\t--bucket <string>",
+      "\t--file <string> : 폴더 경로"
+    ]
+  },
+  "put-public-access-block": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--put-public-access-block",
+      "\t--bucket <string>",
+      "\t--file <string> : PublicAccessBlock 설정 파일 경로",
+      "",
+      "PublicAccessBlock",
+      "{",
+      "  \"BlockPublicAcls\": true,",
+      "  \"BlockPublicPolicy\": true,",
+      "  \"IgnorePublicAcls\": true,",
+      "  \"RestrictPublicBuckets\": false",
+      "}"
+    ]
+  },
+  "restore-object": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--restore-object",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t[--version-id <string>]",
+      "\t[--days <int>]"
+    ]
+  },
+  "resume": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--resume",
+      "\t--service-type <replication, lifecycle>",
+      "\t--address <string>",
+      "\t--port <int>"
+    ]
+  },
+  "set-object-lock": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--set-object-lock",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t[--version-id <string>]"
+    ]
+  },
+  "set-sse-s3": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--set-sse-s3 <bool> : Value=true/false. 버킷에 sse-s3 설정 여부",
+      "\t--bucket <string>"
+    ]
+  },
+  "storage-move": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--storage-move",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t[--storage-class <string>]",
+      "\t[--version-id <string>]"
+    ]
+  },
+  "test-access-ips": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "[Jenkins]Host = [string] : 호스트",
+      "JenkinsPort = [int] : Jenkins Port",
+      "Port = [int] : 포트",
+      "User = [string] : 사용자명",
+      "Password = [string] : 비밀번호",
+      "Database = [string] : Database",
+      "[AccessIps]AllFailed = [bool] : 모든 테스트가 실패해야 하는지 여부",
+      "TestListPath = [string] : 테스트 리스트 파일 경로",
+      "JenkinsTestName = [string] : Jenkins Test Name",
+      "S3URLs = [string] : S3 URL",
+      "Volume = [string] : 볼륨 이름",
+      "MainUser = [string] : Main User Name",
+      "SubUser = [string] : Sub User Name",
+      "----------------------------"
+    ]
+  },
+  "test-all": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-all",
+      "\t[--bucket <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "Times = [int] : 테스트 할 시간(sec)",
+      "DivisionCount[int] : 오브젝트의 폴더 분리 분기",
+      "ETagCheck = [bool] : ETag 비교 여부",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-aws": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-aws",
+      "\t[--bucket <string>]",
+      "\t[--count <string>]"
+    ]
+  },
+  "test-compare": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-compare",
+      "\t[--bucket <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Compare]SourceBucket = [string] : 원본 버킷명",
+      "TargetBucket = [string] : 대상 버킷명",
+      "DeleteMarker = [bool] : delete marker 비교 여부",
+      "ETagCheck = [bool] : etag 비교 여부",
+      "ChecksumCheck = [bool] : checksum 비교 여부",
+      "VersionCheck = [bool] : 버전 비교 여부",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-compare-lifecycle": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-compare-lifecycle",
+      "\t--bucket <string>"
+    ]
+  },
+  "test-delete": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-delete",
+      "\t[--bucket <string>]",
+      "\t[--count <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-delete-directory": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-delete-directory",
+      "\t[--bucket <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-delete-v2": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-delete-v2",
+      "\t--bucket < : 버킷명>",
+      "\t--thread <int> : 스레드 개수",
+      "\t--size <string> : 파일 크기",
+      "\t--count <int> : 파일 개수",
+      "\t[--start <int>] : 시작 번호",
+      "\t[--prefix <string>] : 객체명 Prefix.",
+      "\t[--path <string>] : temp 파일 경로. default = ./test/",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-delete-version": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-delete-version",
+      "\t[--bucket <string>]",
+      "\t[--count <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-directory-download": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-directory-download",
+      "\t[--bucket <string>]",
+      "\t--prefix <string>",
+      "\t--file <string>",
+      "\t[--thread <string>]"
+    ]
+  },
+  "test-download": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "DivisionCount[int] : 오브젝트의 폴더 분리 분기",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-duplicate": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-duplicate",
+      "\t[--bucket <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "[Duplicate]ObjectPath = [string] : 오브젝트 경로",
+      "LoopCount = [int] : 반복 횟수",
+      "ObjectCount = [int] : 오브젝트 생성 개수",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-file-list": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-file-list",
+      "\t[--bucket <string>]",
+      "\t--file <string>",
+      "\t[--thread <string>]"
+    ]
+  },
+  "test-find-tag": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-find-tag <string> : 찾을 태그명 ex> tag1:value1",
+      "\t--bucket <string>",
+      "\t[--thread]"
+    ]
+  },
+  "test-full": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-full"
+    ]
+  },
+  "test-get": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-get",
+      "\t--bucket < : 버킷명>",
+      "\t--thread <int> : 스레드 개수",
+      "\t--size <string> : 파일 크기",
+      "\t--count <int> : 파일 개수",
+      "\t--times <int> : 테스트 수행 시간(초)",
+      "\t[--path <string>] : temp 파일 경로. default = ./test/",
+      "\t[--prefix <string>] : 객체명 Prefix.",
+      "\t[--start <int>] : 시작 번호",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "DivisionCount[int] : 오브젝트의 폴더 분리 분기",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-get-all": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start"
+    ]
+  },
+  "test-get-v2": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-get-v2",
+      "\t--bucket < : 버킷명>",
+      "\t--thread <int> : 스레드 개수",
+      "\t--size <string> : 파일 크기",
+      "\t--count <int> : 파일 개수",
+      "\t[--start <int>] : 시작 번호",
+      "\t[--prefix <string>] : 객체명 Prefix.",
+      "\t[--path <string>] : temp 파일 경로. default = ./test/",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "DivisionCount[int] : 오브젝트의 폴더 분리 분기",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-get-v3": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-get-v3",
+      "\t[--bucket <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "DivisionCount[int] : 오브젝트의 폴더 분리 분기",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-head": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-head",
+      "\t--bucket < : 버킷명>",
+      "\t--thread <int> : 스레드 개수",
+      "\t--count <int> : 파일 개수",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-io": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-io",
+      "--bucket",
+      "--source : Upload File Path",
+      "--target : Download File Path"
+    ]
+  },
+  "test-list-object": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "",
+      "----- Config Setting -------",
+      "[ListObj]FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "Prefix = [string] : 조회하거나 생성할 오브젝트 접두어",
+      "Times = [int] : 테스트 할 시간 (단위 : sec)",
+      "Prepare = [bool] : 테스트 시작전 오브젝트 생성 여부",
+      "ThreadCount = [int] : 테스트할 쓰레드 갯수",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-local-delete": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-local-delete",
+      "\t[--target-path <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default][UpDown]ThreadCount = [int] : 쓰레드 개수",
+      "----------------------------"
+    ]
+  },
+  "test-local-get": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-local-get",
+      "\t[--target-path <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "[UpDown]ThreadCount = [int] : 쓰레드 개수",
+      "Times = [int] : 테스트 할 시간(sec)",
+      "----------------------------"
+    ]
+  },
+  "test-local-get-v2": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-local-get-v2",
+      "\t[--target-path <string>]",
+      "\t[--start <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "[UpDown]ThreadCount = [int] : 쓰레드 개수",
+      "FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "----------------------------"
+    ]
+  },
+  "test-local-multipart-get": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-local-multipart-get",
+      "\t[--target-path <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "[UpDown]ThreadCount = [int] : 쓰레드 개수",
+      "Times = [int] : 테스트 할 시간(sec)",
+      "----------------------------"
+    ]
+  },
+  "test-local-multipart-get-v2": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-local-multipart-get-v2",
+      "\t[--target-path <string>]",
+      "\t[--start <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "[UpDown]ThreadCount = [int] : 쓰레드 개수",
+      "FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "----------------------------"
+    ]
+  },
+  "test-local-multipart-prepare": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-local-multipart-prepare",
+      "\t[--target-path <string>]",
+      "\t[--check <string>]",
+      "\t[--start <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "[UpDown]ThreadCount = [int] : 쓰레드 개수",
+      "FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "----------------------------"
+    ]
+  },
+  "test-local-multipart-put": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-local-multipart-put",
+      "\t[--target-path <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "[UpDown]ThreadCount = [int] : 쓰레드 개수",
+      "Times = [int] : 테스트 할 시간(sec)",
+      "----------------------------"
+    ]
+  },
+  "test-local-multipart-put-get": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-local-multipart-put-get",
+      "\t[--target-path <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "[UpDown]ThreadCount = [int] : 쓰레드 개수",
+      "Times = [int] : 테스트 할 시간(sec)",
+      "ETagCheck = [bool] : ETag 비교 여부",
+      "----------------------------"
+    ]
+  },
+  "test-local-prepare": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-local-prepare",
+      "\t[--target-path <string>]",
+      "\t[--check <string>]",
+      "\t[--start <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "[UpDown]ThreadCount = [int] : 쓰레드 개수",
+      "FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "----------------------------"
+    ]
+  },
+  "test-local-put": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-local-put",
+      "\t[--target-path <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "[UpDown]ThreadCount = [int] : 쓰레드 개수",
+      "Times = [int] : 테스트 할 시간(sec)",
+      "----------------------------"
+    ]
+  },
+  "test-local-put-get": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-local-put-get",
+      "\t[--target-path <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "[UpDown]ThreadCount = [int] : 쓰레드 개수",
+      "Times = [int] : 테스트 할 시간(sec)",
+      "ETagCheck = [bool] : ETag 비교 여부",
+      "----------------------------"
+    ]
+  },
+  "test-mix": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-mix",
+      "\t[--bucket <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "Times = [int] : 테스트 할 시간(sec)",
+      "DivisionCount[int] : 오브젝트의 폴더 분리 분기",
+      "ETagCheck = [bool] : ETag 비교 여부",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-mix-v2": {
+    "exitCode": 0,
+    "requests": [
+      {
+        "body": null,
+        "headers": [],
+        "method": "GET",
+        "path": "/",
+        "query": [
+          "acl"
+        ]
+      }
+    ],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-mix-v2",
+      "\t[--bucket <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "Times = [int] : 테스트 할 시간(sec)",
+      "DivisionCount[int] : 오브젝트의 폴더 분리 분기",
+      "ETagCheck = [bool] : ETag 비교 여부",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------",
+      "",
+      "INFO  <TIME> : MIX V2 Test Initialize",
+      "INFO  <TIME> : MIX V2 Test Start",
+      "ERROR <TIME> : Task Start Failed"
+    ]
+  },
+  "test-mover": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-mover",
+      "\t[--bucket <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[Mover]URL = [string] : URL",
+      "User = [string] : 사용자명",
+      "SourceBucket = [string] : 원본 버킷명",
+      "TargetBucket = [string] : 대상 버킷명",
+      "FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "MaxFileSize = [int] : 이동할 파일의 최대 크기",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-multi-delete": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-multi-delete",
+      "\t--key <string>",
+      "\t[--bucket <string>]",
+      "\t[--count <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "[UpDown]ThreadCount = [int] : 쓰레드 개수",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-multi-system-all": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-multi-system-all",
+      "\t[--bucket <string>]",
+      "\t[--multipart <string>]",
+      "\t[--count <string>]"
+    ]
+  },
+  "test-multi-system-list": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-multi-system-list",
+      "\t[--bucket <string>]",
+      "\t[--count <string>]"
+    ]
+  },
+  "test-multi-system-up-down": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-multi-system-up-down",
+      "\t[--bucket <string>]",
+      "\t[--multipart <string>]",
+      "\t[--count <string>]"
+    ]
+  },
+  "test-multi-system-upload": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-multi-system-upload",
+      "\t[--bucket <string>]",
+      "\t[--multipart <string>]",
+      "\t[--count <string>]"
+    ]
+  },
+  "test-multi-upload": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-multi-upload",
+      "\t[--bucket <string>]",
+      "\t--key <string>",
+      "\t--thread <string>",
+      "\t[--size <string>]",
+      "\t[--part-size <string>]"
+    ]
+  },
+  "test-multipart-upload": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-multipart-upload",
+      "\t[--bucket <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "PartSize = [string] : 멀티파트 업로드 시 파트 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "DivisionCount[int] : 오브젝트의 폴더 분리 분기",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-multipart-upload-v2": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-multipart-upload-v2",
+      "\t[--bucket <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "PartSize = [string] : 멀티파트 업로드 시 파트 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "DivisionCount[int] : 오브젝트의 폴더 분리 분기",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-new-del": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-new-del",
+      "\t--bucket < : 버킷명>",
+      "\t--thread <int> : 스레드 개수",
+      "\t--size <string> : 파일 크기",
+      "\t--count <int> : 파일 개수",
+      "\t[--start <int>] : 시작 번호",
+      "\t[--prefix <string>] : 객체명 Prefix.",
+      "\t[--path <string>] : temp 파일 경로. default = ./test/",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-new-get": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-new-get",
+      "\t--bucket < : 버킷명>",
+      "\t--thread <int> : 스레드 개수",
+      "\t--size <string> : 파일 크기",
+      "\t--count <int> : 파일 개수",
+      "\t[--start <int>] : 시작 번호",
+      "\t[--prefix <string>] : 객체명 Prefix.",
+      "\t[--path <string>] : temp 파일 경로. default = ./test/",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "DivisionCount[int] : 오브젝트의 폴더 분리 분기",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-new-mix": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-new-mix",
+      "\t[--bucket <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "Times = [int] : 테스트 할 시간(sec)",
+      "DivisionCount[int] : 오브젝트의 폴더 분리 분기",
+      "ETagCheck = [bool] : ETag 비교 여부",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-new-put": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-new-put",
+      "\t--bucket < : 버킷명>",
+      "\t--thread <int> : 스레드 개수",
+      "\t--size <string> : 파일 크기",
+      "\t--count <int> : 파일 개수",
+      "\t[--config <string>] : 설정 파일 경로. default = config.ini",
+      "\t[--prefix <string>] : 객체명 Prefix.",
+      "\t[--path <string>] : temp 파일 경로. default = ./test/",
+      "\t[--start <int>] : 시작 번호",
+      "\t[--check] : 파일 내용 체크 여부",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "DivisionCount[int] : 오브젝트의 폴더 분리 분기",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-prepare": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-prepare",
+      "\t--bucket < : 버킷명>",
+      "\t--thread <int> : 스레드 개수",
+      "\t--size <string> : 파일 크기",
+      "\t--count <int> : 파일 개수",
+      "\t[--config <string>] : 설정 파일 경로. default = config.ini",
+      "\t[--prefix <string>] : 객체명 Prefix.",
+      "\t[--path <string>] : temp 파일 경로. default = ./test/",
+      "\t[--start <int>] : 시작 번호",
+      "\t[--check] : 파일 내용 체크 여부",
+      "\t[--not-empty] : 매번 파일의 내용이 다르게 업로드",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "DivisionCount[int] : 오브젝트의 폴더 분리 분기",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-prepare-dir": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-prepare-dir",
+      "\t--bucket < : 버킷명>",
+      "\t--thread <int> : 스레드 개수",
+      "\t--count <int> : 파일 개수",
+      "\t[--config <string>] : 설정 파일 경로. default = config.ini",
+      "\t[--prefix <string>] : 객체명 Prefix.",
+      "\t[--start <int>] : 시작 번호",
+      "\t[--check] : 이미 존재하는 폴더 건너뛰기",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "DivisionCount[int] : 오브젝트의 폴더 분리 분기",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-put": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-put",
+      "\t--bucket < : 버킷명>",
+      "\t--thread <int> : 스레드 개수",
+      "\t--size <string> : 파일 크기",
+      "\t--times <int> : 테스트 수행 시간(초)",
+      "\t[--prefix <string>] : 객체명 Prefix.",
+      "\t[--prefix <string>] : 객체명 Prefix.",
+      "\t[--path <string>] : temp 파일 경로. default = ./test/",
+      "\t[--start <int>] : 시작 번호",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "Times = [int] : 테스트 할 시간(sec)",
+      "DivisionCount[int] : 오브젝트의 폴더 분리 분기",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-put-get": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-put-get",
+      "\t[--bucket <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "Times = [int] : 테스트 할 시간(sec)",
+      "DivisionCount[int] : 오브젝트의 폴더 분리 분기",
+      "ETagCheck = [bool] : ETag 비교 여부",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-put-tag": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-put-tag",
+      "\t[--bucket <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "DivisionCount[int] : 오브젝트의 폴더 분리 분기",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-range-copy": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-range-copy",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t--source <string>",
+      "\t--source-key <string>"
+    ]
+  },
+  "test-range-read": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-range-read",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t[--range-list <string>]",
+      "\t[--thread <string>]",
+      "\t[--count <string>]"
+    ]
+  },
+  "test-replication": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start"
+    ]
+  },
+  "test-upload": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "DivisionCount[int] : 오브젝트의 폴더 분리 분기",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "test-used-size": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-used-size",
+      "\t[--bucket <string>]",
+      "",
+      "----- Config Setting -------",
+      "[UsedSize]BucketPrefix = [string] : 버킷 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "PartSize = [string] : 멀티파트 업로드 시 파트 크기(ex> 128K, 10M, 1G)",
+      "[DB]",
+      "Host = [string] : 호스트",
+      "Port = [int] : 포트",
+      "User = [string] : 사용자명",
+      "Password = [string] : 비밀번호",
+      "Database = [string] : Database",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------"
+    ]
+  },
+  "upload": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--upload",
+      "\t--bucket <string>",
+      "\t--file <string>",
+      "\t[--key <string>]",
+      "\t[--part-size <string>]"
+    ]
+  },
+  "upload-part": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--upload-part",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t--upload-id <string>",
+      "\t--part-number <int>",
+      "\t--file <string> : 업로드 파일 경로"
+    ]
+  },
+  "upload-part-copy": {
+    "exitCode": 0,
+    "requests": [],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--upload-part-copy",
+      "\t--bucket <string>",
+      "\t--key <string>",
+      "\t--source <string> : 원본 버킷명",
+      "\t--source-key <string> : 원본 오브젝트명",
+      "\t--upload-id <string>",
+      "\t--start-byte <string> : 시작 바이트(ex> 1K, 10MB)",
+      "\t--end-byte <string> : 종료 바이트(ex> 1K, 10MB)",
+      "\t[--version-id <string>]"
+    ]
+  }
+}

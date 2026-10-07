@@ -11,8 +11,8 @@
 //!   (`JsonNumberHandling.AllowReadingFromString`).
 //! - 읽기 오류의 위치는 .NET이 보고하는 UTF-8 바이트 단위 줄 번호와 줄 안 위치다.
 
-use awscli_rest_common::DotnetDateTime;
-use awscli_rest_common::dotnet_datetime::DateTimeKind;
+use crate::DotnetDateTime;
+use crate::dotnet_datetime::DateTimeKind;
 use chrono::{FixedOffset, NaiveDate, TimeZone};
 
 /// `JsonSerializerOptions` 중 읽기에 영향을 주는 값(나머지는 기본값).

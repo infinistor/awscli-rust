@@ -26,11 +26,21 @@ path = "../../tests/parity/cli_parse.rs"
 name = "parity_cli_help"
 path = "../../tests/parity/cli_help.rs"
 
+[[test]]
+name = "parity_cli_run"
+path = "../../tests/parity/cli_run.rs"
+
 [dependencies]
+awscli-rest-clients.workspace = true
 awscli-rest-common.workspace = true
 awscli-rest-config.workspace = true
+awscli-rest-model.workspace = true
 awscli-rest-s3.workspace = true
+aws-sdk-s3.workspace = true
+serde.workspace = true
+serde_json.workspace = true
 thiserror.workspace = true
+tokio.workspace = true
 chrono.workspace = true
 tracing.workspace = true
 tracing-subscriber.workspace = true
@@ -39,4 +49,9 @@ tracing-subscriber.workspace = true
 workspace = true
 
 [dev-dependencies]
-serde_json.workspace = true
+encoding_rs.workspace = true
+hex.workspace = true
+md-5.workspace = true
+quick-xml.workspace = true
+regex.workspace = true
+tempfile.workspace = true

@@ -2,8 +2,8 @@
 
 use serde::Serialize;
 
-use crate::dotnet_enum;
 use crate::json::{Deserializer, FromJson, JsonError, Token};
+use awscli_rest_common::dotnet_enum;
 
 dotnet_enum!(
     /// 디스크 크기 단위
