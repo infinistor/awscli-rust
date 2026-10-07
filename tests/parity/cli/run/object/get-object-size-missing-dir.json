@@ -1,0 +1,23 @@
+{
+   "args" : [
+      "--get-object",
+      "-b",
+      "bucket1",
+      "-k",
+      "key1",
+      "-f",
+      "nodir/out.txt",
+      "--size",
+      "3"
+   ],
+   "routes" : [
+      {
+         "contains" : "GET /bucket1/key1",
+         "responseBody" : "hello",
+         "responseHeaders" : {
+            "Content-Type" : "text/plain"
+         },
+         "status" : 200
+      }
+   ]
+}

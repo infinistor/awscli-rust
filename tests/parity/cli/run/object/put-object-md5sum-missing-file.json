@@ -1,0 +1,12 @@
+{
+   "args" : [
+      "--put-object",
+      "-b",
+      "bucket1",
+      "-k",
+      "key1",
+      "-f",
+      "missing.txt",
+      "--md5sum"
+   ]
+}

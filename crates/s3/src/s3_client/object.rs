@@ -63,7 +63,9 @@ impl PutBody {
             Self::Bytes(bytes) => memory(bytes),
             Self::File(path) => {
                 let io = |e: std::io::Error| S3Error::io(&path, &e);
-                let length = tokio::fs::metadata(&path).await.map_err(io)?.len();
+                // .NET처럼 먼저 파일을 연다(디렉터리면 접근 거부, 없으면 파일 없음).
+                let opened = tokio::fs::File::open(&path).await.map_err(io)?;
+                let length = opened.metadata().await.map_err(io)?.len();
                 let start = u64::try_from(position).unwrap_or(0).min(length);
                 let remaining = length - start;
                 let take = u64::try_from(size).map_or(remaining, |s| s.min(remaining));

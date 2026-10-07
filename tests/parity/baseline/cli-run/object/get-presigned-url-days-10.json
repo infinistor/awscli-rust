@@ -1,0 +1,11 @@
+{
+  "exitCode": 0,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : GetPresignedUrl Start",
+    "INFO  <TIME> : http://<HOST>/bucket1/dir/key%201?AWSAccessKeyId=testcore-access&Expires=<EXPIRES>&Signature=<SIG>",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

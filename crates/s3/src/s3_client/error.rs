@@ -142,6 +142,9 @@ impl S3Error {
     /// 파일이 없으면 `FileNotFoundException`(상위 디렉터리도 없으면 `DirectoryNotFoundException`),
     /// 권한이 없으면 `UnauthorizedAccessException`, 그 밖은 `IOException`.
     pub fn io(path: &std::path::Path, error: &std::io::Error) -> Self {
+        // .NET 메시지는 `Path.GetFullPath`한 전체 경로를 쓴다.
+        let full = std::path::absolute(path).unwrap_or_else(|_| path.to_path_buf());
+        let path = full.as_path();
         let shown = path.display();
         let (dotnet_type, message) = match error.kind() {
             std::io::ErrorKind::NotFound => {

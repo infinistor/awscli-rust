@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : UploadPart Start",
+    "ERROR <TIME> : System.UnauthorizedAccessException: Access to the path '<DIR>\\adir' is denied."
+  ]
+}

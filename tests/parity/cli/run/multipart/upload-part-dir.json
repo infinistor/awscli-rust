@@ -1,0 +1,18 @@
+{
+   "args" : [
+      "--upload-part",
+      "-b",
+      "bucket1",
+      "-k",
+      "key1",
+      "--upload-id",
+      "UID1",
+      "--part-number",
+      "1",
+      "--file",
+      "adir"
+   ],
+   "files" : {
+      "adir/x.txt" : "x"
+   }
+}

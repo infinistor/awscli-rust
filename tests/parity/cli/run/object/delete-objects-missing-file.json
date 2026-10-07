@@ -1,0 +1,9 @@
+{
+   "args" : [
+      "--delete-objects",
+      "-b",
+      "bucket1",
+      "-f",
+      "missing.json"
+   ]
+}

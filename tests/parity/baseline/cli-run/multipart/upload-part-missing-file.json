@@ -1,0 +1,11 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : UploadPart Start",
+    "ERROR <TIME> : System.IO.FileNotFoundException: Could not find file '<DIR>\\missing.bin'.",
+    "File name: '<DIR>\\missing.bin'"
+  ]
+}

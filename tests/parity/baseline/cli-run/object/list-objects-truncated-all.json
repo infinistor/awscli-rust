@@ -1,0 +1,38 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "marker=b.txt",
+        "max-keys=2"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "max-keys=2"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ListObjects Start",
+    "[<TIME>]Next Key Marker : b.txt",
+    "--------------------------------------------------------------------------",
+    "a.txt  2026-03-04 05:06:07     10.000 Byte",
+    "b.txt  2026-03-04 05:06:07     10.000 Byte",
+    "c.txt  2026-03-04 05:06:07     10.000 Byte",
+    "--------------------------------------------------------------------------",
+    "0 Folders, 3 Objects.",
+    "INFO  <TIME> : 3 files. 30 Byte. ListingCount Count = 2 . complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

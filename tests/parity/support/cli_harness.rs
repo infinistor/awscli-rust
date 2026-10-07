@@ -198,11 +198,26 @@ pub async fn run_case(exe: &Path, case: &CliCase, encoding: OutputEncoding) -> C
         OutputEncoding::Utf8 => String::from_utf8_lossy(bytes).into_owned(),
         OutputEncoding::Cp949 => encoding_rs::EUC_KR.decode(bytes).0.into_owned(),
     };
-    let dir_text = dir.path().display().to_string();
-    let context = Context {
-        host: &host,
-        dir: &dir_text,
-    };
+    let short = dir.path().display().to_string();
+    let long = std::fs::canonicalize(dir.path())
+        .map(|p| {
+            p.display()
+                .to_string()
+                .trim_start_matches(r"\\?\")
+                .to_string()
+        })
+        .unwrap_or_else(|_| short.clone());
+    let mut dirs = Vec::new();
+    for d in [long, short] {
+        for v in [d.clone(), d.replace('\\', "/")] {
+            if !dirs.contains(&v) {
+                dirs.push(v);
+            }
+        }
+    }
+    // 긴 표기가 짧은 표기를 포함할 수 있어 긴 것부터 바꾼다.
+    dirs.sort_by_key(|d| std::cmp::Reverse(d.len()));
+    let context = Context { host: &host, dirs };
     let mut requests: Vec<Value> = server
         .requests()
         .iter()
@@ -219,19 +234,46 @@ pub async fn run_case(exe: &Path, case: &CliCase, encoding: OutputEncoding) -> C
 
 struct Context<'a> {
     host: &'a str,
-    dir: &'a str,
+    /// 작업 디렉터리의 여러 표기(8.3 짧은 이름, 긴 이름, `/` 구분).
+    dirs: Vec<String>,
 }
 
 static LOG_TIME: LazyLock<Regex> = LazyLock::new(|| {
     Regex::new(r"^(INFO |ERROR|WARN |DEBUG|FATAL) \d{4}-\d\d-\d\d \d\d:\d\d:\d\d : ").unwrap()
 });
 static MILLIS: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"\b\d+ms\b").unwrap());
+/// 벽시계 시각을 찍는 줄머리(`[2026-10-07 15:04:05]Next Key Marker : ...`).
+static WALL_CLOCK: LazyLock<Regex> =
+    LazyLock::new(|| Regex::new(r"\[\d{4}-\d\d-\d\d \d\d:\d\d:\d\d\]").unwrap());
+/// 서명된 URL의 시각·서명(V4 `X-Amz-*`, V2 `Expires`·`Signature`).
+static PRESIGN: LazyLock<[(Regex, &'static str); 5]> = LazyLock::new(|| {
+    [
+        (
+            Regex::new(r"(X-Amz-Date=)\d{8}T\d{6}Z").unwrap(),
+            "${1}<DATE>",
+        ),
+        (
+            Regex::new(r"(X-Amz-Credential=[^&\s]*?(?:%2F|/))\d{8}").unwrap(),
+            "${1}<DATE>",
+        ),
+        (
+            Regex::new(r"(X-Amz-Signature=)[0-9a-f]+").unwrap(),
+            "${1}<SIG>",
+        ),
+        (Regex::new(r"([?&]Expires=)\d+").unwrap(), "${1}<EXPIRES>"),
+        (Regex::new(r"([?&]Signature=)[^&\s]+").unwrap(), "${1}<SIG>"),
+    ]
+});
 
 fn replace_context(text: &str, context: &Context<'_>) -> String {
     let mut text = text.replace(context.host, "<HOST>");
-    // Windows 임시 경로는 8.3 이름이나 `\\?\` 접두사로 보일 수 있다.
-    for dir in [context.dir.to_string(), context.dir.replace('\\', "/")] {
-        text = text.replace(&dir, "<DIR>");
+    // Windows 임시 경로는 8.3 짧은 이름과 긴 이름으로 모두 나타날 수 있다.
+    for dir in &context.dirs {
+        text = text.replace(dir.as_str(), "<DIR>");
+    }
+    text = WALL_CLOCK.replace_all(&text, "[<TIME>]").into_owned();
+    for (pattern, replacement) in PRESIGN.iter() {
+        text = pattern.replace_all(&text, *replacement).into_owned();
     }
     text
 }

@@ -151,7 +151,7 @@ impl S3Client {
                 .map(|p| p.uri().to_string())
                 .map_err(S3Error::from),
         }?;
-        Ok(force_http(&presigned))
+        Ok(expires_first(&force_http(&presigned)))
     }
 }
 
@@ -219,4 +219,17 @@ fn encode(value: &str) -> String {
         }
     }
     out
+}
+
+/// .NET은 쿼리에서 `X-Amz-Expires`를 맨 앞에 둔다(쿼리 순서는 서명에 영향이 없다).
+fn expires_first(uri: &str) -> String {
+    let Some((base, query)) = uri.split_once('?') else {
+        return uri.to_string();
+    };
+    let mut params: Vec<&str> = query.split('&').collect();
+    if let Some(index) = params.iter().position(|p| p.starts_with("X-Amz-Expires=")) {
+        let expires = params.remove(index);
+        params.insert(0, expires);
+    }
+    format!("{base}?{}", params.join("&"))
 }

@@ -1,0 +1,11 @@
+{
+  "exitCode": 0,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : GetPresignedUrl Start",
+    "INFO  <TIME> : http://<HOST>/bucket1/dir/key%201?X-Amz-Expires=86400&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=testcore-access%2F<DATE>%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=<DATE>&X-Amz-SignedHeaders=host&X-Amz-Signature=<SIG>",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

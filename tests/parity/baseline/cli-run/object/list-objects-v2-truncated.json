@@ -1,0 +1,28 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "list-type=2",
+        "max-keys=2"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ListObjectsV2 Start",
+    "[<TIME>]Next Continuation Token : ",
+    "--------------------------------------------------------------------------",
+    "a.txt    2026-03-04 05:06:07     10.000 Byte",
+    "b.txt    2026-03-04 05:06:07     10.000 Byte",
+    "--------------------------------------------------------------------------",
+    "0 Folders, 2 Objects.",
+    "INFO  <TIME> : 2 files. 20 Byte. ListingCount Count = 1. complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "ERROR <TIME> : System.IO.FileNotFoundException: Could not find file '<DIR>\\missing.json'.",
+    "File name: '<DIR>\\missing.json'"
+  ]
+}

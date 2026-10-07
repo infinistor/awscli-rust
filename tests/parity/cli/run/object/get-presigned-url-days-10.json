@@ -1,0 +1,11 @@
+{
+   "args" : [
+      "--get-presigned-url",
+      "-b",
+      "bucket1",
+      "-k",
+      "dir/key 1",
+      "--days",
+      "10"
+   ]
+}

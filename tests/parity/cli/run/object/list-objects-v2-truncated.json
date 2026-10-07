@@ -1,0 +1,19 @@
+{
+   "args" : [
+      "--list-objects-v2",
+      "-b",
+      "bucket1",
+      "--max-keys",
+      "2"
+   ],
+   "routes" : [
+      {
+         "contains" : "GET /bucket1",
+         "responseBody" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ListBucketResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>bucket1</Name><Prefix></Prefix><KeyCount>2</KeyCount><MaxKeys>2</MaxKeys><IsTruncated>true</IsTruncated><NextContinuationToken>TOKEN1</NextContinuationToken><Contents><Key>a.txt</Key><LastModified>2026-03-04T05:06:07.000Z</LastModified><ETag>&quot;d41d8cd98f00b204e9800998ecf8427e&quot;</ETag><Size>10</Size><StorageClass>STANDARD</StorageClass></Contents><Contents><Key>b.txt</Key><LastModified>2026-03-04T05:06:07.000Z</LastModified><ETag>&quot;d41d8cd98f00b204e9800998ecf8427e&quot;</ETag><Size>10</Size><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>",
+         "responseHeaders" : {
+            "Content-Type" : "application/xml"
+         },
+         "status" : 200
+      }
+   ]
+}

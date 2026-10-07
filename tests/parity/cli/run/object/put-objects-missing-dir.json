@@ -1,0 +1,9 @@
+{
+   "args" : [
+      "--put-objects",
+      "-b",
+      "bucket1",
+      "-p",
+      "nodir"
+   ]
+}

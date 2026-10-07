@@ -1,0 +1,18 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/key1",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : GetObject Start",
+    "ERROR <TIME> : System.IO.DirectoryNotFoundException: Could not find a part of the path '<DIR>\\nodir\\out.txt'."
+  ]
+}
