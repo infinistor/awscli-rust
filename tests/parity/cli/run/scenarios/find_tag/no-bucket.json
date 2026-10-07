@@ -1,0 +1,7 @@
+{
+  "args": [
+    "--test-find-tag=color,red",
+    "--thread",
+    "1"
+  ]
+}

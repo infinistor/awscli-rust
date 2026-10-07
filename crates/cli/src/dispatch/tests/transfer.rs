@@ -2,12 +2,13 @@
 
 use std::time::Instant;
 
+use awscli_rest_scenarios::find_tag::FindTagTest;
 use awscli_rest_scenarios::multi_part::MultiPartTest;
 use awscli_rest_scenarios::multi_upload::MultiUploadTest;
 use awscli_rest_scenarios::range_read;
 use tracing::info;
 
-use super::super::{CommandContext, CommandResult, not_ported};
+use super::super::{CommandContext, CommandError, CommandResult, not_ported};
 use crate::menu::MenuList;
 
 pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResult {
@@ -15,8 +16,34 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
         MenuList::ManualUpload => manual_upload(ctx).await,
         MenuList::MultiUploadTest => multi_upload_test(ctx).await,
         MenuList::RangeReadTest => range_read_test(ctx).await,
+        MenuList::FindTagTest => find_tag_test(ctx).await,
         _ => not_ported(menu),
     }
+}
+
+/// 원본 `case MenuList.FindTagTest`. `--test-find-tag` 값이 없으면 `NullReferenceException`,
+/// 쉼표가 없으면 `IndexOutOfRangeException`이다(원본은 검증하지 않는다).
+async fn find_tag_test(ctx: &mut CommandContext) -> CommandResult {
+    let o = &ctx.options;
+    let Some(tags) = &o.tags else {
+        return Err(super::super::input::null_reference());
+    };
+    let mut parts = tags.split(',');
+    let tag_key = parts.next().unwrap_or_default();
+    let Some(tag_value) = parts.next() else {
+        return Err(CommandError::new(
+            "System.IndexOutOfRangeException",
+            "Index was outside the bounds of the array.",
+        ));
+    };
+
+    let test = FindTagTest::new(
+        ctx.client().clone(),
+        if o.thread < 1 { 10 } else { o.thread },
+    );
+    test.start(o.bucket_name.as_deref(), tag_key, tag_value)
+        .await?;
+    Ok(0)
 }
 
 /// 원본 `case MenuList.RangeReadTest`(검증은 `tests/mod.rs`).

@@ -1,0 +1,19 @@
+{
+  "args": [
+    "--test-find-tag=color,red",
+    "-b",
+    "ft",
+    "--thread",
+    "1"
+  ],
+  "routes": [
+    {
+      "contains": "GET /ft/?",
+      "status": 200,
+      "responseBody": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ListBucketResult><Name>ft</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated></ListBucketResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    }
+  ]
+}
