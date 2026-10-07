@@ -1,0 +1,20 @@
+{
+  "steps": [
+    {
+      "multipart": true,
+      "op": "prepare",
+      "bucketType": "One",
+      "maxCount": 2
+    },
+    {
+      "etagCheck": true,
+      "multipart": true,
+      "op": "read-v2",
+      "bucketType": "One",
+      "maxCount": 2
+    },
+    {
+      "op": "delete"
+    }
+  ]
+}

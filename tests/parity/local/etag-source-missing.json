@@ -1,0 +1,13 @@
+{
+  "existing": [
+    "TH_001/00000/obj_00000"
+  ],
+  "steps": [
+    {
+      "etagCheck": true,
+      "op": "read-v2",
+      "maxCount": 1
+    }
+  ],
+  "deleteSource": true
+}

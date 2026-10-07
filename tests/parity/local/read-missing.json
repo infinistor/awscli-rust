@@ -1,0 +1,13 @@
+{
+  "steps": [
+    {
+      "op": "read-v2",
+      "maxCount": 2
+    },
+    {
+      "multipart": true,
+      "op": "read-v2",
+      "maxCount": 1
+    }
+  ]
+}

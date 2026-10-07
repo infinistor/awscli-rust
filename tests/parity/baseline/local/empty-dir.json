@@ -1,0 +1,48 @@
+{
+  "steps": [
+    {
+      "quit": true,
+      "stats": {
+        "write": [
+          0,
+          0
+        ],
+        "read": [
+          0,
+          0
+        ],
+        "delete": [
+          0,
+          0
+        ]
+      },
+      "logs": [
+        "WARN Thread 1: No files found in target directory"
+      ],
+      "error": null,
+      "files": []
+    },
+    {
+      "quit": true,
+      "stats": {
+        "write": [
+          0,
+          0
+        ],
+        "read": [
+          0,
+          0
+        ],
+        "delete": [
+          0,
+          0
+        ]
+      },
+      "logs": [
+        "WARN Thread 1: No files found in target directory"
+      ],
+      "error": null,
+      "files": []
+    }
+  ]
+}

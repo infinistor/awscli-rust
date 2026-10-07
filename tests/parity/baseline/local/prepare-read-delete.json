@@ -1,0 +1,96 @@
+{
+  "steps": [
+    {
+      "quit": true,
+      "stats": {
+        "write": [
+          3,
+          0
+        ],
+        "read": [
+          0,
+          0
+        ],
+        "delete": [
+          0,
+          0
+        ]
+      },
+      "logs": [],
+      "error": null,
+      "files": [
+        "TH_001/00000/obj_00000:11",
+        "TH_001/00000/obj_00001:11",
+        "TH_001/00000/obj_00002:11"
+      ]
+    },
+    {
+      "quit": true,
+      "stats": {
+        "write": [
+          0,
+          0
+        ],
+        "read": [
+          0,
+          0
+        ],
+        "delete": [
+          0,
+          0
+        ]
+      },
+      "logs": [],
+      "error": null,
+      "files": [
+        "TH_001/00000/obj_00000:11",
+        "TH_001/00000/obj_00001:11",
+        "TH_001/00000/obj_00002:11"
+      ]
+    },
+    {
+      "quit": true,
+      "stats": {
+        "write": [
+          0,
+          0
+        ],
+        "read": [
+          3,
+          0
+        ],
+        "delete": [
+          0,
+          0
+        ]
+      },
+      "logs": [],
+      "error": null,
+      "files": [
+        "TH_001/00000/obj_00000:11",
+        "TH_001/00000/obj_00001:11",
+        "TH_001/00000/obj_00002:11"
+      ]
+    },
+    {
+      "quit": true,
+      "stats": {
+        "write": [
+          0,
+          0
+        ],
+        "read": [
+          0,
+          0
+        ],
+        "delete": [
+          3,
+          0
+        ]
+      },
+      "logs": [],
+      "error": null,
+      "files": []
+    }
+  ]
+}

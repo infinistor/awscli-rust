@@ -1,0 +1,19 @@
+{
+  "steps": [
+    {
+      "fileSize": 5,
+      "op": "prepare",
+      "check": true,
+      "maxCount": 1
+    },
+    {
+      "fileSize": 11,
+      "op": "prepare",
+      "check": true,
+      "maxCount": 1
+    }
+  ],
+  "existing": [
+    "TH_001/00000/obj_00000"
+  ]
+}

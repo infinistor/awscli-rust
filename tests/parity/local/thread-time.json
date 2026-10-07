@@ -1,0 +1,19 @@
+{
+  "steps": [
+    {
+      "thread": 2,
+      "op": "prepare",
+      "bucketType": "Time",
+      "maxCount": 2
+    },
+    {
+      "thread": 3,
+      "op": "prepare",
+      "bucketType": "Thread",
+      "maxCount": 2
+    },
+    {
+      "op": "delete"
+    }
+  ]
+}

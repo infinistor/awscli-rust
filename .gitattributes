@@ -10,3 +10,4 @@ tests/parity/json/** -text
 tests/parity/s3/** -text
 tests/parity/stats/** -text
 tests/parity/updown/** -text
+tests/parity/local/** -text

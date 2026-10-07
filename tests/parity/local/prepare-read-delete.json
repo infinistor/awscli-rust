@@ -1,0 +1,21 @@
+{
+  "steps": [
+    {
+      "op": "prepare",
+      "maxCount": 3
+    },
+    {
+      "op": "prepare",
+      "check": true,
+      "maxCount": 3
+    },
+    {
+      "etagCheck": true,
+      "op": "read-v2",
+      "maxCount": 3
+    },
+    {
+      "op": "delete"
+    }
+  ]
+}

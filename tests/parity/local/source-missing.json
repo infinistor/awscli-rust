@@ -1,0 +1,14 @@
+{
+  "steps": [
+    {
+      "op": "prepare",
+      "maxCount": 2
+    },
+    {
+      "multipart": true,
+      "op": "prepare",
+      "maxCount": 2
+    }
+  ],
+  "deleteSource": true
+}

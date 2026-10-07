@@ -1,0 +1,29 @@
+{
+  "steps": [
+    {
+      "quit": false,
+      "stats": {
+        "write": [
+          0,
+          0
+        ],
+        "read": [
+          0,
+          0
+        ],
+        "delete": [
+          0,
+          0
+        ]
+      },
+      "logs": [],
+      "error": {
+        "type": "System.IO.FileNotFoundException",
+        "message": "Could not find file '<WORK>\\source.txt'."
+      },
+      "files": [
+        "TH_001/00000/obj_00000:11"
+      ]
+    }
+  ]
+}

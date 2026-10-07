@@ -1,0 +1,49 @@
+{
+  "steps": [
+    {
+      "quit": true,
+      "stats": {
+        "write": [
+          0,
+          0
+        ],
+        "read": [
+          0,
+          2
+        ],
+        "delete": [
+          0,
+          0
+        ]
+      },
+      "logs": [
+        "ERROR Thread 1: File not found - <WORK>\\target\\TH_001/00000/obj_00000",
+        "ERROR Thread 1: File not found - <WORK>\\target\\TH_001/00000/obj_00001"
+      ],
+      "error": null,
+      "files": []
+    },
+    {
+      "quit": true,
+      "stats": {
+        "write": [
+          0,
+          0
+        ],
+        "read": [
+          0,
+          1
+        ],
+        "delete": [
+          0,
+          0
+        ]
+      },
+      "logs": [
+        "ERROR Thread 1: File not found - <WORK>\\target\\TH_001/00000/obj_00000"
+      ],
+      "error": null,
+      "files": []
+    }
+  ]
+}

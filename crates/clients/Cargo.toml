@@ -29,5 +29,9 @@ tracing-subscriber.workspace = true
 name = "parity_updown"
 path = "../../tests/parity/updown.rs"
 
+[[test]]
+name = "parity_local"
+path = "../../tests/parity/local.rs"
+
 [lints]
 workspace = true
