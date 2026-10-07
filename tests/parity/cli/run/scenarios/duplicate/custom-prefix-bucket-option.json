@@ -1,0 +1,9 @@
+{
+  "args": [
+    "--test-duplicate",
+    "-b",
+    "other"
+  ],
+  "config": "[Default]\r\nBucketName = dup\r\nObjectPrefix = ZZ\r\nFileSize = 8\r\n\r\n[Duplicate]\r\nObjectPath = p\r\nLoopCount = 1\r\nObjectCount = 1\r\n\r\n[Main User]\r\nURL = {URL}\r\nAccessKey = testcore-access\r\nSecretKey = testcore-secret-key-0123456789abcdefghij\r\n\r\n[Alt User]\r\nURL = {URL}\r\nAccessKey = testcore-alt-access\r\nSecretKey = testcore-alt-secret-0123456789abcdefghij\r\n",
+  "ignore_body": true
+}

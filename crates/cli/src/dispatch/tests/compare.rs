@@ -5,6 +5,7 @@ use std::time::Instant;
 use awscli_rest_config::CopyConfig;
 use awscli_rest_scenarios::compare::CompareTest;
 use awscli_rest_scenarios::copy::CopyTest;
+use awscli_rest_scenarios::duplicate::DuplicateTest;
 use tracing::info;
 
 use super::super::{CommandContext, CommandResult, not_ported};
@@ -37,6 +38,16 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                 "RangeReadCopy : complete time = {}ms",
                 started.elapsed().as_millis()
             );
+            Ok(0)
+        }
+        MenuList::DuplicateTest => {
+            let config = ctx.config();
+            let test = DuplicateTest::new(
+                config.main.clone(),
+                config.duplicate.clone(),
+                &config.main_user,
+            );
+            test.start().await?;
             Ok(0)
         }
         // TODO(5단계): 나머지 시나리오 실행.
