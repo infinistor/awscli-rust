@@ -1,0 +1,25 @@
+{
+  "port": 60597,
+  "requests": [
+    {
+      "line": "DELETE //api/v1/SystemUsers/user1 HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:60597"
+        ],
+        [
+          "Authorization",
+          "test-api-key"
+        ]
+      ],
+      "body": ""
+    }
+  ],
+  "result": null,
+  "error": {
+    "type": "TestCore.Portal.PortalUserException",
+    "message": "ERROR(E100) : Something failed"
+  },
+  "logs": []
+}

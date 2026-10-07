@@ -1,0 +1,5 @@
+{
+  "apiKey": "a/b",
+  "op": "health",
+  "responseBody": "{\"Result\":1}"
+}

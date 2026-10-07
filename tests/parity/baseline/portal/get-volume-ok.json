@@ -1,0 +1,22 @@
+{
+  "port": 60639,
+  "requests": [
+    {
+      "line": "GET //api/v1/Volumes/vol1 HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:60639"
+        ],
+        [
+          "Authorization",
+          "test-api-key"
+        ]
+      ],
+      "body": ""
+    }
+  ],
+  "result": "{\r\n  \"Id\": 12345678901,\r\n  \"Name\": \"vol1\",\r\n  \"Status\": 256,\r\n  \"Permission\": 1,\r\n  \"QuotaSize\": 1000000000000,\r\n  \"UsedSize\": 1234.50,\r\n  \"FreeSize\": 990000000000,\r\n  \"SecurityLevel\": 1,\r\n  \"Remark\": \"\\uD55C\\uAE00 \\u0022remark\\u0022\",\r\n  \"Usage\": 0.123,\r\n  \"FileCount\": 42,\r\n  \"ReplicationType\": 2\r\n}",
+  "error": null,
+  "logs": []
+}

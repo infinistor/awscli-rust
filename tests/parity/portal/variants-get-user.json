@@ -1,0 +1,18 @@
+{
+  "variants": [
+    "{\"Result\":1,\"Data\":{\"Notification\":true,\"ValidUser\":true,\"ReadOnly\":true}}",
+    "{\"Result\":1,\"Data\":{\"Notification\":1}}",
+    "{\"Result\":1,\"Data\":{\"ValidUser\":\"false\"}}",
+    "{\"Result\":1,\"Data\":{\"ReadOnly\":null}}",
+    "{\"Result\":1,\"Data\":{\"UserId\":5}}",
+    "{\"Result\":1,\"Data\":{\"Role\":[\"admin\"]}}",
+    "{\"Result\":1,\"Data\":{\"Email\":null,\"Remark\":\"\"}}",
+    "{\"Result\":1,\"Data\":{\"userid\":\"x\"}}",
+    "{\"Result\":1,\"Data\":{\"USERID\":\"x\"}}",
+    "{\"Result\":1,\"Data\":[{\"UserId\":\"x\"}]}",
+    "{\"Result\":1,\"Data\":\"x\"}",
+    "{\"Result\":1,\"Data\":7}",
+    "{\"Result\":1,\"Data\":{\"Extra\":{\"deep\":[{\"a\":[1,2,{\"b\":null}]}]},\"UserId\":\"x\"}}"
+  ],
+  "op": "get-user"
+}

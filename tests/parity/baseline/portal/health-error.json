@@ -1,0 +1,27 @@
+{
+  "port": 60666,
+  "requests": [
+    {
+      "line": "GET //api/v1/Health HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:60666"
+        ],
+        [
+          "Authorization",
+          "test-api-key"
+        ]
+      ],
+      "body": ""
+    }
+  ],
+  "result": false,
+  "error": null,
+  "logs": [
+    {
+      "level": "ERROR",
+      "message": "HealthCheck Error : Error"
+    }
+  ]
+}

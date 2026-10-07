@@ -16,7 +16,15 @@
 			<HintPath>$(TestCoreBin)\AWSSDK.Core.dll</HintPath>
 			<Private>false</Private>
 		</Reference>
-		<Reference Include="AWSSDK.S3">
+		<Reference Include="log4net">
+				<HintPath>$(TestCoreBin)\log4net.dll</HintPath>
+				<Private>false</Private>
+			</Reference>
+			<Reference Include="NetMQ">
+				<HintPath>$(TestCoreBin)\NetMQ.dll</HintPath>
+				<Private>false</Private>
+			</Reference>
+			<Reference Include="AWSSDK.S3">
 			<HintPath>$(TestCoreBin)\AWSSDK.S3.dll</HintPath>
 			<Private>false</Private>
 		</Reference>

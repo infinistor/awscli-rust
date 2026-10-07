@@ -6,6 +6,9 @@
 //   dotnet run -- uris <URL 목록 파일>    위 결과를 줄마다 계산해 JSON 배열로 출력
 //   dotnet run -- sign <요청 JSON 파일>   Aws4SignerForAuthorizationHeader 서명 결과를 출력
 //   dotnet run -- ksan <사례 JSON 파일>   KsanClient 요청을 로컬 서버로 캡처하고 처리 결과(반환값·예외)를 출력
+//   dotnet run -- portal|mover|zeromq <사례 JSON 파일>  PortalManager·MoverClient·ZeroMqClient 요청을 로컬 서버로 캡처하고 결과를 출력
+//   dotnet run -- zeromq-serve <응답>       NetMQ REP 서버(상호 운용 확인용, PORT 줄을 먼저 출력)
+//   dotnet run -- zeromq-call <pause|resume> <서비스> <IP> <포트>  ZeroMqClient로 요청(상호 운용 확인용)
 // 실행 시 TestCore.dll과 의존 어셈블리는 TESTCORE_BIN(기본: ../../../TESTCore/bin/TestCore)에서 읽는다.
 using System;
 using System.Collections.Generic;
@@ -60,6 +63,11 @@ static partial class Program
 			case "sign": Console.WriteLine(Sign(args[1])); return 0;
 			case "ksan": Console.WriteLine(Ksan(args[1])); return 0;
 			case "s3": Console.WriteLine(S3Probe(args[1])); return 0;
+				case "portal": Console.WriteLine(Portal(args[1])); return 0;
+				case "mover": Console.WriteLine(Mover(args[1])); return 0;
+				case "zeromq": Console.WriteLine(ZeroMq(args[1])); return 0;
+				case "zeromq-serve": Console.WriteLine(ZeroMqServe(args[1])); return 0;
+				case "zeromq-call": Console.WriteLine(ZeroMqCall(args[1], args[2], args[3], int.Parse(args[4]))); return 0;
 			case "json":
 				// TestCore JsonExtensions.ToJsonString 형식 확인용: 파일의 각 줄(문자열)과 고정된 구조를 직렬화한다.
 				var strings = File.ReadAllLines(args[1]).Select(l => l.Replace("\\r", "\r").Replace("\\n", "\n").Replace("\\t", "\t").Replace("\\0", "\0").Replace("\\x01", "\u0001").Replace("\\x7f", "\u007f")).ToList();

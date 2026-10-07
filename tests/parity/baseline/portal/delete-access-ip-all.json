@@ -1,0 +1,22 @@
+{
+  "port": 60584,
+  "requests": [
+    {
+      "line": "DELETE //api/v1/AccessIps?UserId=user1&TenantId=vol1 HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:60584"
+        ],
+        [
+          "Authorization",
+          "test-api-key"
+        ]
+      ],
+      "body": ""
+    }
+  ],
+  "result": null,
+  "error": null,
+  "logs": []
+}

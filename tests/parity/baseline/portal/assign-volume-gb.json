@@ -1,0 +1,30 @@
+{
+  "port": 58647,
+  "requests": [
+    {
+      "line": "POST //api/v1/Volumes/vol1/Users/user1 HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:58647"
+        ],
+        [
+          "Authorization",
+          "test-api-key"
+        ],
+        [
+          "Content-Type",
+          "text/plain; charset=utf-8"
+        ],
+        [
+          "Content-Length",
+          "44"
+        ]
+      ],
+      "body": "{\r\n  \"QuotaSize\": 3,\r\n  \"DiskSizeUnit\": 1\r\n}"
+    }
+  ],
+  "result": null,
+  "error": null,
+  "logs": []
+}

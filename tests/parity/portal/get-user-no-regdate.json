@@ -1,0 +1,4 @@
+{
+  "responseBody": "{\"Result\":1,\"Data\":{\"UserId\":\"u\"}}",
+  "op": "get-user"
+}

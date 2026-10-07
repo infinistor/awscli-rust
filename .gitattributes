@@ -8,3 +8,4 @@ tests/parity/config/** -text
 tests/parity/ksan/** -text
 tests/parity/json/** -text
 tests/parity/s3/** -text
+tests/parity/portal/** -text

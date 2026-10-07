@@ -1,0 +1,10 @@
+{
+  "port": 60651,
+  "requests": [],
+  "result": null,
+  "error": {
+    "type": "System.FormatException",
+    "message": "The format of value '한글' is invalid."
+  },
+  "logs": []
+}

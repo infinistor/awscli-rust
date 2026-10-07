@@ -1,0 +1,5 @@
+{
+  "bucket": "bk",
+  "op": "put-access-ip",
+  "responseBody": "{\"Result\":-1,\"Code\":\"E100\",\"Message\":\"Something failed\"}"
+}

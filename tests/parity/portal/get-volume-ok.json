@@ -1,0 +1,4 @@
+{
+  "responseBody": "{\"IsNeedLogin\":false,\"AccessDenied\":false,\"Result\":1,\"Code\":null,\"Message\":null,\"Data\":{\"Id\":12345678901,\"Name\":\"vol1\",\"Status\":256,\"Permission\":1,\"QuotaSize\":1000000000000,\"UsedSize\":1234.50,\"FreeSize\":9.9E+11,\"SecurityLevel\":1,\"Remark\":\"한글 \\\"remark\\\"\",\"Usage\":0.123,\"FileCount\":42,\"ReplicationType\":2}}",
+  "op": "get-volume"
+}

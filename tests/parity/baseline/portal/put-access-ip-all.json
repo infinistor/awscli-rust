@@ -1,0 +1,30 @@
+{
+  "port": 60700,
+  "requests": [
+    {
+      "line": "POST //api/v1/AccessIps HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:60700"
+        ],
+        [
+          "Authorization",
+          "test-api-key"
+        ],
+        [
+          "Content-Type",
+          "text/plain; charset=utf-8"
+        ],
+        [
+          "Content-Length",
+          "100"
+        ]
+      ],
+      "body": "{\r\n  \"UserId\": \"vol1\",\r\n  \"TenantId\": \"user1\",\r\n  \"IpAddress\": \"10.0.0.1\",\r\n  \"BucketName\": \"ALL\"\r\n}"
+    }
+  ],
+  "result": null,
+  "error": null,
+  "logs": []
+}

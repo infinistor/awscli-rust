@@ -408,6 +408,25 @@ dependencies = [
 [[package]]
 name = "awscli-rest-clients"
 version = "0.1.0"
+dependencies = [
+ "awscli-rest-common",
+ "awscli-rest-config",
+ "awscli-rest-s3",
+ "bytes",
+ "chrono",
+ "http 1.5.0",
+ "http-body-util",
+ "hyper 1.11.1",
+ "hyper-rustls 0.27.10",
+ "hyper-util",
+ "rustls 0.23.45",
+ "serde",
+ "serde_json",
+ "thiserror",
+ "tokio",
+ "tracing",
+ "tracing-subscriber",
+]
 
 [[package]]
 name = "awscli-rest-common"
@@ -1812,6 +1831,7 @@ checksum = "0d41d731c7d2f962d1ccc364cec258de3c0e93b38c2fb3ba97ac74513048d634"
 dependencies = [
  "aws-lc-rs",
  "once_cell",
+ "ring",
  "rustls-pki-types",
  "rustls-webpki 0.103.15",
  "subtle",

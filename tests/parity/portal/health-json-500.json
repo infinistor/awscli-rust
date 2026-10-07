@@ -1,0 +1,5 @@
+{
+  "status": 500,
+  "op": "health",
+  "responseBody": "{\"Result\":-1,\"Code\":\"E100\",\"Message\":\"Something failed\"}"
+}

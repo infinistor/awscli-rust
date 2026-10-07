@@ -1,0 +1,4 @@
+{
+  "responseBody": "{\"Result\":1,\"Data\":{\"UserId\":\"u\",\"RegDate\":\"2024-12-31T23:59:59+09:00\"}}",
+  "op": "get-user"
+}
