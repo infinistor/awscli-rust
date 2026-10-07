@@ -1,0 +1,19 @@
+{
+  "args" : [
+    "--put-bucket-notification",
+    "-b",
+    "bucket1",
+    "-f",
+    "conf.json"
+  ],
+  "default" : {
+    "responseBody" : "<Error><Code>AccessDenied</Code><Message>Access Denied</Message><RequestId>REQ2</RequestId></Error>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 403
+  },
+  "files" : {
+    "conf.json" : "{\"TopicConfigurations\":[{\"Id\":\"t1\",\"Topic\":\"arn:aws:sns:us-east-1:123456789012:topic\",\"Events\":[\"s3:ObjectCreated:*\",\"s3:ObjectRemoved:Delete\"],\"Filter\":{\"S3KeyFilter\":{\"FilterRules\":[{\"Name\":\"prefix\",\"Value\":\"logs/\"},{\"Name\":\"suffix\",\"Value\":\".log\"}]}}}],\"QueueConfigurations\":[{\"Id\":\"q1\",\"Queue\":\"arn:aws:sqs:us-east-1:123456789012:queue\",\"Events\":[\"s3:ObjectCreated:Put\"]}],\"LambdaFunctionConfigurations\":[{\"Id\":\"l1\",\"FunctionArn\":\"arn:aws:lambda:us-east-1:123456789012:function:f\",\"Events\":[\"s3:ObjectRestore:*\"],\"Filter\":{\"S3KeyFilter\":{\"FilterRules\":[{\"Name\":\"suffix\",\"Value\":\".jpg\"}]}}}]}"
+  }
+}

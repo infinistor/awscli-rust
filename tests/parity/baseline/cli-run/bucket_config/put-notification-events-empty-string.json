@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<NotificationConfiguration><TopicConfiguration><Event></Event><Id>t1</Id><Topic>arn:t</Topic></TopicConfiguration></NotificationConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "notification"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketNotificationConfiguration Start",
+    "INFO  <TIME> : bucket1 Put Bucket Notification! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

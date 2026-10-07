@@ -1,0 +1,20 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": "<BucketLoggingStatus><LoggingEnabled><TargetBucket>log-bucket</TargetBucket><TargetPrefix>logs/</TargetPrefix></LoggingEnabled></BucketLoggingStatus>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "logging"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketLogging Start",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: Access Denied"
+  ]
+}

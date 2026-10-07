@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketInventory Start",
+    "ERROR <TIME> : System.NullReferenceException: Object reference not set to an instance of an object."
+  ]
+}

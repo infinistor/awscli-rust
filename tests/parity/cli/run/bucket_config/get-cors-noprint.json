@@ -1,0 +1,15 @@
+{
+  "args" : [
+    "--get-bucket-cors",
+    "-b",
+    "bucket1",
+    "--print=false"
+  ],
+  "default" : {
+    "responseBody" : "<CORSConfiguration><CORSRule><ID>rule1</ID><AllowedHeader>*</AllowedHeader><AllowedMethod>GET</AllowedMethod><AllowedMethod>PUT</AllowedMethod><AllowedOrigin>https://a.example.com</AllowedOrigin><ExposeHeader>ETag</ExposeHeader><MaxAgeSeconds>3000</MaxAgeSeconds></CORSRule></CORSConfiguration>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  }
+}

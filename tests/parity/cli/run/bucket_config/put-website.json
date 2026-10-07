@@ -1,0 +1,19 @@
+{
+  "args" : [
+    "--put-bucket-website",
+    "-b",
+    "bucket1",
+    "-f",
+    "conf.json"
+  ],
+  "default" : {
+    "responseBody" : "",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  },
+  "files" : {
+    "conf.json" : "{\"ErrorDocument\":\"error.html\",\"IndexDocumentSuffix\":\"index.html\",\"RoutingRules\":[{\"Condition\":{\"HttpErrorCodeReturnedEquals\":\"404\",\"KeyPrefixEquals\":\"docs/\"},\"Redirect\":{\"HostName\":\"example.com\",\"HttpRedirectCode\":\"301\",\"Protocol\":\"https\",\"ReplaceKeyPrefixWith\":\"documents/\"}}]}"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "args" : [
+    "--put-bucket-inventory",
+    "-b",
+    "bucket1",
+    "-f",
+    "conf.json"
+  ],
+  "default" : {
+    "responseBody" : "",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  },
+  "files" : {
+    "conf.json" : "{\"IsEnabled\":true,\"Id\":\"inv3\",\"Destination\":{\"BucketName\":\"arn:aws:s3:::dest-bucket\",\"Format\":\"Parquet\",\"Encryption\":\"sse-s3\"},\"Schedule\":\"Daily\",\"InventoryOptionalFields\":[\"StorageClass\",\"ETag\",\"IsMultipartUploaded\",\"ReplicationStatus\",\"EncryptionStatus\",\"ObjectLockRetainUntilDate\",\"ObjectLockMode\",\"ObjectLockLegalHoldStatus\",\"IntelligentTieringAccessTier\",\"BucketKeyStatus\",\"ChecksumAlgorithm\",\"ObjectAccessControlList\",\"ObjectOwner\"]}"
+  }
+}

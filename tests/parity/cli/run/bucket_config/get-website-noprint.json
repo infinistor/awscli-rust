@@ -1,0 +1,15 @@
+{
+  "args" : [
+    "--get-bucket-website",
+    "-b",
+    "bucket1",
+    "--print=false"
+  ],
+  "default" : {
+    "responseBody" : "<WebsiteConfiguration><IndexDocument><Suffix>index.html</Suffix></IndexDocument><ErrorDocument><Key>error.html</Key></ErrorDocument><RoutingRules><RoutingRule><Condition><KeyPrefixEquals>docs/</KeyPrefixEquals></Condition><Redirect><ReplaceKeyPrefixWith>documents/</ReplaceKeyPrefixWith></Redirect></RoutingRule></RoutingRules></WebsiteConfiguration>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "args" : [
+    "--get-bucket-logging",
+    "-b",
+    "bucket1"
+  ],
+  "default" : {
+    "responseBody" : "<BucketLoggingStatus/>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  },
+  "dump" : true
+}

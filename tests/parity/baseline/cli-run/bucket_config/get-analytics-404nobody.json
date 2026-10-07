@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "analytics",
+        "id=x1"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : GetBucketAnalytics Start",
+    "ERROR <TIME> : bucket1 Get Bucket Analytics failed(NotFound)",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

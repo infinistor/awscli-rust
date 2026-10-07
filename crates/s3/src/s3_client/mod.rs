@@ -103,10 +103,13 @@ mod object;
 mod object_config;
 mod presign;
 mod transfer;
+mod unset;
 
 pub use multipart::PartETag;
 pub use object::PutBody;
 pub use presign::HttpVerb;
+pub use unset::UNSET;
+pub(crate) use unset::{strip_unset, strip_unset_crc32, strip_unset_md5};
 
 /// SDK 빌더의 `build()` 오류(필수 값 누락)를 [`S3Error`]로 바꾼다.
 pub(crate) fn built<T>(result: Result<T, aws_sdk_s3::error::BuildError>) -> Result<T, S3Error> {

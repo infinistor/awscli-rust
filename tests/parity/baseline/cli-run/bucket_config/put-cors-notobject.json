@@ -1,0 +1,9 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "ERROR <TIME> : System.Text.Json.JsonException: The JSON value could not be converted to Amazon.S3.Model.CORSConfiguration. Path: $ | LineNumber: 0 | BytePositionInLine: 1."
+  ]
+}

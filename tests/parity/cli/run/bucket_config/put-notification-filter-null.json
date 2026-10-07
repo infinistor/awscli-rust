@@ -1,0 +1,19 @@
+{
+  "args" : [
+    "--put-bucket-notification",
+    "-b",
+    "bucket1",
+    "-f",
+    "conf.json"
+  ],
+  "default" : {
+    "responseBody" : "",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  },
+  "files" : {
+    "conf.json" : "{\"TopicConfigurations\":[{\"Id\":\"t1\",\"Topic\":\"arn:t\",\"Events\":[\"s3:ObjectCreated:*\"],\"Filter\":null}]}"
+  }
+}

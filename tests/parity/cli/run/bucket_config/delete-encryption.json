@@ -1,0 +1,14 @@
+{
+  "args" : [
+    "--delete-bucket-encryption",
+    "-b",
+    "bucket1"
+  ],
+  "default" : {
+    "responseBody" : "",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 204
+  }
+}

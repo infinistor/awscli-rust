@@ -1,0 +1,19 @@
+{
+  "args" : [
+    "--put-bucket-inventory",
+    "-b",
+    "bucket1",
+    "-f",
+    "conf.json"
+  ],
+  "default" : {
+    "responseBody" : "",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  },
+  "files" : {
+    "conf.json" : "{\"IsEnabled\":\"true\",\"Id\":\"inv14\",\"Destination\":{\"BucketName\":\"b\",\"Format\":\"CSV\"},\"Schedule\":\"Daily\",\"InventoryOptionalFields\":[]}"
+  }
+}

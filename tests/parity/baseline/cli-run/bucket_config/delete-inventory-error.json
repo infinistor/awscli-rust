@@ -1,0 +1,21 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/bucket1/",
+      "query": [
+        "id=inventory1",
+        "inventory"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : DeleteBucketInventory Start",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: Access Denied"
+  ]
+}

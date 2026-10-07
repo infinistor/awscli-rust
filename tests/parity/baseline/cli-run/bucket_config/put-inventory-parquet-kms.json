@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<InventoryConfiguration><Destination><S3BucketDestination><Bucket>arn:aws:s3:::dest-bucket</Bucket><Encryption><SSE-S3></SSE-S3></Encryption><Format>Parquet</Format></S3BucketDestination></Destination><Id>inv3</Id><IsEnabled>true</IsEnabled><OptionalFields><Field>StorageClass</Field><Field>ETag</Field><Field>IsMultipartUploaded</Field><Field>ReplicationStatus</Field><Field>EncryptionStatus</Field><Field>ObjectLockRetainUntilDate</Field><Field>ObjectLockMode</Field><Field>ObjectLockLegalHoldStatus</Field><Field>IntelligentTieringAccessTier</Field><Field>BucketKeyStatus</Field><Field>ChecksumAlgorithm</Field><Field>ObjectAccessControlList</Field><Field>ObjectOwner</Field></OptionalFields><Schedule><Frequency>Daily</Frequency></Schedule></InventoryConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "id=inv3",
+        "inventory"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketInventory Start",
+    "INFO  <TIME> : bucket1 Put Bucket Inventory! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

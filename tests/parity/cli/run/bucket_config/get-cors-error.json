@@ -1,0 +1,14 @@
+{
+  "args" : [
+    "--get-bucket-cors",
+    "-b",
+    "bucket1"
+  ],
+  "default" : {
+    "responseBody" : "<Error><Code>NoSuchCORSConfiguration</Code><Message>The CORS configuration does not exist</Message><BucketName>bucket1</BucketName><RequestId>REQ3</RequestId></Error>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 404
+  }
+}

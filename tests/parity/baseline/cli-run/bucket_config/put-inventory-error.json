@@ -1,0 +1,21 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": "<InventoryConfiguration><Destination><S3BucketDestination><AccountId>123456789012</AccountId><Bucket>arn:aws:s3:::dest-bucket</Bucket><Encryption><SSE-S3></SSE-S3></Encryption><Format>CSV</Format><Prefix>inv/</Prefix></S3BucketDestination></Destination><Id>inv1</Id><IsEnabled>true</IsEnabled><OptionalFields><Field>Size</Field><Field>LastModifiedDate</Field></OptionalFields><Schedule><Frequency>Daily</Frequency></Schedule></InventoryConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "id=inv1",
+        "inventory"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketInventory Start",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: Access Denied"
+  ]
+}

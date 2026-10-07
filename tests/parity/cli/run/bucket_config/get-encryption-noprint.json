@@ -1,0 +1,15 @@
+{
+  "args" : [
+    "--get-bucket-encryption",
+    "-b",
+    "bucket1",
+    "--print=false"
+  ],
+  "default" : {
+    "responseBody" : "<ServerSideEncryptionConfiguration><Rule><ApplyServerSideEncryptionByDefault><SSEAlgorithm>aws:kms</SSEAlgorithm><KMSMasterKeyID>key-1</KMSMasterKeyID></ApplyServerSideEncryptionByDefault><BucketKeyEnabled>true</BucketKeyEnabled></Rule></ServerSideEncryptionConfiguration>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  }
+}

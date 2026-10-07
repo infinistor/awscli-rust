@@ -1,0 +1,19 @@
+{
+  "args" : [
+    "--put-bucket-notification",
+    "-b",
+    "bucket1",
+    "-f",
+    "conf.json"
+  ],
+  "default" : {
+    "responseBody" : "",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  },
+  "files" : {
+    "conf.json" : "{\"QueueConfigurations\":[{\"Id\":\"q1\",\"Queue\":\"arn:q\",\"Events\":[\"s3:ObjectCreated:*\"],\"Filter\":{\"S3KeyFilter\":{\"FilterRules\":[{\"Name\":\"bogus\",\"Value\":\"x\"}]}}}]}"
+  }
+}

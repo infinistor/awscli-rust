@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<CORSConfiguration><CORSRule><AllowedHeader>*</AllowedHeader><AllowedMethod>GET</AllowedMethod><AllowedMethod>PUT</AllowedMethod><AllowedOrigin>https://a.example.com</AllowedOrigin><ExposeHeader>ETag</ExposeHeader><ID>rule1</ID><MaxAgeSeconds>3000</MaxAgeSeconds></CORSRule></CORSConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "cors"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketCors Start",
+    "ERROR <TIME> : bucket1 Put Bucket CORS failed(NoContent)",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

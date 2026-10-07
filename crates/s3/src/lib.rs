@@ -10,5 +10,5 @@ pub mod xml_doc;
 
 pub use checksum::{ChecksumAlgorithm, ChecksumError};
 pub use dotnet_uri::DotnetUri;
-pub use s3_client::{S3Client, S3Error, S3Response};
+pub use s3_client::{S3Client, S3Error, S3Response, UNSET};
 pub use signer::{AuthorizationHeaderSigner, SignError};

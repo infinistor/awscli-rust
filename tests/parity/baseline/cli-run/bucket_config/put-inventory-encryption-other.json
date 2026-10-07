@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<InventoryConfiguration><Destination><S3BucketDestination><Bucket>b</Bucket><Format>CSV</Format></S3BucketDestination></Destination><Id>inv4</Id><IsEnabled>true</IsEnabled><OptionalFields></OptionalFields><Schedule><Frequency>Daily</Frequency></Schedule></InventoryConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "id=inv4",
+        "inventory"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketInventory Start",
+    "INFO  <TIME> : bucket1 Put Bucket Inventory! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}
