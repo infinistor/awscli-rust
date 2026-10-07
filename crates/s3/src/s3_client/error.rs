@@ -196,6 +196,17 @@ pub fn full_path(path: &std::path::Path) -> std::path::PathBuf {
     out
 }
 
+/// .NET SDK가 요청을 만들기 전에 필수 문자열 속성(`null`·빈 문자열)을 확인하며 던지는 `ArgumentException`.
+/// 요청을 보내지 않는다(빈 키로 `DELETE /버킷/`처럼 다른 연산이 나가는 것을 막는다).
+pub fn required(value: &str, property: &str, request: &str) -> Result<(), S3Error> {
+    if value.is_empty() {
+        return Err(S3Error::Argument(format!(
+            "{property} is a required property and must be set before making this call. (Parameter '{request}.{property}')"
+        )));
+    }
+    Ok(())
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

@@ -1,0 +1,52 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": "<VersioningConfiguration><Status>Enabled</Status></VersioningConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/",
+      "query": [
+        "versioning"
+      ]
+    },
+    {
+      "body": "<LifecycleConfiguration><Rule><Expiration><Days>1</Days><ExpiredObjectDeleteMarker>true</ExpiredObjectDeleteMarker></Expiration><ID>Rule1</ID><NoncurrentVersionExpiration><NoncurrentDays>1</NoncurrentDays></NoncurrentVersionExpiration><Status>Enabled</Status></Rule></LifecycleConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/",
+      "query": [
+        "lifecycle"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : One Object Delete Test Initialize",
+    "INFO  <TIME> : One Object Delete Test Start",
+    "ERROR <TIME> : System.ArgumentException: Key is a required property and must be set before making this call. (Parameter 'DeleteObjectRequest.Key')",
+    "ERROR <TIME> : System.ArgumentException: Key is a required property and must be set before making this call. (Parameter 'DeleteObjectRequest.Key')",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " [DELETE TEST FINAL RESULTS]",
+    " Delete Success  :         0",
+    " Delete Error    :         2",
+    " Total Average   : <N> file/sec",
+    " Total Bandwidth : <N>/s",
+    " Success Ratio   :     0.000 %",
+    " Total Time      : <N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : One Object Delete Test End",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

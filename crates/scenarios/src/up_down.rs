@@ -845,7 +845,7 @@ impl UpDownTest {
                 .await;
     }
 
-    /// 원본 `new UpDownClient(bucketName, index, file, _clientConfig, _user)`. `Quit`은 프로세스 토큰에 묶는다.
+    /// 원본 `new UpDownClient(bucketName, index, file, _clientConfig, _user)`. `Quit`은 이 테스트의 토큰에 묶는다.
     fn new_client(&self, bucket: String, index: i32, file: &str) -> Arc<UpDownClient> {
         Arc::new(
             UpDownClient::new(

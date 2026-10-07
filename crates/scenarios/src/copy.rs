@@ -27,15 +27,9 @@ const GIB: i64 = 1024 * 1024 * 1024;
 
 /// 요청을 만들 때 필수 값이 비어 있으면 SDK가 던지는 `ArgumentException`.
 fn required(value: &str, property: &str, request: &str) -> Result<(), ScenarioError> {
-    if value.is_empty() {
-        return Err(ScenarioError::new(
-            "System.ArgumentException",
-            format!(
-                "{property} is a required property and must be set before making this call. (Parameter '{request}.{property}')"
-            ),
-        ));
-    }
-    Ok(())
+    Ok(awscli_rest_s3::s3_client::error::required(
+        value, property, request,
+    )?)
 }
 
 /// 원본 `CopyTest`.

@@ -6,41 +6,7 @@
 use awscli_rest_model::UpDownResult;
 use tracing::{error, info};
 
-use crate::util::sanitize_file_name;
-
-/// 원본 `Path.DirectorySeparatorChar`.
-const SEPARATOR: char = if cfg!(windows) { '\\' } else { '/' };
-
-fn is_directory_separator(c: char) -> bool {
-    c == '/' || (cfg!(windows) && c == '\\')
-}
-
-/// 원본 `Path.HasExtension`: 마지막 경로 요소에서 끝이 아닌 자리에 `.`이 있으면 `true`.
-pub(super) fn has_extension(path: &str) -> bool {
-    let chars: Vec<char> = path.chars().collect();
-    for (i, c) in chars.iter().enumerate().rev() {
-        if *c == '.' {
-            return i != chars.len() - 1;
-        }
-        if is_directory_separator(*c) || (cfg!(windows) && *c == ':') {
-            break;
-        }
-    }
-    false
-}
-
-/// 원본 `Path.Combine(first, second)`(`second`는 상대 경로 파일 이름).
-pub(super) fn path_combine(first: &str, second: &str) -> String {
-    if first.is_empty() {
-        return second.to_string();
-    }
-    let last = first.chars().last().unwrap_or(SEPARATOR);
-    if is_directory_separator(last) || (cfg!(windows) && last == ':') {
-        format!("{first}{second}")
-    } else {
-        format!("{first}{SEPARATOR}{second}")
-    }
-}
+use crate::util::{has_extension, path_combine, sanitize_file_name};
 
 /// 결과를 `save` 경로에 저장하고 원본과 같은 로그를 남긴다.
 pub(super) fn save_result(result: &UpDownResult, save: &str, test_type: &str) {
@@ -79,7 +45,7 @@ mod tests {
         assert_eq!(path_combine("out/", "f.json"), "out/f.json");
         assert_eq!(
             path_combine("out", "f.json"),
-            format!("out{SEPARATOR}f.json")
+            format!("out{}f.json", std::path::MAIN_SEPARATOR)
         );
     }
 }

@@ -32,7 +32,7 @@ use tracing::{error, info};
 use crate::ScenarioError;
 use crate::input::io_error;
 use crate::runner::{TestTasks, idle};
-use crate::util::{dummy_file_name, sanitize_file_name};
+use crate::util::{dummy_file_name, has_extension, path_combine, sanitize_file_name};
 
 /// 진행 상황·최종 결과 출력 종류(원본 `PrintX`/`PrintXFinal`).
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -322,42 +322,12 @@ impl LocalTest {
                 "Local_{}_{timestamp}.json",
                 sanitize_file_name(test_type).replace(' ', "_")
             );
-            Path::new(save)
-                .join(file_name)
-                .to_string_lossy()
-                .into_owned()
+            path_combine(save, &file_name)
         };
         if result.save_to_json(&file_path) {
             info!("테스트 결과가 JSON 파일로 저장되었습니다: {file_path}");
         } else {
             error!("JSON 파일 저장에 실패했습니다.");
         }
-    }
-}
-
-/// `Path.HasExtension(path)`: 마지막 경로 요소에 `.`이 있고 맨 끝이 아니면 `true`.
-fn has_extension(path: &str) -> bool {
-    for (i, c) in path.char_indices().rev() {
-        match c {
-            '.' => return i + 1 != path.len(),
-            '/' | '\\' | ':' => return false,
-            _ => {}
-        }
-    }
-    false
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn has_extension_like_dotnet() {
-        assert!(has_extension("out/result.json"));
-        assert!(has_extension(".json"));
-        assert!(!has_extension("out"));
-        assert!(!has_extension("out."));
-        assert!(!has_extension("a.b/out"));
-        assert!(!has_extension(""));
     }
 }

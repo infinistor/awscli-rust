@@ -105,6 +105,39 @@ pub fn file_etag(path: &str) -> Result<String, ScenarioError> {
         .map_err(|e| crate::input::io_error(&full, &e))
 }
 
+/// 원본 `Path.DirectorySeparatorChar`.
+const SEPARATOR: char = if cfg!(windows) { '\\' } else { '/' };
+
+fn is_directory_separator(c: char) -> bool {
+    c == '/' || (cfg!(windows) && c == '\\')
+}
+
+/// 원본 `Path.HasExtension`: 마지막 경로 요소에서 끝이 아닌 자리에 `.`이 있으면 `true`.
+pub fn has_extension(path: &str) -> bool {
+    let chars: Vec<char> = path.chars().collect();
+    for (i, c) in chars.iter().enumerate().rev() {
+        if *c == '.' {
+            return i != chars.len() - 1;
+        }
+        if is_directory_separator(*c) || (cfg!(windows) && *c == ':') {
+            break;
+        }
+    }
+    false
+}
+
+/// 원본 `Path.Combine(first, second)`(`second`는 상대 경로 파일 이름).
+pub fn path_combine(first: &str, second: &str) -> String {
+    if first.is_empty() {
+        return second.to_string();
+    }
+    let last = first.chars().last().unwrap_or(SEPARATOR);
+    if is_directory_separator(last) || (cfg!(windows) && last == ':') {
+        format!("{first}{second}")
+    } else {
+        format!("{first}{SEPARATOR}{second}")
+    }
+}
 #[cfg(test)]
 mod tests {
     use super::*;

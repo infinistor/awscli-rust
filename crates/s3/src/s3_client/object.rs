@@ -390,6 +390,8 @@ impl S3Client {
         version_id: Option<&str>,
         bypass: Option<bool>,
     ) -> Result<S3Response<DeleteObjectOutput>, S3Error> {
+        super::error::required(bucket_name, "BucketName", "DeleteObjectRequest")?;
+        super::error::required(key, "Key", "DeleteObjectRequest")?;
         send!(
             self.client
                 .delete_object()

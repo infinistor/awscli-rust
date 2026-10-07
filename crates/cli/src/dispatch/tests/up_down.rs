@@ -3,8 +3,8 @@
 //! 도움말과 실행 전 검증은 `tests/mod.rs`에서 했다. 여기서는 원본 `case`의 실행 부분(`new UpDownTest(...)`와 시나리오 호출,
 //! 분산 실행과 같은 진입점인 `BasicTestRunner.Execute`)을 옮긴다. 모든 메뉴의 반환값은 0이다.
 //!
-//! 원본 `FullTest`는 Prepare → ReadV2 → 버킷 비우기(삭제 포함)를 차례로 실행한다. Ctrl+C로 토큰이 취소되면
-//! 뒤 단계의 클라이언트가 곧바로 끝난다(원본은 처리기가 `Cancel`만 해서 뒤 단계가 정상 실행된다).
+//! 원본 `FullTest`는 Prepare → ReadV2 → 버킷 비우기(삭제 포함)를 차례로 실행한다. Ctrl+C는 실행 중인 테스트만
+//! 멈추므로(`scenarios::shutdown`) 뒤 단계는 원본처럼 그대로 실행된다.
 
 use awscli_rest_scenarios::clear::ClearTest;
 use awscli_rest_scenarios::up_down::UpDownTest;

@@ -3,7 +3,7 @@
 //!
 //! 원본과 같게 맞춘 동작
 //!
-//! - 실행은 `RunWithShutdown`이다. Ctrl+C는 테스트의 `_quit`을 켜고(여기서는 프로세스 토큰의 자식 토큰),
+//! - 실행은 `RunWithShutdown`이다. Ctrl+C는 테스트의 `_quit`을 켜고(여기서는 실행 동안 Ctrl+C 처리기에 등록한 테스트 토큰),
 //!   끝나면(예외로 끝나도) `StopTasks`로 모든 클라이언트를 멈추고 스레드를 기다린다.
 //! - `ListCore`는 TESTCore c83e35f에서 고친 판(기대 이름을 서수 순서로 정렬하고, 페이지를 넘겨도 개수를 이어서 센다)이다.
 //! - 진행 출력의 시간은 `TimeWatcher.Now`(종료 시간 없음)다.
@@ -76,7 +76,7 @@ enum Action {
 /// 원본 `MultiSystemTest`.
 pub struct MultiSystemTest {
     tasks: TestTasks<MultiSystemClient>,
-    /// 원본 `_quit`: 프로세스 토큰(Ctrl+C)의 자식이다.
+    /// 원본 `_quit`: 프로세스 토큰의 자식. 실행 동안 Ctrl+C 처리기에 등록한다(`shutdown::activate`).
     token: CancellationToken,
     watcher: TimeWatcher,
     main_config: MainConfig,
@@ -102,7 +102,7 @@ fn ordinal(a: &str, b: &str) -> std::cmp::Ordering {
 }
 
 impl MultiSystemTest {
-    /// `cancel`은 프로세스 토큰(Ctrl+C 처리기가 취소한다).
+    /// `cancel`은 프로세스 토큰(테스트 토큰의 상위).
     pub fn new(
         main_config: &MainConfig,
         config: &MultiSystemConfig,
@@ -305,6 +305,7 @@ impl MultiSystemTest {
         }
         // 스레드별로 업로드한 오브젝트 이름 목록(ListObjects 정렬 순서)
         let mut expected: Vec<String> = Vec::new();
+        let mut seen = std::collections::HashSet::new();
         for thread_number in 0..self.config.thread_count {
             for object_count in 0..self.config.file_count {
                 let name = self.config.bucket_type.next_object_name(
@@ -314,7 +315,7 @@ impl MultiSystemTest {
                     DEFAULT_DIVISION_COUNT,
                 )?;
                 // Distinct: 처음 나온 것만 남긴다.
-                if !expected.contains(&name) {
+                if seen.insert(name.clone()) {
                     expected.push(name);
                 }
             }
