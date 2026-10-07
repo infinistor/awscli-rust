@@ -1,0 +1,35 @@
+{
+  "port": 65175,
+  "quit": true,
+  "requests": [
+    "GET /my-bucket/?list-type=2&max-keys=1000&prefix=TH_001&start-after= HTTP/1.1",
+    "GET /my-bucket/TH_001/k1 HTTP/1.1",
+    "GET /my-bucket/TH_001/k2 HTTP/1.1"
+  ],
+  "stats": {
+    "write": [
+      0,
+      0,
+      0
+    ],
+    "read": [
+      2,
+      0
+    ],
+    "head": [
+      0,
+      0
+    ],
+    "delete": [
+      0,
+      0
+    ],
+    "list": [
+      0,
+      0
+    ],
+    "loopEnd": 0
+  },
+  "logs": [],
+  "error": null
+}

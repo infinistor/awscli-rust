@@ -1,0 +1,37 @@
+{
+  "port": 62974,
+  "quit": true,
+  "requests": [
+    "POST /my-bucket/TH_001/00000/obj_00000?uploads HTTP/1.1",
+    "PUT /my-bucket/TH_001/00000/obj_00000?partNumber=1&uploadId=up-1 HTTP/1.1",
+    "PUT /my-bucket/TH_001/00000/obj_00000?partNumber=2&uploadId=up-1 HTTP/1.1"
+  ],
+  "stats": {
+    "write": [
+      0,
+      1,
+      1
+    ],
+    "read": [
+      0,
+      0
+    ],
+    "head": [
+      0,
+      0
+    ],
+    "delete": [
+      0,
+      0
+    ],
+    "list": [
+      0,
+      0
+    ],
+    "loopEnd": 0
+  },
+  "logs": [
+    "MultipartUpload(my-bucket, TH_001/00000/obj_00000) StatusCode : InternalServerError, ErrorCode : InternalServerError. Error making request with Error Code InternalServerError and Http Status Code InternalServerError. No further error information was returned by the service."
+  ],
+  "error": null
+}

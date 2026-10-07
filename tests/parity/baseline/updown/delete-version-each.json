@@ -1,0 +1,35 @@
+{
+  "port": 62287,
+  "quit": true,
+  "requests": [
+    "GET /my-bucket/?versions&max-keys=1000&prefix=p%2F HTTP/1.1",
+    "DELETE /my-bucket/a?versionId=v1 HTTP/1.1",
+    "DELETE /my-bucket/b?versionId=v2 HTTP/1.1"
+  ],
+  "stats": {
+    "write": [
+      0,
+      0,
+      0
+    ],
+    "read": [
+      0,
+      0
+    ],
+    "head": [
+      0,
+      0
+    ],
+    "delete": [
+      2,
+      0
+    ],
+    "list": [
+      0,
+      0
+    ],
+    "loopEnd": 0
+  },
+  "logs": [],
+  "error": null
+}

@@ -1,0 +1,35 @@
+{
+  "port": 62281,
+  "quit": true,
+  "requests": [
+    "DELETE /my-bucket/TH_001/00000/obj_00000 HTTP/1.1"
+  ],
+  "stats": {
+    "write": [
+      0,
+      0,
+      0
+    ],
+    "read": [
+      0,
+      0
+    ],
+    "head": [
+      0,
+      0
+    ],
+    "delete": [
+      0,
+      1
+    ],
+    "list": [
+      0,
+      0
+    ],
+    "loopEnd": 0
+  },
+  "logs": [
+    "DeleteObject Failed(OK). S3://my-bucket/TH_001/00000/obj_00000_"
+  ],
+  "error": null
+}

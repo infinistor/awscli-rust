@@ -1,0 +1,37 @@
+{
+  "port": 55907,
+  "quit": true,
+  "requests": [
+    "PUT /my-bucket/2026/10/07/10/13/FILE_1_00000 HTTP/1.1",
+    "HEAD /my-bucket/2026/10/07/10/13/FILE_1_00000 HTTP/1.1",
+    "GET /my-bucket/2026/10/07/10/13/FILE_1_00000 HTTP/1.1",
+    "DELETE /my-bucket/2026/10/07/10/13/FILE_1_00000?versionId=ver-1 HTTP/1.1",
+    "GET /my-bucket/?max-keys=1000 HTTP/1.1"
+  ],
+  "stats": {
+    "write": [
+      1,
+      0,
+      0
+    ],
+    "read": [
+      1,
+      0
+    ],
+    "head": [
+      1,
+      0
+    ],
+    "delete": [
+      1,
+      0
+    ],
+    "list": [
+      1,
+      0
+    ],
+    "loopEnd": 0
+  },
+  "logs": [],
+  "error": null
+}

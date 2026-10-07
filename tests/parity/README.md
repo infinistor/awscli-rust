@@ -13,13 +13,20 @@ TESTCore(.NET)와 awscli-rest의 외부 동작을 비교한다.
 
 ## 기준 출력 다시 수집하기
 
-`tools/dotnet-oracle`은 TESTCore 빌드 결과(`TestCore.dll`)를 그대로 호출해 기준 출력을 만든다. TESTCore 경로가 다르면 `TestCoreBin`(빌드)·`TESTCORE_BIN`(실행)으로 지정한다.
+`tools/dotnet-oracle`은 TESTCore 빌드 결과(`TestCore.dll`)를 그대로 호출해 기준 출력을 만든다.
+
+**TESTCore 저장소의 `bin/TestCore`는 예전 커밋으로 빌드된 것일 수 있다.** 기준 출력은 반드시 TESTCore HEAD로 빌드한 결과로 만든다. `build-testcore.ps1`이 HEAD 소스를 임시 디렉터리로 내보내(`git archive`, TESTCore는 건드리지 않음) 빌드하고 그 경로를 출력한다.
 
 ```powershell
-dotnet build tools/dotnet-oracle
+$bin = pwsh tools/dotnet-oracle/build-testcore.ps1
+dotnet build tools/dotnet-oracle -p:TestCoreBin=$bin
+$env:TESTCORE_BIN = $bin
 dotnet tools/dotnet-oracle/bin/Debug/net10.0/DotnetOracle.dll ini tests/parity/ini/sample.ini > tests/parity/baseline/ini/sample.json
 dotnet tools/dotnet-oracle/bin/Debug/net10.0/DotnetOracle.dll config tests/parity/ini/sample.ini
+pwsh tools/dotnet-oracle/gen-updown-cases.ps1   # UpDownClient 사례와 기준 출력
 ```
+
+`78004ff` 빌드로 만든 기준 출력(`version.txt`, `help.txt`, ini·config·checksum·sign·uri·ksan·s3·json·stats)은 그 뒤 HEAD(`8d27dc2`)까지 바뀐 파일(`UpDownClient.cs`, `MultiSystemClient.cs`, `MultiSystemTest.cs`)과 관계없어 그대로 쓴다. `updown/`은 HEAD 빌드로 만들었다.
 
 Windows에서 .NET 콘솔은 파이프 출력에 시스템 코드 페이지(CP949)를 쓰므로 `TestCore.exe` 출력은 UTF-8로 바꿔서 수집한다(오라클은 UTF-8로 출력한다).
 

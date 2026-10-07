@@ -1,0 +1,35 @@
+{
+  "port": 65171,
+  "quit": true,
+  "requests": [
+    "GET /my-bucket/TH_001/00000/obj_00000 HTTP/1.1"
+  ],
+  "stats": {
+    "write": [
+      0,
+      0,
+      0
+    ],
+    "read": [
+      0,
+      1
+    ],
+    "head": [
+      0,
+      0
+    ],
+    "delete": [
+      0,
+      0
+    ],
+    "list": [
+      0,
+      0
+    ],
+    "loopEnd": 0
+  },
+  "logs": [
+    "GetObject Failed. S3://my-bucket/TH_001/00000/obj_00000 - md5sum does not match!(8bb2164c0b62bf99d6502c30f6efa0c6 != 5eb63bbbe01eeed093cb22bb8f5acdc3)"
+  ],
+  "error": null
+}

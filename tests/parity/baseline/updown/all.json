@@ -1,0 +1,38 @@
+{
+  "port": 62968,
+  "quit": true,
+  "requests": [
+    "PUT /my-bucket/TH_001/00000/obj_00000 HTTP/1.1",
+    "GET /my-bucket/TH_001/00000/obj_00000 HTTP/1.1",
+    "DELETE /my-bucket/TH_001/00000/obj_00000 HTTP/1.1",
+    "PUT /my-bucket/TH_001/00000/obj_00001 HTTP/1.1",
+    "GET /my-bucket/TH_001/00000/obj_00001 HTTP/1.1",
+    "DELETE /my-bucket/TH_001/00000/obj_00001 HTTP/1.1"
+  ],
+  "stats": {
+    "write": [
+      2,
+      0,
+      0
+    ],
+    "read": [
+      2,
+      0
+    ],
+    "head": [
+      0,
+      0
+    ],
+    "delete": [
+      2,
+      0
+    ],
+    "list": [
+      0,
+      0
+    ],
+    "loopEnd": 0
+  },
+  "logs": [],
+  "error": null
+}

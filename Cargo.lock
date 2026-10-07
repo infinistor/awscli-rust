@@ -414,6 +414,23 @@ dependencies = [
 [[package]]
 name = "awscli-rest-clients"
 version = "0.1.0"
+dependencies = [
+ "aws-sdk-s3",
+ "awscli-rest-common",
+ "awscli-rest-config",
+ "awscli-rest-model",
+ "awscli-rest-s3",
+ "chrono",
+ "hex",
+ "md-5",
+ "rand 0.9.5",
+ "serde_json",
+ "tempfile",
+ "thiserror",
+ "tokio",
+ "tracing",
+ "tracing-subscriber",
+]
 
 [[package]]
 name = "awscli-rest-common"

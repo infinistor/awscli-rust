@@ -1,0 +1,45 @@
+{
+  "port": 55905,
+  "quit": false,
+  "requests": [
+    "PUT /my-bucket/TH_001/00000/obj_00000 HTTP/1.1",
+    "PUT /my-bucket/TH_001/00000/obj_00001 HTTP/1.1",
+    "PUT /my-bucket/TH_001/00000/obj_00002 HTTP/1.1",
+    "PUT /my-bucket/TH_001/00000/obj_00003 HTTP/1.1",
+    "PUT /my-bucket/TH_001/00000/obj_00004 HTTP/1.1",
+    "PUT /my-bucket/TH_001/00000/obj_00005 HTTP/1.1",
+    "PUT /my-bucket/TH_001/00000/obj_00006 HTTP/1.1",
+    "PUT /my-bucket/TH_001/00000/obj_00007 HTTP/1.1",
+    "PUT /my-bucket/TH_001/00000/obj_00008 HTTP/1.1",
+    "PUT /my-bucket/TH_001/00000/obj_00009 HTTP/1.1"
+  ],
+  "stats": {
+    "write": [
+      10,
+      0,
+      0
+    ],
+    "read": [
+      0,
+      0
+    ],
+    "head": [
+      0,
+      0
+    ],
+    "delete": [
+      0,
+      0
+    ],
+    "list": [
+      0,
+      0
+    ],
+    "loopEnd": 0
+  },
+  "logs": [],
+  "error": {
+    "type": "System.ArgumentOutOfRangeException",
+    "message": "Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')"
+  }
+}
