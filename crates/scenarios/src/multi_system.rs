@@ -38,7 +38,7 @@ use tracing::{error, info};
 
 use crate::ScenarioError;
 use crate::runner::{TestTasks, idle};
-use crate::shutdown::register_ctrl_c;
+use crate::shutdown::{Handler, activate};
 use crate::util::dummy_file_name;
 
 const SEPARATOR: &str = "\n--------------------------------------------------------------";
@@ -78,7 +78,6 @@ pub struct MultiSystemTest {
     tasks: TestTasks<MultiSystemClient>,
     /// 원본 `_quit`: 프로세스 토큰(Ctrl+C)의 자식이다.
     token: CancellationToken,
-    cancel: CancellationToken,
     watcher: TimeWatcher,
     main_config: MainConfig,
     config: MultiSystemConfig,
@@ -123,7 +122,6 @@ impl MultiSystemTest {
         Self {
             tasks: TestTasks::new(),
             token: cancel.child_token(),
-            cancel: cancel.clone(),
             watcher: TimeWatcher::new(0),
             main_config: main_config.clone(),
             config: config.clone(),
@@ -160,7 +158,8 @@ impl MultiSystemTest {
 
     /// 원본 `RunWithShutdown`: Ctrl+C를 종료 요청으로 전달하고, 끝나면 작업 스레드를 정리한다.
     async fn run_with_shutdown(&mut self, action: Action) -> Result<(), ScenarioError> {
-        register_ctrl_c(&self.cancel);
+        // 실행 동안만 Ctrl+C를 `_quit`으로 받는다(끝나면 처리기를 지운다).
+        let _handler = activate(&self.token, Handler::Scoped);
         let result = match action {
             Action::List(skip) => self.list_core(skip).await,
             Action::Prepare(multipart) => self.prepare_core(multipart).await,

@@ -5,10 +5,11 @@
 //! [`UpDownTest::complete_final_result`]로 모으고 시나리오마다 다른 부분만 각 메서드에 둔다.
 //!
 //! 종료 처리: 원본은 `Console.CancelKeyPress`와 `ProcessExit` 처리기가 활성 테스트를 멈추고 최종 결과를 남긴다.
-//! 여기서는 클라이언트의 `Quit`을 프로세스 토큰의 자식 토큰에 묶는다. Ctrl+C로 토큰이 취소되면 모든 클라이언트가
-//! `Quit`이 되어 감시 루프가 끝나고, 주 흐름이 최종 출력과 JSON 저장을 한 번만 한다(처리기 스레드와의 경합은
-//! 재현하지 않는다, [`crate::shutdown`]). 감시 루프를 멈춘 뒤 다음 테스트를 이어 가는 `FullTest`는 이미 취소된
-//! 토큰 때문에 뒤 단계가 곧바로 끝난다(원본은 처리기가 `Cancel`만 해서 뒤 단계가 정상 실행된다).
+//! 여기서는 테스트마다 토큰을 두고 클라이언트의 `Quit`을 그 자식에 묶는다. 작업을 시작할 때 토큰을 활성 목록에
+//! 올리고(`RegisterActiveTest`) `FinalizeTasks`에서 내린다. Ctrl+C는 활성 테스트의 토큰만 취소하므로 모든
+//! 클라이언트가 `Quit`이 되어 감시 루프가 끝나고, 주 흐름이 최종 출력과 JSON 저장을 한 번만 한다(처리기 스레드와의
+//! 경합은 재현하지 않는다, [`crate::shutdown`]). `FullTest`처럼 다음 테스트를 이어 가면 새 테스트는 새 토큰이라
+//! 원본처럼 정상 실행된다.
 //!
 //! 분산 실행(`RunControl`, 원본의 `_control != null` 분기)은 6단계에서 옮긴다. 이 모듈은 `_control == null`만 다룬다.
 //! 분산 분기가 들어갈 자리는 `6단계` 주석으로 표시했다. 그 분기는 `TimeWatcher.Start()`를 이미 실행 중인
@@ -54,7 +55,7 @@ use tracing::{error, info};
 
 use crate::ScenarioError;
 use crate::runner::{FinalResult, TestTasks, idle};
-use crate::shutdown::register_ctrl_c;
+use crate::shutdown::{ActiveGuard, Handler, activate};
 use crate::util::dummy_file_name;
 
 /// 진행 상황·최종 결과 출력 형식(원본 `Print*`·`Print*Final`).
@@ -102,8 +103,11 @@ pub struct UpDownTest {
     /// 원본 `_finalResult`: 마지막 출력 형식과 저장 이름.
     final_report: Option<(Report, String)>,
     final_result: FinalResult,
-    /// 프로세스 토큰. 클라이언트의 `Quit`이 이 토큰의 자식이다.
+    /// 이 테스트의 토큰(프로세스 토큰의 자식). 클라이언트의 `Quit`이 이 토큰의 자식이고, Ctrl+C는 활성 테스트의
+    /// 토큰만 취소한다.
     cancel: CancellationToken,
+    /// 원본 `_activeTests` 등록(작업 시작부터 `FinalizeTasks`까지).
+    active: Option<ActiveGuard>,
 }
 
 impl UpDownTest {
@@ -141,7 +145,8 @@ impl UpDownTest {
             finalized: false,
             final_report: None,
             final_result: FinalResult::default(),
-            cancel: cancel.clone(),
+            cancel: cancel.child_token(),
+            active: None,
         }
     }
 
@@ -898,7 +903,8 @@ impl UpDownTest {
             return false;
         }
         // 6단계: `_control != null`이면 `ThrowIfCancellationRequested`, 클라이언트 공개, `ReadyAndWait`.
-        register_ctrl_c(&self.cancel);
+        // 원본 `RegisterShutdownHandlers()`, `RegisterActiveTest()`.
+        self.active = Some(activate(&self.cancel, Handler::Persistent));
         self.tasks.start().await
     }
 
@@ -909,6 +915,8 @@ impl UpDownTest {
         }
         self.tasks.stop();
         self.tasks.join().await;
+        // 원본 `UnregisterActiveTest()`.
+        self.active = None;
         self.finalized = true;
     }
 
