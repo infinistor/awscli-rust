@@ -2,6 +2,24 @@
   "exitCode": 0,
   "requests": [
     {
+      "body": "<AccessControlPolicy><AccessControlList><Grant><Grantee type=\"CanonicalUser\"><DisplayName>owner</DisplayName><ID>owner1</ID></Grantee><Permission>READ</Permission></Grant><Grant><Grantee type=\"Group\"><URI>http://acs.amazonaws.com/groups/global/AllUsers</URI></Grantee><Permission>READ</Permission></Grant><Grant><Grantee type=\"CanonicalUser\"><DisplayName>owner</DisplayName><ID>owner1</ID></Grantee><Permission>FULL_CONTROL</Permission></Grant></AccessControlList><Owner><DisplayName>owner</DisplayName><ID>owner1</ID></Owner></AccessControlPolicy>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": "<Delete><Object><Key>a.txt</Key><VersionId>v1</VersionId></Object><Object><Key>b.log</Key><VersionId>v2</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/bucket1/",
+      "query": [
+        "delete"
+      ]
+    },
+    {
       "body": null,
       "headers": [],
       "method": "GET",
@@ -29,24 +47,6 @@
       ]
     },
     {
-      "body": "<AccessControlPolicy><AccessControlList><Grant><Grantee type=\"CanonicalUser\"><DisplayName>owner</DisplayName><ID>owner1</ID></Grantee><Permission>READ</Permission></Grant><Grant><Grantee type=\"Group\"><URI>http://acs.amazonaws.com/groups/global/AllUsers</URI></Grantee><Permission>READ</Permission></Grant><Grant><Grantee type=\"CanonicalUser\"><DisplayName>owner</DisplayName><ID>owner1</ID></Grantee><Permission>FULL_CONTROL</Permission></Grant></AccessControlList><Owner><DisplayName>owner</DisplayName><ID>owner1</ID></Owner></AccessControlPolicy>",
-      "headers": [],
-      "method": "PUT",
-      "path": "/bucket1/",
-      "query": [
-        "acl"
-      ]
-    },
-    {
-      "body": null,
-      "headers": [],
-      "method": "GET",
-      "path": "/bucket1/",
-      "query": [
-        "object-lock"
-      ]
-    },
-    {
       "body": null,
       "headers": [],
       "method": "GET",
@@ -57,12 +57,12 @@
       ]
     },
     {
-      "body": "<Delete><Object><Key>a.txt</Key><VersionId>v1</VersionId></Object><Object><Key>b.log</Key><VersionId>v2</VersionId></Object></Delete>",
+      "body": null,
       "headers": [],
-      "method": "POST",
+      "method": "GET",
       "path": "/bucket1/",
       "query": [
-        "delete"
+        "object-lock"
       ]
     }
   ],

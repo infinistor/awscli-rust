@@ -2,16 +2,6 @@
   "exitCode": 0,
   "requests": [
     {
-      "body": null,
-      "headers": [],
-      "method": "GET",
-      "path": "/bucket1/",
-      "query": [
-        "max-keys=1000",
-        "versions"
-      ]
-    },
-    {
       "body": "<Delete><Object><Key>a.txt</Key><VersionId>v1</VersionId></Object><Object><Key>b.log</Key><VersionId>v2</VersionId></Object></Delete>",
       "headers": [],
       "method": "POST",
@@ -26,6 +16,16 @@
       "method": "DELETE",
       "path": "/bucket1/",
       "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "max-keys=1000",
+        "versions"
+      ]
     }
   ],
   "stderr": [],

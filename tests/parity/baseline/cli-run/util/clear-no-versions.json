@@ -25,7 +25,8 @@
       "method": "GET",
       "path": "/bucket1/",
       "query": [
-        "object-lock"
+        "max-keys=1000",
+        "versions"
       ]
     },
     {
@@ -34,8 +35,7 @@
       "method": "GET",
       "path": "/bucket1/",
       "query": [
-        "max-keys=1000",
-        "versions"
+        "object-lock"
       ]
     }
   ],

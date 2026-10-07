@@ -257,6 +257,12 @@ async fn generate() {
         .filter(|c| c.name.contains(&filter))
         .collect();
     for (case, outcome) in run_all(&exe, cases, OutputEncoding::Utf8).await {
+        // 동시 요청 사례는 받은 순서가 실행마다 달라 정렬해 저장한다(비교도 정렬해서 한다).
+        let outcome = if case.unordered {
+            outcome.sorted()
+        } else {
+            outcome
+        };
         write_json(&baseline_path(None, &case.name), &outcome.to_json());
     }
 }

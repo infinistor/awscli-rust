@@ -273,6 +273,9 @@ static PRESIGN: LazyLock<[(Regex, &'static str); 5]> = LazyLock::new(|| {
     ]
 });
 
+static PRESIGN_EXPIRES: LazyLock<Regex> =
+    LazyLock::new(|| Regex::new(r"(X-Amz-Expires=)(\d+)").unwrap());
+
 fn replace_context(text: &str, context: &Context<'_>) -> String {
     let mut text = text.replace(context.host, "<HOST>");
     // Windows 임시 경로는 8.3 짧은 이름과 긴 이름으로 모두 나타날 수 있다.
@@ -283,6 +286,18 @@ fn replace_context(text: &str, context: &Context<'_>) -> String {
     for (pattern, replacement) in PRESIGN.iter() {
         text = pattern.replace_all(&text, *replacement).into_owned();
     }
+    // 유효 시간은 서명 직전 현재 시각에서 계산해 초 경계를 넘으면 1초 짧아진다(.NET·Rust 모두). 분 단위로 올린다.
+    text = PRESIGN_EXPIRES
+        .replace_all(&text, |caps: &regex::Captures<'_>| {
+            let seconds: i64 = caps[2].parse().unwrap_or_default();
+            let seconds = if (seconds + 1) % 60 == 0 {
+                seconds + 1
+            } else {
+                seconds
+            };
+            format!("{}{seconds}", &caps[1])
+        })
+        .into_owned();
     text
 }
 

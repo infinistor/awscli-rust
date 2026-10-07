@@ -2,6 +2,24 @@
   "exitCode": 0,
   "requests": [
     {
+      "body": "<Delete><Object><Key>a.txt</Key></Object><Object><Key>b.log</Key></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/bucket1/",
+      "query": [
+        "delete"
+      ]
+    },
+    {
+      "body": "<Delete><Object><Key>c.txt</Key></Object><Object><Key>d.txt</Key></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/bucket1/",
+      "query": [
+        "delete"
+      ]
+    },
+    {
       "body": null,
       "headers": [],
       "method": "GET",
@@ -19,24 +37,6 @@
       "query": [
         "marker=b.log",
         "max-keys=1000"
-      ]
-    },
-    {
-      "body": "<Delete><Object><Key>c.txt</Key></Object><Object><Key>d.txt</Key></Object></Delete>",
-      "headers": [],
-      "method": "POST",
-      "path": "/bucket1/",
-      "query": [
-        "delete"
-      ]
-    },
-    {
-      "body": "<Delete><Object><Key>a.txt</Key></Object><Object><Key>b.log</Key></Object></Delete>",
-      "headers": [],
-      "method": "POST",
-      "path": "/bucket1/",
-      "query": [
-        "delete"
       ]
     }
   ],

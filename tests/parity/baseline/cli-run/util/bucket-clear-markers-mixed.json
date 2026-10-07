@@ -2,6 +2,15 @@
   "exitCode": 0,
   "requests": [
     {
+      "body": "<Delete><Object><Key>a</Key><VersionId>v1</VersionId></Object><Object><Key>c</Key><VersionId>v3</VersionId></Object><Object><Key>b</Key><VersionId>v2</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/bucket1/",
+      "query": [
+        "delete"
+      ]
+    },
+    {
       "body": null,
       "headers": [],
       "method": "GET",
@@ -9,15 +18,6 @@
       "query": [
         "max-keys=1000",
         "versions"
-      ]
-    },
-    {
-      "body": "<Delete><Object><Key>a</Key><VersionId>v1</VersionId></Object><Object><Key>c</Key><VersionId>v3</VersionId></Object><Object><Key>b</Key><VersionId>v2</VersionId></Object></Delete>",
-      "headers": [],
-      "method": "POST",
-      "path": "/bucket1/",
-      "query": [
-        "delete"
       ]
     }
   ],
