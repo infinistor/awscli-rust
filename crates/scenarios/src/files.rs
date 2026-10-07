@@ -1,6 +1,6 @@
 //! 파일 입출력 도우미: `File.ReadAllText`, `Utility.SaveFile`, `Utility.GetFileList`, `Utility.GetMD5*`.
 //!
-//! .NET 예외의 형식 이름과 메시지(전체 경로, `File name:` 줄)를 `CommandError`로 옮긴다.
+//! .NET 예외의 형식 이름과 메시지(전체 경로, `File name:` 줄)를 `ScenarioError`로 옮긴다.
 
 use std::path::Path;
 
@@ -10,36 +10,36 @@ use md5::{Digest, Md5};
 use tokio::io::AsyncWriteExt;
 use tracing::error;
 
-use crate::dispatch::CommandError;
+use crate::ScenarioError;
 
-pub(super) use crate::dispatch::input::{full_path_of as full_path, io_error};
+pub use crate::input::{full_path_of as full_path, io_error};
 
 /// `File.Exists`: 디렉터리는 `false`.
-pub(super) fn file_exists(path: &str) -> bool {
+pub fn file_exists(path: &str) -> bool {
     Path::new(path).is_file()
 }
 
-pub(super) use crate::dispatch::input::read_all_text;
+pub use crate::input::read_all_text;
 
 /// `Utility.GetMD5(fileName)`: 파일 MD5의 Base64. 파일이 없으면 `FileNotFoundException`.
-pub(super) fn file_md5_base64(path: &str) -> Result<String, CommandError> {
+pub fn file_md5_base64(path: &str) -> Result<String, ScenarioError> {
     let full = full_path(path);
     awscli_rest_clients::file_util::file_md5_base64(&full).map_err(|e| io_error(&full, &e))
 }
 
 /// `Utility.GetMD5FromString(content)`: UTF-8 바이트 MD5의 Base64.
-pub(super) fn string_md5_base64(content: &str) -> String {
+pub fn string_md5_base64(content: &str) -> String {
     base64::engine::general_purpose::STANDARD.encode(Md5::digest(content.as_bytes()))
 }
 
 /// `Utility.GetFileList(root, null)`: 하위 디렉터리를 먼저, 그다음 이 디렉터리의 파일을 담는다(전체 경로).
-pub(super) fn file_list(root: &str) -> Result<Vec<String>, CommandError> {
+pub fn file_list(root: &str) -> Result<Vec<String>, ScenarioError> {
     let mut list = Vec::new();
     collect_files(&full_path(root), &mut list)?;
     Ok(list)
 }
 
-fn collect_files(dir: &Path, list: &mut Vec<String>) -> Result<(), CommandError> {
+fn collect_files(dir: &Path, list: &mut Vec<String>) -> Result<(), ScenarioError> {
     let entries = std::fs::read_dir(dir).map_err(|e| io_error(dir, &e))?;
     let mut directories = Vec::new();
     let mut files = Vec::new();
@@ -71,7 +71,7 @@ fn directory_name(path: &str) -> Option<String> {
 ///
 /// 원본은 `Directory.CreateDirectory(Path.GetDirectoryName(filePath))`를 부르므로 디렉터리가 없는 상대 경로
 /// (`out.txt`)는 `ArgumentException`으로 실패한다(원본 버그, 그대로 둔다).
-pub(super) async fn save_file(path: Option<&str>, body: ByteStream) -> bool {
+pub async fn save_file(path: Option<&str>, body: ByteStream) -> bool {
     match write_stream(path, body).await {
         Ok(()) => true,
         Err(e) => {
@@ -81,19 +81,19 @@ pub(super) async fn save_file(path: Option<&str>, body: ByteStream) -> bool {
     }
 }
 
-async fn write_stream(path: Option<&str>, mut body: ByteStream) -> Result<(), CommandError> {
+async fn write_stream(path: Option<&str>, mut body: ByteStream) -> Result<(), ScenarioError> {
     let path = path.unwrap_or("");
     match directory_name(path) {
         // `GetDirectoryName`이 null: `Directory.CreateDirectory(null)`
         None => {
-            return Err(CommandError::new(
+            return Err(ScenarioError::new(
                 "System.ArgumentNullException",
                 "Value cannot be null. (Parameter 'path')",
             ));
         }
         // `GetDirectoryName`이 "": `Directory.CreateDirectory("")`
         Some(dir) if dir.is_empty() => {
-            return Err(CommandError::new(
+            return Err(ScenarioError::new(
                 "System.ArgumentException",
                 "The value cannot be an empty string. (Parameter 'path')",
             ));
@@ -118,14 +118,14 @@ async fn write_stream(path: Option<&str>, mut body: ByteStream) -> Result<(), Co
 }
 
 /// 응답 본문을 읽다 실패한 경우.
-pub(super) fn read_error(error: impl std::fmt::Display) -> CommandError {
-    CommandError::new("System.IO.IOException", error.to_string())
+pub fn read_error(error: impl std::fmt::Display) -> ScenarioError {
+    ScenarioError::new("System.IO.IOException", error.to_string())
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::dispatch::input::decode_text;
+    use crate::input::decode_text;
 
     #[test]
     fn text_decoding_follows_bom() {

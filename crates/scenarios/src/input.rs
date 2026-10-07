@@ -6,7 +6,7 @@ use std::path::{Path, PathBuf};
 use awscli_rest_s3::S3Error;
 use awscli_rest_s3::s3_client::error::full_path;
 
-use super::CommandError;
+use crate::ScenarioError;
 
 /// `string.IsNullOrWhiteSpace(value)`.
 pub fn blank(value: &Option<String>) -> bool {
@@ -20,19 +20,19 @@ pub fn full_path_of(path: &str) -> PathBuf {
 
 /// 파일 입출력 오류를 .NET 예외로 바꾼다. 메시지는 전체 경로를 쓰고, `FileNotFoundException`은
 /// `ToString()`처럼 `File name:` 줄이 붙는다.
-pub fn io_error(path: &Path, error: &io::Error) -> CommandError {
+pub fn io_error(path: &Path, error: &io::Error) -> ScenarioError {
     let full = full_path(path);
     let mapped = S3Error::io(&full, error);
     let mut message = mapped.to_string();
     if mapped.dotnet_type() == "System.IO.FileNotFoundException" {
         message.push_str(&format!("\nFile name: '{}'", full.display()));
     }
-    CommandError::new(mapped.dotnet_type(), message)
+    ScenarioError::new(mapped.dotnet_type(), message)
 }
 
 /// `File.ReadAllText(path)`: BOM으로 UTF-8/UTF-16/UTF-32를 판별하고 없으면 UTF-8로 읽는다
 /// (잘못된 바이트·남는 바이트는 U+FFFD).
-pub fn read_all_text(path: &str) -> Result<String, CommandError> {
+pub fn read_all_text(path: &str) -> Result<String, ScenarioError> {
     let full = full_path_of(path);
     let bytes = std::fs::read(&full).map_err(|e| io_error(&full, &e))?;
     Ok(decode_text(&bytes))
@@ -74,13 +74,13 @@ pub fn decode_text(bytes: &[u8]) -> String {
 }
 
 /// `System.Text.Json.JsonException`.
-pub fn json_error(error: awscli_rest_common::json::JsonError) -> CommandError {
-    CommandError::new("System.Text.Json.JsonException", error.0)
+pub fn json_error(error: awscli_rest_common::json::JsonError) -> ScenarioError {
+    ScenarioError::new("System.Text.Json.JsonException", error.0)
 }
 
 /// `System.NullReferenceException`.
-pub fn null_reference() -> CommandError {
-    CommandError::new(
+pub fn null_reference() -> ScenarioError {
+    ScenarioError::new(
         "System.NullReferenceException",
         "Object reference not set to an instance of an object.",
     )

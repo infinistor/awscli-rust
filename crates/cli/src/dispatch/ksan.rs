@@ -66,17 +66,6 @@ fn help_text(menu: MenuList) -> String {
     }
 }
 
-/// `catch (Exception e) { _log.Error(e); }`가 남기는 `형식: 메시지`.
-fn exception(error: &KsanError) -> CommandError {
-    CommandError::new(error.dotnet_type(), error.to_string())
-}
-
-impl From<KsanError> for CommandError {
-    fn from(error: KsanError) -> Self {
-        exception(&error)
-    }
-}
-
 pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResult {
     use MenuList::*;
     if !PORTED.contains(&menu) {
@@ -100,7 +89,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
             .await;
             match result {
                 Ok(millis) => info!("Success! complete time = {millis}ms"),
-                Err(e) => error!("{}", exception(&e)),
+                Err(e) => error!("{}", CommandError::from(e)),
             }
         }
         GetBucketTagIndex => {
@@ -116,7 +105,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                 Ok((status, millis)) => info!(
                     "Bucket({bucket}) TagIndex Config is {status}. complete time = {millis}ms"
                 ),
-                Err(e) => error!("{}", exception(&e)),
+                Err(e) => error!("{}", CommandError::from(e)),
             }
         }
         ListBucketTagSearch => {

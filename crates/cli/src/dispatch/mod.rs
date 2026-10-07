@@ -12,7 +12,7 @@ mod backend;
 mod bucket;
 mod bucket_config;
 mod bucket_rules;
-pub mod input;
+pub use awscli_rest_scenarios::input;
 mod ksan;
 mod multipart;
 mod object;
@@ -20,10 +20,8 @@ pub mod output;
 mod tests;
 mod util;
 
-use std::fmt;
-
 use awscli_rest_config::Config;
-use awscli_rest_s3::{S3Client, S3Error};
+use awscli_rest_s3::S3Client;
 
 use crate::menu::MenuList;
 use crate::options::CommandOptions;
@@ -65,52 +63,7 @@ impl CommandContext {
 }
 
 /// 명령 실행 중 난 예외. 원본 최상위의 `catch (Exception e) { _log.Error(e); return ERROR_NORMAL; }`로 간다.
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct CommandError {
-    /// .NET 예외 형식 이름(예: `Amazon.S3.AmazonS3Exception`).
-    pub dotnet_type: String,
-    pub message: String,
-}
-
-impl CommandError {
-    pub fn new(dotnet_type: impl Into<String>, message: impl Into<String>) -> Self {
-        Self {
-            dotnet_type: dotnet_type.into(),
-            message: message.into(),
-        }
-    }
-}
-
-impl fmt::Display for CommandError {
-    /// `Exception.ToString()`의 첫 줄(스택 추적은 재현하지 않는다).
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}: {}", self.dotnet_type, self.message)
-    }
-}
-
-impl std::error::Error for CommandError {}
-
-impl CommandError {
-    /// S3 오류를 .NET 예외로 바꾼다. .NET SDK는 연산마다 오류 응답 해석기가 아는 코드(`modeled`, 예: GetObject의
-    /// `NoSuchKey`)만 전용 예외(`NoSuchKeyException`)로 던지고, 그 밖의 서비스 오류는 `AmazonS3Exception`이다.
-    /// `S3Error::dotnet_type`은 연산을 구분하지 않으므로 여기서 연산별로 좁힌다.
-    pub fn s3(error: S3Error, modeled: &[&str]) -> Self {
-        let dotnet_type = match &error {
-            S3Error::Service { code, .. } if !modeled.contains(&code.as_str()) => {
-                "Amazon.S3.AmazonS3Exception"
-            }
-            other => other.dotnet_type(),
-        };
-        Self::new(dotnet_type, error.to_string())
-    }
-}
-
-/// 전용 예외로 모델링한 오류 코드가 없는 연산(대부분)의 변환. `?`도 이 규칙을 따른다.
-impl From<S3Error> for CommandError {
-    fn from(error: S3Error) -> Self {
-        Self::s3(error, &[])
-    }
-}
+pub use awscli_rest_scenarios::ScenarioError as CommandError;
 
 pub type CommandResult = Result<i32, CommandError>;
 

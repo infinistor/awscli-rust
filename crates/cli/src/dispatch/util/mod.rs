@@ -17,8 +17,6 @@
 //!
 //! .NET과 다른 점: [`clear`] 모듈 문서 참고(삭제 작업 로그 순서 고정, 버전·삭제 마커 합치는 순서).
 
-mod clear;
-
 use super::input::blank;
 use std::path::Path;
 use std::time::Instant;
@@ -31,10 +29,10 @@ use awscli_rest_common::dotnet_http::status_name;
 use awscli_rest_s3::S3Error;
 use tracing::{error, info};
 
-use self::clear::ClearTest;
 use super::{CommandContext, CommandError, CommandResult, not_ported};
 use crate::menu::MenuList;
 use crate::usage;
+use awscli_rest_scenarios::clear::ClearTest;
 
 /// 옮긴 메뉴.
 pub(super) const PORTED: &[MenuList] = &[

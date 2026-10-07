@@ -36,6 +36,7 @@ awscli-rest-common.workspace = true
 awscli-rest-config.workspace = true
 awscli-rest-model.workspace = true
 awscli-rest-s3.workspace = true
+awscli-rest-scenarios.workspace = true
 aws-sdk-s3.workspace = true
 serde.workspace = true
 serde_json.workspace = true

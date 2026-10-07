@@ -13,10 +13,10 @@ use chrono::{Duration, Utc};
 use tokio::io::AsyncWriteExt;
 use tracing::{error, info};
 
-use super::files::{full_path, io_error, read_error, save_file};
 use super::{S3Result, bucket_name, key_name};
 use crate::dispatch::output::print_json;
 use crate::dispatch::{CommandContext, CommandError, CommandResult};
+use awscli_rest_scenarios::files::{full_path, io_error, read_error, save_file};
 
 pub(super) async fn get_object(ctx: &CommandContext) -> CommandResult {
     let o = &ctx.options;

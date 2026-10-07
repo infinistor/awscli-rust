@@ -493,6 +493,7 @@ dependencies = [
  "awscli-rest-config",
  "awscli-rest-model",
  "awscli-rest-s3",
+ "awscli-rest-scenarios",
  "base64",
  "chrono",
  "encoding_rs",
@@ -619,6 +620,21 @@ dependencies = [
 [[package]]
 name = "awscli-rest-scenarios"
 version = "0.1.0"
+dependencies = [
+ "aws-sdk-s3",
+ "awscli-rest-clients",
+ "awscli-rest-common",
+ "awscli-rest-config",
+ "awscli-rest-model",
+ "awscli-rest-s3",
+ "base64",
+ "chrono",
+ "md-5",
+ "tempfile",
+ "tokio",
+ "tokio-util",
+ "tracing",
+]
 
 [[package]]
 name = "base16ct"

@@ -30,7 +30,6 @@
 //! - `DateTime.TryParse`는 ISO 8601과 `yyyy/MM/dd` 계열만 받는다.
 //! - `HeadObject --print`의 `Headers` 덤프는 사람이 보는 용도라 속성 구성이 .NET과 다르다.
 
-mod files;
 mod help;
 mod input;
 mod listing;
@@ -127,7 +126,9 @@ fn rejected(ctx: &CommandContext, checks: &[Check]) -> bool {
             Check::FilePath if blank(&o.file_path) => usage::ERROR_FILE_PATH,
             Check::ConfigPath if blank(&o.file_path) => usage::ERROR_CONFIG_PATH,
             Check::FileExists
-                if !files::file_exists(o.file_path.as_deref().unwrap_or_default()) =>
+                if !awscli_rest_scenarios::files::file_exists(
+                    o.file_path.as_deref().unwrap_or_default(),
+                ) =>
             {
                 usage::ERROR_FILE
             }

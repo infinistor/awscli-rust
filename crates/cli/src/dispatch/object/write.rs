@@ -11,12 +11,14 @@ use awscli_rest_s3::s3_client::PutBody;
 use awscli_rest_s3::s3_client::PutObjectRequest;
 use tracing::{error, info};
 
-use super::files::{file_exists, file_list, file_md5_base64, read_all_text, string_md5_base64};
 use super::input::{KeyVersionList, parse};
 use super::{S3Result, blank, bucket_name, key_name};
 use crate::dispatch::output::print_json;
 use crate::dispatch::{CommandContext, CommandError, CommandResult};
 use crate::usage;
+use awscli_rest_scenarios::files::{
+    file_exists, file_list, file_md5_base64, read_all_text, string_md5_base64,
+};
 
 pub(super) async fn copy_object(ctx: &CommandContext) -> CommandResult {
     let o = &ctx.options;

@@ -24,12 +24,12 @@ use tokio::sync::Semaphore;
 use tokio::task::JoinSet;
 use tracing::{error, info, warn};
 
-use crate::dispatch::CommandError;
+use crate::ScenarioError;
 
 /// 삭제할 (키, 버전 ID).
 type Keys = Vec<(String, Option<String>)>;
 
-use crate::dispatch::input::null_reference;
+use crate::input::null_reference;
 
 /// .NET `bool.ToString()`
 fn dotnet_bool(value: bool) -> &'static str {
@@ -37,7 +37,7 @@ fn dotnet_bool(value: bool) -> &'static str {
 }
 
 /// 원본 `ClearTest`. `_tasks`는 `WaitTasks`에서 실행할 삭제 작업이다.
-pub(super) struct ClearTest {
+pub struct ClearTest {
     client: S3Client,
     tasks: Vec<(String, Keys)>,
 }
@@ -57,7 +57,7 @@ impl ClearTest {
         max_keys: i32,
         is_delete: bool,
         thread_count: i32,
-    ) -> Result<(), CommandError> {
+    ) -> Result<(), ScenarioError> {
         info!(
             "AllClear({}, {max_keys}, {}, {thread_count})",
             prefix.unwrap_or_default(),
@@ -70,7 +70,7 @@ impl ClearTest {
                 .client
                 .list_buckets(prefix, 10000, continuation_token.as_deref())
                 .await
-                .map_err(|e| CommandError::s3(e, &[]))?;
+                .map_err(|e| ScenarioError::s3(e, &[]))?;
             let buckets: Vec<String> = response
                 .output
                 .buckets()
@@ -177,7 +177,7 @@ impl ClearTest {
             {
                 Ok(response) => response,
                 Err(e) => {
-                    error!("{}", CommandError::s3(e, &[]));
+                    error!("{}", ScenarioError::s3(e, &[]));
                     return total_deleted;
                 }
             };
@@ -217,7 +217,7 @@ impl ClearTest {
             {
                 Ok(response) => response,
                 Err(e) => {
-                    error!("{}", CommandError::s3(e, &["NoSuchBucket"]));
+                    error!("{}", ScenarioError::s3(e, &["NoSuchBucket"]));
                     return total_deleted;
                 }
             };
@@ -269,7 +269,7 @@ impl ClearTest {
             {
                 Ok(response) => response,
                 Err(e) => {
-                    error!("{}", CommandError::s3(e, &[]));
+                    error!("{}", ScenarioError::s3(e, &[]));
                     return total_deleted;
                 }
             };
@@ -344,7 +344,7 @@ async fn clear_inner(
     max_keys: i32,
     is_delete: bool,
     total_deleted: &mut usize,
-) -> Result<(), CommandError> {
+) -> Result<(), ScenarioError> {
     check_and_grant_permissions(client, bucket).await;
     let bypass = get_object_lock(client, bucket).await;
     if bypass {
@@ -364,7 +364,7 @@ async fn clear_inner(
                 None,
             )
             .await
-            .map_err(|e| CommandError::s3(e, &[]))?;
+            .map_err(|e| ScenarioError::s3(e, &[]))?;
         let keys = version_keys(&response.output, |_| true);
         if keys.is_empty() {
             break;
@@ -395,7 +395,7 @@ async fn clear_inner(
 async fn delete_bucket(client: &S3Client, bucket: &str) {
     match client.delete_bucket(bucket).await {
         Ok(_) => info!("DeleteBucket({bucket}) success"),
-        Err(e) => error!("{}", CommandError::s3(e, &[])),
+        Err(e) => error!("{}", ScenarioError::s3(e, &[])),
     }
 }
 
@@ -414,18 +414,18 @@ async fn delete_objects(client: &S3Client, bucket: &str, keys: Keys, bypass: Opt
             }
             info!("DeleteObjects({bucket}, {}) success", keys.len());
         }
-        Err(e) => error!("{}", CommandError::s3(e, &[])),
+        Err(e) => error!("{}", ScenarioError::s3(e, &[])),
     }
 }
 
 /// 원본 `CheckAndGrantPermissions`
 async fn check_and_grant_permissions(client: &S3Client, bucket: &str) {
     info!("권한 확인 중: {bucket}");
-    let result: Result<(), CommandError> = async {
+    let result: Result<(), ScenarioError> = async {
         let acl = client
             .get_bucket_acl(bucket)
             .await
-            .map_err(|e| CommandError::s3(e, &[]))?;
+            .map_err(|e| ScenarioError::s3(e, &[]))?;
         if has_delete_permission(&acl.output) {
             info!("삭제 권한이 확인되었습니다: {bucket}");
         } else {
@@ -457,12 +457,12 @@ fn has_delete_permission(acl: &aws_sdk_s3::operation::get_bucket_acl::GetBucketA
 }
 
 /// 원본 `GrantDeletePermission`
-async fn grant_delete_permission(client: &S3Client, bucket: &str) -> Result<(), CommandError> {
-    let result: Result<(), CommandError> = async {
+async fn grant_delete_permission(client: &S3Client, bucket: &str) -> Result<(), ScenarioError> {
+    let result: Result<(), ScenarioError> = async {
         let response = client
             .get_bucket_acl(bucket)
             .await
-            .map_err(|e| CommandError::s3(e, &[]))?;
+            .map_err(|e| ScenarioError::s3(e, &[]))?;
         let acl = response.output;
         let Some(owner) = acl.owner() else {
             error!("버킷 소유자 정보를 가져올 수 없습니다: {bucket}");
@@ -474,7 +474,7 @@ async fn grant_delete_permission(client: &S3Client, bucket: &str) -> Result<(), 
             return Ok(());
         }
         let build = |e: aws_sdk_s3::error::BuildError| {
-            CommandError::new("Amazon.Runtime.AmazonClientException", e.to_string())
+            ScenarioError::new("Amazon.Runtime.AmazonClientException", e.to_string())
         };
         grants.push(
             Grant::builder()
@@ -496,7 +496,7 @@ async fn grant_delete_permission(client: &S3Client, bucket: &str) -> Result<(), 
         client
             .put_bucket_acl(bucket, None, Some(policy))
             .await
-            .map_err(|e| CommandError::s3(e, &[]))?;
+            .map_err(|e| ScenarioError::s3(e, &[]))?;
         info!("Owner에게 삭제 권한이 성공적으로 부여되었습니다: {bucket}");
         Ok(())
     }
@@ -520,7 +520,7 @@ async fn get_object_lock(client: &S3Client, bucket: &str) -> bool {
         // 설정이 없을 경우
         Err(S3Error::Service { .. }) => false,
         Err(e) => {
-            let e: CommandError = e.into();
+            let e: ScenarioError = e.into();
             error!("Object Lock 확인 중 오류 발생: {bucket}\n{e}");
             false
         }
