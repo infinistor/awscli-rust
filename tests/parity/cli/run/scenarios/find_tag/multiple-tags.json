@@ -1,0 +1,35 @@
+{
+  "args": [
+    "--test-find-tag=color,red",
+    "-b",
+    "ft",
+    "--thread",
+    "1"
+  ],
+  "routes": [
+    {
+      "contains": "GET /ft/?",
+      "status": 200,
+      "responseBody": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ListBucketResult><Name>ft</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>a</Key><LastModified>2026-03-04T05:06:07.000Z</LastModified><ETag>&quot;e&quot;</ETag><Size>1</Size><StorageClass>STANDARD</StorageClass></Contents><Contents><Key>b</Key><LastModified>2026-03-04T05:06:07.000Z</LastModified><ETag>&quot;e&quot;</ETag><Size>1</Size><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "GET /ft/a?tagging",
+      "status": 200,
+      "responseBody": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Tagging><TagSet><Tag><Key>size</Key><Value>big</Value></Tag><Tag><Key>color</Key><Value>red</Value></Tag></TagSet></Tagging>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "GET /ft/b?tagging",
+      "status": 200,
+      "responseBody": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Tagging><TagSet><Tag><Key>color</Key><Value>Red</Value></Tag><Tag><Key>size</Key><Value>red</Value></Tag></TagSet></Tagging>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    }
+  ]
+}

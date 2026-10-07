@@ -1,0 +1,30 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/io/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": "4 bytes md5=f50881ced34c7d9e6bce100bf33dec60",
+      "headers": [],
+      "method": "PUT",
+      "path": "/io/<DIR>%5C%5Csub%5Cb.txt",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "IO Test Start",
+    "ERROR <TIME> : <DIR>\\srcdir\\sub\\b.txt upload failed!",
+    "",
+    "Amazon.S3.AmazonS3Exception: Access Denied",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

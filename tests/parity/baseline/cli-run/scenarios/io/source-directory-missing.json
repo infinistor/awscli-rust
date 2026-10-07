@@ -1,0 +1,20 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/io/",
+      "query": [
+        "acl"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "IO Test Start",
+    "ERROR <TIME> : System.IO.DirectoryNotFoundException: Could not find a part of the path '<DIR>\\nodir'."
+  ]
+}

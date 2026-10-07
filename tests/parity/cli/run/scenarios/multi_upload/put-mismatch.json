@@ -1,0 +1,18 @@
+{
+  "args": [
+    "--test-multi-upload",
+    "-b",
+    "mu",
+    "-k",
+    "key",
+    "--thread",
+    "1"
+  ],
+  "routes": [
+    {
+      "contains": "GET /mu/key0",
+      "status": 200,
+      "responseBody": "other"
+    }
+  ]
+}

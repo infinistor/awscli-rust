@@ -1,0 +1,23 @@
+{
+  "args": [
+    "--test-range-read",
+    "-b",
+    "rr",
+    "-k",
+    "obj",
+    "--thread",
+    "1"
+  ],
+  "routes": [
+    {
+      "contains": "HEAD /rr/obj",
+      "status": 200,
+      "responseBody": "x"
+    },
+    {
+      "contains": "GET /rr/obj",
+      "status": 206,
+      "responseBody": "abcd"
+    }
+  ]
+}

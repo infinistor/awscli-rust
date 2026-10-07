@@ -1,0 +1,41 @@
+{
+  "exitCode": 0,
+  "outputs": {
+    "dl/00": [
+      "x"
+    ],
+    "dl/E6/45/E645E0B80EB4FDEDD3D8AE715BBDEF65": [
+      "CCCC"
+    ]
+  },
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/md/a.txt",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/md/b/c.txt",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Downloaded <N> objects. Elapsed: <N> sec",
+    "ERROR <TIME> : System.IO.IOException: Cannot create '<DIR>\\dl\\00' because a file or directory with the same name already exists.",
+    "INFO  <TIME> : Created dl directories. Elapsed: <N> sec",
+    "ERROR <TIME> : Amazon.S3.Model.NoSuchKeyException: The specified key does not exist.",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " Remaining     :         0",
+    " Read          :         2",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "exitCode": 0,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ManualUpload Start",
+    "INFO  <TIME> : Manual Upload Start",
+    "ERROR <TIME> : 파일이 존재하지 않습니다. (Path = nope.txt)",
+    "INFO  <TIME> : ManualUpload : complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

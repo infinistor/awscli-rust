@@ -1,0 +1,20 @@
+{
+  "args": [
+    "--test-file-list=keys.txt",
+    "-b",
+    "md",
+    "-f",
+    "dl",
+    "--thread",
+    "1"
+  ],
+  "stats": true,
+  "drop_lines": "^ (Read Average|Bandwidth|Times)\\s",
+  "outputs": [
+    "dl"
+  ],
+  "files": {
+    "dl/00": "x",
+    "keys.txt": ""
+  }
+}

@@ -40,7 +40,17 @@ pub fn file_list(root: &str) -> Result<Vec<String>, ScenarioError> {
 }
 
 fn collect_files(dir: &Path, list: &mut Vec<String>) -> Result<(), ScenarioError> {
-    let entries = std::fs::read_dir(dir).map_err(|e| io_error(dir, &e))?;
+    let entries = std::fs::read_dir(dir).map_err(|e| {
+        if e.kind() == std::io::ErrorKind::NotFound {
+            // `DirectoryInfo.GetDirectories()`는 없는 폴더에 항상 `DirectoryNotFoundException`을 던진다.
+            ScenarioError::new(
+                "System.IO.DirectoryNotFoundException",
+                format!("Could not find a part of the path '{}'.", dir.display()),
+            )
+        } else {
+            io_error(dir, &e)
+        }
+    })?;
     let mut directories = Vec::new();
     let mut files = Vec::new();
     for entry in entries {
@@ -101,7 +111,7 @@ async fn write_stream(path: Option<&str>, mut body: ByteStream) -> Result<(), Sc
         Some(dir) => {
             let dir = full_path(&dir);
             if !dir.is_dir() {
-                std::fs::create_dir_all(&dir).map_err(|e| io_error(&dir, &e))?;
+                std::fs::create_dir_all(&dir).map_err(|e| create_dir_error(&dir, &e))?;
             }
         }
     }
@@ -115,6 +125,26 @@ async fn write_stream(path: Option<&str>, mut body: ByteStream) -> Result<(), Sc
             .map_err(|e| io_error(&full, &e))?;
     }
     file.flush().await.map_err(|e| io_error(&full, &e))
+}
+
+/// `Directory.CreateDirectory(path)`가 던지는 예외. 경로의 구성 요소 중 디렉터리가 아닌 파일이 있으면 .NET은 그 경로로
+/// `IOException`(`Cannot create '...' because a file or directory with the same name already exists.`)을 던진다.
+/// `dir`은 전체 경로여야 한다. 그 밖의 오류는 [`io_error`].
+pub fn create_dir_error(dir: &Path, error: &std::io::Error) -> ScenarioError {
+    let mut ancestor = std::path::PathBuf::new();
+    for component in dir.components() {
+        ancestor.push(component);
+        if ancestor.exists() && !ancestor.is_dir() {
+            return ScenarioError::new(
+                "System.IO.IOException",
+                format!(
+                    "Cannot create '{}' because a file or directory with the same name already exists.",
+                    ancestor.display()
+                ),
+            );
+        }
+    }
+    io_error(dir, error)
 }
 
 /// 응답 본문을 읽다 실패한 경우.

@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : FindTagTest Start (Max Concurrency: 1)",
+    "ERROR <TIME> : System.ArgumentException: BucketName is a required property and must be set before making this call. (Parameter 'ListObjectsRequest.BucketName')"
+  ]
+}

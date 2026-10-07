@@ -1,0 +1,7 @@
+{
+  "args": [
+    "--test-directory-download",
+    "-f",
+    "dl"
+  ]
+}

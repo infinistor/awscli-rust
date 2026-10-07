@@ -1,0 +1,36 @@
+{
+  "args": [
+    "--test-io",
+    "-b",
+    "io",
+    "--source=srcdir",
+    "--target=dl/"
+  ],
+  "files": {
+    "srcdir/sub/b.txt": "BBBB",
+    "srcdir/a.txt": "AAA"
+  },
+  "outputs": [
+    "dl"
+  ],
+  "routes": [
+    {
+      "contains": "GET /io/?",
+      "status": 200,
+      "responseBody": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ListBucketResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>io</Name><Prefix></Prefix><KeyCount>2</KeyCount><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>a.txt</Key><LastModified>2026-03-04T05:06:07.000Z</LastModified><ETag>&quot;e&quot;</ETag><Size>3</Size><StorageClass>STANDARD</StorageClass></Contents><Contents><Key>sub/b.txt</Key><LastModified>2026-03-04T05:06:07.000Z</LastModified><ETag>&quot;e&quot;</ETag><Size>3</Size><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "GET /io/a.txt",
+      "status": 200,
+      "responseBody": "AAA"
+    },
+    {
+      "contains": "GET /io/sub/b.txt",
+      "status": 200,
+      "responseBody": "BBBB"
+    }
+  ]
+}

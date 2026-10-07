@@ -1,0 +1,26 @@
+{
+  "args": [
+    "--test-multi-upload",
+    "-b",
+    "mu",
+    "-k",
+    "key",
+    "--thread",
+    "1"
+  ],
+  "routes": [
+    {
+      "contains": "GET /mu/?acl",
+      "status": 404,
+      "responseBody": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist</Message><RequestId>REQ1</RequestId></Error>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "GET /mu/key0",
+      "status": 200,
+      "responseBody": "key"
+    }
+  ]
+}

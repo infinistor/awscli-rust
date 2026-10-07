@@ -1,0 +1,15 @@
+{
+  "args": [
+    "--test-multi-upload",
+    "-b",
+    "mu",
+    "-k",
+    "key",
+    "--thread",
+    "1",
+    "--size",
+    "10",
+    "--part-size",
+    "0"
+  ]
+}

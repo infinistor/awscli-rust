@@ -1,0 +1,14 @@
+{
+  "args": [
+    "--test-file-list=keys.txt",
+    "-b",
+    "md",
+    "-f",
+    "dl",
+    "--thread",
+    "1"
+  ],
+  "dirs": [
+    "keys.txt"
+  ]
+}

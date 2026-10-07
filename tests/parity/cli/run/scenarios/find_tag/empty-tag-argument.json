@@ -1,0 +1,7 @@
+{
+  "args": [
+    "--test-find-tag=",
+    "-b",
+    "ft"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "args": [
+    "--test-multi-upload",
+    "-b",
+    "mu",
+    "-k",
+    "key",
+    "--thread",
+    "1",
+    "--size",
+    "10",
+    "--part-size",
+    "4"
+  ],
+  "ignore_body": true,
+  "routes": [
+    {
+      "contains": "POST /mu/key0?uploads",
+      "status": 200,
+      "responseBody": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<InitiateMultipartUploadResult><Bucket>mu</Bucket><Key>key0</Key><UploadId>UP1</UploadId></InitiateMultipartUploadResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "partNumber=1",
+      "status": 200,
+      "responseHeaders": {
+        "ETag": "\"etag1\""
+      }
+    },
+    {
+      "contains": "partNumber=2",
+      "status": 403,
+      "responseBody": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Error><Code>AccessDenied</Code><Message>Access Denied</Message><RequestId>REQ1</RequestId></Error>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    }
+  ]
+}

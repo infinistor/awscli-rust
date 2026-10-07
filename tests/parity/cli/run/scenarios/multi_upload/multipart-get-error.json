@@ -1,0 +1,54 @@
+{
+  "args": [
+    "--test-multi-upload",
+    "-b",
+    "mu",
+    "-k",
+    "key",
+    "--thread",
+    "1",
+    "--size",
+    "4",
+    "--part-size",
+    "4"
+  ],
+  "ignore_body": true,
+  "routes": [
+    {
+      "contains": "POST /mu/key0?uploads",
+      "status": 200,
+      "responseBody": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<InitiateMultipartUploadResult><Bucket>mu</Bucket><Key>key0</Key><UploadId>UP1</UploadId></InitiateMultipartUploadResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "partNumber=1",
+      "status": 200,
+      "responseHeaders": {
+        "ETag": "\"etag1\""
+      }
+    },
+    {
+      "contains": "POST /mu/key0?uploadId=UP1",
+      "status": 200,
+      "responseBody": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<CompleteMultipartUploadResult><Location>http://x/mu/key0</Location><Bucket>mu</Bucket><Key>key0</Key><ETag>&quot;final-1&quot;</ETag></CompleteMultipartUploadResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "HEAD /mu/key0",
+      "status": 200,
+      "responseBody": "0123"
+    },
+    {
+      "contains": "GET /mu/key0",
+      "status": 404,
+      "responseBody": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Error><Code>NoSuchKey</Code><Message>The specified key does not exist.</Message><RequestId>REQ1</RequestId></Error>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "POST",
+      "path": "/mp/obj.txt",
+      "query": [
+        "uploads"
+      ]
+    },
+    {
+      "body": "<CompleteMultipartUpload></CompleteMultipartUpload>",
+      "headers": [],
+      "method": "POST",
+      "path": "/mp/obj.txt",
+      "query": [
+        "uploadId=UP1"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ManualUpload Start",
+    "INFO  <TIME> : Manual Upload Start",
+    "INFO  <TIME> : InitiateMultipartUpload : UP1",
+    "INFO  <TIME> : tasks : 0. Waiting...",
+    "INFO  <TIME> : parts : 0. CompleteMultipartUpload...",
+    "INFO  <TIME> : ManualUpload : complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

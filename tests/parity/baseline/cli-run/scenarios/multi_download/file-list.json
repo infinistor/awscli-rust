@@ -1,0 +1,53 @@
+{
+  "exitCode": 0,
+  "outputs": {
+    "dl/00": [
+      "x"
+    ],
+    "dl/1C/49/1C4900FD4C7B68A8620B815C7E756A10": [
+      "AAA"
+    ],
+    "dl/2B/E2/2BE26BC7CE4B480E0AAB036BCFC1D8B1": [
+      "L"
+    ],
+    "dl/E6/45/E645E0B80EB4FDEDD3D8AE715BBDEF65": [
+      "CCCC"
+    ]
+  },
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/md/a.txt",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/md/b/c.txt",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/md/last.txt",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Downloaded <N> objects. Elapsed: <N> sec",
+    "ERROR <TIME> : System.IO.IOException: Cannot create '<DIR>\\dl\\00' because a file or directory with the same name already exists.",
+    "INFO  <TIME> : Created dl directories. Elapsed: <N> sec",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " Remaining     :         0",
+    " Read          :         6",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

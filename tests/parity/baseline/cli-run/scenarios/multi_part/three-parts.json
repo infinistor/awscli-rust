@@ -1,0 +1,64 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "10 bytes md5=781e5e245d69b566979b86e28d23f2c7",
+      "headers": [],
+      "method": "PUT",
+      "path": "/mp/obj.txt",
+      "query": [
+        "partNumber=1",
+        "uploadId=UP1"
+      ]
+    },
+    {
+      "body": "10 bytes md5=a925576942e94b2ef57a066101b48876",
+      "headers": [],
+      "method": "PUT",
+      "path": "/mp/obj.txt",
+      "query": [
+        "partNumber=2",
+        "uploadId=UP1"
+      ]
+    },
+    {
+      "body": "5 bytes md5=4100c4d44da9177247e44a5fc1546778",
+      "headers": [],
+      "method": "PUT",
+      "path": "/mp/obj.txt",
+      "query": [
+        "partNumber=3",
+        "uploadId=UP1"
+      ]
+    },
+    {
+      "body": "<CompleteMultipartUpload><Part><ETag>\"etag1\"</ETag><PartNumber>1</PartNumber></Part><Part><ETag>\"etag2\"</ETag><PartNumber>2</PartNumber></Part><Part><ETag>\"etag3\"</ETag><PartNumber>3</PartNumber></Part></CompleteMultipartUpload>",
+      "headers": [],
+      "method": "POST",
+      "path": "/mp/obj.txt",
+      "query": [
+        "uploadId=UP1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "POST",
+      "path": "/mp/obj.txt",
+      "query": [
+        "uploads"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ManualUpload Start",
+    "INFO  <TIME> : Manual Upload Start",
+    "INFO  <TIME> : InitiateMultipartUpload : UP1",
+    "INFO  <TIME> : tasks : 3. Waiting...",
+    "INFO  <TIME> : parts : 3. CompleteMultipartUpload...",
+    "INFO  <TIME> : ManualUpload : complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

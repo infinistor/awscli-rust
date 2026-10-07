@@ -1,0 +1,8 @@
+{
+  "args": [
+    "--test-io",
+    "-b",
+    "io",
+    "--target=dl/"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "POST",
+      "path": "/mp/obj.txt",
+      "query": [
+        "uploads"
+      ]
+    },
+    {
+      "body": "5 bytes md5=5d41402abc4b2a76b9719d911017c592",
+      "headers": [],
+      "method": "PUT",
+      "path": "/mp/obj.txt",
+      "query": [
+        "partNumber=1",
+        "uploadId=UP1"
+      ]
+    },
+    {
+      "body": "<CompleteMultipartUpload><Part><ETag>\"etag1\"</ETag><PartNumber>1</PartNumber></Part></CompleteMultipartUpload>",
+      "headers": [],
+      "method": "POST",
+      "path": "/mp/obj.txt",
+      "query": [
+        "uploadId=UP1"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ManualUpload Start",
+    "INFO  <TIME> : Manual Upload Start",
+    "INFO  <TIME> : InitiateMultipartUpload : UP1",
+    "INFO  <TIME> : tasks : 1. Waiting...",
+    "INFO  <TIME> : PartNumber : 1 is Upload Success!",
+    "INFO  <TIME> : parts : 1. CompleteMultipartUpload...",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: Access Denied"
+  ]
+}

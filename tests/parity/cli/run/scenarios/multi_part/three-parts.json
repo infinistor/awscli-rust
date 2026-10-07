@@ -1,0 +1,57 @@
+{
+  "args": [
+    "--manual-upload",
+    "-b",
+    "mp",
+    "-k",
+    "obj.txt",
+    "-f",
+    "data.txt",
+    "--part-size",
+    "10"
+  ],
+  "files": {
+    "data.txt": "0123456789abcdefghij01234"
+  },
+  "unordered": true,
+  "drop_lines": "is Upload Success!|Manual Upload End.",
+  "routes": [
+    {
+      "contains": "POST /mp/obj.txt?uploads",
+      "status": 200,
+      "responseBody": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<InitiateMultipartUploadResult><Bucket>mp</Bucket><Key>obj.txt</Key><UploadId>UP1</UploadId></InitiateMultipartUploadResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "partNumber=1",
+      "status": 200,
+      "responseHeaders": {
+        "ETag": "\"etag1\""
+      }
+    },
+    {
+      "contains": "partNumber=2",
+      "status": 200,
+      "responseHeaders": {
+        "ETag": "\"etag2\""
+      }
+    },
+    {
+      "contains": "partNumber=3",
+      "status": 200,
+      "responseHeaders": {
+        "ETag": "\"etag3\""
+      }
+    },
+    {
+      "contains": "POST /mp/obj.txt?uploadId=UP1",
+      "status": 200,
+      "responseBody": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<CompleteMultipartUploadResult><Location>http://x/mp/obj.txt</Location><Bucket>mp</Bucket><Key>obj.txt</Key><ETag>&quot;final-1&quot;</ETag></CompleteMultipartUploadResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    }
+  ]
+}

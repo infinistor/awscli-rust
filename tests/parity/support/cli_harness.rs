@@ -319,6 +319,15 @@ pub async fn run_case(exe: &Path, case: &CliCase, encoding: OutputEncoding) -> C
             }
         }
     }
+    // 오브젝트 키에 로컬 경로가 들어가는 시나리오(IoTest)는 요청 줄에 퍼센트 인코딩한 경로가 나온다.
+    for d in dirs.clone() {
+        for keep_slash in [false, true] {
+            let encoded = percent_encode(&d, keep_slash);
+            if !dirs.contains(&encoded) {
+                dirs.push(encoded);
+            }
+        }
+    }
     // 긴 표기가 짧은 표기를 포함할 수 있어 긴 것부터 바꾼다.
     dirs.sort_by_key(|d| std::cmp::Reverse(d.len()));
     let context = Context {
@@ -352,6 +361,19 @@ pub async fn run_case(exe: &Path, case: &CliCase, encoding: OutputEncoding) -> C
             outputs
         },
     }
+}
+
+/// RFC 3986 비예약 문자(`A-Za-z0-9-._~`)만 남기고 대문자 16진수로 퍼센트 인코딩한다.
+fn percent_encode(text: &str, keep_slash: bool) -> String {
+    let mut out = String::new();
+    for byte in text.bytes() {
+        if byte.is_ascii_alphanumeric() || b"-._~".contains(&byte) || (keep_slash && byte == b'/') {
+            out.push(byte as char);
+        } else {
+            out.push_str(&format!("%{byte:02X}"));
+        }
+    }
+    out
 }
 
 /// 사례의 `outputs`를 읽어 정규화한다. 디렉터리는 아래 파일 전부(이름의 `yyyyMMdd_HHmmss`는 `<TS>`).
