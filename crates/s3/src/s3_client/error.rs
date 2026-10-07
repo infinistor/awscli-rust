@@ -20,6 +20,8 @@ pub enum S3Error {
     Request(String),
     /// 호출 인자가 잘못된 경우(.NET `ArgumentException`).
     Argument(String),
+    /// 값의 형식이 잘못된 경우(.NET `FormatException`, 예: SSE-C 키가 Base64가 아님).
+    Format(String),
     /// 로컬 파일 입출력 실패. 값은 .NET 예외 형식 이름과 메시지(`S3Error::io` 참고).
     Io {
         dotnet_type: &'static str,
@@ -65,6 +67,7 @@ impl S3Error {
             Self::Network(_) => "System.Net.Http.HttpRequestException",
             Self::Request(_) => "Amazon.Runtime.AmazonClientException",
             Self::Argument(_) => "System.ArgumentException",
+            Self::Format(_) => "System.FormatException",
             Self::Io { dotnet_type, .. } => dotnet_type,
             Self::Unmarshalling(_) => "Amazon.Runtime.AmazonUnmarshallingException",
         }
@@ -93,6 +96,7 @@ impl fmt::Display for S3Error {
             Self::Network(message)
             | Self::Request(message)
             | Self::Argument(message)
+            | Self::Format(message)
             | Self::Io { message, .. }
             | Self::Unmarshalling(message) => f.write_str(message),
         }
