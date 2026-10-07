@@ -1,0 +1,9 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "ERROR <TIME> : System.UnauthorizedAccessException: Access to the path '<DIR>\\keys.txt' is denied."
+  ]
+}

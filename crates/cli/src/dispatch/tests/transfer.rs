@@ -3,6 +3,7 @@
 use std::time::Instant;
 
 use awscli_rest_scenarios::find_tag::FindTagTest;
+use awscli_rest_scenarios::multi_download::MultiDownloadTest;
 use awscli_rest_scenarios::multi_part::MultiPartTest;
 use awscli_rest_scenarios::multi_upload::MultiUploadTest;
 use awscli_rest_scenarios::range_read;
@@ -17,8 +18,35 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
         MenuList::MultiUploadTest => multi_upload_test(ctx).await,
         MenuList::RangeReadTest => range_read_test(ctx).await,
         MenuList::FindTagTest => find_tag_test(ctx).await,
+        MenuList::DirectoryDownloadTest | MenuList::FileListDownloadTest => {
+            download_test(ctx, menu).await
+        }
         _ => not_ported(menu),
     }
+}
+
+/// 원본 `case MenuList.DirectoryDownloadTest`·`FileListDownloadTest`(검증은 `tests/mod.rs`).
+/// 목록 파일 경로는 `--test-file-list=`(`path`), 저장할 폴더는 `--file`(`filePath`)이다.
+async fn download_test(ctx: &mut CommandContext, menu: MenuList) -> CommandResult {
+    let o = &ctx.options;
+    let thread = if o.thread < 1 { 10 } else { o.thread };
+    let bucket = o.bucket_name.as_deref().unwrap_or_default();
+    let download_path = o.file_path.as_deref().unwrap_or_default();
+
+    let mut test = MultiDownloadTest::new(ctx.config().main_user.clone());
+    if menu == MenuList::DirectoryDownloadTest {
+        test.start(thread, bucket, o.prefix.as_deref(), download_path)
+            .await?;
+    } else {
+        test.file(
+            thread,
+            bucket,
+            o.path.as_deref().unwrap_or_default(),
+            download_path,
+        )
+        .await?;
+    }
+    Ok(0)
 }
 
 /// 원본 `case MenuList.FindTagTest`. `--test-find-tag` 값이 없으면 `NullReferenceException`,

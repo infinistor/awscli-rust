@@ -17,6 +17,7 @@ base64.workspace = true
 chrono.workspace = true
 md-5.workspace = true
 rand.workspace = true
+rust_decimal.workspace = true
 tokio.workspace = true
 tokio-util.workspace = true
 tracing.workspace = true

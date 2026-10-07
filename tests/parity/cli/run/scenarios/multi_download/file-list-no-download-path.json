@@ -1,0 +1,7 @@
+{
+  "args": [
+    "--test-file-list=keys.txt",
+    "-b",
+    "md"
+  ]
+}
