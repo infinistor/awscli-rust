@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<NotificationConfiguration><QueueConfiguration><Event>s3:ObjectCreated:*</Event><Filter></Filter><Id>q1</Id><Queue>arn:q</Queue></QueueConfiguration></NotificationConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "notification"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketNotificationConfiguration Start",
+    "INFO  <TIME> : bucket1 Put Bucket Notification! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<NotificationConfiguration><QueueConfiguration><Event>s3:ObjectCreated:*</Event><Id>q1</Id><Queue>arn:q1</Queue></QueueConfiguration><QueueConfiguration><Event>s3:ObjectCreated:*</Event><Id>q2</Id><Queue>arn:q2</Queue></QueueConfiguration><TopicConfiguration><Event>s3:ObjectCreated:*</Event><Id>t1</Id><Topic>arn:t1</Topic></TopicConfiguration><TopicConfiguration><Event>s3:ObjectRemoved:*</Event><Id>t2</Id><Topic>arn:t2</Topic></TopicConfiguration></NotificationConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "notification"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketNotificationConfiguration Start",
+    "INFO  <TIME> : bucket1 Put Bucket Notification! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

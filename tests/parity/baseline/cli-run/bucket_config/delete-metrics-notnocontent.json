@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/bucket1/",
+      "query": [
+        "id=metrics1",
+        "metrics"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : DeleteBucketMetrics Start",
+    "ERROR <TIME> : bucket1 Delete Bucket Metrics failed(OK)",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

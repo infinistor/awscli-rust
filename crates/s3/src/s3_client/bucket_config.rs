@@ -59,7 +59,9 @@ use aws_sdk_s3::types::{
     ServerSideEncryptionConfiguration, Tag, Tagging, TopicConfiguration, WebsiteConfiguration,
 };
 
-use super::{S3Client, S3Error, S3Response, add_content_md5, add_crc32, built};
+use super::{
+    S3Client, S3Error, S3Response, built, strip_unset, strip_unset_crc32, strip_unset_md5,
+};
 
 impl S3Client {
     /// 원본 `ListDirectoryBuckets(int maxKeys = 1000, string continuationToken = null)`.
@@ -153,7 +155,8 @@ impl S3Client {
             self.client
                 .put_bucket_logging()
                 .bucket(bucket_name)
-                .bucket_logging_status(logging_config)
+                .bucket_logging_status(logging_config),
+            mutate = strip_unset
         )
     }
 
@@ -184,7 +187,7 @@ impl S3Client {
                 .put_bucket_notification_configuration()
                 .bucket(bucket_name)
                 .notification_configuration(configuration),
-            mutate = add_crc32
+            mutate = strip_unset_crc32
         )
     }
 
@@ -234,7 +237,8 @@ impl S3Client {
             self.client
                 .put_bucket_cors()
                 .bucket(bucket_name)
-                .cors_configuration(configuration)
+                .cors_configuration(configuration),
+            mutate = strip_unset
         )
     }
 
@@ -431,7 +435,8 @@ impl S3Client {
             self.client
                 .put_bucket_encryption()
                 .bucket(bucket_name)
-                .server_side_encryption_configuration(sse_config)
+                .server_side_encryption_configuration(sse_config),
+            mutate = strip_unset
         )
     }
 
@@ -461,7 +466,8 @@ impl S3Client {
             self.client
                 .put_bucket_website()
                 .bucket(bucket_name)
-                .website_configuration(web_config)
+                .website_configuration(web_config),
+            mutate = strip_unset
         )
     }
 
@@ -513,7 +519,7 @@ impl S3Client {
                 .bucket(bucket_name)
                 .id(id)
                 .inventory_configuration(inventory_config),
-            mutate = add_content_md5
+            mutate = strip_unset_md5
         )
     }
 
@@ -570,7 +576,7 @@ impl S3Client {
                 .bucket(bucket_name)
                 .id(id)
                 .metrics_configuration(metrics_config),
-            mutate = add_content_md5
+            mutate = strip_unset_md5
         )
     }
 
@@ -641,7 +647,7 @@ impl S3Client {
                 .bucket(bucket_name)
                 .id(id)
                 .analytics_configuration(analytics_config),
-            mutate = add_content_md5
+            mutate = strip_unset_md5
         )
     }
 }

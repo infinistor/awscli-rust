@@ -1,0 +1,15 @@
+{
+  "args" : [
+    "--get-bucket-logging",
+    "-b",
+    "bucket1",
+    "--print=false"
+  ],
+  "default" : {
+    "responseBody" : "<BucketLoggingStatus><LoggingEnabled><TargetBucket>log-bucket</TargetBucket><TargetPrefix>logs/</TargetPrefix><TargetGrants><Grant><Grantee xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"CanonicalUser\"><ID>abc123</ID><DisplayName>owner</DisplayName></Grantee><Permission>READ</Permission></Grant></TargetGrants></LoggingEnabled></BucketLoggingStatus>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  }
+}

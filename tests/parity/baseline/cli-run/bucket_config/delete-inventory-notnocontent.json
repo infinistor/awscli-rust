@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/bucket1/",
+      "query": [
+        "id=inventory1",
+        "inventory"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : DeleteBucketInventory Start",
+    "ERROR <TIME> : bucket1 Delete Bucket Inventory failed(OK)",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

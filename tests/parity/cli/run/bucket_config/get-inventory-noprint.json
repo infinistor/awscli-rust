@@ -1,0 +1,17 @@
+{
+  "args" : [
+    "--get-bucket-inventory",
+    "-b",
+    "bucket1",
+    "--id",
+    "inventory1",
+    "--print=false"
+  ],
+  "default" : {
+    "responseBody" : "<InventoryConfiguration><Destination><S3BucketDestination><AccountId>123456789012</AccountId><Bucket>arn:aws:s3:::dest-bucket</Bucket><Format>CSV</Format><Prefix>inv/</Prefix><Encryption><SSE-S3/></Encryption></S3BucketDestination></Destination><IsEnabled>true</IsEnabled><Id>inv1</Id><IncludedObjectVersions>All</IncludedObjectVersions><OptionalFields><Field>Size</Field><Field>LastModifiedDate</Field></OptionalFields><Schedule><Frequency>Daily</Frequency></Schedule></InventoryConfiguration>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  }
+}

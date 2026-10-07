@@ -1,0 +1,15 @@
+{
+  "args" : [
+    "--list-bucket-analytics",
+    "-b",
+    "bucket1"
+  ],
+  "default" : {
+    "responseBody" : "<ListBucketAnalyticsConfigurationResult><IsTruncated>false</IsTruncated></ListBucketAnalyticsConfigurationResult>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  },
+  "dump" : true
+}

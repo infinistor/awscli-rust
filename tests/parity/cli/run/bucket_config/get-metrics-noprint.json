@@ -1,0 +1,17 @@
+{
+  "args" : [
+    "--get-bucket-metrics",
+    "-b",
+    "bucket1",
+    "--id",
+    "metrics1",
+    "--print=false"
+  ],
+  "default" : {
+    "responseBody" : "<MetricsConfiguration><Id>metrics1</Id><Filter><And><Prefix>logs/</Prefix><Tag><Key>k1</Key><Value>v1</Value></Tag></And></Filter></MetricsConfiguration>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  }
+}

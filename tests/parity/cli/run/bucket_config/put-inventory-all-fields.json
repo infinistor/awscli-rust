@@ -1,0 +1,19 @@
+{
+  "args" : [
+    "--put-bucket-inventory",
+    "-b",
+    "bucket1",
+    "-f",
+    "conf.json"
+  ],
+  "default" : {
+    "responseBody" : "",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  },
+  "files" : {
+    "conf.json" : "{\"IsEnabled\":true,\"Id\":\"inv20\",\"Destination\":{\"AccountId\":\"1\",\"BucketName\":\"b\",\"Format\":\"CSV\",\"Prefix\":\"p\",\"Encryption\":\"SSE-S3\"},\"Schedule\":\"Weekly\",\"InventoryOptionalFields\":[\"Size\",\"LastModifiedDate\",\"StorageClass\",\"ETag\",\"IsMultipartUploaded\",\"ReplicationStatus\",\"EncryptionStatus\",\"ObjectLockRetainUntilDate\",\"ObjectLockMode\",\"ObjectLockLegalHoldStatus\",\"IntelligentTieringAccessTier\",\"BucketKeyStatus\",\"ChecksumAlgorithm\",\"ObjectAccessControlList\",\"ObjectOwner\",\"LifecycleExpirationDate\"]}"
+  }
+}

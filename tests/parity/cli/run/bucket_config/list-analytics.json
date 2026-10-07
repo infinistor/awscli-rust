@@ -1,0 +1,15 @@
+{
+  "args" : [
+    "--list-bucket-analytics",
+    "-b",
+    "bucket1"
+  ],
+  "default" : {
+    "responseBody" : "<ListBucketAnalyticsConfigurationResult><IsTruncated>false</IsTruncated><AnalyticsConfiguration><Id>analytics1</Id><Filter><And><Prefix>logs/</Prefix><Tag><Key>k1</Key><Value>v1</Value></Tag></And></Filter><StorageClassAnalysis><DataExport><OutputSchemaVersion>V_1</OutputSchemaVersion><Destination><S3BucketDestination><Format>CSV</Format><BucketAccountId>123456789012</BucketAccountId><Bucket>arn:aws:s3:::dest-bucket</Bucket><Prefix>out/</Prefix></S3BucketDestination></Destination></DataExport></StorageClassAnalysis></AnalyticsConfiguration></ListBucketAnalyticsConfigurationResult>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  },
+  "dump" : true
+}

@@ -1,0 +1,16 @@
+{
+  "args" : [
+    "--get-bucket-analytics",
+    "-b",
+    "bucket1",
+    "--id",
+    "x1"
+  ],
+  "default" : {
+    "responseBody" : "",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 404
+  }
+}

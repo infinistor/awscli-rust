@@ -1,0 +1,9 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "ERROR <TIME> : System.Text.Json.JsonException: '/' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0."
+  ]
+}

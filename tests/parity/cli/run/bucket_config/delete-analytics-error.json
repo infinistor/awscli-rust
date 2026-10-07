@@ -1,0 +1,16 @@
+{
+  "args" : [
+    "--delete-bucket-analytics",
+    "-b",
+    "bucket1",
+    "--id",
+    "analytics1"
+  ],
+  "default" : {
+    "responseBody" : "<Error><Code>AccessDenied</Code><Message>Access Denied</Message><RequestId>REQ2</RequestId></Error>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 403
+  }
+}

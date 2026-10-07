@@ -1,0 +1,15 @@
+{
+  "args" : [
+    "--list-bucket-inventory",
+    "-b",
+    "bucket1"
+  ],
+  "default" : {
+    "responseBody" : "<ListInventoryConfigurationsResult><IsTruncated>false</IsTruncated></ListInventoryConfigurationsResult>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  },
+  "dump" : true
+}

@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<WebsiteConfiguration><ErrorDocument><Key>e</Key></ErrorDocument><IndexDocument><Suffix>a</Suffix></IndexDocument><RedirectAllRequestsTo><HostName>h</HostName></RedirectAllRequestsTo></WebsiteConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "website"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketWebsite Start",
+    "INFO  <TIME> : bucket1 Put Bucket Website! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

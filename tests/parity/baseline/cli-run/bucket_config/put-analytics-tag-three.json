@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<AnalyticsConfiguration><Filter><And><Tag><Key>k1</Key><Value>v1</Value></Tag><Tag><Key>k2</Key><Value>v2</Value></Tag><Tag><Key>k3</Key><Value>v3</Value></Tag></And></Filter><Id>a5</Id><StorageClassAnalysis><DataExport><Destination><S3BucketDestination><Bucket>arn:aws:s3:::dest-bucket</Bucket><Format>CSV</Format></S3BucketDestination></Destination><OutputSchemaVersion>V_1</OutputSchemaVersion></DataExport></StorageClassAnalysis></AnalyticsConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "analytics",
+        "id=a5"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketAnalytics Start",
+    "INFO  <TIME> : bucket1 Put Bucket Analytics! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

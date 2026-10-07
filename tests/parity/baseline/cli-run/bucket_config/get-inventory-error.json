@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "id=inventory1",
+        "inventory"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : GetBucketInventory Start",
+    "ERROR <TIME> : bucket1 Get Bucket Inventory failed(NotFound)",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

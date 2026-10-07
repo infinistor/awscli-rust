@@ -1,0 +1,19 @@
+{
+  "args" : [
+    "--put-bucket-cors",
+    "-b",
+    "bucket1",
+    "-f",
+    "conf.json"
+  ],
+  "default" : {
+    "responseBody" : "",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 204
+  },
+  "files" : {
+    "conf.json" : "{\"Rules\":[{\"AllowedHeaders\":[\"*\"],\"AllowedMethods\":[\"GET\",\"PUT\"],\"AllowedOrigins\":[\"https://a.example.com\"],\"ExposeHeaders\":[\"ETag\"],\"Id\":\"rule1\",\"MaxAgeSeconds\":3000}]}"
+  }
+}

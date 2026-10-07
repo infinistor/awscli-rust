@@ -1,0 +1,14 @@
+{
+  "args" : [
+    "--put-bucket-logging",
+    "-b",
+    "bucket1"
+  ],
+  "default" : {
+    "responseBody" : "",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  }
+}

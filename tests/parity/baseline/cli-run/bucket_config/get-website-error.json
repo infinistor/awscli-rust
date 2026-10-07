@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "website"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : GetBucketWebsite Start",
+    "ERROR <TIME> : bucket1 Get Bucket Website failed(NotFound)",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "args" : [
+    "--get-bucket-notification",
+    "-b",
+    "bucket1"
+  ],
+  "default" : {
+    "responseBody" : "<NotificationConfiguration><TopicConfiguration><Id>t1</Id><Topic>arn:aws:sns:us-east-1:123456789012:topic</Topic><Event>s3:ObjectCreated:*</Event><Filter><S3Key><FilterRule><Name>prefix</Name><Value>logs/</Value></FilterRule></S3Key></Filter></TopicConfiguration><QueueConfiguration><Id>q1</Id><Queue>arn:aws:sqs:us-east-1:123456789012:queue</Queue><Event>s3:ObjectRemoved:*</Event></QueueConfiguration><CloudFunctionConfiguration><Id>l1</Id><CloudFunction>arn:aws:lambda:us-east-1:123456789012:function:f</CloudFunction><Event>s3:ObjectCreated:Put</Event></CloudFunctionConfiguration></NotificationConfiguration>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  },
+  "dump" : true
+}

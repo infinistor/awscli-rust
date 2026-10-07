@@ -1,0 +1,19 @@
+{
+  "args" : [
+    "--put-bucket-analytics",
+    "-b",
+    "bucket1",
+    "-f",
+    "conf.json"
+  ],
+  "default" : {
+    "responseBody" : "",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  },
+  "files" : {
+    "conf.json" : "{\"Id\":\"a5\",\"Filter\":{\"Tag\":[{\"Key\":\"k1\",\"Value\":\"v1\"},{\"Key\":\"k2\",\"Value\":\"v2\"},{\"Key\":\"k3\",\"Value\":\"v3\"}]},\"Destination\":{\"BucketName\":\"arn:aws:s3:::dest-bucket\",\"Format\":\"CSV\"}}"
+  }
+}

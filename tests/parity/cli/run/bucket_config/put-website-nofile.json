@@ -1,0 +1,14 @@
+{
+  "args" : [
+    "--put-bucket-website",
+    "-b",
+    "bucket1"
+  ],
+  "default" : {
+    "responseBody" : "",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  }
+}

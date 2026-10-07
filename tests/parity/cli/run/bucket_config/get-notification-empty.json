@@ -1,0 +1,15 @@
+{
+  "args" : [
+    "--get-bucket-notification",
+    "-b",
+    "bucket1"
+  ],
+  "default" : {
+    "responseBody" : "<NotificationConfiguration/>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 200
+  },
+  "dump" : true
+}

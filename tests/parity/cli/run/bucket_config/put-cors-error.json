@@ -1,0 +1,19 @@
+{
+  "args" : [
+    "--put-bucket-cors",
+    "-b",
+    "bucket1",
+    "-f",
+    "conf.json"
+  ],
+  "default" : {
+    "responseBody" : "<Error><Code>AccessDenied</Code><Message>Access Denied</Message><RequestId>REQ2</RequestId></Error>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 403
+  },
+  "files" : {
+    "conf.json" : "{\"Rules\":[{\"AllowedHeaders\":[\"*\"],\"AllowedMethods\":[\"GET\",\"PUT\"],\"AllowedOrigins\":[\"https://a.example.com\"],\"ExposeHeaders\":[\"ETag\"],\"Id\":\"rule1\",\"MaxAgeSeconds\":3000}]}"
+  }
+}

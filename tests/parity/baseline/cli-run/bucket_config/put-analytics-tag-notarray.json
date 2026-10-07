@@ -1,0 +1,9 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "ERROR <TIME> : System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[TestCore.Data.S3.MyTag]. Path: $.Filter.Tag | LineNumber: 0 | BytePositionInLine: 29."
+  ]
+}

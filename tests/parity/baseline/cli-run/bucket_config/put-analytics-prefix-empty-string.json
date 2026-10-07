@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<AnalyticsConfiguration><Filter><Prefix></Prefix></Filter><Id>a20</Id><StorageClassAnalysis><DataExport><Destination><S3BucketDestination><Bucket>b</Bucket><Format>CSV</Format></S3BucketDestination></Destination><OutputSchemaVersion>V_1</OutputSchemaVersion></DataExport></StorageClassAnalysis></AnalyticsConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "analytics",
+        "id=a20"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketAnalytics Start",
+    "INFO  <TIME> : bucket1 Put Bucket Analytics! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

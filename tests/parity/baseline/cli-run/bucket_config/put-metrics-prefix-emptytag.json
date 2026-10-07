@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<MetricsConfiguration><Filter><And><Prefix>p</Prefix></And></Filter><Id>m6</Id></MetricsConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "id=m6",
+        "metrics"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketMetrics Start",
+    "INFO  <TIME> : bucket1 Put Bucket Metrics! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}
