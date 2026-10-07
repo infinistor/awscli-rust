@@ -4,6 +4,7 @@ use awscli_rest_common::to_dotnet_json;
 use awscli_rest_scenarios::access_ips::AccessIpsTest;
 use awscli_rest_scenarios::local::LocalTest;
 use awscli_rest_scenarios::multi_system::MultiSystemTest;
+use awscli_rest_scenarios::used_size::UsedSizeTest;
 
 use super::super::{CommandContext, CommandResult, not_ported};
 use crate::menu::MenuList;
@@ -27,8 +28,23 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
         | MultiSystemUpDownTest
         | MultiSystemAllTest => multi_system(ctx, menu).await,
         AccessIpsTest => access_ips(ctx).await,
+        UsedSizeTest => used_size(ctx).await,
         _ => not_ported(menu),
     }
+}
+
+/// `UsedSizeTest`: `Start`와 `StartVersions`를 모두 실행하고 하나라도 0이 아니면 -1.
+async fn used_size(ctx: &mut CommandContext) -> CommandResult {
+    let config = ctx.config();
+    let mut test = UsedSizeTest::new(&config.used_size, &config.db, &config.main_user);
+    let mut result = 0;
+    if test.start().await? != 0 {
+        result = -1;
+    }
+    if test.start_versions().await? != 0 {
+        result = -1;
+    }
+    Ok(result)
 }
 
 /// `AccessIpsTest`: 설정을 출력한 뒤 실행한다.

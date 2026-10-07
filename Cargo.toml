@@ -49,6 +49,8 @@ rustls = { version = "0.23", default-features = false, features = ["ring", "std"
 tokio-rustls = { version = "0.26", default-features = false, features = ["ring", "tls12"] }
 rcgen = { version = "0.14", default-features = false, features = ["ring", "pem"] }
 zeromq = "0.6"
+# 순수 Rust MySQL 클라이언트(UsedSizeTest). zlib·native-tls·TLS 없이 최소 기능만 쓴다.
+mysql_async = { version = "0.37", default-features = false, features = ["minimal-rust"] }
 encoding_rs = "0.8"
 
 [workspace.lints.rust]
