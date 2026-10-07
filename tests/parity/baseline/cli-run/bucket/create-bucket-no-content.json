@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [
+        "x-amz-bucket-object-lock-enabled: false"
+      ],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : CreateBucket Start",
+    "ERROR <TIME> : bucket1 : Create failed(NoContent)",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

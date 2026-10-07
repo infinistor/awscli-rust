@@ -1,0 +1,34 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "continuation-token=tok1",
+        "max-buckets=5",
+        "prefix=my"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ListingBuckets Start",
+    "",
+    "a-1b        2024-09-09 09:09:09",
+    "a1b         2024-08-08 08:08:08",
+    "alpha       2024-01-15 00:00:00",
+    "Alpha-2     2024-07-07 07:07:07",
+    "bucket10    2024-05-05 05:05:05",
+    "bucket2     2024-06-06 06:06:06",
+    "my-bucket   2024-02-29 12:00:00",
+    "my.bucket   2023-12-31 23:59:59",
+    "zeta-bucket 2024-03-01 10:20:30",
+    "",
+    "INFO  <TIME> : List Bucket(9)! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

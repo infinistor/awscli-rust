@@ -1,0 +1,12 @@
+{
+  "args" : [
+    "--put-bucket-ownership",
+    "-b",
+    "bucket1",
+    "--ownership",
+    "BucketOwnerPreferred"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}

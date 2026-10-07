@@ -1,0 +1,15 @@
+{
+  "args" : [
+    "--list-directory-buckets"
+  ],
+  "routes" : [
+    {
+      "contains" : "GET /",
+      "responseBody" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ListAllMyDirectoryBucketsResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Buckets></Buckets></ListAllMyDirectoryBucketsResult>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

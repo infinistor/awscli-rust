@@ -1,0 +1,15 @@
+{
+  "args" : [
+    "--create-bucket",
+    "-b",
+    "bucket1",
+    "--acl",
+    "public-read",
+    "--ownership",
+    "BucketOwnerPreferred",
+    "--lock-enable"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}

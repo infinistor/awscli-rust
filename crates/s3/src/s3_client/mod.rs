@@ -68,8 +68,9 @@ pub struct S3Client {
 /// - `checksum = ...`: 이 요청만 요청 체크섬 설정을 바꾼다.
 /// - `config = Builder`: 이 요청만 클라이언트 설정을 바꾼다(`checksum`과 함께 쓰지 않는다).
 /// - `mutate = |request| ...`: 서명 전에 요청(헤더 등)을 고친다.
+/// - `empty_body = "Root"`: 성공 응답의 본문이 비어 있으면 `<Root/>`로 읽는다(.NET은 빈 결과로 읽는다).
 macro_rules! send {
-    ($builder:expr $(, checksum = $checksum:expr)? $(, config = $config:expr)? $(, mutate = $mutate:expr)? $(,)?) => {{
+    ($builder:expr $(, checksum = $checksum:expr)? $(, config = $config:expr)? $(, mutate = $mutate:expr)? $(, empty_body = $root:expr)? $(,)?) => {{
         let capture = $crate::s3_client::interceptors::StatusCapture::default();
         let slot = capture.slot();
         let customized = $builder.customize().interceptor(capture);
@@ -83,6 +84,10 @@ macro_rules! send {
         )?
         $(
             let customized = customized.mutate_request($mutate);
+        )?
+        $(
+            let customized = customized
+                .interceptor($crate::s3_client::interceptors::EmptyBodyAsRoot($root));
         )?
         let output = customized
             .send()

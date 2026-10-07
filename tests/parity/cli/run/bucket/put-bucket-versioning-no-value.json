@@ -1,0 +1,10 @@
+{
+  "args" : [
+    "--put-bucket-versioning",
+    "-b",
+    "bucket1"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}

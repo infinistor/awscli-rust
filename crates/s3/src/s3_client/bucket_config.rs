@@ -75,7 +75,8 @@ impl S3Client {
                 .set_continuation_token(continuation_token.map(str::to_string)),
             // SDK는 이 연산에 S3 Express 세션 인증을 고르는데, 세션 인증은 버킷 이름이 있어야 해서 실패한다.
             // .NET은 일반 서명(SigV4)으로 `GET /`를 보내므로 이 요청만 세션 인증을 끈다.
-            config = aws_sdk_s3::config::Builder::default().disable_s3_express_session_auth(true)
+            config = aws_sdk_s3::config::Builder::default().disable_s3_express_session_auth(true),
+            empty_body = "ListAllMyDirectoryBucketsResult"
         )
     }
 

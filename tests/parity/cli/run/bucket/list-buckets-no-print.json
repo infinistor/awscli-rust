@@ -1,0 +1,16 @@
+{
+  "args" : [
+    "--list-buckets",
+    "--print=false"
+  ],
+  "routes" : [
+    {
+      "contains" : "GET /?max-buckets",
+      "responseBody" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ListAllMyBucketsResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Owner><ID>owner1</ID><DisplayName>owner</DisplayName></Owner><Buckets><Bucket><Name>zeta-bucket</Name><CreationDate>2024-03-01T10:20:30.000Z</CreationDate></Bucket><Bucket><Name>alpha</Name><CreationDate>2024-01-15T00:00:00.000Z</CreationDate></Bucket><Bucket><Name>my.bucket</Name><CreationDate>2023-12-31T23:59:59.000Z</CreationDate></Bucket><Bucket><Name>my-bucket</Name><CreationDate>2024-02-29T12:00:00.000Z</CreationDate></Bucket><Bucket><Name>bucket10</Name><CreationDate>2024-05-05T05:05:05.000Z</CreationDate></Bucket><Bucket><Name>bucket2</Name><CreationDate>2024-06-06T06:06:06.000Z</CreationDate></Bucket><Bucket><Name>Alpha-2</Name><CreationDate>2024-07-07T07:07:07.000Z</CreationDate></Bucket><Bucket><Name>a1b</Name><CreationDate>2024-08-08T08:08:08.000Z</CreationDate></Bucket><Bucket><Name>a-1b</Name><CreationDate>2024-09-09T09:09:09.000Z</CreationDate></Bucket></Buckets></ListAllMyBucketsResult>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

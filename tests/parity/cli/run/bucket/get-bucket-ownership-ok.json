@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--get-bucket-ownership-controls",
+    "-b",
+    "bucket1"
+  ],
+  "dump" : true,
+  "routes" : [
+    {
+      "contains" : "GET /bucket1/?ownershipControls",
+      "responseBody" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?><OwnershipControls xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Rule><ObjectOwnership>BucketOwnerEnforced</ObjectOwnership></Rule></OwnershipControls>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

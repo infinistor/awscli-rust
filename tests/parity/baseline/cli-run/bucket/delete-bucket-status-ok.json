@@ -1,0 +1,19 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/bucket1/",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : DeleteBucket Start",
+    "ERROR <TIME> : bucket1 Delete failed(OK)",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

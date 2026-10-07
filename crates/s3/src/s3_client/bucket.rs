@@ -24,7 +24,8 @@ impl S3Client {
                 .list_buckets()
                 .set_prefix(prefix.map(str::to_string))
                 .max_buckets(max_buckets)
-                .set_continuation_token(continuation_token.map(str::to_string))
+                .set_continuation_token(continuation_token.map(str::to_string)),
+            empty_body = "ListAllMyBucketsResult"
         )
     }
 

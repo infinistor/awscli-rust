@@ -1,0 +1,14 @@
+{
+  "args" : [
+    "--create-bucket",
+    "-b",
+    "bucket1",
+    "--acl",
+    "PUBLIC-READ",
+    "--ownership",
+    "objectwriter"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}

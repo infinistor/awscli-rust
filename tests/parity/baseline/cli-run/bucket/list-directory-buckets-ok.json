@@ -1,0 +1,26 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "continuation-token=tok",
+        "max-directory-buckets=10"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ListDirectoryBuckets Start",
+    "",
+    "a-dir--usw2-az1--x-s3 2024-04-05 04:04:04",
+    "dir-b--usw2-az1--x-s3 2024-04-04 04:04:04",
+    "",
+    "INFO  <TIME> : List Bucket(2)! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

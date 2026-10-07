@@ -1,0 +1,8 @@
+{
+  "args" : [
+    "--list-buckets"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}

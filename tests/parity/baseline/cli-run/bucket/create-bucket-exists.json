@@ -1,0 +1,20 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [
+        "x-amz-bucket-object-lock-enabled: false"
+      ],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : CreateBucket Start",
+    "ERROR <TIME> : Amazon.S3.Model.BucketAlreadyOwnedByYouException: Your previous request to create the named bucket succeeded and you already own it."
+  ]
+}

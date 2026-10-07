@@ -4,7 +4,8 @@ use std::sync::Arc;
 use std::sync::atomic::{AtomicU16, Ordering};
 
 use aws_sdk_s3::config::interceptors::{
-    BeforeDeserializationInterceptorContextRef, BeforeTransmitInterceptorContextMut,
+    BeforeDeserializationInterceptorContextMut, BeforeDeserializationInterceptorContextRef,
+    BeforeTransmitInterceptorContextMut,
 };
 use aws_sdk_s3::config::{ConfigBag, Intercept, RuntimeComponents};
 use aws_sdk_s3::error::BoxError;
@@ -74,6 +75,33 @@ fn strip_x_id(uri: &str) -> Option<String> {
     } else {
         format!("{base}?{}", kept.join("&"))
     })
+}
+
+/// 성공 응답의 본문이 비어 있으면 `<root/>`로 바꾼다. .NET SDK는 본문이 빈 목록 응답을 빈 결과로 읽지만
+/// Rust SDK는 XML 해석 오류로 본다.
+#[derive(Debug)]
+pub struct EmptyBodyAsRoot(pub &'static str);
+
+impl Intercept for EmptyBodyAsRoot {
+    fn name(&self) -> &'static str {
+        "EmptyBodyAsRoot"
+    }
+
+    fn modify_before_deserialization(
+        &self,
+        context: &mut BeforeDeserializationInterceptorContextMut<'_>,
+        _runtime_components: &RuntimeComponents,
+        _cfg: &mut ConfigBag,
+    ) -> Result<(), BoxError> {
+        let response = context.response_mut();
+        let empty = response.status().is_success()
+            && (response.body().bytes().is_some_and(<[u8]>::is_empty)
+                || response.headers().get("content-length") == Some("0"));
+        if empty {
+            *response.body_mut() = aws_sdk_s3::primitives::SdkBody::from(format!("<{}/>", self.0));
+        }
+        Ok(())
+    }
 }
 
 /// 마지막으로 받은 응답의 HTTP 상태 코드를 기록한다(재시도하면 마지막 시도 값).

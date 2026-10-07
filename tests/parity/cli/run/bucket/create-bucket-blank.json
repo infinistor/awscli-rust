@@ -1,0 +1,10 @@
+{
+  "args" : [
+    "--create-bucket",
+    "-b",
+    "  "
+  ],
+  "default" : {
+    "status" : 200
+  }
+}

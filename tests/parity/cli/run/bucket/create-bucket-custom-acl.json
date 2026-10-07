@@ -1,0 +1,12 @@
+{
+  "args" : [
+    "--create-bucket",
+    "-b",
+    "bucket1",
+    "--acl",
+    "my-acl"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}
