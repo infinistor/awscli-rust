@@ -1,0 +1,117 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": "491 bytes",
+      "headers": [],
+      "method": "POST",
+      "path": "/api/Start",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/api/Status/muser",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/api/Status/muser",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/msrc/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/msrc/",
+      "query": [
+        "marker=",
+        "max-keys=1000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/msrc/",
+      "query": [
+        "max-keys=1000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/mtgt/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/mtgt/",
+      "query": [
+        "marker=",
+        "max-keys=1000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/msrc/FILE_0",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/mtgt/FILE_0",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/msrc/FILE_0",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/msrc/FILE_1",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : JobId = 7",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " Status : COMPLETE\tProgress : 100%",
+    " Total Count   :      2 Size : 20 B",
+    " Move Count    :      2 Size : 20 B",
+    " Skip Count    :      0 Size : 0 B",
+    " Failed Count  :      0 Size : 0 B",
+    " Deleted Count :      0 Size : 0 B",
+    " Total Execution Time :  <N> sec",
+    "--------------------------------------------------------------",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: Error making request with Error Code NotFound and Http Status Code NotFound. No further error information was returned by the service."
+  ]
+}

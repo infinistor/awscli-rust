@@ -1,0 +1,75 @@
+{
+  "args": [
+    "--test-mover"
+  ],
+  "routes": [
+    {
+      "contains": "POST /msrc/?delete",
+      "status": 200,
+      "responseBody": "<DeleteResult xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Deleted><Key>FILE_0</Key></Deleted></DeleteResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "POST /mtgt/?delete",
+      "status": 200,
+      "responseBody": "<DeleteResult xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Deleted><Key>FILE_0</Key></Deleted></DeleteResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "GET /msrc/?versions",
+      "status": 200,
+      "responseBody": "<ListVersionsResult xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Name>msrc</Name><Prefix></Prefix><KeyMarker></KeyMarker><VersionIdMarker></VersionIdMarker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Version><Key>FILE_0</Key><VersionId>v1</VersionId><IsLatest>true</IsLatest><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>e1</ETag><Size>0</Size><StorageClass>STANDARD</StorageClass></Version></ListVersionsResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "GET /mtgt/?versions",
+      "status": 200,
+      "responseBody": "<ListVersionsResult xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Name>mtgt</Name><Prefix></Prefix><KeyMarker></KeyMarker><VersionIdMarker></VersionIdMarker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Version><Key>FILE_0</Key><VersionId>v1</VersionId><IsLatest>true</IsLatest><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>e1</ETag><Size>0</Size><StorageClass>STANDARD</StorageClass></Version></ListVersionsResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "POST /api/Start",
+      "status": 200,
+      "responseBody": "{\"Result\":\"success\",\"Message\":\"ok\",\"JobId\":7}",
+      "responseHeaders": {
+        "Content-Type": "application/json"
+      }
+    },
+    {
+      "contains": "GET /api/Status/muser",
+      "status": 200,
+      "responseBody": "{\"Result\":\"success\",\"Items\":[]}",
+      "responseHeaders": {
+        "Content-Type": "application/json"
+      }
+    },
+    {
+      "contains": "GET /msrc/?",
+      "status": 200,
+      "responseBody": "<ListBucketResult xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Name>msrc</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>FILE_0</Key><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>e1</ETag><Size>0</Size><StorageClass>STANDARD</StorageClass></Contents><Contents><Key>FILE_1</Key><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>e2</ETag><Size>0</Size><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "GET /mtgt/?",
+      "status": 200,
+      "responseBody": "<ListBucketResult xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Name>mtgt</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>FILE_0</Key><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>e1</ETag><Size>0</Size><StorageClass>STANDARD</StorageClass></Contents><Contents><Key>FILE_1</Key><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>e2</ETag><Size>0</Size><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    }
+  ],
+  "config": "[Default]\r\nBucketName = main\r\nObjectPrefix = FILE\r\n\r\n[Mover]\r\nURL = {URL}\r\nUser = muser\r\nSourceBucket = msrc\r\nTargetBucket = mtgt\r\nFileCount = 2\r\nMaxFileSize = 1\r\n\r\n[Main User]\r\nURL = {URL}\r\nAccessKey = testcore-access\r\nSecretKey = testcore-secret-key-0123456789abcdefghij\r\n\r\n[Alt User]\r\nURL = {URL}\r\nAccessKey = testcore-alt-access\r\nSecretKey = testcore-alt-secret-0123456789abcdefghij\r\n",
+  "unordered": true,
+  "stats": true,
+  "ignore_body": true
+}
