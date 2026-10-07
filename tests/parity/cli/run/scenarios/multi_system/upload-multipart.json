@@ -1,0 +1,6 @@
+{
+  "args": ["--test-multi-system-upload","-b","bucket1","--multipart"],
+  "config": "[Default]\r\nObjectPrefix = temp\r\nFileSize = 1K\r\nPartSize = 5M\r\n\r\n[Main User]\r\nURL = {URL}\r\nAccessKey = testcore-access\r\nSecretKey = testcore-secret-key-0123456789abcdefghij\r\n\r\n[Alt User]\r\nURL = {URL}\r\nAccessKey = testcore-alt-access\r\nSecretKey = testcore-alt-secret-0123456789abcdefghij\r\n\r\n[MultiSystem]\r\nBucketType = 1\r\nThreadCount = 1\r\nFileCount = 2\r\nMultiGatewayURL = {URL}\r\nOldSystemURL = {URL}\r\nNewSystemURL = {URL}\r\n",
+  "stats": true,
+  "ignore_body": true,"routes": [{"contains":"?uploads","status":200,"responseBody":"<InitiateMultipartUploadResult><Bucket>bucket1</Bucket><Key>k</Key><UploadId>upload-1</UploadId></InitiateMultipartUploadResult>"},{"contains":"partNumber=","status":200,"responseHeaders":{"ETag":"\"etag-1\""}},{"contains":"POST /bucket1/","status":200,"responseBody":"<CompleteMultipartUploadResult><Bucket>bucket1</Bucket><Key>k</Key><ETag>\"etag-done\"</ETag></CompleteMultipartUploadResult>"}]
+}

@@ -1,0 +1,93 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/TH_000-temp_00000",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/TH_000-temp_00000",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/TH_000-temp_00001",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/TH_000-temp_00001",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "{",
+    "  \"BucketType\": 1,",
+    "  \"ThreadCount\": 1,",
+    "  \"FileCount\": 2,",
+    "  \"MultiGateway\": {",
+    "    \"URL\": \"http://<HOST>\",",
+    "    \"RegionName\": \"\",",
+    "    \"AccessKey\": \"testcore-access\",",
+    "    \"SecretKey\": \"testcore-secret-key-0123456789abcdefghij\"",
+    "  },",
+    "  \"OldSystem\": {",
+    "    \"URL\": \"http://<HOST>\",",
+    "    \"RegionName\": \"\",",
+    "    \"AccessKey\": \"testcore-access\",",
+    "    \"SecretKey\": \"testcore-secret-key-0123456789abcdefghij\"",
+    "  },",
+    "  \"NewSystem\": {",
+    "    \"URL\": \"http://<HOST>\",",
+    "    \"RegionName\": \"\",",
+    "    \"AccessKey\": \"testcore-access\",",
+    "    \"SecretKey\": \"testcore-secret-key-0123456789abcdefghij\"",
+    "  }",
+    "}",
+    "INFO  <TIME> : Start MultiSystem PutGet Test",
+    "INFO  <TIME> : Initialize",
+    "INFO  <TIME> : Start",
+    "ERROR <TIME> : GetObject Failed. S3://bucket1/TH_000-temp_00000 - FileSize does not match!(1000 != 0)",
+    "ERROR <TIME> : GetObject Failed. S3://bucket1/TH_000-temp_00001 - FileSize does not match!(1000 != 0)",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " Remaining Count :         0",
+    " Write Count     :         2 (+ 2)",
+    " Write Average   :<N> file/sec",
+    " Bandwidth       :<N>/s",
+    " Times           :<N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : End",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

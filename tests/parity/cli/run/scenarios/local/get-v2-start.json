@@ -1,0 +1,5 @@
+{
+  "args": ["--test-local-get-v2", "--target-path","target","-p","dummy","--size","64","--bucket-type","1","--times","1","--thread","1","--count","3","--start","1"],
+  "stats": true,
+  "files": { "dummy/FILE_000": "abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz01", "dummy/FILE_001": "abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz01","target/TH_000-temp_00000": "abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz01", "target/TH_000-temp_00001": "abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz01", "target/TH_000-temp_00002": "abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz01" }
+}

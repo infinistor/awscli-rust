@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "--target-path 타겟 경로를 입력해야 합니다.",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

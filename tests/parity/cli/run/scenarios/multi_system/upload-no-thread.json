@@ -1,0 +1,6 @@
+{
+  "args": ["--test-multi-system-upload","-b","bucket1"],
+  "config": "[Default]\r\nObjectPrefix = temp\r\nFileSize = 1K\r\nPartSize = 5M\r\n\r\n[Main User]\r\nURL = {URL}\r\nAccessKey = testcore-access\r\nSecretKey = testcore-secret-key-0123456789abcdefghij\r\n\r\n[Alt User]\r\nURL = {URL}\r\nAccessKey = testcore-alt-access\r\nSecretKey = testcore-alt-secret-0123456789abcdefghij\r\n\r\n[MultiSystem]\r\nBucketType = 1\r\nThreadCount = 0\r\nFileCount = 2\r\nMultiGatewayURL = {URL}\r\nOldSystemURL = {URL}\r\nNewSystemURL = {URL}\r\n",
+  "stats": true,
+  "ignore_body": true
+}

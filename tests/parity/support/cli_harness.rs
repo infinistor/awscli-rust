@@ -21,6 +21,9 @@ use md5::{Digest, Md5};
 use regex::Regex;
 use serde_json::{Value, json};
 
+#[path = "fake_mysql.rs"]
+mod fake_mysql;
+
 use super::http_capture::{CannedResponse, CaptureServer, CapturedRequest};
 use super::xml_canon::canonical_xml;
 
@@ -50,6 +53,10 @@ pub struct CliCase {
     pub ignore_body: bool,
     /// 이 정규식에 맞는 출력 줄은 버린다(시간에 따라 횟수가 달라지는 진행 출력 등).
     pub drop_lines: Option<String>,
+    /// 이 정규식에 맞는 부분은 `<RAND>`로 바꾼다(출력·요청 경로의 무작위 버킷 이름 등).
+    pub mask: Option<String>,
+    /// 가짜 MySQL 서버가 사용량 조회마다 돌려줄 행(`[파일 수, 사용량]`, `null`이면 행 없음). 있으면 서버를 띄운다.
+    pub db_rows: Option<Vec<Option<(i64, i64)>>>,
     /// 작업 디렉터리에 만들 빈 디렉터리(상대 경로).
     pub dirs: Vec<String>,
     /// 요청 줄에 `contains`가 들어 있으면 응답을 `ms`밀리초 늦춘다(시간 제한 시나리오의 요청 횟수를 정한다).
@@ -76,6 +83,8 @@ impl CliCase {
             stats: false,
             ignore_body: false,
             drop_lines: None,
+            mask: None,
+            db_rows: None,
             dirs: Vec::new(),
             outputs: Vec::new(),
             delays: Vec::new(),
@@ -131,6 +140,18 @@ impl CliCase {
             .get("drop_lines")
             .and_then(Value::as_str)
             .map(str::to_string);
+        case.mask = value
+            .get("mask")
+            .and_then(Value::as_str)
+            .map(str::to_string);
+        case.db_rows = value.get("db_rows").and_then(Value::as_array).map(|rows| {
+            rows.iter()
+                .map(|row| {
+                    row.as_array()
+                        .map(|r| (r[0].as_i64().unwrap(), r[1].as_i64().unwrap()))
+                })
+                .collect()
+        });
         let strings = |name: &str| -> Vec<String> {
             value
                 .get(name)
@@ -240,11 +261,17 @@ pub async fn run_case(exe: &Path, case: &CliCase, encoding: OutputEncoding) -> C
     .await;
     let host = format!("127.0.0.1:{}", server.port);
     let dir = tempfile::tempdir().unwrap();
+    // `db_rows`가 있으면 사용량 조회에 그 행을 돌려주는 가짜 MySQL 서버를 띄운다(설정의 `{DBPORT}`).
+    let db = match &case.db_rows {
+        Some(rows) => Some(fake_mysql::FakeMysql::start(rows.clone()).await),
+        None => None,
+    };
     let config = case
         .config
         .as_deref()
         .unwrap_or(DEFAULT_CONFIG)
-        .replace("{URL}", &format!("http://{host}"));
+        .replace("{URL}", &format!("http://{host}"))
+        .replace("{DBPORT}", &db.as_ref().map_or(0, |db| db.port).to_string());
     std::fs::write(dir.path().join("config.ini"), config).unwrap();
     for (path, content) in &case.files {
         let path = dir.path().join(path);
@@ -300,6 +327,7 @@ pub async fn run_case(exe: &Path, case: &CliCase, encoding: OutputEncoding) -> C
         stats: case.stats,
         ignore_body: case.ignore_body,
         drop_lines: case.drop_lines.as_deref().map(|r| Regex::new(r).unwrap()),
+        mask: case.mask.as_deref().map(|r| Regex::new(r).unwrap()),
     };
     // 요청은 서버가 받은 순서대로 둔다(동시 요청 사례는 비교할 때 정렬한다).
     let requests: Vec<Value> = server
@@ -312,7 +340,17 @@ pub async fn run_case(exe: &Path, case: &CliCase, encoding: OutputEncoding) -> C
         stderr: normalize_output(&decode(&output.stderr), &context, false),
         exit_code: output.status.code().unwrap_or(i32::MIN),
         requests,
-        outputs: collect_outputs(dir.path(), &case.outputs, &context),
+        outputs: {
+            let mut outputs = collect_outputs(dir.path(), &case.outputs, &context);
+            // 가짜 DB가 받은 사용량 조회(SQL 문자열)
+            if let Some(db) = &db {
+                if std::env::var_os("FAKE_MYSQL_LOG").is_some() {
+                    eprintln!("[{}] 받은 질의: {:#?}", case.name, db.all_queries());
+                }
+                outputs.insert("<db>".to_string(), db.queries.lock().unwrap().clone());
+            }
+            outputs
+        },
     }
 }
 
@@ -379,6 +417,7 @@ struct Context<'a> {
     stats: bool,
     ignore_body: bool,
     drop_lines: Option<Regex>,
+    mask: Option<Regex>,
 }
 
 /// JSON 결과의 시각(`2026-10-07T15:04:05.1234567+09:00`).
@@ -392,16 +431,21 @@ static STATS_LINE: LazyLock<Regex> = LazyLock::new(|| {
     Regex::new(r#"(?i)average|bandwidth|times|elapsed|\bsec\b|/s\b|"time"|"(end|start)time""#)
         .unwrap()
 });
-/// 숫자(소수, 단위 포함).
+/// 숫자(소수, 단위 포함). 자릿수에 따라 달라지는 앞쪽 맞춤 공백도 함께 가린다.
 static STATS_NUMBER: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r"-?\d[\d,]*(\.\d+)?( ?(Byte|[KMGTPEZY]i?B)\b)?").unwrap());
+    LazyLock::new(|| Regex::new(r" *-?\d[\d,]*(\.\d+)?( ?(Byte|[KMGTPEZY]i?B)\b)?").unwrap());
 
 /// `stats` 사례: 통계 줄의 숫자를 가린다.
 fn mask_stats(line: &str, context: &Context<'_>) -> String {
-    if context.stats && STATS_LINE.is_match(line) {
-        STATS_NUMBER.replace_all(line, "<N>").into_owned()
+    if !context.stats {
+        return line.to_string();
+    }
+    // 저장한 결과 파일 이름의 시각(`_yyyyMMdd_HHmmss`)도 실행마다 다르다.
+    let line = TIMESTAMP.replace_all(line, "<TS>");
+    if STATS_LINE.is_match(&line) {
+        STATS_NUMBER.replace_all(&line, "<N>").into_owned()
     } else {
-        line.to_string()
+        line.into_owned()
     }
 }
 
@@ -471,6 +515,9 @@ fn replace_context(text: &str, context: &Context<'_>) -> String {
             format!("{}{seconds}", &caps[1])
         })
         .into_owned();
+    if let Some(mask) = &context.mask {
+        text = mask.replace_all(&text, "<RAND>").into_owned();
+    }
     text
 }
 
@@ -653,6 +700,15 @@ pub fn diff(expected: &CliOutcome, actual: &CliOutcome) -> String {
     };
     lines("stdout", &expected.stdout, &actual.stdout, &mut out);
     lines("stderr", &expected.stderr, &actual.stderr, &mut out);
+    for (name, e) in &expected.outputs {
+        let a = actual.outputs.get(name).map_or(&[][..], Vec::as_slice);
+        lines(&format!("output {name}"), e, a, &mut out);
+    }
+    for (name, a) in &actual.outputs {
+        if !expected.outputs.contains_key(name) {
+            lines(&format!("output {name}"), &[], a, &mut out);
+        }
+    }
     if expected.exit_code != actual.exit_code {
         out.push_str(&format!(
             "  [exit] {} != {}\n",

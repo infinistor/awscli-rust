@@ -1,0 +1,65 @@
+{
+  "exitCode": 0,
+  "outputs": {
+    "out/Local_Local_ReadV2_<TS>.json": [
+      "{",
+      "  \"read\": 3,",
+      "  \"readFailed\": 0,",
+      "  \"head\": 0,",
+      "  \"headFailed\": 0,",
+      "  \"write\": 0,",
+      "  \"writeFailed\": 0,",
+      "  \"delete\": 0,",
+      "  \"deleteFailed\": 0,",
+      "  \"list\": 0,",
+      "  \"listFailed\": 0,",
+      "  \"total\": 3,",
+      "  \"totalFailed\": 0,",
+      "  \"time\":<N>",
+      "  \"startTime\":<N>",
+      "  \"endTime\":<N>",
+      "  \"testType\": \"Local ReadV2\",",
+      "  \"threadCount\": 1,",
+      "  \"fileSize\": 64,",
+      "  \"readRatio\": 5,",
+      "  \"writeRatio\": 5,",
+      "  \"deleteRatio\": 0,",
+      "  \"bucketType\": \"One\",",
+      "  \"bucketName\": \"\",",
+      "  \"objectPrefix\": \"temp\",",
+      "  \"threadPrefix\": \"TH\"",
+      "}"
+    ],
+    "target/TH_000-temp_00000": [
+      "abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz01"
+    ],
+    "target/TH_000-temp_00001": [
+      "abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz01"
+    ],
+    "target/TH_000-temp_00002": [
+      "abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz01"
+    ]
+  },
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Local Sequential Read Test Initialize",
+    "INFO  <TIME> : Local Sequential Read Test Start",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " [READ V2 TEST FINAL RESULTS]",
+    " Total Target    :         3",
+    " Read Success    :         3",
+    " Read Error      :         0",
+    " Remaining       :         0",
+    " Total Average   :<N> file/sec",
+    " Total Bandwidth :<N>/s",
+    " Success Ratio   :   100.000 %",
+    " Total Time      :<N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : 테스트 결과가 JSON 파일로 저장되었습니다: out\\Local_Local_ReadV2_<TS>.json",
+    "INFO  <TIME> : Local Sequential Read Test End",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

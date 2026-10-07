@@ -1,0 +1,436 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "//api/v1/Health",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "//api/v1/AccessIps",
+      "query": [
+        "TenantId=vol1",
+        "UserId=main1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "//api/v1/AccessIps",
+      "query": [
+        "TenantId=vol1",
+        "UserId=sub1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "//api/v1/Volumes/vol1",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "//api/v1/Volumes/vol1/Users/main1",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "//api/v1/Volumes/vol1/Users/sub1",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": "100 bytes md5=348b645e38b67e4b8257420bcfa34d71",
+      "headers": [],
+      "method": "POST",
+      "path": "//api/v1/AccessIps",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "//api/v1/AccessIps",
+      "query": [
+        "TenantId=vol1",
+        "UserId=main1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": "99 bytes md5=d8c471a2f91038708eae72992cc52d2a",
+      "headers": [],
+      "method": "POST",
+      "path": "//api/v1/AccessIps",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "//api/v1/AccessIps",
+      "query": [
+        "TenantId=vol1",
+        "UserId=sub1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": "100 bytes md5=348b645e38b67e4b8257420bcfa34d71",
+      "headers": [],
+      "method": "POST",
+      "path": "//api/v1/AccessIps",
+      "query": []
+    },
+    {
+      "body": "99 bytes md5=d8c471a2f91038708eae72992cc52d2a",
+      "headers": [],
+      "method": "POST",
+      "path": "//api/v1/AccessIps",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "//api/v1/AccessIps",
+      "query": [
+        "TenantId=vol1",
+        "UserId=main1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "//api/v1/AccessIps",
+      "query": [
+        "TenantId=vol1",
+        "UserId=sub1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/<RAND>/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/<RAND>/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/<RAND>/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/<RAND>/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/<RAND>/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/<RAND>/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/<RAND>/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/<RAND>/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/<RAND>/",
+      "query": [
+        "max-keys=1000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/<RAND>/",
+      "query": [
+        "max-keys=1000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/<RAND>/",
+      "query": [
+        "max-keys=1000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/<RAND>/",
+      "query": [
+        "max-keys=1000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/<RAND>/",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "Portal : {",
+    "  \"URL\": \"http://<HOST>\",",
+    "  \"ApiKey\": \"testkey\"",
+    "}",
+    "AccessIps : {",
+    "  \"BucketPrefix\": \"ips-\",",
+    "  \"AllFailed\": false,",
+    "  \"TestListPath\": \"tests.txt\",",
+    "  \"JenkinsTestName\": \"ips-test\",",
+    "  \"S3URL\": [",
+    "    \"http://<HOST>\"",
+    "  ],",
+    "  \"VolumeName\": \"vol1\",",
+    "  \"MainUserName\": \"main1\",",
+    "  \"SubUserName\": \"sub1\",",
+    "  \"Password\": \"qwe123\"",
+    "}",
+    "INFO  <TIME> : AccessIpsTest Start",
+    "INFO  <TIME> : PortalManager HealthCheck Success",
+    "INFO  <TIME> : User Access Ips Test Success : 10.0.0.1, True",
+    "ERROR <TIME> : TestMainBucketOnly : Main User ListObjects(<RAND>) access failed!",
+    "ERROR <TIME> : TestMainBucketOnly : Sub User ListObjects(<RAND>) access failed!",
+    "ERROR <TIME> : Bucket Access Ips Test Fail : 10.0.0.1, True",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: The specified bucket does not exist"
+  ]
+}

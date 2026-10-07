@@ -1,0 +1,26 @@
+{
+  "exitCode": 0,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Local Sequential Read Test Initialize",
+    "INFO  <TIME> : Local Sequential Read Test Start",
+    "ERROR <TIME> : Thread 0: File not found - target\\TH_000-temp_00003",
+    "ERROR <TIME> : Thread 0: File not found - target\\TH_000-temp_00004",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " [READ V2 TEST FINAL RESULTS]",
+    " Total Target    :         5",
+    " Read Success    :         3",
+    " Read Error      :         2",
+    " Remaining       :         0",
+    " Total Average   :<N> file/sec",
+    " Total Bandwidth :<N>/s",
+    " Success Ratio   :    60.000 %",
+    " Total Time      :<N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : Local Sequential Read Test End",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}
