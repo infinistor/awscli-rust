@@ -1,0 +1,12 @@
+{
+  "exitCode": 0,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "--pause",
+    "\t--service-type <replication, lifecycle>",
+    "\t--address <string>",
+    "\t--port <int>"
+  ]
+}
