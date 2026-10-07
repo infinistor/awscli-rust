@@ -1,0 +1,9 @@
+{
+  "args" : [
+    "--copy-object",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/key1",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : GetObject Start",
+    "ERROR <TIME> : System.ArgumentException: The value cannot be an empty string. (Parameter 'path')",
+    "INFO  <TIME> : key1 Get Object! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

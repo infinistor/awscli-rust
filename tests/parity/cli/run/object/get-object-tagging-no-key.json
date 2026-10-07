@@ -1,0 +1,7 @@
+{
+  "args" : [
+    "--get-object-tagging",
+    "-b",
+    "bucket1"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "max-keys=1000",
+        "versions"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ListObjectVersions Start",
+    "--------------------------------------------------------------------------",
+    "a.txt     v2 2026-03-05 05:06:07     5.000 Byte False Latest",
+    "a.txt     v1 2026-03-04 05:06:07     4.000 Byte False ",
+    "b.txt     v4 2026-03-06 05:06:07     0.000 Byte  True Latest",
+    "b.txt     v3 2026-03-04 05:06:07     1.465 KiB False ",
+    "한글 파일.txt v5 2026-03-05 05:06:07     2.000 KiB False Latest",
+    "--------------------------------------------------------------------------",
+    "0 Folders, 5 Objects.",
+    "INFO  <TIME> : 5 files. 3557 Byte. ListingCount Count = 1. complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

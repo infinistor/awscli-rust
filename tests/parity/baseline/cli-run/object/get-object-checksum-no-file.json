@@ -1,0 +1,19 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/key1",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : GetObject Start",
+    "ERROR <TIME> : System.ArgumentNullException: Value cannot be null. (Parameter 'path')",
+    "ERROR <TIME> : System.IO.FileNotFoundException: 파일을 찾을 수 없습니다."
+  ]
+}

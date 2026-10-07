@@ -1,0 +1,25 @@
+{
+  "args" : [
+    "--head-object",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1"
+  ],
+  "dump" : true,
+  "routes" : [
+    {
+      "contains" : "HEAD /bucket1/key1",
+      "responseBody" : "hello",
+      "responseHeaders" : {
+        "Content-Type" : "text/plain",
+        "ETag" : "\"5d41402abc4b2a76b9719d911017c592\"",
+        "Last-Modified" : "Wed, 04 Mar 2026 05:06:07 GMT",
+        "x-amz-meta-owner" : "alice",
+        "x-amz-storage-class" : "STANDARD",
+        "x-amz-version-id" : "v1"
+      },
+      "status" : 200
+    }
+  ]
+}

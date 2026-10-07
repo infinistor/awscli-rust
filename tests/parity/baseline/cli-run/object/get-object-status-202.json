@@ -1,0 +1,19 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/key1",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : GetObject Start",
+    "ERROR <TIME> : key1 Get Object failed(Accepted)",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

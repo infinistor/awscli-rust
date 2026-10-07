@@ -1,0 +1,21 @@
+{
+  "args" : [
+    "--list-objects-v2",
+    "-b",
+    "bucket1",
+    "--delimiter",
+    "/",
+    "--prefix",
+    "dir/"
+  ],
+  "routes" : [
+    {
+      "contains" : "GET /bucket1",
+      "responseBody" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ListBucketResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>bucket1</Name><Prefix></Prefix><KeyCount>3</KeyCount><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>dir/b.log</Key><LastModified>2026-03-04T05:06:07.000Z</LastModified><ETag>&quot;d41d8cd98f00b204e9800998ecf8427e&quot;</ETag><Size>1500</Size><StorageClass>STANDARD</StorageClass></Contents><CommonPrefixes><Prefix>dir/sub1/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>dir/긴폴더이름/</Prefix></CommonPrefixes></ListBucketResult>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "--date 보관 만료 날짜를 입력해야 합니다.",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

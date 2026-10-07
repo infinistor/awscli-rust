@@ -1,0 +1,7 @@
+{
+  "args" : [
+    "--get-object-retention",
+    "-b",
+    "bucket1"
+  ]
+}

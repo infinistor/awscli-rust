@@ -1,0 +1,21 @@
+{
+  "args" : [
+    "--list-object-versions",
+    "-b",
+    "bucket1",
+    "--marker",
+    "a.txt",
+    "--version-id",
+    "v1"
+  ],
+  "routes" : [
+    {
+      "contains" : "?versions",
+      "responseBody" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ListVersionsResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>bucket1</Name><Prefix></Prefix><KeyMarker></KeyMarker><VersionIdMarker></VersionIdMarker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><DeleteMarker><Key>b.txt</Key><VersionId>v4</VersionId><IsLatest>true</IsLatest><LastModified>2026-03-06T05:06:07.000Z</LastModified><Owner><ID>owner1</ID><DisplayName>owner</DisplayName></Owner></DeleteMarker></ListVersionsResult>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

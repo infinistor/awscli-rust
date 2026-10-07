@@ -1,0 +1,12 @@
+{
+  "args" : [
+    "--put-object-lock",
+    "-b",
+    "bucket1",
+    "--days",
+    "7"
+  ],
+  "default" : {
+    "status" : 204
+  }
+}

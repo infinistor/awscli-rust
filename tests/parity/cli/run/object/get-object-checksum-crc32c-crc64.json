@@ -1,0 +1,25 @@
+{
+  "args" : [
+    "--get-object",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1",
+    "--checksum",
+    "-f",
+    "dl/c.txt"
+  ],
+  "routes" : [
+    {
+      "contains" : "GET /bucket1/key1",
+      "responseBody" : "hello",
+      "responseHeaders" : {
+        "Content-Type" : "text/plain",
+        "ETag" : "\"5d41402abc4b2a76b9719d911017c592\"",
+        "x-amz-checksum-crc32c" : "crc32c-wrong",
+        "x-amz-checksum-crc64nvme" : "crc64-wrong"
+      },
+      "status" : 200
+    }
+  ]
+}

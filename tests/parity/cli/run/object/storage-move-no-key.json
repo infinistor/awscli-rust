@@ -1,0 +1,7 @@
+{
+  "args" : [
+    "--storage-move",
+    "-b",
+    "bucket1"
+  ]
+}

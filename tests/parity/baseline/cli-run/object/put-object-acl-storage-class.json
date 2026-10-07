@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "1 bytes md5=9dd4e461268c8034f5c8564e155c67a6",
+      "headers": [
+        "x-amz-acl: public-read",
+        "x-amz-storage-class: STANDARD_IA"
+      ],
+      "method": "PUT",
+      "path": "/bucket1/key1",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutObject Start",
+    "INFO  <TIME> : key1 PutObject Success! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

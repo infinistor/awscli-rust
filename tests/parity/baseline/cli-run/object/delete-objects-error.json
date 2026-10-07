@@ -1,0 +1,20 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": "<Delete><Object><Key>Key1</Key><VersionId>VersionId1</VersionId></Object><Object><Key>한글 키.txt</Key></Object><Quiet>false</Quiet></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/bucket1/",
+      "query": [
+        "delete"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : DeleteObject Start",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: The specified bucket does not exist."
+  ]
+}

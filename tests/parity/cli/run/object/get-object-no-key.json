@@ -1,0 +1,7 @@
+{
+  "args" : [
+    "--get-object",
+    "-b",
+    "bucket1"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "args" : [
+    "--list-objects",
+    "-b",
+    "bucket1",
+    "--marker",
+    "a.txt"
+  ],
+  "routes" : [
+    {
+      "contains" : "GET /bucket1",
+      "responseBody" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ListBucketResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>bucket1</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>b.txt</Key><LastModified>2026-03-04T05:06:07.000Z</LastModified><ETag>&quot;d41d8cd98f00b204e9800998ecf8427e&quot;</ETag><Size>6</Size><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

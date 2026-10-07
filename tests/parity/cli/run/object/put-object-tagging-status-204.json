@@ -1,0 +1,17 @@
+{
+  "args" : [
+    "--put-object-tagging",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1",
+    "-f",
+    "tags.json"
+  ],
+  "default" : {
+    "status" : 204
+  },
+  "files" : {
+    "tags.json" : "{ \"TagSet\": [ { \"Key\": \"0\", \"Value\": \"zero\" }, { \"Key\": \"k 2\", \"Value\": \"한글\" } ] }"
+  }
+}

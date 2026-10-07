@@ -1,0 +1,7 @@
+{
+  "args" : [
+    "--delete-object",
+    "-b",
+    "bucket1"
+  ]
+}

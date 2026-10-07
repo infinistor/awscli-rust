@@ -1,0 +1,20 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "object-lock"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : GetObjectLockConfiguration(bucket1) Start",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: Object Lock configuration does not exist for this bucket"
+  ]
+}

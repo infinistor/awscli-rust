@@ -1,0 +1,9 @@
+{
+  "args" : [
+    "--put-object-retention",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1"
+  ]
+}

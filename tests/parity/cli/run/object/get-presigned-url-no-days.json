@@ -1,0 +1,9 @@
+{
+  "args" : [
+    "--get-presigned-url",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1"
+  ]
+}

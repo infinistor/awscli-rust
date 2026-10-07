@@ -1,0 +1,14 @@
+{
+  "args" : [
+    "--storage-move",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1",
+    "--storage-class",
+    "GLACIER"
+  ],
+  "default" : {
+    "status" : 400
+  }
+}

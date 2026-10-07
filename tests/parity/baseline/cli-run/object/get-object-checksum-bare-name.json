@@ -1,0 +1,20 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/key1",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : GetObject Start",
+    "ERROR <TIME> : System.ArgumentException: The value cannot be an empty string. (Parameter 'path')",
+    "ERROR <TIME> : System.IO.FileNotFoundException: 파일을 찾을 수 없습니다.",
+    "File name: 'out.txt'"
+  ]
+}
