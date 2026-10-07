@@ -1,0 +1,48 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/bkt/TH_000/00000/temp_00001",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/bkt/TH_000/00000/temp_00002",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Sequential Delete Test Initialize",
+    "INFO  <TIME> : Sequential Delete Test Start",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " [DELETE V2 TEST FINAL RESULTS]",
+    " Total Target    :         3",
+    " Delete Success  :         2",
+    " Delete Error    :         0",
+    " Remaining       :         1",
+    " Total Average   :    <N> file/sec",
+    " Total Bandwidth :    <N>/s",
+    " Success Ratio   :   100.000 %",
+    " Total Time      :     <N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : Sequential Delete Test End",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

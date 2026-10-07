@@ -1,0 +1,21 @@
+{
+  "args": [
+    "--test-delete-version",
+    "--prefix=pre/"
+  ],
+  "config": "[Default]\nBucketName = bkt\nObjectPrefix = temp\nFileSize = 1K\nPartSize = 5M\nFilePath = data\n\n[UpDown]\nThreadCount = 1\nFileCount = 3\nTimes = 1\nBucketType = 0\nReadRatio = 1\nWriteRatio = 1\nDeleteRatio = 0\n\n[Main User]\nURL = {URL}\nAccessKey = testcore-access\nSecretKey = testcore-secret-key-0123456789abcdefghij\n",
+  "ignore_body": true,
+  "routes": [
+    {
+      "status": 200,
+      "responseBody": "<ListVersionsResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>bkt</Name><Prefix></Prefix><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Version><Key>a</Key><VersionId>v1</VersionId><IsLatest>false</IsLatest></Version><Version><Key>a</Key><VersionId>v2</VersionId><IsLatest>true</IsLatest></Version><Version><Key>b</Key><VersionId>v3</VersionId><IsLatest>true</IsLatest></Version></ListVersionsResult>",
+      "contains": "versions"
+    },
+    {
+      "status": 204,
+      "responseBody": "",
+      "contains": "DELETE /bkt"
+    }
+  ],
+  "stats": true
+}

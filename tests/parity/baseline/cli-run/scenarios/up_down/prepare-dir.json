@@ -1,0 +1,75 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_000/00000/temp_00000/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_000/00000/temp_00001/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_000/00000/temp_00002/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_001/00000/temp_00000/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_001/00000/temp_00001/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_001/00000/temp_00002/",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Prepare Dir Test Initialize",
+    "INFO  <TIME> : Prepare Dir Test Start",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " [PREPARE TEST FINAL RESULTS]",
+    " Total Target    :         6",
+    " Write Success   :         6",
+    " Write Error     :         0",
+    " Total Average   :   <N> file/sec",
+    " Total Bandwidth :   <N>/s",
+    " Success Ratio   :   100.000 %",
+    " Total Time      :     <N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : Prepare Dir Test End",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

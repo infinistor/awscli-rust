@@ -1,0 +1,22 @@
+{
+  "exitCode": -1073741676,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "acl"
+      ]
+    }
+  ],
+  "stderr": [
+    "Unhandled exception. System.DivideByZeroException: Attempted to divide by zero."
+  ],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : UploadTag Test Initialize",
+    "INFO  <TIME> : UploadTag Test Start"
+  ]
+}

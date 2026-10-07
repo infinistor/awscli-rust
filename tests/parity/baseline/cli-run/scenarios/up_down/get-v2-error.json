@@ -1,0 +1,49 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/TH_000/00000/temp_00000",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/TH_000/00000/temp_00001",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/TH_000/00000/temp_00002",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Sequential Read Test Initialize",
+    "INFO  <TIME> : Sequential Read Test Start",
+    "ERROR <TIME> : GetObject(bkt, TH_000/00000/temp_00000) StatusCode : NotFound, ErrorCode : NoSuchKey. Error making request with Error Code NoSuchKey and Http Status Code NotFound. No further error information was returned by the service.",
+    "ERROR <TIME> : GetObject(bkt, TH_000/00000/temp_00001) StatusCode : NotFound, ErrorCode : NoSuchKey. Error making request with Error Code NoSuchKey and Http Status Code NotFound. No further error information was returned by the service.",
+    "ERROR <TIME> : GetObject(bkt, TH_000/00000/temp_00002) StatusCode : NotFound, ErrorCode : NoSuchKey. Error making request with Error Code NoSuchKey and Http Status Code NotFound. No further error information was returned by the service.",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " [READ V2 TEST FINAL RESULTS]",
+    " Total Target    :         3",
+    " Read Success    :         0",
+    " Read Error      :         3",
+    " Remaining       :         0",
+    " Total Average   :     <N> file/sec",
+    " Total Bandwidth :     <N>/s",
+    " Success Ratio   :     0.000 %",
+    " Total Time      :     <N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : Sequential Read Test End",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_000/00000/temp_00000",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutGet Test Initialize",
+    "INFO  <TIME> : PutGet Test Start",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " [MIX TEST FINAL RESULTS]",
+    " Read Success     :         <N> Error :     <N> Total Average :    <N> file/sec Total Bandwidth :    <N>/s",
+    " Write Success    :         <N> Error :     <N> Total Average :    <N> file/sec Total Bandwidth :  <N>/s",
+    " Total Count      :         <N> Error :     <N> Average :    <N> file/sec Bandwidth :  <N>/s",
+    " Total Time       :     <N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

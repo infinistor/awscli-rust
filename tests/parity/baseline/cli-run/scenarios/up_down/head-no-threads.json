@@ -1,0 +1,12 @@
+{
+  "exitCode": 0,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Head Test Initialize",
+    "INFO  <TIME> : Head Test Start",
+    "ERROR <TIME> : Task Start Failed",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

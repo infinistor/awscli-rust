@@ -1,0 +1,14 @@
+{
+  "args": [
+    "--test-mix-v2"
+  ],
+  "config": "[Default]\nBucketName = bkt\nObjectPrefix = temp\nFileSize = 1K\nPartSize = 5M\nFilePath = data\n\n[UpDown]\nThreadCount = 1\nFileCount = 3\nTimes = 1\nBucketType = 0\nReadRatio = 1\nWriteRatio = 2\nDeleteRatio = 1\n\n[Main User]\nURL = {URL}\nAccessKey = testcore-access\nSecretKey = testcore-secret-key-0123456789abcdefghij\n",
+  "delays": [
+    {
+      "ms": 1300,
+      "contains": "PUT /bkt"
+    }
+  ],
+  "ignore_body": true,
+  "stats": true
+}

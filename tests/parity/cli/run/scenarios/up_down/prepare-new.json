@@ -1,0 +1,8 @@
+{
+  "args": [
+    "--test-new-put"
+  ],
+  "config": "[Default]\nBucketName = bkt\nObjectPrefix = temp\nFileSize = 1K\nPartSize = 5M\nFilePath = data\n\n[UpDown]\nThreadCount = 1\nFileCount = 3\nTimes = 1\nBucketType = 0\nReadRatio = 1\nWriteRatio = 1\nDeleteRatio = 0\n\n[Main User]\nURL = {URL}\nAccessKey = testcore-access\nSecretKey = testcore-secret-key-0123456789abcdefghij\n",
+  "stats": true,
+  "ignore_body": true
+}

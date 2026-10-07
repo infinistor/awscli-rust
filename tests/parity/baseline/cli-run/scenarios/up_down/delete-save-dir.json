@@ -1,0 +1,69 @@
+{
+  "exitCode": 0,
+  "outputs": {
+    "saves": [
+      "<없음>"
+    ]
+  },
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "list-type=2",
+        "max-keys=1000",
+        "prefix=TH_000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/bkt/TH_000/00000/temp_00000",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/bkt/TH_000/00000/temp_00001",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/bkt/TH_000/00000/temp_00002",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Listing Delete Test Initialize",
+    "INFO  <TIME> : Listing Delete Test Start",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " [DELETE TEST FINAL RESULTS]",
+    " Delete Success  :         3",
+    " Delete Error    :         0",
+    " Total Average   :    <N> file/sec",
+    " Total Bandwidth :    <N>/s",
+    " Success Ratio   :   100.000 %",
+    " Total Time      :     <N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : Listing Delete Test End",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

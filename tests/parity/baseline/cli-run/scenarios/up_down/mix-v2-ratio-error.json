@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "삭제 비율이 생성 비율보다 높을 수 없습니다.",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

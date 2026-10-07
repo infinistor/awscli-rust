@@ -1,0 +1,151 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/<YYYY/MM/DD/HH/mm>/FILE_0_00000",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/bkt/<YYYY/MM/DD/HH/mm>/FILE_0_00000",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/<YYYY/MM/DD/HH/mm>/FILE_0_00000",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/bkt/<YYYY/MM/DD/HH/mm>/FILE_0_00000",
+      "query": [
+        "versionId=ver1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "max-keys=1000"
+      ]
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/<YYYY/MM/DD/HH/mm>/FILE_0_00001",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/bkt/<YYYY/MM/DD/HH/mm>/FILE_0_00001",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/<YYYY/MM/DD/HH/mm>/FILE_0_00001",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/bkt/<YYYY/MM/DD/HH/mm>/FILE_0_00001",
+      "query": [
+        "versionId=ver1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "max-keys=1000"
+      ]
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/<YYYY/MM/DD/HH/mm>/FILE_0_00002",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/bkt/<YYYY/MM/DD/HH/mm>/FILE_0_00002",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/<YYYY/MM/DD/HH/mm>/FILE_0_00002",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/bkt/<YYYY/MM/DD/HH/mm>/FILE_0_00002",
+      "query": [
+        "versionId=ver1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "max-keys=1000"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : AWS Test Initialize",
+    "INFO  <TIME> : AWS Test Start",
+    "ERROR <TIME> : DeleteObject Failed(OK). S3://bkt/<YYYY/MM/DD/HH/mm>/FILE_0_00000_ver1",
+    "ERROR <TIME> : DeleteObject Failed(OK). S3://bkt/<YYYY/MM/DD/HH/mm>/FILE_0_00001_ver1",
+    "ERROR <TIME> : DeleteObject Failed(OK). S3://bkt/<YYYY/MM/DD/HH/mm>/FILE_0_00002_ver1",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " Head Count  :         <N> (+         <N>) Error :     <N> Average :    <N> file/sec Bandwidth :    <N>/s",
+    " Read Count  :         <N> (+         <N>) Error :     <N> Average :    <N> file/sec Bandwidth :    <N>/s",
+    " Write Count :         <N> (+         <N>) Error :     <N> Average :    <N> file/sec Bandwidth :    <N>/s",
+    " Delete Count:         <N> (+         <N>) Error :     <N> Average :    <N> file/sec Bandwidth :    <N>/s",
+    " List Count  :         <N> (+         <N>) Error :     <N> Average :    <N> list/sec",
+    " Total Count :        <N> Error :     <N> Average :   <N> op/sec",
+    " Total Execution Time :     <N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

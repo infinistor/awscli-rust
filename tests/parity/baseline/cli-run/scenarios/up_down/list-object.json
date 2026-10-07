@@ -1,0 +1,32 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "max-keys=1000",
+        "prefix=TH_000"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ListObjectTest Test Initialize",
+    "INFO  <TIME> : ListObjectTest Test Start",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " [LIST OBJECT TEST FINAL RESULTS]",
+    " List Success    :         1",
+    " List Error      :         0",
+    " Total Average   :     <N> list/sec",
+    " Total Bandwidth :   <N>/s",
+    " Success Ratio   :   100.000 %",
+    " Total Time      :     <N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

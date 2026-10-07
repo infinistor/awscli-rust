@@ -52,6 +52,8 @@ pub struct CliCase {
     pub drop_lines: Option<String>,
     /// 작업 디렉터리에 만들 빈 디렉터리(상대 경로).
     pub dirs: Vec<String>,
+    /// 요청 줄에 `contains`가 들어 있으면 응답을 `ms`밀리초 늦춘다(시간 제한 시나리오의 요청 횟수를 정한다).
+    pub delays: Vec<(String, u64)>,
     /// 실행 뒤 내용을 비교할 파일·디렉터리(상대 경로, 디렉터리는 아래 파일 전부).
     pub outputs: Vec<String>,
 }
@@ -76,6 +78,7 @@ impl CliCase {
             drop_lines: None,
             dirs: Vec::new(),
             outputs: Vec::new(),
+            delays: Vec::new(),
         }
     }
 
@@ -137,6 +140,17 @@ impl CliCase {
         };
         case.dirs = strings("dirs");
         case.outputs = strings("outputs");
+        if let Some(delays) = value.get("delays").and_then(Value::as_array) {
+            case.delays = delays
+                .iter()
+                .map(|d| {
+                    (
+                        d["contains"].as_str().unwrap().to_string(),
+                        d["ms"].as_u64().unwrap(),
+                    )
+                })
+                .collect();
+        }
         if let Some(routes) = value.get("routes").and_then(Value::as_array) {
             case.routes = routes
                 .iter()
@@ -213,8 +227,17 @@ pub enum OutputEncoding {
 
 /// 사례를 실행한다. `exe`는 실행 파일, 작업 디렉터리는 사례마다 새로 만든다.
 pub async fn run_case(exe: &Path, case: &CliCase, encoding: OutputEncoding) -> CliOutcome {
-    let server =
-        CaptureServer::start_with_routes(case.default_response.clone(), case.routes.clone()).await;
+    let delays = case
+        .delays
+        .iter()
+        .map(|(contains, ms)| (contains.clone(), Duration::from_millis(*ms)))
+        .collect();
+    let server = CaptureServer::start_with_delays(
+        case.default_response.clone(),
+        case.routes.clone(),
+        delays,
+    )
+    .await;
     let host = format!("127.0.0.1:{}", server.port);
     let dir = tempfile::tempdir().unwrap();
     let config = case
@@ -409,6 +432,17 @@ static PRESIGN: LazyLock<[(Regex, &'static str); 5]> = LazyLock::new(|| {
     ]
 });
 
+/// 시각으로 만든 오브젝트 키(`2026/10/07/16/03/`, `2026/10/07/`): 실행 시각마다 달라져 가린다.
+static DATE_PATH: LazyLock<[(Regex, &'static str); 2]> = LazyLock::new(|| {
+    [
+        (
+            Regex::new(r"\d{4}/\d\d/\d\d/\d\d/\d\d/").unwrap(),
+            "<YYYY/MM/DD/HH/mm>/",
+        ),
+        (Regex::new(r"\d{4}/\d\d/\d\d/").unwrap(), "<YYYY/MM/DD>/"),
+    ]
+});
+
 static PRESIGN_EXPIRES: LazyLock<Regex> =
     LazyLock::new(|| Regex::new(r"(X-Amz-Expires=)(\d+)").unwrap());
 
@@ -419,6 +453,9 @@ fn replace_context(text: &str, context: &Context<'_>) -> String {
         text = text.replace(dir.as_str(), "<DIR>");
     }
     text = WALL_CLOCK.replace_all(&text, "[<TIME>]").into_owned();
+    for (pattern, replacement) in DATE_PATH.iter() {
+        text = pattern.replace_all(&text, *replacement).into_owned();
+    }
     for (pattern, replacement) in PRESIGN.iter() {
         text = pattern.replace_all(&text, *replacement).into_owned();
     }
@@ -637,6 +674,33 @@ pub fn diff(expected: &CliOutcome, actual: &CliOutcome) -> String {
 }
 
 impl CliOutcome {
+    /// `stats` 사례 비교용: 가린 숫자(`<N>`)가 든 줄은 값 길이에 따라 맞춤 공백이 달라지므로 연속 공백을 하나로 본다.
+    pub fn squash_stats(&self) -> Self {
+        static SPACES: LazyLock<Regex> = LazyLock::new(|| Regex::new(r" {2,}").unwrap());
+        let squash = |lines: &[String]| -> Vec<String> {
+            lines
+                .iter()
+                .map(|line| {
+                    if line.contains("<N>") {
+                        SPACES.replace_all(line, " ").into_owned()
+                    } else {
+                        line.clone()
+                    }
+                })
+                .collect()
+        };
+        Self {
+            stdout: squash(&self.stdout),
+            stderr: squash(&self.stderr),
+            outputs: self
+                .outputs
+                .iter()
+                .map(|(name, lines)| (name.clone(), squash(lines)))
+                .collect(),
+            ..self.clone()
+        }
+    }
+
     /// 요청 순서를 무시하고 비교할 수 있게 정렬한 사본.
     pub fn sorted(&self) -> Self {
         let mut requests = self.requests.clone();

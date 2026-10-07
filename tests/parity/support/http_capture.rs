@@ -46,18 +46,30 @@ impl CaptureServer {
         response: CannedResponse,
         routes: Vec<(String, CannedResponse)>,
     ) -> Self {
+        Self::start_with_delays(response, routes, Vec::new()).await
+    }
+
+    /// `start_with_routes`에 더해, 요청 줄에 `contains`가 들어 있으면 응답을 `delay`만큼 늦춘다(시간 제한 시나리오에서
+    /// 요청 횟수를 정하는 용도).
+    pub async fn start_with_delays(
+        response: CannedResponse,
+        routes: Vec<(String, CannedResponse)>,
+        delays: Vec<(String, std::time::Duration)>,
+    ) -> Self {
         let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
         let port = listener.local_addr().unwrap().port();
         let requests = Arc::new(Mutex::new(Vec::new()));
         let shared = requests.clone();
         let routes = Arc::new(routes);
+        let delays = Arc::new(delays);
         let task = tokio::spawn(async move {
             while let Ok((socket, _)) = listener.accept().await {
                 let requests = shared.clone();
                 let response = response.clone();
                 let routes = routes.clone();
+                let delays = delays.clone();
                 tokio::spawn(async move {
-                    let _ = serve(socket, &response, &routes, &requests).await;
+                    let _ = serve(socket, &response, &routes, &delays, &requests).await;
                 });
             }
         });
@@ -96,6 +108,7 @@ async fn serve(
     mut socket: TcpStream,
     response: &CannedResponse,
     routes: &[(String, CannedResponse)],
+    delays: &[(String, std::time::Duration)],
     requests: &Mutex<Vec<CapturedRequest>>,
 ) -> Option<()> {
     loop {
@@ -166,10 +179,17 @@ async fn serve(
             .iter()
             .find(|(contains, _)| request.line.contains(contains.as_str()))
             .map_or(response, |(_, r)| r);
+        let delay = delays
+            .iter()
+            .find(|(contains, _)| request.line.contains(contains.as_str()))
+            .map(|(_, delay)| *delay);
         requests.lock().unwrap().push(CapturedRequest {
             body: String::from_utf8_lossy(&body).into_owned(),
             ..request
         });
+        if let Some(delay) = delay {
+            tokio::time::sleep(delay).await;
+        }
 
         let extra: String = response
             .headers

@@ -1,0 +1,64 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": "<VersioningConfiguration><Status>Enabled</Status></VersioningConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/",
+      "query": [
+        "versioning"
+      ]
+    },
+    {
+      "body": "<LifecycleConfiguration><Rule><Expiration><Days>1</Days><ExpiredObjectDeleteMarker>true</ExpiredObjectDeleteMarker></Expiration><ID>Rule1</ID><NoncurrentVersionExpiration><NoncurrentDays>1</NoncurrentDays></NoncurrentVersionExpiration><Status>Enabled</Status></Rule></LifecycleConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/",
+      "query": [
+        "lifecycle"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/bkt/obj",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/bkt/obj",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : One Object Delete Test Initialize",
+    "INFO  <TIME> : One Object Delete Test Start",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " [DELETE TEST FINAL RESULTS]",
+    " Delete Success  :         2",
+    " Delete Error    :         0",
+    " Total Average   :    <N> file/sec",
+    " Total Bandwidth :    <N>/s",
+    " Success Ratio   :   100.000 %",
+    " Total Time      :     <N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : One Object Delete Test End",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

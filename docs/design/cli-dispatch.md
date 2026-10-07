@@ -76,6 +76,9 @@ TESTCore `Util/TestCoreApplication.cs`, `Util/ConfigBootstrapper.cs`, `Commands/
 -   `"dirs": ["in", "out/a"]`: 작업 디렉터리에 빈 디렉터리를 만든다.
 -   `"outputs": ["result.json", "save"]`: 실행 뒤 파일(디렉터리면 아래 파일 전부) 내용을 비교한다. 시각은 `<TIME>`, 파일 이름의 `yyyyMMdd_HHmmss`는 `<TS>`.
 -   동시 요청 사례(`unordered`)의 기준 출력은 요청을 정렬해 저장한다.
+-   `"delays": [{ "contains": "PUT /bkt", "ms": 1300 }]`: 요청 줄에 `contains`가 들어 있는 요청의 응답을 `ms`만큼 늦춘다. 시간 제한(`Times`) 시나리오가 `Times`(1초)가 지난 뒤에 첫 요청이 끝나게 해 스레드마다 요청이 정확히 하나만 나가게 한다.
+-   `stats` 사례는 비교할 때 `<N>`이 든 줄의 연속 공백을 하나로 본다(값 길이에 따라 맞춤 공백이 달라진다).
+-   요청 경로·출력의 시각 키(`2026/10/07/16/03/`, `2026/10/07/`)는 `<YYYY/MM/DD/HH/mm>/`, `<YYYY/MM/DD>/`로 가린다(AWSTest 등).
 
 기준 출력 만들기(TESTCore HEAD 빌드, `tests/parity/README.md`):
 

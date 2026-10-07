@@ -1,0 +1,26 @@
+{
+  "args": [
+    "--test-get-v3"
+  ],
+  "config": "[Default]\nBucketName = bkt\nObjectPrefix = temp\nFileSize = 1K\nPartSize = 5M\nFilePath = data\n\n[UpDown]\nThreadCount = 1\nFileCount = 3\nTimes = 1\nBucketType = 0\nReadRatio = 1\nWriteRatio = 1\nDeleteRatio = 0\n\n[Main User]\nURL = {URL}\nAccessKey = testcore-access\nSecretKey = testcore-secret-key-0123456789abcdefghij\n",
+  "delays": [
+    {
+      "ms": 1300,
+      "contains": "list-type=2"
+    }
+  ],
+  "ignore_body": true,
+  "routes": [
+    {
+      "status": 200,
+      "responseBody": "<ListBucketResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>bkt</Name><Prefix></Prefix><KeyCount>3</KeyCount><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>TH_000/00000/temp_00000</Key><Size>1</Size></Contents><Contents><Key>TH_000/00000/temp_00001</Key><Size>1</Size></Contents><Contents><Key>TH_000/00000/temp_00002</Key><Size>1</Size></Contents></ListBucketResult>",
+      "contains": "list-type=2"
+    },
+    {
+      "status": 200,
+      "responseBody": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "contains": "GET /bkt/TH_"
+    }
+  ],
+  "stats": true
+}

@@ -1,0 +1,54 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_000/00000/temp_00000",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_000/00000/temp_00001",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_000/00000/temp_00002",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Prepare New Client Test Initialize",
+    "INFO  <TIME> : Prepare New Client Test Start",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " [PREPARE TEST FINAL RESULTS]",
+    " Total Target    :         3",
+    " Write Success   :         3",
+    " Write Error     :         0",
+    " Total Average   :    <N> file/sec",
+    " Total Bandwidth :    <N>/s",
+    " Success Ratio   :   100.000 %",
+    " Total Time      :     <N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : Prepare New Client Test End",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

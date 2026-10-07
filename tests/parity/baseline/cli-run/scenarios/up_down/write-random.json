@@ -1,0 +1,38 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_000/00000/temp_00002",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Write Test Initialize",
+    "INFO  <TIME> : Write Test Start",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " [WRITE TEST FINAL RESULTS]",
+    " Write Success   :         1",
+    " Write Error     :         0",
+    " Total Average   :     <N> file/sec",
+    " Total Bandwidth :   <N>/s",
+    " Success Ratio   :   100.000 %",
+    " Total Time      :     <N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

@@ -212,6 +212,11 @@ async fn cli_run_matches_dotnet() {
         } else {
             (expected[&case.name].clone(), actual)
         };
+        let (expected, actual) = if case.stats {
+            (expected.squash_stats(), actual.squash_stats())
+        } else {
+            (expected, actual)
+        };
         if expected != actual {
             failures.push(format!(
                 "{} {:?}\n{}",

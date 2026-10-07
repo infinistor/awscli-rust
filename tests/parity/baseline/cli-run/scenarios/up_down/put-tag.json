@@ -1,0 +1,279 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "1000 bytes",
+      "headers": [
+        "x-amz-tagging: TagValue=tag1"
+      ],
+      "method": "PUT",
+      "path": "/bkt/TH_000/00000/temp_00000",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [
+        "x-amz-tagging: TagValue=tag10"
+      ],
+      "method": "PUT",
+      "path": "/bkt/TH_000/00000/temp_00009",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [
+        "x-amz-tagging: TagValue=tag11"
+      ],
+      "method": "PUT",
+      "path": "/bkt/TH_001/00000/temp_00000",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [
+        "x-amz-tagging: TagValue=tag12"
+      ],
+      "method": "PUT",
+      "path": "/bkt/TH_001/00000/temp_00001",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [
+        "x-amz-tagging: TagValue=tag13"
+      ],
+      "method": "PUT",
+      "path": "/bkt/TH_001/00000/temp_00002",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [
+        "x-amz-tagging: TagValue=tag14"
+      ],
+      "method": "PUT",
+      "path": "/bkt/TH_001/00000/temp_00003",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [
+        "x-amz-tagging: TagValue=tag15"
+      ],
+      "method": "PUT",
+      "path": "/bkt/TH_001/00000/temp_00004",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [
+        "x-amz-tagging: TagValue=tag16"
+      ],
+      "method": "PUT",
+      "path": "/bkt/TH_001/00000/temp_00005",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [
+        "x-amz-tagging: TagValue=tag17"
+      ],
+      "method": "PUT",
+      "path": "/bkt/TH_001/00000/temp_00006",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [
+        "x-amz-tagging: TagValue=tag18"
+      ],
+      "method": "PUT",
+      "path": "/bkt/TH_001/00000/temp_00007",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [
+        "x-amz-tagging: TagValue=tag19"
+      ],
+      "method": "PUT",
+      "path": "/bkt/TH_001/00000/temp_00008",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [
+        "x-amz-tagging: TagValue=tag2"
+      ],
+      "method": "PUT",
+      "path": "/bkt/TH_000/00000/temp_00001",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [
+        "x-amz-tagging: TagValue=tag20"
+      ],
+      "method": "PUT",
+      "path": "/bkt/TH_001/00000/temp_00009",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [
+        "x-amz-tagging: TagValue=tag3"
+      ],
+      "method": "PUT",
+      "path": "/bkt/TH_000/00000/temp_00002",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [
+        "x-amz-tagging: TagValue=tag4"
+      ],
+      "method": "PUT",
+      "path": "/bkt/TH_000/00000/temp_00003",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [
+        "x-amz-tagging: TagValue=tag5"
+      ],
+      "method": "PUT",
+      "path": "/bkt/TH_000/00000/temp_00004",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [
+        "x-amz-tagging: TagValue=tag6"
+      ],
+      "method": "PUT",
+      "path": "/bkt/TH_000/00000/temp_00005",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [
+        "x-amz-tagging: TagValue=tag7"
+      ],
+      "method": "PUT",
+      "path": "/bkt/TH_000/00000/temp_00006",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [
+        "x-amz-tagging: TagValue=tag8"
+      ],
+      "method": "PUT",
+      "path": "/bkt/TH_000/00000/temp_00007",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [
+        "x-amz-tagging: TagValue=tag9"
+      ],
+      "method": "PUT",
+      "path": "/bkt/TH_000/00000/temp_00008",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_002/00000/temp_00000",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_002/00000/temp_00001",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_002/00000/temp_00002",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_002/00000/temp_00003",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_002/00000/temp_00004",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_002/00000/temp_00005",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_002/00000/temp_00006",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_002/00000/temp_00007",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_002/00000/temp_00008",
+      "query": []
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bkt/TH_002/00000/temp_00009",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "acl"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : UploadTag Test Initialize",
+    "INFO  <TIME> : UploadTag Test Start",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " Remaining Count :         0",
+    " Write Count     :        30 (+ 30)",
+    " Write Average   :    <N> file/sec",
+    " Bandwidth       :    <N>/s",
+    " Times           :     <N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

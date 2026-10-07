@@ -1,0 +1,16 @@
+{
+  "args": [
+    "--test-prepare"
+  ],
+  "config": "[Default]\nBucketName = bkt\nObjectPrefix = temp\nFileSize = 1K\nPartSize = 5M\nFilePath = data\n\n[UpDown]\nThreadCount = 2\nFileCount = 3\nTimes = 1\nBucketType = 2\nReadRatio = 1\nWriteRatio = 1\nDeleteRatio = 0\n\n[Main User]\nURL = {URL}\nAccessKey = testcore-access\nSecretKey = testcore-secret-key-0123456789abcdefghij\n",
+  "unordered": true,
+  "ignore_body": true,
+  "routes": [
+    {
+      "status": 404,
+      "responseBody": "<Error><Code>NoSuchBucket</Code><Message>missing</Message></Error>",
+      "contains": "?acl"
+    }
+  ],
+  "stats": true
+}
