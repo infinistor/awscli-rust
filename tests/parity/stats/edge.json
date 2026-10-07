@@ -1,0 +1,35 @@
+{
+  "fileSize": 1001,
+  "partSize": 0,
+  "total": 0,
+  "config": "tests/parity/config/sample.ini",
+  "steps": [
+    {
+      "times": 0,
+      "clients": [],
+      "prints": ["Prepare", "Write", "Mix", "All", "AWS", "WriteFinal", "MixFinal", "AllFinal"]
+    },
+    {
+      "times": 2.5,
+      "clients": [
+        { "write": [3, 0, 0], "read": [0, 3] }
+      ],
+      "prints": ["Write", "Read", "Mix", "WriteFinal", "ReadFinal"]
+    },
+    {
+      "times": 5,
+      "clients": [
+        { "write": [3, 0, 0], "read": [0, 3] }
+      ],
+      "prints": ["Write", "Read", "Mix"]
+    },
+    {
+      "times": 7.5,
+      "clients": [
+        { "write": [1000000, 0, 0], "read": [123456789, 7] }
+      ],
+      "prints": ["Write", "Read", "Mix", "All", "ReadFinal", "MixFinal"]
+    }
+  ],
+  "result": { "testType": "ListObject", "executionTime": 2.999 }
+}

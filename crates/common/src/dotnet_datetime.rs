@@ -107,6 +107,33 @@ impl DotnetDateTime {
         text
     }
 
+    /// `DateTime.Now`.
+    pub fn now() -> Self {
+        Self::local(Local::now())
+    }
+
+    /// `new DateTimeOffset(value).ToUnixTimeSeconds()`. `Unspecified`는 이 PC의 현지 시각으로 본다.
+    /// 오프셋을 적용한 UTC 시각이 1년보다 앞서면 .NET처럼 실패한다(예: KST에서 `DateTime.MinValue`).
+    pub fn to_unix_seconds(&self) -> Result<i64, String> {
+        let offset_seconds = match self.kind {
+            DateTimeKind::Utc => 0,
+            DateTimeKind::Local(seconds) => seconds,
+            DateTimeKind::Unspecified => Local
+                .offset_from_local_datetime(&self.value)
+                .earliest()
+                .map(|o| o.fix().local_minus_utc())
+                .unwrap_or(0),
+        };
+        let utc = self.value - chrono::Duration::seconds(i64::from(offset_seconds));
+        if chrono::Datelike::year(&utc) < 1 {
+            return Err(
+                "The UTC time represented when the offset is applied must be between year 0 and 10,000. (Parameter 'offset')"
+                    .to_string(),
+            );
+        }
+        Ok(utc.and_utc().timestamp())
+    }
+
     /// .NET 사용자 지정 형식 문자열 일부(`yyyy`, `MM`, `dd`, `HH`, `mm`, `ss`)로 출력한다.
     /// 원본 코드가 쓰는 형식만 지원한다. 그 밖의 문자는 그대로 둔다.
     pub fn format(&self, pattern: &str) -> String {

@@ -60,6 +60,7 @@ static partial class Program
 			case "sign": Console.WriteLine(Sign(args[1])); return 0;
 			case "ksan": Console.WriteLine(Ksan(args[1])); return 0;
 			case "s3": Console.WriteLine(S3Probe(args[1])); return 0;
+			case "stats": Console.WriteLine(StatsProbe(args[1])); return 0;
 			case "json":
 				// TestCore JsonExtensions.ToJsonString 형식 확인용: 파일의 각 줄(문자열)과 고정된 구조를 직렬화한다.
 				var strings = File.ReadAllLines(args[1]).Select(l => l.Replace("\\r", "\r").Replace("\\n", "\n").Replace("\\t", "\t").Replace("\\0", "\0").Replace("\\x01", "\u0001").Replace("\\x7f", "\u007f")).ToList();

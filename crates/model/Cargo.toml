@@ -6,5 +6,20 @@ edition.workspace = true
 repository.workspace = true
 publish.workspace = true
 
+[dependencies]
+awscli-rest-common.workspace = true
+awscli-rest-config.workspace = true
+rust_decimal.workspace = true
+serde.workspace = true
+tracing.workspace = true
+
+[dev-dependencies]
+chrono.workspace = true
+serde_json.workspace = true
+
+[[test]]
+name = "parity_stats"
+path = "../../tests/parity/stats.rs"
+
 [lints]
 workspace = true

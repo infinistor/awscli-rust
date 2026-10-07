@@ -1,0 +1,33 @@
+{
+  "fileSize": 1048576,
+  "partSize": 5242880,
+  "total": 1000,
+  "config": "tests/parity/config/full.ini",
+  "steps": [
+    {
+      "times": 2.0031234,
+      "clients": [
+        { "write": [10, 0, 3], "read": [5, 1], "head": [2, 0], "delete": [1, 0], "list": [0, 0] },
+        { "write": [7, 1, 2], "read": [3, 0], "head": [0, 1], "delete": [0, 0], "list": [4, 0] }
+      ],
+      "prints": ["Prepare", "Write", "Read", "ReadTotal", "ListObject", "Head", "Delete", "DeleteTotal", "MultiUpload", "MultiUploadV2", "Download", "Mix", "All", "AWS"]
+    },
+    {
+      "times": 4.0049999,
+      "clients": [
+        { "write": [40, 2, 13], "read": [15, 1], "head": [6, 0], "delete": [3, 2], "list": [1, 0] },
+        { "write": [31, 1, 9], "read": [13, 0], "head": [1, 1], "delete": [2, 0], "list": [9, 1] }
+      ],
+      "prints": ["Write", "Read", "MultiUpload", "Mix", "All", "AWS"]
+    },
+    {
+      "times": 6.0005,
+      "clients": [
+        { "write": [42, 2, 14], "read": [80, 1], "head": [6, 0], "delete": [3, 2], "list": [1, 0] },
+        { "write": [33, 1, 10], "read": [71, 0], "head": [1, 1], "delete": [2, 0], "list": [9, 1] }
+      ],
+      "prints": ["Write", "Read", "Mix", "All", "AWS", "PrepareFinal", "WriteFinal", "ReadFinal", "ListObjectFinal", "ReadV2Final", "HeadFinal", "DeleteFinal", "DeleteV2Final", "MixFinal", "AllFinal"]
+    }
+  ],
+  "result": { "testType": "AWS Mix", "executionTime": 61.999 }
+}

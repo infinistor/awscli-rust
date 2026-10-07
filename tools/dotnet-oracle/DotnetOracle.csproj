@@ -20,5 +20,9 @@
 			<HintPath>$(TestCoreBin)\AWSSDK.S3.dll</HintPath>
 			<Private>false</Private>
 		</Reference>
+		<Reference Include="log4net">
+			<HintPath>$(TestCoreBin)\log4net.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
 	</ItemGroup>
 </Project>

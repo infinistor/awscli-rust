@@ -26,6 +26,7 @@ tracing-subscriber = { version = "0.3", features = ["fmt", "std"] }
 chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["raw_value"] }
+rust_decimal = "1"
 base64 = "0.23"
 crc = "3"
 hex = "0.4"
