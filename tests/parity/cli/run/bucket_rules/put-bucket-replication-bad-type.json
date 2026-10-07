@@ -1,0 +1,12 @@
+{
+  "args" : [
+    "--put-bucket-replication",
+    "-b",
+    "bucket1",
+    "-f",
+    "in.json"
+  ],
+  "files" : {
+    "in.json" : "{\"Role\":\"r\",\"Rules\":[{\"Priority\":\"high\"}]}"
+  }
+}

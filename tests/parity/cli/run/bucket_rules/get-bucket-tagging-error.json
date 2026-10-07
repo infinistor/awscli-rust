@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--get-bucket-tagging",
+    "-b",
+    "bucket1"
+  ],
+  "dump" : true,
+  "routes" : [
+    {
+      "contains" : "?tagging HTTP",
+      "responseBody" : "<Error><Code>NoSuchTagSet</Code><Message>The TagSet does not exist</Message><RequestId>REQ1</RequestId></Error>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 404
+    }
+  ]
+}

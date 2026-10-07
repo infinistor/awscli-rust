@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "lifecycle"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : GetBucketLifecycleConfiguration Start",
+    "ERROR <TIME> : bucket1 Get Bucket Lifecycle failed(NoContent)",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

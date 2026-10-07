@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<Tagging><TagSet><Tag><Key>0</Key><Value>0</Value></Tag><Tag><Key>env</Key><Value>test & <dev></Value></Tag><Tag><Key>한글</Key><Value>값</Value></Tag></TagSet></Tagging>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "tagging"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketTagging Start",
+    "ERROR <TIME> : bucket1 Put Bucket Tagging failed(NoContent)",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

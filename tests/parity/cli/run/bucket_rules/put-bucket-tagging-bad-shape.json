@@ -1,0 +1,12 @@
+{
+  "args" : [
+    "--put-bucket-tagging",
+    "-b",
+    "bucket1",
+    "-f",
+    "in.json"
+  ],
+  "files" : {
+    "in.json" : "{\"TagSet\":{\"Key\":\"a\"}}"
+  }
+}

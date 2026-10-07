@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<LifecycleConfiguration><Rule><Expiration></Expiration><Filter><Prefix></Prefix></Filter><ID>r</ID><NoncurrentVersionExpiration></NoncurrentVersionExpiration><Status>Enabled</Status></Rule></LifecycleConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "lifecycle"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutLifecycleConfiguration Start",
+    "INFO  <TIME> : bucket1 Put Bucket Lifecycle! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--get-bucket-policy-status",
+    "-b",
+    "bucket1"
+  ],
+  "dump" : true,
+  "routes" : [
+    {
+      "contains" : "?policyStatus HTTP",
+      "responseBody" : "<Error><Code>NoSuchBucketPolicy</Code><Message>The bucket policy does not exist</Message><RequestId>REQ1</RequestId></Error>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 404
+    }
+  ]
+}

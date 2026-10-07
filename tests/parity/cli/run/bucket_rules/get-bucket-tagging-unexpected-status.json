@@ -1,0 +1,14 @@
+{
+  "args" : [
+    "--get-bucket-tagging",
+    "-b",
+    "bucket1"
+  ],
+  "dump" : true,
+  "routes" : [
+    {
+      "contains" : "?tagging HTTP",
+      "status" : 204
+    }
+  ]
+}

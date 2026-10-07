@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--put-bucket-lifecycle",
+    "-b",
+    "bucket1",
+    "-f",
+    "in.json"
+  ],
+  "files" : {
+    "in.json" : "{\"Rules\":[{\"Id\":\"r\",\"Status\":\"Enabled\",\"Expiration\":{\"Days\":0},\"AbortIncompleteMultipartUpload\":{}}]}"
+  },
+  "routes" : [
+    {
+      "contains" : "?lifecycle HTTP",
+      "status" : 200
+    }
+  ]
+}

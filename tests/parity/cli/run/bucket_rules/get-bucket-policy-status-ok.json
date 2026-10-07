@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--get-bucket-policy-status",
+    "-b",
+    "bucket1"
+  ],
+  "dump" : true,
+  "routes" : [
+    {
+      "contains" : "?policyStatus HTTP",
+      "responseBody" : "<PolicyStatus xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><IsPublic>true</IsPublic></PolicyStatus>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

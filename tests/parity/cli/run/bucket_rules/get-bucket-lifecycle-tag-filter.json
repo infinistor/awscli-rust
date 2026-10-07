@@ -1,0 +1,17 @@
+{
+  "args" : [
+    "--get-bucket-lifecycle",
+    "-b",
+    "bucket1"
+  ],
+  "routes" : [
+    {
+      "contains" : "?lifecycle HTTP",
+      "responseBody" : "<LifecycleConfiguration xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Rule><ID>t</ID><Filter><Tag><Key>a</Key><Value>b</Value></Tag></Filter><Status>Enabled</Status><Expiration><Days>1</Days></Expiration></Rule><Rule><ID>and</ID><Filter><And><Prefix>p/</Prefix><Tag><Key>a</Key><Value>b</Value></Tag></And></Filter><Status>Enabled</Status><Expiration><Days>1</Days></Expiration></Rule></LifecycleConfiguration>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

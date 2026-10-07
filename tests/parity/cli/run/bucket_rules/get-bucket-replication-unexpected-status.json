@@ -1,0 +1,14 @@
+{
+  "args" : [
+    "--get-bucket-replication",
+    "-b",
+    "bucket1"
+  ],
+  "dump" : true,
+  "routes" : [
+    {
+      "contains" : "?replication HTTP",
+      "status" : 204
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "args" : [
+    "--put-bucket-replication",
+    "-b",
+    "bucket1",
+    "-f",
+    "in.json",
+    "--target",
+    "dest-bucket"
+  ],
+  "files" : {
+    "in.json" : "{\"Rules\":[{\"Id\":\"r\",\"Status\":\"Enabled\"}]}"
+  },
+  "routes" : [
+    {
+      "contains" : "?replication HTTP",
+      "status" : 200
+    }
+  ]
+}

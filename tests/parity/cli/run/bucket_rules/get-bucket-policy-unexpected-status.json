@@ -1,0 +1,13 @@
+{
+  "args" : [
+    "--get-bucket-policy",
+    "-b",
+    "bucket1"
+  ],
+  "routes" : [
+    {
+      "contains" : "?policy HTTP",
+      "status" : 204
+    }
+  ]
+}

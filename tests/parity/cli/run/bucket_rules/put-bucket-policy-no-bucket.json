@@ -1,0 +1,10 @@
+{
+  "args" : [
+    "--put-bucket-policy",
+    "-f",
+    "in.json"
+  ],
+  "files" : {
+    "in.json" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"*\"},\"Action\":\"s3:ListBucket\",\"Resource\":[\"arn:aws:s3:::bucket1\",\"arn:aws:s3:::bucket1/*\"]}]}"
+  }
+}

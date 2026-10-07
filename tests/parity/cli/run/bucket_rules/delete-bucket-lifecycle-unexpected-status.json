@@ -1,0 +1,13 @@
+{
+  "args" : [
+    "--delete-bucket-lifecycle",
+    "-b",
+    "bucket1"
+  ],
+  "routes" : [
+    {
+      "contains" : "?lifecycle HTTP",
+      "status" : 200
+    }
+  ]
+}

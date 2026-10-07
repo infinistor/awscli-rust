@@ -1,0 +1,13 @@
+{
+  "args" : [
+    "--delete-public-access-block",
+    "-b",
+    "bucket1"
+  ],
+  "routes" : [
+    {
+      "contains" : "?publicAccessBlock HTTP",
+      "status" : 200
+    }
+  ]
+}

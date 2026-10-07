@@ -1,0 +1,9 @@
+{
+  "args" : [
+    "--put-bucket-replication",
+    "-b",
+    "bucket1",
+    "-f",
+    "none.json"
+  ]
+}

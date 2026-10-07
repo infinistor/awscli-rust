@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--put-bucket-replication",
+    "-b",
+    "bucket1",
+    "-f",
+    "in.json"
+  ],
+  "files" : {
+    "in.json" : "{\"Role\":\"r\"}"
+  },
+  "routes" : [
+    {
+      "contains" : "?replication HTTP",
+      "status" : 200
+    }
+  ]
+}

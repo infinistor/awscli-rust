@@ -1,0 +1,22 @@
+{
+  "args" : [
+    "--put-bucket-replication",
+    "-b",
+    "bucket1",
+    "-f",
+    "in.json"
+  ],
+  "files" : {
+    "in.json" : "{\"Role\":\"arn:aws:iam::123456789012:role/rep\",\"Rules\":[{\"Id\":\"Rule1\",\"Priority\":1,\"Status\":\"Enabled\",\"Destination\":{\"Bucket\":\"arn:aws:s3:::TargetBucketName\",\"StorageClass\":\"STANDARD\",\"AccountId\":\"123456789012\"},\"DeleteMarkerReplication\":{\"Status\":\"Disabled\"}}]}"
+  },
+  "routes" : [
+    {
+      "contains" : "?replication HTTP",
+      "responseBody" : "<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist</Message><RequestId>REQ1</RequestId></Error>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 404
+    }
+  ]
+}

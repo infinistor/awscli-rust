@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--get-bucket-replication",
+    "-b",
+    "bucket1"
+  ],
+  "dump" : true,
+  "routes" : [
+    {
+      "contains" : "?replication HTTP",
+      "responseBody" : "<ReplicationConfiguration xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Role>arn:aws:iam::123456789012:role/rep</Role><Rule><ID>Rule1</ID><Status>Enabled</Status><Priority>1</Priority><DeleteMarkerReplication><Status>Disabled</Status></DeleteMarkerReplication><Filter><Prefix>docs/</Prefix></Filter><Destination><Bucket>arn:aws:s3:::target1</Bucket><StorageClass>STANDARD_IA</StorageClass><Account>123456789012</Account></Destination></Rule></ReplicationConfiguration>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

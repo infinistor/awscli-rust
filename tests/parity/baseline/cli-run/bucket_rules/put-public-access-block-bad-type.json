@@ -1,0 +1,9 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "ERROR <TIME> : System.Text.Json.JsonException: The JSON value could not be converted to System.Nullable`1[System.Boolean]. Path: $.BlockPublicAcls | LineNumber: 0 | BytePositionInLine: 24."
+  ]
+}

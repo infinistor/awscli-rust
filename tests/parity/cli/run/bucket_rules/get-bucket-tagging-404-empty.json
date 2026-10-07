@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--get-bucket-tagging",
+    "-b",
+    "bucket1"
+  ],
+  "dump" : true,
+  "routes" : [
+    {
+      "contains" : "?tagging HTTP",
+      "responseBody" : "",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 404
+    }
+  ]
+}

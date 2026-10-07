@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "167 bytes md5=6d6716c288f7d38e9827e542706c2726",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "policy"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketPolicy Start",
+    "ERROR <TIME> : bucket1 Put Bucket Policy failed(NoContent)",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

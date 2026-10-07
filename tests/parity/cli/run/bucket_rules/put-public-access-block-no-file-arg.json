@@ -1,0 +1,7 @@
+{
+  "args" : [
+    "--put-public-access-block",
+    "-b",
+    "bucket1"
+  ]
+}

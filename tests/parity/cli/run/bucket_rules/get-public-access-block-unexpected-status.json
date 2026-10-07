@@ -1,0 +1,14 @@
+{
+  "args" : [
+    "--get-public-access-block",
+    "-b",
+    "bucket1"
+  ],
+  "dump" : true,
+  "routes" : [
+    {
+      "contains" : "?publicAccessBlock HTTP",
+      "status" : 204
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "args" : [
+    "--put-public-access-block",
+    "-f",
+    "in.json"
+  ],
+  "files" : {
+    "in.json" : "{\"BlockPublicAcls\":true,\"IgnorePublicAcls\":true,\"BlockPublicPolicy\":true,\"RestrictPublicBuckets\":false}"
+  }
+}

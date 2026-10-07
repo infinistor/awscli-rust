@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--put-bucket-tagging",
+    "-b",
+    "bucket1",
+    "-f",
+    "in.json"
+  ],
+  "files" : {
+    "in.json" : "{\"TagSet\":[]}"
+  },
+  "routes" : [
+    {
+      "contains" : "?tagging HTTP",
+      "status" : 200
+    }
+  ]
+}

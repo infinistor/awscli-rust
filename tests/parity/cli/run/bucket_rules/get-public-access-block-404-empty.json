@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--get-public-access-block",
+    "-b",
+    "bucket1"
+  ],
+  "dump" : true,
+  "routes" : [
+    {
+      "contains" : "?publicAccessBlock HTTP",
+      "responseBody" : "",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 404
+    }
+  ]
+}

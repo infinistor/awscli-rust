@@ -1,0 +1,20 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": "<LifecycleConfiguration><Rule><AbortIncompleteMultipartUpload><DaysAfterInitiation>3</DaysAfterInitiation></AbortIncompleteMultipartUpload><Expiration><Days>30</Days></Expiration><Filter><Prefix>logs/</Prefix></Filter><ID>rule1</ID><NoncurrentVersionExpiration><NewerNoncurrentVersions>2</NewerNoncurrentVersions><NoncurrentDays>7</NoncurrentDays></NoncurrentVersionExpiration><Status>Enabled</Status></Rule><Rule><Expiration><Date>2030-01-02T00:00:00Z</Date></Expiration><ID>rule2</ID><Status>Disabled</Status></Rule><Rule><Expiration><ExpiredObjectDeleteMarker>true</ExpiredObjectDeleteMarker></Expiration><ID>rule3</ID><Status>Enabled</Status></Rule></LifecycleConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "lifecycle"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutLifecycleConfiguration Start",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: The specified bucket does not exist"
+  ]
+}
