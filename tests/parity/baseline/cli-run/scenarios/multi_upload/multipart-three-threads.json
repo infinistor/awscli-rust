@@ -1,0 +1,213 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "1 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/mu/key0",
+      "query": [
+        "partNumber=2",
+        "uploadId=UP1"
+      ]
+    },
+    {
+      "body": "1 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/mu/key1",
+      "query": [
+        "partNumber=2",
+        "uploadId=UP1"
+      ]
+    },
+    {
+      "body": "1 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/mu/key2",
+      "query": [
+        "partNumber=2",
+        "uploadId=UP1"
+      ]
+    },
+    {
+      "body": "2 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/mu/key0",
+      "query": [
+        "partNumber=1",
+        "uploadId=UP1"
+      ]
+    },
+    {
+      "body": "2 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/mu/key1",
+      "query": [
+        "partNumber=1",
+        "uploadId=UP1"
+      ]
+    },
+    {
+      "body": "2 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/mu/key2",
+      "query": [
+        "partNumber=1",
+        "uploadId=UP1"
+      ]
+    },
+    {
+      "body": "<CompleteMultipartUpload><Part><ETag>\"etag1\"</ETag><PartNumber>1</PartNumber></Part><Part><ETag>\"etag2\"</ETag><PartNumber>2</PartNumber></Part></CompleteMultipartUpload>",
+      "headers": [],
+      "method": "POST",
+      "path": "/mu/key0",
+      "query": [
+        "uploadId=UP1"
+      ]
+    },
+    {
+      "body": "<CompleteMultipartUpload><Part><ETag>\"etag1\"</ETag><PartNumber>1</PartNumber></Part><Part><ETag>\"etag2\"</ETag><PartNumber>2</PartNumber></Part></CompleteMultipartUpload>",
+      "headers": [],
+      "method": "POST",
+      "path": "/mu/key1",
+      "query": [
+        "uploadId=UP1"
+      ]
+    },
+    {
+      "body": "<CompleteMultipartUpload><Part><ETag>\"etag1\"</ETag><PartNumber>1</PartNumber></Part><Part><ETag>\"etag2\"</ETag><PartNumber>2</PartNumber></Part></CompleteMultipartUpload>",
+      "headers": [],
+      "method": "POST",
+      "path": "/mu/key2",
+      "query": [
+        "uploadId=UP1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [
+        "range: bytes=0-1"
+      ],
+      "method": "GET",
+      "path": "/mu/key0",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [
+        "range: bytes=0-1"
+      ],
+      "method": "GET",
+      "path": "/mu/key1",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [
+        "range: bytes=0-1"
+      ],
+      "method": "GET",
+      "path": "/mu/key2",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [
+        "range: bytes=2-1"
+      ],
+      "method": "GET",
+      "path": "/mu/key0",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [
+        "range: bytes=2-1"
+      ],
+      "method": "GET",
+      "path": "/mu/key1",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [
+        "range: bytes=2-1"
+      ],
+      "method": "GET",
+      "path": "/mu/key2",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/mu/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/mu/key0",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/mu/key1",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/mu/key2",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "POST",
+      "path": "/mu/key0",
+      "query": [
+        "uploads"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "POST",
+      "path": "/mu/key1",
+      "query": [
+        "uploads"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "POST",
+      "path": "/mu/key2",
+      "query": [
+        "uploads"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : MultiUploadTest Start",
+    "INFO  <TIME> : CheckContentUsingRange : key Success",
+    "INFO  <TIME> : CheckContentUsingRange : key Success",
+    "INFO  <TIME> : CheckContentUsingRange : key Success",
+    "INFO  <TIME> : MultiUploadTest : complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

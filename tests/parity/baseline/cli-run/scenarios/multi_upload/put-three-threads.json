@@ -1,0 +1,66 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "3 bytes md5=3c6e0b8a9c15224a8228b9a98ca1531d",
+      "headers": [],
+      "method": "PUT",
+      "path": "/mu/key0",
+      "query": []
+    },
+    {
+      "body": "3 bytes md5=3c6e0b8a9c15224a8228b9a98ca1531d",
+      "headers": [],
+      "method": "PUT",
+      "path": "/mu/key1",
+      "query": []
+    },
+    {
+      "body": "3 bytes md5=3c6e0b8a9c15224a8228b9a98ca1531d",
+      "headers": [],
+      "method": "PUT",
+      "path": "/mu/key2",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/mu/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/mu/key0",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/mu/key1",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/mu/key2",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : MultiUploadTest Start",
+    "INFO  <TIME> : PutObject(key)",
+    "INFO  <TIME> : PutObject(key)",
+    "INFO  <TIME> : PutObject(key)",
+    "INFO  <TIME> : MultiUploadTest : complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

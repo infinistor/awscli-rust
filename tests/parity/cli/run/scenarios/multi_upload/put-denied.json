@@ -1,0 +1,21 @@
+{
+  "args": [
+    "--test-multi-upload",
+    "-b",
+    "mu",
+    "-k",
+    "key",
+    "--thread",
+    "1"
+  ],
+  "routes": [
+    {
+      "contains": "PUT /mu/key0",
+      "status": 403,
+      "responseBody": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Error><Code>AccessDenied</Code><Message>Access Denied</Message><RequestId>REQ1</RequestId></Error>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    }
+  ]
+}
