@@ -1,0 +1,16 @@
+{
+  "args" : [
+    "--upload-part",
+    "-b",
+    "bucket1",
+    "-k",
+    "k",
+    "--upload-id",
+    "UID1",
+    "--part-number",
+    "1"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}

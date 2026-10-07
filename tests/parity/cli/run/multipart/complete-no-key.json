@@ -1,0 +1,17 @@
+{
+  "args" : [
+    "--complete-multipart-upload",
+    "-b",
+    "bucket1",
+    "--upload-id",
+    "UID1",
+    "--file",
+    "parts.json"
+  ],
+  "default" : {
+    "status" : 200
+  },
+  "files" : {
+    "parts.json" : "{ \"Parts\": [ { \"PartNumber\": 1, \"ETag\": \"\\\"etag1\\\"\" }, { \"PartNumber\": 2, \"ETag\": \"\\\"etag2\\\"\" } ] }"
+  }
+}

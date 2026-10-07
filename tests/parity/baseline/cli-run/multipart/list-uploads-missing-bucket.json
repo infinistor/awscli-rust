@@ -1,0 +1,21 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "max-uploads=1000",
+        "uploads"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ListMultipartUploads Start",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: The specified bucket does not exist"
+  ]
+}

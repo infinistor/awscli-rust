@@ -1,0 +1,23 @@
+{
+  "args" : [
+    "--complete-multipart-upload",
+    "-b",
+    "bucket1",
+    "-k",
+    "dir/key1",
+    "--upload-id",
+    "UID1",
+    "--file",
+    "parts.json"
+  ],
+  "default" : {
+    "responseBody" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Error><Code>InvalidPart</Code><Message>One or more of the specified parts could not be found.</Message><RequestId>REQ1</RequestId></Error>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 400
+  },
+  "files" : {
+    "parts.json" : "{ \"Parts\": [ { \"PartNumber\": 1, \"ETag\": \"\\\"etag1\\\"\" }, { \"PartNumber\": 2, \"ETag\": \"\\\"etag2\\\"\" } ] }"
+  }
+}

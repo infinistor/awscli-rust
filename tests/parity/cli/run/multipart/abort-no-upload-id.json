@@ -1,0 +1,12 @@
+{
+  "args" : [
+    "--abort-multipart-upload",
+    "-b",
+    "bucket1",
+    "-k",
+    "k"
+  ],
+  "default" : {
+    "status" : 204
+  }
+}

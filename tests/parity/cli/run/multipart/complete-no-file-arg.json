@@ -1,0 +1,14 @@
+{
+  "args" : [
+    "--complete-multipart-upload",
+    "-b",
+    "bucket1",
+    "-k",
+    "k",
+    "--upload-id",
+    "UID1"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}

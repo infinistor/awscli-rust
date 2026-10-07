@@ -1,0 +1,10 @@
+{
+  "exitCode": 0,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "--bucket 버킷 이름을 입력해야 합니다.",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

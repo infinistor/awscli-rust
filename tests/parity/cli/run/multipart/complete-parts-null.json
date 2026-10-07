@@ -1,0 +1,26 @@
+{
+  "args" : [
+    "--complete-multipart-upload",
+    "-b",
+    "bucket1",
+    "-k",
+    "dir/key1",
+    "--upload-id",
+    "UID1",
+    "--file",
+    "parts.json"
+  ],
+  "files" : {
+    "parts.json" : "{ }"
+  },
+  "routes" : [
+    {
+      "contains" : "POST /bucket1",
+      "responseBody" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?><CompleteMultipartUploadResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Location>http://localhost/bucket1/dir/key1</Location><Bucket>bucket1</Bucket><Key>dir/key1</Key><ETag>\"final-etag-2\"</ETag></CompleteMultipartUploadResult>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

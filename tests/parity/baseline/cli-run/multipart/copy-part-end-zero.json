@@ -1,0 +1,10 @@
+{
+  "exitCode": 0,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "--end-byte 종료 바이트값을 입력해야 합니다.",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

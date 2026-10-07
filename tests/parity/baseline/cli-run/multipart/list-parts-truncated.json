@@ -1,0 +1,28 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/dir/key1",
+      "query": [
+        "max-parts=1000",
+        "uploadId=UID1"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ListParts Start",
+    "INFO  <TIME> : Next Marker: 2",
+    "",
+    "1 2024-01-02 오전 12:30:15 5242880 \"etag1\"",
+    "2 2024-01-02 오후 12:00:00 1024 \"etag2\"",
+    "3 2024-01-02 오후 1:01:02 0 \"etag3\"",
+    "",
+    "INFO  <TIME> : 3 parts. complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

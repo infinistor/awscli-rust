@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : InitiateMultipartUpload Start",
+    "ERROR <TIME> : System.ArgumentException: Key is a required property and must be set before making this call. (Parameter 'InitiateMultipartUploadRequest.Key')"
+  ]
+}

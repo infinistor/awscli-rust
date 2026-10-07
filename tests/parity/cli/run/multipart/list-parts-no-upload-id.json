@@ -1,0 +1,12 @@
+{
+  "args" : [
+    "--list-parts",
+    "-b",
+    "bucket1",
+    "-k",
+    "k"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}

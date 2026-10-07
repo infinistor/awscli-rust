@@ -1,0 +1,31 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "delimiter=%2F",
+        "key-marker=k1",
+        "max-uploads=5",
+        "prefix=dir%2F",
+        "upload-id-marker=u1",
+        "uploads"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ListMultipartUploads Start",
+    "",
+    "dir/long-key-name.txt 2024-01-02 오전 12:30:15 UID-aaa",
+    "k2                    2024-03-04 오후 1:45:59 UID-bbb",
+    "한글키                   2024-12-31 오후 11:59:59 UID-ccc",
+    "",
+    "INFO  <TIME> : bucket1 List Multipart Uploads(3)! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

@@ -16,18 +16,26 @@ use super::{
     zero_content_length,
 };
 
-/// 원본 `PartETag`: 완료할 파트 번호와 ETag.
-#[derive(Debug, Clone, PartialEq, Eq)]
+/// 원본 `PartETag`: 완료할 파트 번호와 ETag(와 파트 체크섬). 모두 비어 있을 수 있다(입력 파일에서 읽은 값).
+///
+/// .NET의 `ChecksumMD5`, `ChecksumSHA512`, `ChecksumXXHASH*`는 Rust SDK의 `CompletedPart`에 없어 옮기지 않았다.
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct PartETag {
-    pub part_number: i32,
-    pub e_tag: String,
+    pub part_number: Option<i32>,
+    pub e_tag: Option<String>,
+    pub checksum_crc32: Option<String>,
+    pub checksum_crc32_c: Option<String>,
+    pub checksum_crc64_nvme: Option<String>,
+    pub checksum_sha1: Option<String>,
+    pub checksum_sha256: Option<String>,
 }
 
 impl PartETag {
     pub fn new(part_number: i32, e_tag: impl Into<String>) -> Self {
         Self {
-            part_number,
-            e_tag: e_tag.into(),
+            part_number: Some(part_number),
+            e_tag: Some(e_tag.into()),
+            ..Self::default()
         }
     }
 }
@@ -134,8 +142,13 @@ impl S3Client {
                     .iter()
                     .map(|p| {
                         CompletedPart::builder()
-                            .part_number(p.part_number)
-                            .e_tag(&p.e_tag)
+                            .set_part_number(p.part_number)
+                            .set_e_tag(p.e_tag.clone())
+                            .set_checksum_crc32(p.checksum_crc32.clone())
+                            .set_checksum_crc32_c(p.checksum_crc32_c.clone())
+                            .set_checksum_crc64_nvme(p.checksum_crc64_nvme.clone())
+                            .set_checksum_sha1(p.checksum_sha1.clone())
+                            .set_checksum_sha256(p.checksum_sha256.clone())
                             .build()
                     })
                     .collect(),

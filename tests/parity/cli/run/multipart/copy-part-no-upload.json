@@ -1,0 +1,28 @@
+{
+  "args" : [
+    "--upload-part-copy",
+    "-b",
+    "bucket1",
+    "-k",
+    "dir/dst",
+    "--source",
+    "srcbucket",
+    "--source-key",
+    "src/obj 1",
+    "--upload-id",
+    "UID1",
+    "--part-number",
+    "2",
+    "--start-byte",
+    "0",
+    "--end-byte",
+    "1023"
+  ],
+  "default" : {
+    "responseBody" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Error><Code>NoSuchUpload</Code><Message>The specified upload does not exist. The upload ID may be invalid, or the upload may have been aborted or completed.</Message><RequestId>REQ1</RequestId></Error>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 404
+  }
+}

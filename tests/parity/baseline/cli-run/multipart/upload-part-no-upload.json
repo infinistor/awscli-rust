@@ -1,0 +1,21 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": "1 bytes md5=9dd4e461268c8034f5c8564e155c67a6",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/dir/key1",
+      "query": [
+        "partNumber=3",
+        "uploadId=UID1"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : UploadPart Start",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: The specified upload does not exist. The upload ID may be invalid, or the upload may have been aborted or completed."
+  ]
+}

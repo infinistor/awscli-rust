@@ -1,0 +1,22 @@
+{
+  "args" : [
+    "--upload-part-copy",
+    "-b",
+    "bucket1",
+    "-k",
+    "k",
+    "--source",
+    "s",
+    "--source-key",
+    "s",
+    "--upload-id",
+    "U",
+    "--part-number",
+    "1",
+    "--start-byte",
+    "0"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [
+        "x-amz-copy-source-range: bytes=0-1023",
+        "x-amz-copy-source: srcbucket%2Fsrc%2Fobj%201"
+      ],
+      "method": "PUT",
+      "path": "/bucket1/dir/dst",
+      "query": [
+        "partNumber=2",
+        "uploadId=UID1"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : UploadPartCopy Start",
+    "ERROR <TIME> : UploadPartCopy() : Create failed",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

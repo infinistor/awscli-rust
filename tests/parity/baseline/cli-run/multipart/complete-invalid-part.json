@@ -1,0 +1,20 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": "<CompleteMultipartUpload><Part><ETag>\"etag1\"</ETag><PartNumber>1</PartNumber></Part><Part><ETag>\"etag2\"</ETag><PartNumber>2</PartNumber></Part></CompleteMultipartUpload>",
+      "headers": [],
+      "method": "POST",
+      "path": "/bucket1/dir/key1",
+      "query": [
+        "uploadId=UID1"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : CompleteMultipartUpload Start",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: One or more of the specified parts could not be found."
+  ]
+}

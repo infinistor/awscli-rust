@@ -1,0 +1,14 @@
+{
+  "args" : [
+    "--abort-multipart-upload",
+    "-b",
+    "bucket1",
+    "-k",
+    "dir/key1",
+    "--upload-id",
+    "UID1"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}

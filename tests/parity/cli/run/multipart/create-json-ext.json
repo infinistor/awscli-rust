@@ -1,0 +1,19 @@
+{
+  "args" : [
+    "--create-multipart-upload",
+    "-b",
+    "bucket1",
+    "-k",
+    "a.json"
+  ],
+  "routes" : [
+    {
+      "contains" : "?uploads",
+      "responseBody" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?><InitiateMultipartUploadResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Bucket>bucket1</Bucket><Key>dir/key1.txt</Key><UploadId>UID-123</UploadId></InitiateMultipartUploadResult>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

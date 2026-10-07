@@ -1,0 +1,18 @@
+{
+  "args" : [
+    "--list-parts",
+    "-b",
+    "bucket1",
+    "-k",
+    "dir/key1",
+    "--upload-id",
+    "UID1"
+  ],
+  "default" : {
+    "responseBody" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist</Message><RequestId>REQ1</RequestId></Error>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 404
+  }
+}

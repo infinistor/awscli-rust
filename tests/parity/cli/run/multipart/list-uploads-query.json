@@ -1,0 +1,27 @@
+{
+  "args" : [
+    "--list-multipart-uploads",
+    "-b",
+    "bucket1",
+    "--prefix",
+    "dir/",
+    "--delimiter",
+    "/",
+    "--marker",
+    "k1",
+    "--upload-id",
+    "u1",
+    "--max-keys",
+    "5"
+  ],
+  "routes" : [
+    {
+      "contains" : "?uploads",
+      "responseBody" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ListMultipartUploadsResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Bucket>bucket1</Bucket><KeyMarker></KeyMarker><UploadIdMarker></UploadIdMarker><NextKeyMarker>k3</NextKeyMarker><NextUploadIdMarker>u3</NextUploadIdMarker><MaxUploads>1000</MaxUploads><IsTruncated>false</IsTruncated><Upload><Key>dir/long-key-name.txt</Key><UploadId>UID-aaa</UploadId><Initiator><ID>i1</ID><DisplayName>init</DisplayName></Initiator><Owner><ID>o1</ID><DisplayName>own</DisplayName></Owner><StorageClass>STANDARD</StorageClass><Initiated>2024-01-02T00:30:15.000Z</Initiated></Upload><Upload><Key>k2</Key><UploadId>UID-bbb</UploadId><Initiator><ID>i1</ID><DisplayName>init</DisplayName></Initiator><Owner><ID>o1</ID><DisplayName>own</DisplayName></Owner><StorageClass>STANDARD</StorageClass><Initiated>2024-03-04T13:45:59.000Z</Initiated></Upload><Upload><Key>한글키</Key><UploadId>UID-ccc</UploadId><Initiator><ID>i1</ID><DisplayName>init</DisplayName></Initiator><Owner><ID>o1</ID><DisplayName>own</DisplayName></Owner><StorageClass>STANDARD</StorageClass><Initiated>2024-12-31T23:59:59.000Z</Initiated></Upload></ListMultipartUploadsResult>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

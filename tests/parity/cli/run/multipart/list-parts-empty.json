@@ -1,0 +1,21 @@
+{
+  "args" : [
+    "--list-parts",
+    "-b",
+    "bucket1",
+    "-k",
+    "dir/key1",
+    "--upload-id",
+    "UID1"
+  ],
+  "routes" : [
+    {
+      "contains" : "GET /bucket1/dir/key1?",
+      "responseBody" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ListPartsResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Bucket>bucket1</Bucket><Key>dir/key1</Key><UploadId>UID1</UploadId><PartNumberMarker>0</PartNumberMarker><MaxParts>1000</MaxParts><IsTruncated>false</IsTruncated></ListPartsResult>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

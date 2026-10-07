@@ -1,0 +1,8 @@
+{
+  "args" : [
+    "--list-multipart-uploads"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}

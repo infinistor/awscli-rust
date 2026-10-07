@@ -31,6 +31,22 @@ pub(in crate::dispatch) fn op_error(error: S3Error, modeled: &[&str]) -> Command
     }
 }
 
+/// ko-KR `DateTime.ToString()`: `yyyy-MM-dd tt h:mm:ss`(UTC).
+pub(in crate::dispatch) fn ko_kr_time(time: &DateTime) -> String {
+    use chrono::Timelike;
+    utc(time).map_or_else(String::new, |t| {
+        let (pm, hour) = t.hour12();
+        format!(
+            "{} {} {}:{:02}:{:02}",
+            t.format("%Y-%m-%d"),
+            if pm { "오후" } else { "오전" },
+            hour,
+            t.minute(),
+            t.second()
+        )
+    })
+}
+
 /// `File.ReadAllText(path)`: BOM으로 UTF-8/UTF-16/UTF-32를 판별하고, 없으면 UTF-8로 읽는다(잘못된 바이트는 U+FFFD).
 pub(in crate::dispatch) fn read_all_text(path: &str) -> Result<String, CommandError> {
     fn utf16(bytes: &[u8], to_u16: fn([u8; 2]) -> u16) -> String {

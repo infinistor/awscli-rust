@@ -1,0 +1,20 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/bucket1/dir/key1",
+      "query": [
+        "uploadId=UID1"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : AbortMultipartUpload Start",
+    "ERROR <TIME> : Amazon.S3.Model.NoSuchUploadException: The specified upload does not exist. The upload ID may be invalid, or the upload may have been aborted or completed."
+  ]
+}

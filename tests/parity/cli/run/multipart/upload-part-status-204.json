@@ -1,0 +1,21 @@
+{
+  "args" : [
+    "--upload-part",
+    "-b",
+    "bucket1",
+    "-k",
+    "dir/key1",
+    "--upload-id",
+    "UID1",
+    "--part-number",
+    "3",
+    "--file",
+    "part.bin"
+  ],
+  "default" : {
+    "status" : 204
+  },
+  "files" : {
+    "part.bin" : "x"
+  }
+}
