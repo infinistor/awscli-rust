@@ -1,0 +1,28 @@
+{
+  "exitCode": -532462766,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/rr/obj",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [
+        "range: bytes=0-3"
+      ],
+      "method": "GET",
+      "path": "/rr/obj",
+      "query": []
+    }
+  ],
+  "stderr": [
+    "Unhandled exception. Amazon.S3.AmazonS3Exception: Access Denied"
+  ],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : RangeReadTest Start"
+  ]
+}

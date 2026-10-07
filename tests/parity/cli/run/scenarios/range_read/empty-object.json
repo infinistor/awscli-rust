@@ -1,0 +1,13 @@
+{
+  "args": [
+    "--test-range-read",
+    "-b",
+    "rr",
+    "-k",
+    "obj",
+    "--thread",
+    "2",
+    "--range-list",
+    "4"
+  ]
+}

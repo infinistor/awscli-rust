@@ -1,0 +1,18 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/rr/obj",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : RangeReadTest Start",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: Error making request with Error Code NotFound and Http Status Code NotFound. No further error information was returned by the service."
+  ]
+}

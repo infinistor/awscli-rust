@@ -4,6 +4,7 @@ use std::time::Instant;
 
 use awscli_rest_scenarios::multi_part::MultiPartTest;
 use awscli_rest_scenarios::multi_upload::MultiUploadTest;
+use awscli_rest_scenarios::range_read;
 use tracing::info;
 
 use super::super::{CommandContext, CommandResult, not_ported};
@@ -13,8 +14,33 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
     match menu {
         MenuList::ManualUpload => manual_upload(ctx).await,
         MenuList::MultiUploadTest => multi_upload_test(ctx).await,
+        MenuList::RangeReadTest => range_read_test(ctx).await,
         _ => not_ported(menu),
     }
+}
+
+/// 원본 `case MenuList.RangeReadTest`(검증은 `tests/mod.rs`).
+async fn range_read_test(ctx: &mut CommandContext) -> CommandResult {
+    let o = &ctx.options;
+    let thread = if o.thread < 1 { 10 } else { o.thread };
+
+    info!("RangeReadTest Start");
+
+    let sw = Instant::now();
+    range_read::start(
+        thread,
+        ctx.client(),
+        o.bucket_name.as_deref().unwrap_or_default(),
+        o.key.as_deref().unwrap_or_default(),
+        &o.range_list,
+        o.count,
+    )
+    .await?;
+    info!(
+        "RangeReadTest : complete time = {}ms",
+        sw.elapsed().as_millis()
+    );
+    Ok(0)
 }
 
 /// 원본 `case MenuList.MultiUploadTest`(검증은 `tests/mod.rs`).

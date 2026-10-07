@@ -1,0 +1,64 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/rr/obj",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [
+        "range: bytes=0-999"
+      ],
+      "method": "GET",
+      "path": "/rr/obj",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [
+        "range: bytes=1000-1001"
+      ],
+      "method": "GET",
+      "path": "/rr/obj",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [
+        "range: bytes=1002-2001"
+      ],
+      "method": "GET",
+      "path": "/rr/obj",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [
+        "range: bytes=2002-2003"
+      ],
+      "method": "GET",
+      "path": "/rr/obj",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [
+        "range: bytes=2004-2499"
+      ],
+      "method": "GET",
+      "path": "/rr/obj",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : RangeReadTest Start",
+    "INFO  <TIME> : RangeReadTest : complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}
