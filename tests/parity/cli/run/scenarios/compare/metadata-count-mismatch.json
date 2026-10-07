@@ -1,0 +1,43 @@
+{
+  "args": [
+    "--test-compare=false"
+  ],
+  "routes": [
+    {
+      "contains": "GET /src/?",
+      "status": 200,
+      "responseBody": "<ListBucketResult xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Name>src</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>a.txt</Key><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>e1</ETag><Size>10</Size><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "GET /tgt/?",
+      "status": 200,
+      "responseBody": "<ListBucketResult xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Name>tgt</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>a.txt</Key><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>e1</ETag><Size>10</Size><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "HEAD /src/a.txt",
+      "status": 200,
+      "responseBody": "xxxxxxxxxx",
+      "responseHeaders": {
+        "Last-Modified": "Mon, 01 Jan 2024 00:00:00 GMT",
+        "ETag": "\"e1\"",
+        "x-amz-meta-color": "red"
+      }
+    },
+    {
+      "contains": "HEAD /tgt/a.txt",
+      "status": 200,
+      "responseBody": "xxxxxxxxxx",
+      "responseHeaders": {
+        "Last-Modified": "Mon, 01 Jan 2024 00:00:00 GMT",
+        "ETag": "\"e1\""
+      }
+    }
+  ],
+  "config": "[Default]\r\nBucketName = main\r\nObjectPrefix = FILE\r\nFileSize = 1K\r\n\r\n[Compare]\r\nSourceBucket = src\r\nTargetBucket = tgt\r\nMetadataCheck = true\r\n\r\n[Main User]\r\nURL = {URL}\r\nAccessKey = testcore-access\r\nSecretKey = testcore-secret-key-0123456789abcdefghij\r\n\r\n[Alt User]\r\nURL = {URL}\r\nAccessKey = testcore-alt-access\r\nSecretKey = testcore-alt-secret-0123456789abcdefghij\r\n"
+}
