@@ -1,0 +1,103 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "POST",
+      "path": "/bucket1/TH_000-temp_00000",
+      "query": [
+        "uploads"
+      ]
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/TH_000-temp_00000",
+      "query": [
+        "partNumber=1",
+        "uploadId=upload-1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "POST",
+      "path": "/bucket1/TH_000-temp_00001",
+      "query": [
+        "uploads"
+      ]
+    },
+    {
+      "body": "1000 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/TH_000-temp_00001",
+      "query": [
+        "partNumber=1",
+        "uploadId=upload-1"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "{",
+    "  \"BucketType\": 1,",
+    "  \"ThreadCount\": 1,",
+    "  \"FileCount\": 2,",
+    "  \"MultiGateway\": {",
+    "    \"URL\": \"http://<HOST>\",",
+    "    \"RegionName\": \"\",",
+    "    \"AccessKey\": \"testcore-access\",",
+    "    \"SecretKey\": \"testcore-secret-key-0123456789abcdefghij\"",
+    "  },",
+    "  \"OldSystem\": {",
+    "    \"URL\": \"http://<HOST>\",",
+    "    \"RegionName\": \"\",",
+    "    \"AccessKey\": \"testcore-access\",",
+    "    \"SecretKey\": \"testcore-secret-key-0123456789abcdefghij\"",
+    "  },",
+    "  \"NewSystem\": {",
+    "    \"URL\": \"http://<HOST>\",",
+    "    \"RegionName\": \"\",",
+    "    \"AccessKey\": \"testcore-access\",",
+    "    \"SecretKey\": \"testcore-secret-key-0123456789abcdefghij\"",
+    "  }",
+    "}",
+    "INFO  <TIME> : Start MultiSystem Prepare Test",
+    "INFO  <TIME> : Initialize",
+    "INFO  <TIME> : Start",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: Access Denied",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: Access Denied",
+    "INFO  <TIME> : ",
+    "--------------------------------------------------------------",
+    " Remaining Count :         2",
+    " Write Count     :         0 (+ 0)",
+    " Write Average   :<N> file/sec",
+    " Bandwidth       :<N>/s",
+    " Times           :<N> sec",
+    "--------------------------------------------------------------",
+    "INFO  <TIME> : End",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

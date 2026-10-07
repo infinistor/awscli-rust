@@ -1,6 +1,8 @@
 //! 원본 `CommandDispatcher`의 시나리오 실행: LocalTest, MultiSystemTest, AccessIpsTest, UsedSizeTest.
 
+use awscli_rest_common::to_dotnet_json;
 use awscli_rest_scenarios::local::LocalTest;
+use awscli_rest_scenarios::multi_system::MultiSystemTest;
 
 use super::super::{CommandContext, CommandResult, not_ported};
 use crate::menu::MenuList;
@@ -19,8 +21,35 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
         | LocalMultipartGetTest
         | LocalMultipartGetTestV2
         | LocalMultipartPutGetTest => local(ctx, menu).await,
+        MultiSystemListTest
+        | MultiSystemUploadTest
+        | MultiSystemUpDownTest
+        | MultiSystemAllTest => multi_system(ctx, menu).await,
         _ => not_ported(menu),
     }
+}
+
+/// `MultiSystemXxxTest` 메뉴.
+async fn multi_system(ctx: &mut CommandContext, menu: MenuList) -> CommandResult {
+    use MenuList::*;
+    let config = ctx.config();
+    let bucket_name = ctx.options.bucket_name.clone().unwrap_or_default();
+    let mut test = MultiSystemTest::new(
+        &config.main,
+        config.multi_system_upload(),
+        &config.main_user,
+        &bucket_name,
+        &ctx.cancel,
+    );
+    println!("{}", to_dotnet_json(&config.multi_system_view()));
+    let multipart = ctx.options.multipart;
+    match menu {
+        MultiSystemListTest => test.list(ctx.options.flag).await?,
+        MultiSystemUploadTest => test.prepare(multipart).await?,
+        MultiSystemUpDownTest => test.put_get(multipart).await?,
+        _ => test.mix(multipart).await?,
+    }
+    Ok(0)
 }
 
 /// `LocalXxxTest` 메뉴. 대상 경로 확인(`TargetPath`)은 상위(`tests/mod.rs`)에서 한다.
