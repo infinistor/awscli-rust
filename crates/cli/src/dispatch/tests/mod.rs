@@ -2,8 +2,8 @@
 //!
 //! 도움말과 실행 전 검증(설정 누락, 필수 인자)은 여기서, 시나리오 실행은 묶음별 하위 모듈(`up_down`, `system`,
 //! `compare`, `transfer`)에서 한다. 시나리오 본체는 `awscli-rest-scenarios`에 있다.
-//! 원본 `MixV2Test`는 `--help`여도 도움말을 출력한 뒤 테스트를 실행하므로(원본 버그), 실행을 옮기기 전까지
-//! 비교 대상(`PORTED`)에서 뺀다.
+//! 원본 `MixV2Test`는 `--help`여도 도움말을 출력한 뒤 테스트를 실행한다(원본 버그, 그대로 둔다). 버킷 이름이 빈 채로 실행되는 `--test-mix-v2 --help`(자동 사례 `help/test-mix-v2`)는
+//! .NET이 `GET /?acl`을 보내지만 AWS SDK for Rust는 빈 버킷 이름으로 요청을 만들지 못해 비교할 수 없어 기준 출력에서 뺐다.
 
 mod compare;
 mod system;
@@ -38,6 +38,7 @@ pub(super) const PORTED: &[MenuList] = &[
     MenuList::DeleteTestVersion,
     MenuList::DeleteDirectoryTest,
     MenuList::MixTest,
+    MenuList::MixV2Test,
     MenuList::NewMixTest,
     MenuList::PutGetTest,
     MenuList::AllTest,
