@@ -1,0 +1,14 @@
+{
+  "args" : [
+    "--put-object-acl",
+    "-b",
+    "bucket1",
+    "-k",
+    "dir/key1.txt",
+    "--file",
+    "nope.json"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}

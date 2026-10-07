@@ -1,0 +1,12 @@
+{
+  "args" : [
+    "--put-bucket-acl",
+    "-b",
+    "bucket1",
+    "--acl",
+    "private"
+  ],
+  "default" : {
+    "status" : 204
+  }
+}

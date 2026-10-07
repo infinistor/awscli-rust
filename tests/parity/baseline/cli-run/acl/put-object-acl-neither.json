@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/dir/key1.txt",
+      "query": [
+        "acl"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "ERROR <TIME> : --file 설정파일 경로를 입력하거나, --acl 권한을 입력해야 합니다.",
+    "INFO  <TIME> : PutObjectAcl Start",
+    "INFO  <TIME> : dir/key1.txt Put Object Acl! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

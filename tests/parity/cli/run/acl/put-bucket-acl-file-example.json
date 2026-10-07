@@ -1,0 +1,15 @@
+{
+  "args" : [
+    "--put-bucket-acl",
+    "-b",
+    "bucket1",
+    "--file",
+    "acl.json"
+  ],
+  "default" : {
+    "status" : 200
+  },
+  "files" : {
+    "acl.json" : "{\n  \"Owner\": {\n    \"DisplayName\": \"MainDisplayName\",\n    \"Id\": \"MainUserId\"\n  },\n  \"Grants\": [\n    {\n      \"Permission\": \"FULL_CONTROL\",\n      \"Grantee\": {\n        \"CanonicalUser\": \"AltUserId\",\n        \"DisplayName\": \"AltDisplayName\",\n        \"EmailAddress\": null,\n        \"Type\": {\n          \"Value\": \"CanonicalUser\"\n        },\n        \"URI\": null\n      }\n    }\n  ]\n}\n"
+  }
+}

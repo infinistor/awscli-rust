@@ -1,0 +1,17 @@
+{
+  "args" : [
+    "--put-object-acl",
+    "-b",
+    "bucket1",
+    "-k",
+    "dir/key1.txt",
+    "--file",
+    "acl.json"
+  ],
+  "default" : {
+    "status" : 200
+  },
+  "files" : {
+    "acl.json" : "{\n  \"Owner\": { \"DisplayName\": \"MainDisplayName\", \"Id\": \"MainUserId\" },\n  \"Grants\": [\n    { \"Permission\": \"FULL_CONTROL\", \"Grantee\": { \"CanonicalUser\": \"AltUserId\", \"DisplayName\": \"AltDisplayName\" } },\n    { \"Permission\": \"READ\", \"Grantee\": { \"URI\": \"http://acs.amazonaws.com/groups/global/AllUsers\" } },\n    { \"Permission\": \"WRITE\", \"Grantee\": { \"EmailAddress\": \"user@example.com\" } }\n  ]\n}\n"
+  }
+}

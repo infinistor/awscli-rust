@@ -1,0 +1,23 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [
+        "x-amz-acl: private"
+      ],
+      "method": "PUT",
+      "path": "/bucket1/dir/key1.txt",
+      "query": [
+        "acl"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutObjectAcl Start",
+    "ERROR <TIME> : dir/key1.txt Put Object Acl failed(NoContent)",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

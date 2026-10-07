@@ -1,0 +1,17 @@
+{
+  "args" : [
+    "--get-object-acl",
+    "-b",
+    "bucket1",
+    "-k",
+    "key1"
+  ],
+  "default" : {
+    "responseBody" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Error><Code>AccessDenied</Code><Message>Access Denied</Message><RequestId>REQ1</RequestId></Error>",
+    "responseHeaders" : {
+      "Content-Type" : "application/xml"
+    },
+    "status" : 403
+  },
+  "dump" : true
+}

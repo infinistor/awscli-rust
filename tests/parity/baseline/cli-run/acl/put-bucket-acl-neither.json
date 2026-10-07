@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "acl"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "ERROR <TIME> : --file 로 설정파일 경로를 입력하거나 --acl 로 권한을 입력해야 합니다.",
+    "INFO  <TIME> : PutBucketAcl Start",
+    "INFO  <TIME> : bucket1 Put Bucket Acl! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

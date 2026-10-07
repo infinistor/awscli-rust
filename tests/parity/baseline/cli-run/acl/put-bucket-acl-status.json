@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "acl"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketAcl Start",
+    "ERROR <TIME> : bucket1 Put Bucket Acl failed(NoContent)",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/dir/key1.txt",
+      "query": [
+        "acl"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "파일을 찾을 수 없습니다.",
+    "INFO  <TIME> : PutObjectAcl Start",
+    "INFO  <TIME> : dir/key1.txt Put Object Acl! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

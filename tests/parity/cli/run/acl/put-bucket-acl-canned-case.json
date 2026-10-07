@@ -1,0 +1,12 @@
+{
+  "args" : [
+    "--put-bucket-acl",
+    "-b",
+    "bucket1",
+    "--acl",
+    "PUBLIC-READ"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}

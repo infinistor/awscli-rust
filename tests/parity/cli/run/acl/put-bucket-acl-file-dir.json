@@ -1,0 +1,15 @@
+{
+  "args" : [
+    "--put-bucket-acl",
+    "-b",
+    "bucket1",
+    "--file",
+    "sub"
+  ],
+  "default" : {
+    "status" : 200
+  },
+  "files" : {
+    "sub/x.json" : "{}"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "args" : [
+    "--put-bucket-acl",
+    "-b",
+    "bucket1",
+    "--file",
+    "acl.json"
+  ],
+  "default" : {
+    "status" : 200
+  },
+  "files" : {
+    "acl.json" : "{ \"Grants\": [ null ] }"
+  }
+}

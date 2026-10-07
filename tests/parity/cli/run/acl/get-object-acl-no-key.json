@@ -1,0 +1,11 @@
+{
+  "args" : [
+    "--get-object-acl",
+    "-b",
+    "bucket1"
+  ],
+  "default" : {
+    "status" : 200
+  },
+  "dump" : true
+}

@@ -1,0 +1,12 @@
+{
+  "args" : [
+    "--put-object-acl",
+    "-b",
+    "bucket1",
+    "--acl",
+    "private"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}

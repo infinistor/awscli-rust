@@ -1,0 +1,14 @@
+{
+  "args" : [
+    "--put-object-acl",
+    "-b",
+    "bucket1",
+    "-k",
+    "dir/key1.txt",
+    "--acl",
+    "PUBLIC-READ"
+  ],
+  "default" : {
+    "status" : 200
+  }
+}
