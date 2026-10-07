@@ -24,7 +24,6 @@ use super::output::{self, pad_right, utf16_len};
 use super::{CommandContext, CommandError, CommandResult, not_ported};
 use crate::menu::MenuList;
 use crate::usage;
-use awscli_rest_s3::S3Error;
 
 /// 옮긴 메뉴.
 pub(super) const PORTED: &[MenuList] = &[
@@ -40,11 +39,6 @@ pub(super) const PORTED: &[MenuList] = &[
     MenuList::PutBucketOwnershipControls,
     MenuList::DeleteBucketOwnershipControls,
 ];
-
-/// 전용 예외로 모델링된 오류 코드가 없는 연산의 오류.
-fn no_model(error: S3Error) -> CommandError {
-    format::op_error(error, &[])
-}
 
 /// 메뉴별 도움말.
 fn help_text(menu: MenuList) -> Option<String> {
@@ -155,7 +149,9 @@ fn bucket_data<'a>(
         .into_iter()
         .map(|(name, date)| BucketData {
             name: name.unwrap_or_default().to_string(),
-            modified: date.map(format::invariant_time).unwrap_or_default(),
+            modified: date
+                .map(crate::dispatch::output::invariant_time)
+                .unwrap_or_default(),
         })
         .collect()
 }
@@ -193,7 +189,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                 .put_bucket(&bucket_name, acl, Some(ctx.options.flag), ownership)
                 .await
                 .map_err(|e| {
-                    format::op_error(e, &["BucketAlreadyExists", "BucketAlreadyOwnedByYou"])
+                    CommandError::s3(e, &["BucketAlreadyExists", "BucketAlreadyOwnedByYou"])
                 })?;
             let ms = sw.elapsed().as_millis();
             if response.status == 200 {
@@ -212,7 +208,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                 .client()
                 .delete_bucket(&bucket_name)
                 .await
-                .map_err(no_model)?;
+                .map_err(CommandError::from)?;
             let ms = sw.elapsed().as_millis();
             if response.status == 204 {
                 info!("{bucket_name} Delete! complete time = {ms}ms");
@@ -242,7 +238,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                     o.continuation_token.as_deref(),
                 )
                 .await
-                .map_err(no_model)?;
+                .map_err(CommandError::from)?;
             let ms = sw.elapsed().as_millis();
             if response.status == 200 {
                 let buckets = response.output.buckets();
@@ -267,7 +263,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                 .client()
                 .list_directory_buckets(o.max_keys, o.continuation_token.as_deref())
                 .await
-                .map_err(no_model)?;
+                .map_err(CommandError::from)?;
             let ms = sw.elapsed().as_millis();
             if response.status == 200 {
                 let buckets = response.output.buckets();
@@ -295,7 +291,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                 .client()
                 .get_bucket_location(&bucket_name)
                 .await
-                .map_err(no_model)?;
+                .map_err(CommandError::from)?;
             let ms = sw.elapsed().as_millis();
             if response.status == 200 {
                 if print {
@@ -326,7 +322,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                 .client()
                 .get_bucket_versioning(&bucket_name)
                 .await
-                .map_err(no_model)?;
+                .map_err(CommandError::from)?;
             let ms = sw.elapsed().as_millis();
             if response.status == 200 {
                 if print {
@@ -356,7 +352,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                 .client()
                 .put_bucket_versioning(&bucket_name, status)
                 .await
-                .map_err(no_model)?;
+                .map_err(CommandError::from)?;
             let ms = sw.elapsed().as_millis();
             if response.status == 200 {
                 info!("{bucket_name} Put Bucket Versioning! complete time = {ms}ms");
@@ -374,7 +370,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                 .client()
                 .get_bucket_ownership_controls(&bucket_name)
                 .await
-                .map_err(no_model)?;
+                .map_err(CommandError::from)?;
             let ms = sw.elapsed().as_millis();
             if response.status == 200 {
                 if print {
@@ -403,7 +399,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                 .client()
                 .put_bucket_ownership_controls(&bucket_name, ownership)
                 .await
-                .map_err(no_model)?;
+                .map_err(CommandError::from)?;
             let ms = sw.elapsed().as_millis();
             if response.status == 200 {
                 info!("{bucket_name} Put Bucket Ownership Controls! complete time = {ms}ms");
@@ -421,7 +417,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                 .client()
                 .delete_bucket_ownership_controls(&bucket_name)
                 .await
-                .map_err(no_model)?;
+                .map_err(CommandError::from)?;
             let ms = sw.elapsed().as_millis();
             if response.status == 204 {
                 info!("{bucket_name} Delete Bucket Ownership Controls! complete time = {ms}ms");

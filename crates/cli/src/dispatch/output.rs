@@ -4,11 +4,12 @@
 //!   사람이 보는 용도라 .NET과 글자 단위로 맞추지 않는다(사용자 결정). SDK 형식의 `Debug` 출력을 읽어
 //!   PascalCase 속성 이름의 들여쓴 JSON으로 바꾼다. `None`과 `_`로 시작하는 내부 필드는 뺀다.
 //! - 날짜: 원본의 `DateTime` 기본 `ToString()`은 문화권에 따라 달라 ko-KR 형식(`yyyy-MM-dd tt h:mm:ss`)으로 고정한다.
+//!   시각은 .NET SDK처럼 UTC 그대로 쓴다.
 
 use std::fmt::Debug;
 
 use awscli_rest_common::to_dotnet_json;
-use chrono::{DateTime, Local, Timelike, Utc};
+use chrono::{DateTime, Timelike, Utc};
 use serde::ser::{Serialize, SerializeMap, SerializeSeq, Serializer};
 
 /// 원본 `LINE`(74자).
@@ -47,20 +48,19 @@ pub fn utf16_len(text: &str) -> usize {
     text.encode_utf16().count()
 }
 
-/// SDK 시각을 로컬 시각으로.
-pub fn local_time(time: &aws_sdk_s3::primitives::DateTime) -> Option<DateTime<Local>> {
+/// SDK 시각(UTC). AWS SDK(.NET v4)는 응답 XML의 시각을 UTC `DateTime`으로 읽고 그대로 서식을 적용한다.
+pub fn utc_time(time: &aws_sdk_s3::primitives::DateTime) -> Option<DateTime<Utc>> {
     DateTime::<Utc>::from_timestamp(time.secs(), time.subsec_nanos())
-        .map(|t| t.with_timezone(&Local))
 }
 
-/// `DateTime.ToString("yyyy-MM-dd HH:mm:ss", InvariantInfo)`(로컬 시각).
+/// `DateTime.ToString("yyyy-MM-dd HH:mm:ss", InvariantInfo)`(UTC).
 pub fn invariant_time(time: &aws_sdk_s3::primitives::DateTime) -> String {
-    local_time(time).map_or_else(String::new, |t| t.format("%Y-%m-%d %H:%M:%S").to_string())
+    utc_time(time).map_or_else(String::new, |t| t.format("%Y-%m-%d %H:%M:%S").to_string())
 }
 
-/// ko-KR `DateTime.ToString()`: `yyyy-MM-dd tt h:mm:ss`(`tt`는 오전/오후, 로컬 시각).
+/// ko-KR `DateTime.ToString()`: `yyyy-MM-dd tt h:mm:ss`(`tt`는 오전/오후, UTC).
 pub fn ko_kr_time(time: &aws_sdk_s3::primitives::DateTime) -> String {
-    local_time(time).map_or_else(String::new, |t| {
+    utc_time(time).map_or_else(String::new, |t| {
         let (pm, hour) = t.hour12();
         format!(
             "{} {} {}:{:02}:{:02}",

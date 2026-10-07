@@ -131,14 +131,9 @@ fn blank(value: &Option<String>) -> bool {
     value.as_deref().is_none_or(|v| v.trim().is_empty())
 }
 
-/// 전용 예외로 모델링된 오류 코드가 없는 연산의 오류.
-fn no_model(error: awscli_rest_s3::S3Error) -> CommandError {
-    format::op_error(error, &[])
-}
-
 /// 객체 ACL 연산에서 .NET SDK가 전용 예외로 던지는 오류 코드.
 fn object_model(error: awscli_rest_s3::S3Error) -> CommandError {
-    format::op_error(error, &["NoSuchKey"])
+    CommandError::s3(error, &["NoSuchKey"])
 }
 
 /// `--file`로 준 ACL 입력을 읽는다. 파일이 없으면 `파일을 찾을 수 없습니다.`를 출력하고 `None`.
@@ -196,7 +191,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                 .client()
                 .get_bucket_acl(&bucket_name)
                 .await
-                .map_err(no_model)?;
+                .map_err(CommandError::from)?;
             let ms = sw.elapsed().as_millis();
             if response.status == 200 {
                 if o.print {
@@ -229,7 +224,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                 .client()
                 .put_bucket_acl(&bucket_name, Option::None, sdk_policy)
                 .await
-                .map_err(no_model)?;
+                .map_err(CommandError::from)?;
             let ms = sw.elapsed().as_millis();
             if response.status == 200 {
                 info!("{bucket_name} Put Bucket Acl! complete time = {ms}ms");

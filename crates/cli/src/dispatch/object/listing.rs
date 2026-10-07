@@ -3,7 +3,7 @@
 use std::time::Instant;
 
 use aws_sdk_s3::types::{DeleteMarkerEntry, Object, ObjectVersion};
-use chrono::{DateTime, Local, Utc};
+use chrono::Local;
 use rust_decimal::Decimal;
 use tracing::info;
 
@@ -45,8 +45,8 @@ impl ObjectData {
 
 /// `DateTime.ToString("yyyy-MM-dd HH:mm:ss", InvariantInfo)`. 값이 없으면 빈 문자열.
 fn modified_text(time: Option<&aws_sdk_s3::primitives::DateTime>) -> String {
-    time.and_then(|t| DateTime::<Utc>::from_timestamp(t.secs(), t.subsec_nanos()))
-        .map_or_else(String::new, |t| t.format("%Y-%m-%d %H:%M:%S").to_string())
+    time.map(crate::dispatch::output::invariant_time)
+        .unwrap_or_default()
 }
 
 /// `x.Key.EndsWith(suffix, StringComparison.OrdinalIgnoreCase)`.

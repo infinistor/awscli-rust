@@ -89,9 +89,25 @@ impl fmt::Display for CommandError {
 
 impl std::error::Error for CommandError {}
 
+impl CommandError {
+    /// S3 오류를 .NET 예외로 바꾼다. .NET SDK는 연산마다 오류 응답 해석기가 아는 코드(`modeled`, 예: GetObject의
+    /// `NoSuchKey`)만 전용 예외(`NoSuchKeyException`)로 던지고, 그 밖의 서비스 오류는 `AmazonS3Exception`이다.
+    /// `S3Error::dotnet_type`은 연산을 구분하지 않으므로 여기서 연산별로 좁힌다.
+    pub fn s3(error: S3Error, modeled: &[&str]) -> Self {
+        let dotnet_type = match &error {
+            S3Error::Service { code, .. } if !modeled.contains(&code.as_str()) => {
+                "Amazon.S3.AmazonS3Exception"
+            }
+            other => other.dotnet_type(),
+        };
+        Self::new(dotnet_type, error.to_string())
+    }
+}
+
+/// 전용 예외로 모델링한 오류 코드가 없는 연산(대부분)의 변환. `?`도 이 규칙을 따른다.
 impl From<S3Error> for CommandError {
     fn from(error: S3Error) -> Self {
-        Self::new(error.dotnet_type(), error.to_string())
+        Self::s3(error, &[])
     }
 }
 

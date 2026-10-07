@@ -169,14 +169,9 @@ fn blank(value: &Option<String>) -> bool {
     value.as_deref().is_none_or(|v| v.trim().is_empty())
 }
 
-/// 전용 예외로 모델링된 오류 코드가 없는 연산의 오류.
-fn no_model(error: S3Error) -> CommandError {
-    format::op_error(error, &[])
-}
-
 /// `AbortMultipartUpload`가 전용 예외(`NoSuchUploadException`)로 던지는 오류.
 fn abort_model(error: S3Error) -> CommandError {
-    format::op_error(error, &["NoSuchUpload"])
+    CommandError::s3(error, &["NoSuchUpload"])
 }
 
 /// `UploadPart`의 오류. 파일이 없으면 `FileNotFoundException.ToString()`의 `File name:` 줄이 붙는다.
@@ -197,7 +192,7 @@ fn upload_part_error(error: S3Error) -> CommandError {
             );
         }
     }
-    no_model(error)
+    CommandError::from(error)
 }
 
 pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResult {
@@ -287,7 +282,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                 .client()
                 .complete_multipart_upload(&bucket_name, &key, &upload_id, &parts)
                 .await
-                .map_err(no_model)?;
+                .map_err(CommandError::from)?;
             let ms = sw.elapsed().as_millis();
             if response.status == 200 {
                 info!("Complete Multipart Upload complete time = {ms}ms");
@@ -310,7 +305,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                 .client()
                 .initiate_multipart_upload(&bucket_name, key)
                 .await
-                .map_err(no_model)?;
+                .map_err(CommandError::from)?;
             let ms = sw.elapsed().as_millis();
             if response.status == 200 {
                 info!(
@@ -335,7 +330,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                     o.delimiter.as_deref(),
                 )
                 .await
-                .map_err(no_model)?;
+                .map_err(CommandError::from)?;
             let ms = sw.elapsed().as_millis();
             if response.status == 200 {
                 let uploads = response.output.uploads();
@@ -353,7 +348,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                             pad_right(upload.key().unwrap_or_default(), max_length),
                             upload
                                 .initiated()
-                                .map(format::ko_kr_time)
+                                .map(crate::dispatch::output::ko_kr_time)
                                 .unwrap_or_default(),
                             upload.upload_id().unwrap_or_default()
                         );
@@ -388,7 +383,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                         o.max_keys,
                     )
                     .await
-                    .map_err(no_model)?;
+                    .map_err(CommandError::from)?;
                 if !o.all {
                     end = true;
                 }
@@ -415,7 +410,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                             .map(|n| n.to_string())
                             .unwrap_or_default(),
                         item.last_modified()
-                            .map(format::ko_kr_time)
+                            .map(crate::dispatch::output::ko_kr_time)
                             .unwrap_or_default(),
                         item.size().map(|s| s.to_string()).unwrap_or_default(),
                         item.e_tag().unwrap_or_default()
@@ -479,7 +474,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                     o.version_id.as_deref(),
                 )
                 .await
-                .map_err(no_model)?;
+                .map_err(CommandError::from)?;
             let ms = sw.elapsed().as_millis();
             if response.status == 200 {
                 info!("UploadPartCopy : Create! complete time = {ms}ms");

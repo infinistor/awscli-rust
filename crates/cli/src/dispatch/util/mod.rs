@@ -54,16 +54,6 @@ fn blank(value: &Option<String>) -> bool {
     value.as_deref().is_none_or(|v| v.trim().is_empty())
 }
 
-/// `modeled`에 든 오류 코드만 전용 예외 형식을 쓰고, 나머지 서비스 오류는 `AmazonS3Exception`이다.
-fn exception(error: S3Error, modeled: &[&str]) -> CommandError {
-    match &error {
-        S3Error::Service { code, .. } if !modeled.contains(&code.as_str()) => {
-            CommandError::new("Amazon.S3.AmazonS3Exception", error.to_string())
-        }
-        _ => error.into(),
-    }
-}
-
 fn help_text(menu: MenuList) -> String {
     use MenuList::*;
     match menu {
@@ -218,7 +208,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
             let response = client
                 .put_object_legal_hold(&bucket, &key, legal_hold, version_id.as_deref())
                 .await
-                .map_err(|e| exception(e, &[]))?;
+                .map_err(|e| CommandError::s3(e, &[]))?;
             let millis = sw.elapsed().as_millis();
             if response.status == 200 {
                 info!("{key} Set Object Legal Hold ({label})! complete time = {millis}ms");
@@ -259,7 +249,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                             error!(
                                 "StatusCode : {}, ErrorCode : {code}\n{}",
                                 status_name(*status),
-                                exception(e.clone(), &[])
+                                CommandError::s3(e.clone(), &[])
                             );
                         } else {
                             error!("{}", CommandError::from(e));
@@ -274,7 +264,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                 let response = client
                     .delete_bucket_encryption(&bucket)
                     .await
-                    .map_err(|e| exception(e, &[]))?;
+                    .map_err(|e| CommandError::s3(e, &[]))?;
                 if response.status == 204 {
                     info!("DeleteBucketEncryption({bucket}) : Success!!");
                 } else {
@@ -315,7 +305,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                     Option::None,
                 )
                 .await
-                .map_err(|e| exception(e, &[]))?;
+                .map_err(|e| CommandError::s3(e, &[]))?;
             info!("Upload : complete time = {}ms", sw.elapsed().as_millis());
         }
         Download => {
@@ -338,7 +328,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
                     version_id.as_deref(),
                 )
                 .await
-                .map_err(|e| exception(e, &["NoSuchKey"]))?;
+                .map_err(|e| CommandError::s3(e, &["NoSuchKey"]))?;
             info!("Download complete time = {}ms", sw.elapsed().as_millis());
         }
         Clear => {

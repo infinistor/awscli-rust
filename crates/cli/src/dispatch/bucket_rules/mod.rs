@@ -151,16 +151,6 @@ fn blank(value: &Option<String>) -> bool {
     value.as_deref().is_none_or(|v| v.trim().is_empty())
 }
 
-/// 이 모듈의 S3 연산은 오류 응답을 모두 `AmazonS3Exception`으로 던진다.
-fn s3_error(error: S3Error) -> CommandError {
-    match error {
-        S3Error::Service { .. } => {
-            CommandError::new("Amazon.S3.AmazonS3Exception", error.to_string())
-        }
-        other => other.into(),
-    }
-}
-
 /// Get 응답: .NET은 2xx(200이 아닌 `NoContent` 등)를 상태만 다른 정상 응답으로 돌려주고, `not_found_ok`인 연산
 /// (수명주기, 정책, 복제)은 404도 그렇다. SDK가 이를 오류로 돌려주면 상태만 남긴다.
 fn tolerate<T>(
@@ -174,7 +164,7 @@ fn tolerate<T>(
         {
             Ok((status, Option::None))
         }
-        Err(error) => Err(s3_error(error)),
+        Err(error) => Err(CommandError::from(error)),
     }
 }
 
@@ -289,7 +279,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
             let response = client
                 .put_public_access_block(&bucket, config.unwrap_or_default().to_sdk())
                 .await
-                .map_err(s3_error)?;
+                .map_err(CommandError::from)?;
             let millis = sw.elapsed().as_millis();
             report(
                 response.status == 200,
@@ -306,7 +296,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
             let response = client
                 .delete_public_access_block(&bucket)
                 .await
-                .map_err(s3_error)?;
+                .map_err(CommandError::from)?;
             let millis = sw.elapsed().as_millis();
             // 원본 문구는 성공은 `AccessBlock`, 실패는 `Bucket AccessBlock`이다.
             report(
@@ -344,7 +334,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
             let response = client
                 .put_bucket_policy(&bucket, &setting)
                 .await
-                .map_err(s3_error)?;
+                .map_err(CommandError::from)?;
             let millis = sw.elapsed().as_millis();
             report(
                 response.status == 200,
@@ -361,7 +351,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
             let response = client
                 .delete_bucket_policy(&bucket)
                 .await
-                .map_err(s3_error)?;
+                .map_err(CommandError::from)?;
             let millis = sw.elapsed().as_millis();
             report(
                 response.status == 204,
@@ -414,7 +404,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
             let response = client
                 .put_bucket_tagging(&bucket, tag_set)
                 .await
-                .map_err(s3_error)?;
+                .map_err(CommandError::from)?;
             let millis = sw.elapsed().as_millis();
             report(
                 response.status == 200,
@@ -431,7 +421,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
             let response = client
                 .delete_bucket_tagging(&bucket)
                 .await
-                .map_err(s3_error)?;
+                .map_err(CommandError::from)?;
             let millis = sw.elapsed().as_millis();
             report(
                 response.status == 204,
@@ -478,7 +468,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
             let response = client
                 .put_lifecycle_configuration(&bucket, lifecycle)
                 .await
-                .map_err(s3_error)?;
+                .map_err(CommandError::from)?;
             let millis = sw.elapsed().as_millis();
             report(
                 response.status == 200,
@@ -492,7 +482,10 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
         DeleteBucketLifecycle => {
             info!("DeleteBucketLifecycle Start");
             let sw = Instant::now();
-            let response = client.delete_lifecycle(&bucket).await.map_err(s3_error)?;
+            let response = client
+                .delete_lifecycle(&bucket)
+                .await
+                .map_err(CommandError::from)?;
             let millis = sw.elapsed().as_millis();
             report(
                 response.status == 204,
@@ -543,7 +536,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
             let response = client
                 .put_bucket_replication(&bucket, replication, Option::None)
                 .await
-                .map_err(s3_error)?;
+                .map_err(CommandError::from)?;
             let millis = sw.elapsed().as_millis();
             report(
                 response.status == 200,
@@ -560,7 +553,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
             let response = client
                 .delete_bucket_replication(&bucket)
                 .await
-                .map_err(s3_error)?;
+                .map_err(CommandError::from)?;
             let millis = sw.elapsed().as_millis();
             report(
                 response.status == 204,

@@ -29,16 +29,6 @@ use crate::dispatch::CommandError;
 /// 삭제할 (키, 버전 ID).
 type Keys = Vec<(String, Option<String>)>;
 
-/// 이 모듈의 S3 연산 중 오류 코드별 전용 예외가 있는 연산(`ListObjects`의 `NoSuchBucket`)만 `modeled`에 준다.
-fn exception(error: S3Error, modeled: &[&str]) -> CommandError {
-    match &error {
-        S3Error::Service { code, .. } if !modeled.contains(&code.as_str()) => {
-            CommandError::new("Amazon.S3.AmazonS3Exception", error.to_string())
-        }
-        _ => error.into(),
-    }
-}
-
 fn null_reference() -> CommandError {
     CommandError::new(
         "System.NullReferenceException",
@@ -85,7 +75,7 @@ impl ClearTest {
                 .client
                 .list_buckets(prefix, 10000, continuation_token.as_deref())
                 .await
-                .map_err(|e| exception(e, &[]))?;
+                .map_err(|e| CommandError::s3(e, &[]))?;
             let buckets: Vec<String> = response
                 .output
                 .buckets()
@@ -192,7 +182,7 @@ impl ClearTest {
             {
                 Ok(response) => response,
                 Err(e) => {
-                    error!("{}", exception(e, &[]));
+                    error!("{}", CommandError::s3(e, &[]));
                     return total_deleted;
                 }
             };
@@ -232,7 +222,7 @@ impl ClearTest {
             {
                 Ok(response) => response,
                 Err(e) => {
-                    error!("{}", exception(e, &["NoSuchBucket"]));
+                    error!("{}", CommandError::s3(e, &["NoSuchBucket"]));
                     return total_deleted;
                 }
             };
@@ -284,7 +274,7 @@ impl ClearTest {
             {
                 Ok(response) => response,
                 Err(e) => {
-                    error!("{}", exception(e, &[]));
+                    error!("{}", CommandError::s3(e, &[]));
                     return total_deleted;
                 }
             };
@@ -379,7 +369,7 @@ async fn clear_inner(
                 None,
             )
             .await
-            .map_err(|e| exception(e, &[]))?;
+            .map_err(|e| CommandError::s3(e, &[]))?;
         let keys = version_keys(&response.output, |_| true);
         if keys.is_empty() {
             break;
@@ -410,7 +400,7 @@ async fn clear_inner(
 async fn delete_bucket(client: &S3Client, bucket: &str) {
     match client.delete_bucket(bucket).await {
         Ok(_) => info!("DeleteBucket({bucket}) success"),
-        Err(e) => error!("{}", exception(e, &[])),
+        Err(e) => error!("{}", CommandError::s3(e, &[])),
     }
 }
 
@@ -429,7 +419,7 @@ async fn delete_objects(client: &S3Client, bucket: &str, keys: Keys, bypass: Opt
             }
             info!("DeleteObjects({bucket}, {}) success", keys.len());
         }
-        Err(e) => error!("{}", exception(e, &[])),
+        Err(e) => error!("{}", CommandError::s3(e, &[])),
     }
 }
 
@@ -440,7 +430,7 @@ async fn check_and_grant_permissions(client: &S3Client, bucket: &str) {
         let acl = client
             .get_bucket_acl(bucket)
             .await
-            .map_err(|e| exception(e, &[]))?;
+            .map_err(|e| CommandError::s3(e, &[]))?;
         if has_delete_permission(&acl.output) {
             info!("삭제 권한이 확인되었습니다: {bucket}");
         } else {
@@ -477,7 +467,7 @@ async fn grant_delete_permission(client: &S3Client, bucket: &str) -> Result<(), 
         let response = client
             .get_bucket_acl(bucket)
             .await
-            .map_err(|e| exception(e, &[]))?;
+            .map_err(|e| CommandError::s3(e, &[]))?;
         let acl = response.output;
         let Some(owner) = acl.owner() else {
             error!("버킷 소유자 정보를 가져올 수 없습니다: {bucket}");
@@ -511,7 +501,7 @@ async fn grant_delete_permission(client: &S3Client, bucket: &str) -> Result<(), 
         client
             .put_bucket_acl(bucket, None, Some(policy))
             .await
-            .map_err(|e| exception(e, &[]))?;
+            .map_err(|e| CommandError::s3(e, &[]))?;
         info!("Owner에게 삭제 권한이 성공적으로 부여되었습니다: {bucket}");
         Ok(())
     }

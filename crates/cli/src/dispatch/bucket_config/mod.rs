@@ -94,12 +94,7 @@ fn built<T>(result: Result<T, BuildError>) -> T {
 /// S3 호출 결과의 오류를 명령 오류로 바꾼다. 이 메뉴들의 SDK 연산에는 별도 예외 형식이 모델링돼 있지 않아
 /// 서버 오류는 오류 코드와 상관없이 모두 `AmazonS3Exception`이다(`NoSuchBucket`도 마찬가지).
 fn api<T>(result: Result<S3Response<T>, S3Error>) -> Result<S3Response<T>, CommandError> {
-    result.map_err(|error| match &error {
-        S3Error::Service { .. } => {
-            CommandError::new("Amazon.S3.AmazonS3Exception", error.to_string())
-        }
-        _ => error.into(),
-    })
+    result.map_err(CommandError::from)
 }
 
 /// 상태 404를 예외 대신 응답으로 돌려주는 조회. 분석·암호화·인벤토리·메트릭·로깅·웹사이트 조회는 .NET SDK가

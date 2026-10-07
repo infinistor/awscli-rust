@@ -60,15 +60,7 @@ impl<T> S3Result<T> for Result<T, S3Error> {
     }
 
     fn modeled(self, codes: &[&str]) -> Result<T, CommandError> {
-        self.map_err(|error| {
-            let dotnet_type = match &error {
-                S3Error::Service { code, .. } if !codes.contains(&code.as_str()) => {
-                    "Amazon.S3.AmazonS3Exception"
-                }
-                other => other.dotnet_type(),
-            };
-            CommandError::new(dotnet_type, error.to_string())
-        })
+        self.map_err(|error| CommandError::s3(error, codes))
     }
 }
 
