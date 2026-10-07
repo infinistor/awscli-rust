@@ -44,6 +44,12 @@ enum Source<'a> {
     Memory(Arc<Vec<u8>>),
 }
 
+/// 파트 하나의 원본. 메모리 데이터는 공유한 채 범위만 들고 있다.
+enum PartSource {
+    File(std::path::PathBuf),
+    Memory(Arc<Vec<u8>>, std::ops::Range<usize>),
+}
+
 impl S3Client {
     /// 원본 `Upload(bucketName, key, filePath, partSize = 5MiB, threadCount = 10, Stream body = null, byte[] byteBody = null, contentType = null)`.
     ///
@@ -68,7 +74,7 @@ impl S3Client {
             (Some(path), None) => {
                 let size = tokio::fs::metadata(path)
                     .await
-                    .map_err(|e| S3Error::Request(e.to_string()))?
+                    .map_err(|e| S3Error::io(path, &e))?
                     .len();
                 let mime = mime_type_from_extension(path_extension(&path.to_string_lossy()));
                 (Source::File(path), size, Some(mime), Some(mime))
@@ -177,12 +183,13 @@ impl S3Client {
         while position < size {
             number += 1;
             let length = part_size.min(size - position);
-            let body = match source {
-                Source::File(path) => PutBody::File(path.to_path_buf()),
+            // 메모리 데이터는 작업이 세마포어를 얻은 뒤에 잘라 복사한다(동시 요청 수만큼만 복사본이 생긴다).
+            let part = match source {
+                Source::File(path) => PartSource::File(path.to_path_buf()),
                 Source::Memory(bytes) => {
                     let start = usize::try_from(position).unwrap_or(0);
                     let end = start + usize::try_from(length).unwrap_or(0);
-                    PutBody::Bytes(bytes[start..end].to_vec())
+                    PartSource::Memory(bytes.clone(), start..end)
                 }
             };
             let (file_position, part_length) = match source {
@@ -201,6 +208,10 @@ impl S3Client {
                     .acquire_owned()
                     .await
                     .expect("세마포어는 닫지 않는다");
+                let body = match part {
+                    PartSource::File(path) => PutBody::File(path),
+                    PartSource::Memory(bytes, range) => PutBody::Bytes(bytes[range].to_vec()),
+                };
                 let response = client
                     .upload_part(
                         &bucket,
@@ -239,7 +250,7 @@ impl S3Client {
         file_path: &Path,
         version_id: Option<&str>,
     ) -> Result<(), S3Error> {
-        let io = |e: std::io::Error| S3Error::Request(e.to_string());
+        let io = |e: std::io::Error| S3Error::io(file_path, &e);
         let response = self.get_object(bucket_name, key, version_id, None).await?;
         let mut output = response.output;
 

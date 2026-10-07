@@ -8,7 +8,7 @@
 //! - 예외는 원본 `log.Error(e)`처럼 `형식: 메시지`로, `GetObject`는 `log.Error("GetObject(...)", e)`처럼
 //!   메시지 다음 줄에 예외를 붙여 남긴다.
 
-use std::path::{Path, PathBuf};
+use std::path::PathBuf;
 use std::sync::atomic::{AtomicI32, Ordering};
 
 use awscli_rest_common::dotnet_http::status_name;
@@ -17,12 +17,9 @@ use awscli_rest_config::{MultiSystemClientConfig, UtilError};
 use awscli_rest_model::QuitFlag;
 use awscli_rest_s3::s3_client::{PartETag, PutBody};
 use awscli_rest_s3::{S3Client, S3Error};
-use base64::Engine;
-use base64::engine::general_purpose::STANDARD as BASE64;
-use md5::{Digest, Md5};
 use tracing::error;
 
-use crate::file_util::bytes_etag;
+use crate::file_util::{bytes_etag, file_md5_base64};
 
 /// 메서드 밖으로 나가던 예외(이름 생성 오류, 원본 `GetMD5`의 파일 오류).
 #[derive(Debug, thiserror::Error)]
@@ -59,12 +56,6 @@ pub struct MultiSystemClient {
 
 fn inc(counter: &AtomicI32) {
     counter.fetch_add(1, Ordering::Relaxed);
-}
-
-/// 원본 `Utility.GetMD5(fileName)`: 파일 MD5의 Base64.
-fn file_md5_base64(path: &Path) -> std::io::Result<String> {
-    let data = std::fs::read(path)?;
-    Ok(BASE64.encode(Md5::digest(&data)))
 }
 
 /// 원본 `log.Error(e)`.

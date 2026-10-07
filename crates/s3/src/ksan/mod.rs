@@ -18,11 +18,7 @@ pub mod model;
 use awscli_rest_config::UserData;
 use bytes::Bytes;
 use chrono::Utc;
-use http::{Method, Request};
-use http_body_util::{BodyExt, Full};
-use hyper_util::client::legacy::Client;
-use hyper_util::client::legacy::connect::HttpConnector;
-use hyper_util::rt::TokioExecutor;
+use http::Method;
 use sha2::{Digest, Sha256};
 
 pub use error::KsanError;
@@ -31,6 +27,7 @@ pub use model::{
 };
 
 use crate::dotnet_uri::DotnetUri;
+use crate::http_transport::{HttpResponse as Response, HttpTransport, TransportError};
 use crate::signer::{
     AuthorizationHeaderSigner, EMPTY_BODY_SHA256, Headers, X_AMZ_CONTENT_SHA256, add_header,
     to_hex_string,
@@ -53,7 +50,7 @@ pub struct KsanClient {
     access_key: String,
     secret_key: String,
     debug: bool,
-    http: Client<HttpConnector, Full<Bytes>>,
+    http: HttpTransport,
 }
 
 /// 서명에 넘길 리전. 원본은 `DeleteBucketTagIndex`만 지정하지 않았다(`null`).
@@ -77,7 +74,7 @@ impl KsanClient {
             access_key: access_key.into(),
             secret_key: secret_key.into(),
             debug,
-            http: Client::builder(TokioExecutor::new()).build_http(),
+            http: HttpTransport::http_only(false),
         }
     }
 
@@ -284,48 +281,18 @@ impl KsanClient {
         headers: &Headers,
         body: &str,
     ) -> Result<Response, KsanError> {
-        let target = format!(
-            "{}://{}:{}{}",
-            uri.scheme(),
-            uri.host(),
-            uri.port(),
-            uri.path_and_query()
-        );
-        let mut request = Request::builder().method(method).uri(target);
-        for (name, value) in headers {
-            request = request.header(name.as_str(), value.as_str());
-        }
-        let request = request
-            .body(Full::new(Bytes::from(body.to_string())))
-            .map_err(|e| KsanError::Http(e.to_string()))?;
-        let response = self
-            .http
-            .request(request)
+        let headers = headers.iter().map(|(n, v)| (n.as_str(), v.as_str()));
+        self.http
+            .send(method, uri, headers, Bytes::from(body.to_string()))
             .await
-            .map_err(|e| KsanError::Http(e.to_string()))?;
-        let status = response.status().as_u16();
-        let bytes = response
-            .into_body()
-            .collect()
-            .await
-            .map_err(|e| KsanError::Http(e.to_string()))?
-            .to_bytes();
-        Ok(Response {
-            status,
-            body: decode_body(&bytes),
-        })
+            .map_err(|error| {
+                KsanError::Http(match error {
+                    // .NET은 `TaskCanceledException`을 던진다(메시지는 같다).
+                    TransportError::Timeout => "The request was canceled due to the configured HttpClient.Timeout of 100 seconds elapsing.".to_string(),
+                    TransportError::InvalidRequest(message) | TransportError::Connect(message) => message,
+                })
+            })
     }
-}
-
-struct Response {
-    status: u16,
-    body: String,
-}
-
-/// `StreamReader` 기본 동작: UTF-8 BOM은 건너뛰고 UTF-8로 읽는다.
-fn decode_body(bytes: &[u8]) -> String {
-    let bytes = bytes.strip_prefix(b"\xEF\xBB\xBF").unwrap_or(bytes);
-    String::from_utf8_lossy(bytes).into_owned()
 }
 
 /// 기대한 상태 코드가 아니면 원본 `new KsanException(response)`와 같은 오류를 만든다.

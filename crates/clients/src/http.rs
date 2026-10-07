@@ -1,26 +1,16 @@
-//! `KHttpClient`·`CurlClient`가 함께 쓰는 HTTP 전송. .NET `HttpClient`처럼 기본 헤더를 붙이지 않으려고
-//! hyper를 직접 쓴다. 보내는 헤더는 `Host`와 호출자가 지정한 것뿐이다.
+//! `KHttpClient`·`CurlClient`가 함께 쓰는 HTTP 전송. 실제 전송은 공용 `awscli_rest_s3::http_transport`가 하고,
+//! 여기서는 .NET `HttpClient`가 붙이는 `Host`·`Content-Type`·`Content-Length`만 더한다.
 
 use std::sync::Arc;
-use std::time::Duration;
 
 use awscli_rest_s3::DotnetUri;
+use awscli_rest_s3::http_transport::{self, HttpTransport};
 use bytes::Bytes;
-use http::{Method, Request};
-use http_body_util::{BodyExt, Full};
+use http::Method;
 use hyper_rustls::{HttpsConnector, HttpsConnectorBuilder};
-use hyper_util::client::legacy::Client;
 use hyper_util::client::legacy::connect::HttpConnector;
-use hyper_util::rt::TokioExecutor;
 
-/// `HttpClient.Timeout` 기본값(100초)
-pub(crate) const HTTP_TIMEOUT: Duration = Duration::from_secs(100);
-
-/// 응답 상태 코드와 본문 문자열.
-pub(crate) struct HttpResponse {
-    pub status: u16,
-    pub body: String,
-}
+pub(crate) use http_transport::{HTTP_TIMEOUT, HttpResponse};
 
 /// 요청을 보내지 못했을 때의 원인.
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -29,34 +19,38 @@ pub(crate) enum TransportError {
     InvalidUri(&'static str, String),
     /// `HttpClient.Timeout` 초과
     Timeout,
-    /// 연결·전송 실패
+    /// 연결·전송·수신 실패
     Connect(String),
 }
 
-/// 인증서 검증 방식에 따라 TLS 설정을 만든다.
+impl From<http_transport::TransportError> for TransportError {
+    fn from(error: http_transport::TransportError) -> Self {
+        match error {
+            http_transport::TransportError::Timeout => Self::Timeout,
+            http_transport::TransportError::InvalidRequest(message)
+            | http_transport::TransportError::Connect(message) => Self::Connect(message),
+        }
+    }
+}
+
 pub(crate) struct Transport {
-    client: Client<HttpsConnector<HttpConnector>, Full<Bytes>>,
+    inner: HttpTransport,
 }
 
 impl Transport {
-    /// `connector`는 호출자가 TLS 설정을 끝낸 HTTPS 커넥터다.
+    /// 주어진 커넥터로 만든다. 헤더 이름은 .NET처럼 `Content-Type` 형식으로 보낸다.
     pub(crate) fn new(connector: HttpsConnector<HttpConnector>) -> Self {
         Self {
-            // .NET은 Host, Content-Type처럼 단어 첫 글자를 대문자로 보낸다.
-            client: Client::builder(TokioExecutor::new())
-                .http1_title_case_headers(true)
-                .build(connector),
+            inner: HttpTransport::new(connector, true),
         }
     }
 
-    /// 운영체제 신뢰 저장소로 서버 인증서를 검증한다(`new HttpClient()` 기본 동작).
+    /// 운영체제 신뢰 저장소로 서버 인증서를 검증한다(.NET 기본 `HttpClient`).
     pub(crate) fn verifying() -> Self {
-        // 워크스페이스에는 `aws-lc-rs`와 `ring`이 함께 켜져 있어 기본 공급자를 고를 수 없다. `ring`을 지정한다.
         let provider = Arc::new(rustls::crypto::ring::default_provider());
         let builder =
             match HttpsConnectorBuilder::new().with_provider_and_native_roots(provider.clone()) {
                 Ok(builder) => builder,
-                // 신뢰 저장소를 읽지 못하면 HTTPS 요청은 인증서 검증에서 실패한다.
                 Err(_) => HttpsConnectorBuilder::new().with_tls_config(
                     rustls::ClientConfig::builder_with_provider(provider)
                         .with_safe_default_protocol_versions()
@@ -67,7 +61,9 @@ impl Transport {
             };
         Self::new(builder.https_or_http().enable_http1().build())
     }
-    /// 요청을 보내고 본문까지 받는다. 본문이 있으면(`Some`) `Content-Type`도 함께 보낸다.
+
+    /// 요청을 보낸다. `body`가 있으면 `Content-Type`을 붙이고, 빈 본문이면 `Content-Length: 0`도 붙인다
+    /// (.NET `StringContent`). `Host`는 기본 포트면 호스트만, 아니면 `호스트:포트`.
     pub(crate) async fn send(
         &self,
         method: Method,
@@ -76,67 +72,27 @@ impl Transport {
         body: Option<(&str, Vec<u8>)>,
     ) -> Result<HttpResponse, TransportError> {
         let uri = DotnetUri::parse(url).map_err(|_| invalid_uri(url))?;
-        let target = format!(
-            "{}://{}:{}{}",
-            uri.scheme(),
-            uri.host(),
-            uri.port(),
-            uri.path_and_query()
-        );
-        // .NET은 기본 포트가 아닐 때만 `Host`에 포트를 붙인다.
         let host = if uri.is_default_port() {
             uri.host().to_string()
         } else {
             format!("{}:{}", uri.host(), uri.port())
         };
-        let mut request = Request::builder()
-            .method(method)
-            .uri(target)
-            .header("Host", host);
-        for (name, value) in headers {
-            request = request.header(*name, value.as_str());
-        }
-        let content = match body {
+        let mut all: Vec<(&str, &str)> = vec![("Host", host.as_str())];
+        all.extend(headers.iter().map(|(n, v)| (*n, v.as_str())));
+        let content = match &body {
             Some((content_type, bytes)) => {
-                request = request.header("Content-Type", content_type);
-                // hyper는 빈 본문에 `Content-Length: 0`을 생략하지만 .NET은 보낸다.
+                all.push(("Content-Type", content_type));
                 if bytes.is_empty() {
-                    request = request.header("Content-Length", "0");
+                    all.push(("Content-Length", "0"));
                 }
-                Full::new(Bytes::from(bytes))
+                Bytes::from(bytes.clone())
             }
-            None => Full::new(Bytes::new()),
+            None => Bytes::new(),
         };
-        let request = request
-            .body(content)
-            .map_err(|e| TransportError::Connect(e.to_string()))?;
-
-        let work = async {
-            let response = self
-                .client
-                .request(request)
-                .await
-                .map_err(|e| TransportError::Connect(error_chain(&e)))?;
-            let status = response.status().as_u16();
-            let bytes = response
-                .into_body()
-                .collect()
-                .await
-                .map_err(|e| TransportError::Connect(error_chain(&e)))?
-                .to_bytes();
-            Ok(HttpResponse {
-                status,
-                body: decode_body(&bytes),
-            })
-        };
-        match tokio::time::timeout(HTTP_TIMEOUT, work).await {
-            Ok(result) => result,
-            Err(_) => Err(TransportError::Timeout),
-        }
+        Ok(self.inner.send(method, &uri, all, content).await?)
     }
 }
 
-/// 절대 URI가 아니면 `InvalidOperationException`, 그 밖에는 `UriFormatException`에 가깝게 구분한다.
 fn invalid_uri(url: &str) -> TransportError {
     if url.contains("://") {
         TransportError::InvalidUri(
@@ -149,21 +105,4 @@ fn invalid_uri(url: &str) -> TransportError {
             "An invalid request URI was provided. Either the request URI must be an absolute URI or BaseAddress must be set.".into(),
         )
     }
-}
-
-fn error_chain(error: &dyn std::error::Error) -> String {
-    let mut text = error.to_string();
-    let mut source = error.source();
-    while let Some(inner) = source {
-        text.push_str(": ");
-        text.push_str(&inner.to_string());
-        source = inner.source();
-    }
-    text
-}
-
-/// `ReadAsStringAsync`: UTF-8 BOM은 건너뛰고 UTF-8로 읽는다.
-fn decode_body(bytes: &[u8]) -> String {
-    let bytes = bytes.strip_prefix(b"\xEF\xBB\xBF").unwrap_or(bytes);
-    String::from_utf8_lossy(bytes).into_owned()
 }

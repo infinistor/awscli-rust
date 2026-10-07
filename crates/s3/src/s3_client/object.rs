@@ -56,11 +56,11 @@ impl PutBody {
                 ByteStream::from(bytes)
             }
         };
-        let io = |e: std::io::Error| S3Error::Request(e.to_string());
         Ok(match self {
             Self::Text(text) => memory(text.into_bytes()),
             Self::Bytes(bytes) => memory(bytes),
             Self::File(path) => {
+                let io = |e: std::io::Error| S3Error::io(&path, &e);
                 let length = tokio::fs::metadata(&path).await.map_err(io)?.len();
                 let start = u64::try_from(position).unwrap_or(0).min(length);
                 let remaining = length - start;

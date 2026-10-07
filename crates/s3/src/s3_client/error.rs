@@ -20,6 +20,13 @@ pub enum S3Error {
     Request(String),
     /// 호출 인자가 잘못된 경우(.NET `ArgumentException`).
     Argument(String),
+    /// 로컬 파일 입출력 실패. 값은 .NET 예외 형식 이름과 메시지(`S3Error::io` 참고).
+    Io {
+        dotnet_type: &'static str,
+        message: String,
+    },
+    /// 응답은 받았지만 본문을 해석하지 못한 경우(.NET `AmazonUnmarshallingException`).
+    Unmarshalling(String),
 }
 
 impl S3Error {
@@ -58,6 +65,8 @@ impl S3Error {
             Self::Network(_) => "System.Net.Http.HttpRequestException",
             Self::Request(_) => "Amazon.Runtime.AmazonClientException",
             Self::Argument(_) => "System.ArgumentException",
+            Self::Io { dotnet_type, .. } => dotnet_type,
+            Self::Unmarshalling(_) => "Amazon.Runtime.AmazonUnmarshallingException",
         }
     }
 }
@@ -81,9 +90,11 @@ impl fmt::Display for S3Error {
                  No further error information was returned by the service.",
                 status_name(*status)
             ),
-            Self::Network(message) | Self::Request(message) | Self::Argument(message) => {
-                f.write_str(message)
-            }
+            Self::Network(message)
+            | Self::Request(message)
+            | Self::Argument(message)
+            | Self::Io { message, .. }
+            | Self::Unmarshalling(message) => f.write_str(message),
         }
     }
 }
@@ -109,10 +120,73 @@ impl<E: ProvideErrorMetadata + std::error::Error + Send + Sync + 'static> From<S
                     request_id: inner.meta().extra("aws_request_id").map(str::to_string),
                 }
             }
+            // 응답을 받았지만 해석하지 못했다(예: 200 응답의 깨진 XML).
+            SdkError::ResponseError(_) => Self::Unmarshalling(format!(
+                "Error unmarshalling response back from AWS. {}",
+                aws_sdk_s3::error::DisplayErrorContext(&error)
+            )),
             SdkError::ConstructionFailure(_) => {
                 Self::Request(aws_sdk_s3::error::DisplayErrorContext(&error).to_string())
             }
             _ => Self::Network(aws_sdk_s3::error::DisplayErrorContext(&error).to_string()),
         }
+    }
+}
+
+impl S3Error {
+    /// 로컬 파일 오류를 .NET이 던지는 예외 형식과 메시지로 바꾼다.
+    /// 파일이 없으면 `FileNotFoundException`(상위 디렉터리도 없으면 `DirectoryNotFoundException`),
+    /// 권한이 없으면 `UnauthorizedAccessException`, 그 밖은 `IOException`.
+    pub fn io(path: &std::path::Path, error: &std::io::Error) -> Self {
+        let shown = path.display();
+        let (dotnet_type, message) = match error.kind() {
+            std::io::ErrorKind::NotFound => {
+                let parent_exists = path
+                    .parent()
+                    .is_none_or(|p| p.as_os_str().is_empty() || p.is_dir());
+                if parent_exists {
+                    (
+                        "System.IO.FileNotFoundException",
+                        format!("Could not find file '{shown}'."),
+                    )
+                } else {
+                    (
+                        "System.IO.DirectoryNotFoundException",
+                        format!("Could not find a part of the path '{shown}'."),
+                    )
+                }
+            }
+            std::io::ErrorKind::PermissionDenied => (
+                "System.UnauthorizedAccessException",
+                format!("Access to the path '{shown}' is denied."),
+            ),
+            _ => ("System.IO.IOException", error.to_string()),
+        };
+        Self::Io {
+            dotnet_type,
+            message,
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn io_error_types() {
+        let missing = std::env::temp_dir().join("awscli-rest-missing-file.bin");
+        let error = std::io::Error::from(std::io::ErrorKind::NotFound);
+        let mapped = S3Error::io(&missing, &error);
+        assert_eq!(mapped.dotnet_type(), "System.IO.FileNotFoundException");
+        assert_eq!(
+            mapped.to_string(),
+            format!("Could not find file '{}'.", missing.display())
+        );
+        let deep = std::env::temp_dir().join("awscli-rest-missing-dir/x.bin");
+        assert_eq!(
+            S3Error::io(&deep, &error).dotnet_type(),
+            "System.IO.DirectoryNotFoundException"
+        );
     }
 }

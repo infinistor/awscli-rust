@@ -13,8 +13,8 @@ const MIB: usize = 1024 * 1024;
 /// 원본 `TEXT_ALL`.
 const TEXT_ALL: &[u8] = b"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&$@=;:+,?!\\{}^%`[]\"<>~#|/ -_.()*0123456789";
 
-/// 원본 `GetETag(string fileName)`: 파일 MD5의 소문자 16진수.
-pub fn file_etag(path: impl AsRef<Path>) -> io::Result<String> {
+/// 파일 MD5를 스트리밍으로 계산한다(파일 전체를 메모리에 올리지 않는다).
+fn file_md5(path: impl AsRef<Path>) -> io::Result<Vec<u8>> {
     let mut file = fs::File::open(path)?;
     let mut md5 = Md5::new();
     let mut buffer = vec![0u8; 81920];
@@ -25,7 +25,18 @@ pub fn file_etag(path: impl AsRef<Path>) -> io::Result<String> {
         }
         md5.update(&buffer[..read]);
     }
-    Ok(hex::encode(md5.finalize()))
+    Ok(md5.finalize().to_vec())
+}
+
+/// 원본 `GetETag(string fileName)`: 파일 MD5의 소문자 16진수.
+pub fn file_etag(path: impl AsRef<Path>) -> io::Result<String> {
+    Ok(hex::encode(file_md5(path)?))
+}
+
+/// 원본 `GetMD5(string fileName)`: 파일 MD5의 Base64.
+pub fn file_md5_base64(path: impl AsRef<Path>) -> io::Result<String> {
+    use base64::Engine;
+    Ok(base64::engine::general_purpose::STANDARD.encode(file_md5(path)?))
 }
 
 /// 데이터 MD5의 소문자 16진수(원본 `GetETag(GetObjectResponse)`).

@@ -2,6 +2,7 @@
 
 pub mod checksum;
 pub mod dotnet_uri;
+pub mod http_transport;
 pub mod ksan;
 pub mod s3_client;
 pub mod signer;
