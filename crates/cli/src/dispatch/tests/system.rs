@@ -1,6 +1,7 @@
 //! 원본 `CommandDispatcher`의 시나리오 실행: LocalTest, MultiSystemTest, AccessIpsTest, UsedSizeTest.
 
 use awscli_rest_common::to_dotnet_json;
+use awscli_rest_scenarios::access_ips::AccessIpsTest;
 use awscli_rest_scenarios::local::LocalTest;
 use awscli_rest_scenarios::multi_system::MultiSystemTest;
 
@@ -25,8 +26,21 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
         | MultiSystemUploadTest
         | MultiSystemUpDownTest
         | MultiSystemAllTest => multi_system(ctx, menu).await,
+        AccessIpsTest => access_ips(ctx).await,
         _ => not_ported(menu),
     }
+}
+
+/// `AccessIpsTest`: 설정을 출력한 뒤 실행한다.
+async fn access_ips(ctx: &mut CommandContext) -> CommandResult {
+    let config = ctx.config();
+    // print config
+    println!("Portal : {}", to_dotnet_json(&config.portal));
+    println!("AccessIps : {}", to_dotnet_json(&config.access_ips));
+
+    let mut test = AccessIpsTest::new(&config.portal, &config.access_ips)?;
+    test.start().await?;
+    Ok(0)
 }
 
 /// `MultiSystemXxxTest` 메뉴.

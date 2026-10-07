@@ -1,0 +1,115 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "//api/v1/Health",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "//api/v1/AccessIps",
+      "query": [
+        "TenantId=vol1",
+        "UserId=main1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "//api/v1/AccessIps",
+      "query": [
+        "TenantId=vol1",
+        "UserId=sub1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "//api/v1/Volumes/vol1",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "POST",
+      "path": "//api/v1/Volumes/vol1/Start",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "//api/v1/Volumes/vol1/Users/main1",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "//api/v1/Volumes/vol1/Users/sub1",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "//api/v1/SystemUsers/main1",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "//api/v1/SystemUsers/sub1",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "POST",
+      "path": "//api/v1/Volumes/vol1/Stop",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "//api/v1/Volumes/vol1",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "Portal : {",
+    "  \"URL\": \"http://<HOST>\",",
+    "  \"ApiKey\": \"testkey\"",
+    "}",
+    "AccessIps : {",
+    "  \"BucketPrefix\": \"ips-\",",
+    "  \"AllFailed\": false,",
+    "  \"TestListPath\": \"tests.txt\",",
+    "  \"JenkinsTestName\": \"ips-test\",",
+    "  \"S3URL\": [",
+    "    \"http://<HOST>\"",
+    "  ],",
+    "  \"VolumeName\": \"vol1\",",
+    "  \"MainUserName\": \"main1\",",
+    "  \"SubUserName\": \"sub1\",",
+    "  \"Password\": \"qwe123\"",
+    "}",
+    "INFO  <TIME> : AccessIpsTest Start",
+    "INFO  <TIME> : PortalManager HealthCheck Success",
+    "INFO  <TIME> : Volume vol1 start",
+    "INFO  <TIME> : AccessIpsTest End. Clearing up...",
+    "INFO  <TIME> : AccessIpsTest Clear End",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

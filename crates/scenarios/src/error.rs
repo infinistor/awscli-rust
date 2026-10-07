@@ -115,6 +115,13 @@ impl From<awscli_rest_clients::UpDownError> for ScenarioError {
     }
 }
 
+/// Portal 호출 실패(`PortalXxxException`, HTTP·JSON 오류).
+impl From<awscli_rest_clients::portal::PortalError> for ScenarioError {
+    fn from(error: awscli_rest_clients::portal::PortalError) -> Self {
+        Self::new(error.dotnet_type(), error.to_string())
+    }
+}
+
 impl From<awscli_rest_clients::LocalError> for ScenarioError {
     fn from(error: awscli_rest_clients::LocalError) -> Self {
         match error {

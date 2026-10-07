@@ -50,6 +50,8 @@ pub struct CliCase {
     pub ignore_body: bool,
     /// 이 정규식에 맞는 출력 줄은 버린다(시간에 따라 횟수가 달라지는 진행 출력 등).
     pub drop_lines: Option<String>,
+    /// 이 정규식에 맞는 부분은 `<RAND>`로 바꾼다(출력·요청 경로의 무작위 버킷 이름 등).
+    pub mask: Option<String>,
     /// 작업 디렉터리에 만들 빈 디렉터리(상대 경로).
     pub dirs: Vec<String>,
     /// 실행 뒤 내용을 비교할 파일·디렉터리(상대 경로, 디렉터리는 아래 파일 전부).
@@ -74,6 +76,7 @@ impl CliCase {
             stats: false,
             ignore_body: false,
             drop_lines: None,
+            mask: None,
             dirs: Vec::new(),
             outputs: Vec::new(),
         }
@@ -126,6 +129,10 @@ impl CliCase {
         case.ignore_body = flag("ignore_body");
         case.drop_lines = value
             .get("drop_lines")
+            .and_then(Value::as_str)
+            .map(str::to_string);
+        case.mask = value
+            .get("mask")
             .and_then(Value::as_str)
             .map(str::to_string);
         let strings = |name: &str| -> Vec<String> {
@@ -277,6 +284,7 @@ pub async fn run_case(exe: &Path, case: &CliCase, encoding: OutputEncoding) -> C
         stats: case.stats,
         ignore_body: case.ignore_body,
         drop_lines: case.drop_lines.as_deref().map(|r| Regex::new(r).unwrap()),
+        mask: case.mask.as_deref().map(|r| Regex::new(r).unwrap()),
     };
     // 요청은 서버가 받은 순서대로 둔다(동시 요청 사례는 비교할 때 정렬한다).
     let requests: Vec<Value> = server
@@ -356,6 +364,7 @@ struct Context<'a> {
     stats: bool,
     ignore_body: bool,
     drop_lines: Option<Regex>,
+    mask: Option<Regex>,
 }
 
 /// JSON 결과의 시각(`2026-10-07T15:04:05.1234567+09:00`).
@@ -439,6 +448,9 @@ fn replace_context(text: &str, context: &Context<'_>) -> String {
             format!("{}{seconds}", &caps[1])
         })
         .into_owned();
+    if let Some(mask) = &context.mask {
+        text = mask.replace_all(&text, "<RAND>").into_owned();
+    }
     text
 }
 

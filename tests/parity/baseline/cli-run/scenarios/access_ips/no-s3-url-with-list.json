@@ -1,0 +1,144 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "//api/v1/Health",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "//api/v1/AccessIps",
+      "query": [
+        "TenantId=vol1",
+        "UserId=main1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "//api/v1/AccessIps",
+      "query": [
+        "TenantId=vol1",
+        "UserId=sub1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "//api/v1/Volumes/vol1",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "//api/v1/Volumes/vol1/Users/main1",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "//api/v1/Volumes/vol1/Users/sub1",
+      "query": []
+    },
+    {
+      "body": "100 bytes md5=348b645e38b67e4b8257420bcfa34d71",
+      "headers": [],
+      "method": "POST",
+      "path": "//api/v1/AccessIps",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "//api/v1/AccessIps",
+      "query": [
+        "TenantId=vol1",
+        "UserId=main1"
+      ]
+    },
+    {
+      "body": "99 bytes md5=d8c471a2f91038708eae72992cc52d2a",
+      "headers": [],
+      "method": "POST",
+      "path": "//api/v1/AccessIps",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "//api/v1/AccessIps",
+      "query": [
+        "TenantId=vol1",
+        "UserId=sub1"
+      ]
+    },
+    {
+      "body": "100 bytes md5=348b645e38b67e4b8257420bcfa34d71",
+      "headers": [],
+      "method": "POST",
+      "path": "//api/v1/AccessIps",
+      "query": []
+    },
+    {
+      "body": "99 bytes md5=d8c471a2f91038708eae72992cc52d2a",
+      "headers": [],
+      "method": "POST",
+      "path": "//api/v1/AccessIps",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "//api/v1/AccessIps",
+      "query": [
+        "TenantId=vol1",
+        "UserId=main1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "//api/v1/AccessIps",
+      "query": [
+        "TenantId=vol1",
+        "UserId=sub1"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "Portal : {",
+    "  \"URL\": \"http://<HOST>\",",
+    "  \"ApiKey\": \"testkey\"",
+    "}",
+    "AccessIps : {",
+    "  \"BucketPrefix\": \"ips-\",",
+    "  \"AllFailed\": false,",
+    "  \"TestListPath\": \"tests.txt\",",
+    "  \"JenkinsTestName\": \"ips-test\",",
+    "  \"S3URL\": [],",
+    "  \"VolumeName\": \"vol1\",",
+    "  \"MainUserName\": \"main1\",",
+    "  \"SubUserName\": \"sub1\",",
+    "  \"Password\": \"qwe123\"",
+    "}",
+    "INFO  <TIME> : AccessIpsTest Start",
+    "INFO  <TIME> : PortalManager HealthCheck Success",
+    "INFO  <TIME> : User Access Ips Test Success : 10.0.0.1, True",
+    "ERROR <TIME> : System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')"
+  ]
+}

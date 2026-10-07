@@ -1,0 +1,36 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "//api/v1/Health",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "Portal : {",
+    "  \"URL\": \"http://<HOST>\",",
+    "  \"ApiKey\": \"testkey\"",
+    "}",
+    "AccessIps : {",
+    "  \"BucketPrefix\": \"ips-\",",
+    "  \"AllFailed\": false,",
+    "  \"TestListPath\": \"tests.txt\",",
+    "  \"JenkinsTestName\": \"ips-test\",",
+    "  \"S3URL\": [",
+    "    \"http://<HOST>\"",
+    "  ],",
+    "  \"VolumeName\": \"vol1\",",
+    "  \"MainUserName\": \"main1\",",
+    "  \"SubUserName\": \"sub1\",",
+    "  \"Password\": \"qwe123\"",
+    "}",
+    "INFO  <TIME> : AccessIpsTest Start",
+    "INFO  <TIME> : PortalManager HealthCheck Success",
+    "ERROR <TIME> : TestCore.Portal.InvalidAccessIpsTestDataException: 10.0.0.1"
+  ]
+}

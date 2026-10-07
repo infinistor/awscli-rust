@@ -73,6 +73,7 @@ TESTCore `Util/TestCoreApplication.cs`, `Util/ConfigBootstrapper.cs`, `Commands/
 -   `"stats": true`: 평균·대역폭·시간을 담은 통계 줄과 결과 JSON의 숫자(단위 포함)를 `<N>`으로 가린다. 건수 줄은 그대로 비교한다.
 -   `"ignore_body": true`: XML이 아닌 요청 본문은 MD5 없이 길이만 비교한다(무작위 더미 파일·본문).
 -   `"drop_lines": "정규식"`: 정규화한 출력 줄 중 맞는 줄을 버린다(시간에 따라 횟수가 달라지는 줄).
+-   `"mask": "정규식"`: 출력·요청 경로에서 맞는 부분을 `<RAND>`로 바꾼다(무작위 버킷 이름 등).
 -   `"dirs": ["in", "out/a"]`: 작업 디렉터리에 빈 디렉터리를 만든다.
 -   `"outputs": ["result.json", "save"]`: 실행 뒤 파일(디렉터리면 아래 파일 전부) 내용을 비교한다. 시각은 `<TIME>`, 파일 이름의 `yyyyMMdd_HHmmss`는 `<TS>`.
 -   동시 요청 사례(`unordered`)의 기준 출력은 요청을 정렬해 저장한다.
