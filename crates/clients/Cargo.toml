@@ -25,11 +25,17 @@ tokio.workspace = true
 tracing.workspace = true
 
 [dev-dependencies]
+rcgen.workspace = true
+tokio-rustls.workspace = true
 tracing-subscriber.workspace = true
 
 [[test]]
 name = "parity_portal"
 path = "../../tests/parity/portal.rs"
+
+[[test]]
+name = "parity_mover"
+path = "../../tests/parity/mover.rs"
 
 [lints]
 workspace = true

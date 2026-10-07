@@ -18,7 +18,6 @@ pub(crate) const HTTP_TIMEOUT: Duration = Duration::from_secs(100);
 
 /// 응답 상태 코드와 본문 문자열.
 pub(crate) struct HttpResponse {
-    #[allow(dead_code)]
     pub status: u16,
     pub body: String,
 }
@@ -51,7 +50,6 @@ impl Transport {
     }
 
     /// 운영체제 신뢰 저장소로 서버 인증서를 검증한다(`new HttpClient()` 기본 동작).
-    #[allow(dead_code)]
     pub(crate) fn verifying() -> Self {
         // 워크스페이스에는 `aws-lc-rs`와 `ring`이 함께 켜져 있어 기본 공급자를 고를 수 없다. `ring`을 지정한다.
         let provider = Arc::new(rustls::crypto::ring::default_provider());

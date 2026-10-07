@@ -1,0 +1,18 @@
+{
+  "port": 64212,
+  "requests": [
+    {
+      "line": "GET /api/Status/user1 HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:64212"
+        ]
+      ],
+      "body": ""
+    }
+  ],
+  "result": "{\r\n  \"JobId\": 7,\r\n  \"Status\": null,\r\n  \"Source\": null,\r\n  \"Target\": null,\r\n  \"StartTime\": null,\r\n  \"EndTime\": null,\r\n  \"ErrorDesc\": null,\r\n  \"TotalCount\": 10,\r\n  \"TotalSize\": null,\r\n  \"MovedCount\": 5,\r\n  \"MovedSize\": null,\r\n  \"SkippedCount\": 7,\r\n  \"SkippedSize\": null,\r\n  \"FailedCount\": -2,\r\n  \"FailedSize\": null,\r\n  \"DeletedCount\": 0,\r\n  \"DeletedSize\": null,\r\n  \"Progress\": null\r\n}",
+  "error": null,
+  "logs": []
+}

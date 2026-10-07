@@ -1,0 +1,652 @@
+{
+  "variants": [
+    {
+      "responseBody": "",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. Path: $ | LineNumber: 0 | BytePositionInLine: 0."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "null",
+      "result": null,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{}",
+      "result": null,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "[]",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Mover.Response.ResponseMoverStatus. Path: $ | LineNumber: 0 | BytePositionInLine: 1."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "5",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Mover.Response.ResponseMoverStatus. Path: $ | LineNumber: 0 | BytePositionInLine: 1."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "\"x\"",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Mover.Response.ResponseMoverStatus. Path: $ | LineNumber: 0 | BytePositionInLine: 3."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "true",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Mover.Response.ResponseMoverStatus. Path: $ | LineNumber: 0 | BytePositionInLine: 4."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "<html>",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'<' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[]}",
+      "result": null,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":null}",
+      "result": null,
+      "error": {
+        "type": "System.NullReferenceException",
+        "message": "Object reference not set to an instance of an object."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[null]}",
+      "result": null,
+      "error": {
+        "type": "System.NullReferenceException",
+        "message": "Object reference not set to an instance of an object."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[]",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Expected depth to be zero at the end of the JSON payload. There is an open JSON object or array that should be closed. Path: $ | LineNumber: 0 | BytePositionInLine: 11."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7}]}",
+      "result": "{\r\n  \"JobId\": 7,\r\n  \"Status\": null,\r\n  \"Source\": null,\r\n  \"Target\": null,\r\n  \"StartTime\": null,\r\n  \"EndTime\": null,\r\n  \"ErrorDesc\": null,\r\n  \"TotalCount\": 0,\r\n  \"TotalSize\": null,\r\n  \"MovedCount\": 0,\r\n  \"MovedSize\": null,\r\n  \"SkippedCount\": 0,\r\n  \"SkippedSize\": null,\r\n  \"FailedCount\": 0,\r\n  \"FailedSize\": null,\r\n  \"DeletedCount\": 0,\r\n  \"DeletedSize\": null,\r\n  \"Progress\": null\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":\"7\"}]}",
+      "result": "{\r\n  \"JobId\": 7,\r\n  \"Status\": null,\r\n  \"Source\": null,\r\n  \"Target\": null,\r\n  \"StartTime\": null,\r\n  \"EndTime\": null,\r\n  \"ErrorDesc\": null,\r\n  \"TotalCount\": 0,\r\n  \"TotalSize\": null,\r\n  \"MovedCount\": 0,\r\n  \"MovedSize\": null,\r\n  \"SkippedCount\": 0,\r\n  \"SkippedSize\": null,\r\n  \"FailedCount\": 0,\r\n  \"FailedSize\": null,\r\n  \"DeletedCount\": 0,\r\n  \"DeletedSize\": null,\r\n  \"Progress\": null\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":\"+7\"}]}",
+      "result": "{\r\n  \"JobId\": 7,\r\n  \"Status\": null,\r\n  \"Source\": null,\r\n  \"Target\": null,\r\n  \"StartTime\": null,\r\n  \"EndTime\": null,\r\n  \"ErrorDesc\": null,\r\n  \"TotalCount\": 0,\r\n  \"TotalSize\": null,\r\n  \"MovedCount\": 0,\r\n  \"MovedSize\": null,\r\n  \"SkippedCount\": 0,\r\n  \"SkippedSize\": null,\r\n  \"FailedCount\": 0,\r\n  \"FailedSize\": null,\r\n  \"DeletedCount\": 0,\r\n  \"DeletedSize\": null,\r\n  \"Progress\": null\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":\"-7\"}]}",
+      "result": null,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":\"7.0\"}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int32. Path: $.Items[0].JobId | LineNumber: 0 | BytePositionInLine: 24."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":\" 7\"}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int32. Path: $.Items[0].JobId | LineNumber: 0 | BytePositionInLine: 23."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":\"7 \"}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int32. Path: $.Items[0].JobId | LineNumber: 0 | BytePositionInLine: 23."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":\"1e1\"}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int32. Path: $.Items[0].JobId | LineNumber: 0 | BytePositionInLine: 24."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":\"0x7\"}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int32. Path: $.Items[0].JobId | LineNumber: 0 | BytePositionInLine: 24."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":\"\"}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int32. Path: $.Items[0].JobId | LineNumber: 0 | BytePositionInLine: 21."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7.0}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int32. Path: $.Items[0].JobId | LineNumber: 0 | BytePositionInLine: 22."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7e0}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int32. Path: $.Items[0].JobId | LineNumber: 0 | BytePositionInLine: 22."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":-0}]}",
+      "result": null,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":99999999999}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int32. Path: $.Items[0].JobId | LineNumber: 0 | BytePositionInLine: 30."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":\"99999999999\"}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int32. Path: $.Items[0].JobId | LineNumber: 0 | BytePositionInLine: 32."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":2147483647}]}",
+      "result": null,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":2147483648}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int32. Path: $.Items[0].JobId | LineNumber: 0 | BytePositionInLine: 29."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":null}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int32. Path: $.Items[0].JobId | LineNumber: 0 | BytePositionInLine: 23."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":true}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int32. Path: $.Items[0].JobId | LineNumber: 0 | BytePositionInLine: 23."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":[7]}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int32. Path: $.Items[0].JobId | LineNumber: 0 | BytePositionInLine: 20."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7,\"TotalCount\":\"12\",\"TotalSize\":5}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.String. Path: $.Items[0].TotalSize | LineNumber: 0 | BytePositionInLine: 52."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7,\"TotalCount\":\"abc\"}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int64. Path: $.Items[0].TotalCount | LineNumber: 0 | BytePositionInLine: 39."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7,\"TotalCount\":9223372036854775807}]}",
+      "result": "{\r\n  \"JobId\": 7,\r\n  \"Status\": null,\r\n  \"Source\": null,\r\n  \"Target\": null,\r\n  \"StartTime\": null,\r\n  \"EndTime\": null,\r\n  \"ErrorDesc\": null,\r\n  \"TotalCount\": 9223372036854775807,\r\n  \"TotalSize\": null,\r\n  \"MovedCount\": 0,\r\n  \"MovedSize\": null,\r\n  \"SkippedCount\": 0,\r\n  \"SkippedSize\": null,\r\n  \"FailedCount\": 0,\r\n  \"FailedSize\": null,\r\n  \"DeletedCount\": 0,\r\n  \"DeletedSize\": null,\r\n  \"Progress\": null\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7,\"TotalCount\":9223372036854775808}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int64. Path: $.Items[0].TotalCount | LineNumber: 0 | BytePositionInLine: 53."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7,\"TotalCount\":\"9223372036854775808\"}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int64. Path: $.Items[0].TotalCount | LineNumber: 0 | BytePositionInLine: 55."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7,\"MovedCount\":1.5}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int64. Path: $.Items[0].MovedCount | LineNumber: 0 | BytePositionInLine: 37."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7},{\"JobId\":8,\"Status\":5}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.String. Path: $.Items[1].Status | LineNumber: 0 | BytePositionInLine: 43."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7,\"Status\":{\"a\":1}}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.String. Path: $.Items[0].Status | LineNumber: 0 | BytePositionInLine: 31."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[5]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Mover.Data.MoverStatus. Path: $.Items[0] | LineNumber: 0 | BytePositionInLine: 11."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[\"x\"]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Mover.Data.MoverStatus. Path: $.Items[0] | LineNumber: 0 | BytePositionInLine: 13."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":{\"a\":1}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Collections.Generic.List`1[TestCore.Mover.Data.MoverStatus]. Path: $.Items | LineNumber: 0 | BytePositionInLine: 10."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":\"x\"}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Collections.Generic.List`1[TestCore.Mover.Data.MoverStatus]. Path: $.Items | LineNumber: 0 | BytePositionInLine: 12."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":5}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Collections.Generic.List`1[TestCore.Mover.Data.MoverStatus]. Path: $.Items | LineNumber: 0 | BytePositionInLine: 10."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[[]]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Mover.Data.MoverStatus. Path: $.Items[0] | LineNumber: 0 | BytePositionInLine: 11."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7,}],}",
+      "result": "{\r\n  \"JobId\": 7,\r\n  \"Status\": null,\r\n  \"Source\": null,\r\n  \"Target\": null,\r\n  \"StartTime\": null,\r\n  \"EndTime\": null,\r\n  \"ErrorDesc\": null,\r\n  \"TotalCount\": 0,\r\n  \"TotalSize\": null,\r\n  \"MovedCount\": 0,\r\n  \"MovedSize\": null,\r\n  \"SkippedCount\": 0,\r\n  \"SkippedSize\": null,\r\n  \"FailedCount\": 0,\r\n  \"FailedSize\": null,\r\n  \"DeletedCount\": 0,\r\n  \"DeletedSize\": null,\r\n  \"Progress\": null\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7},]}",
+      "result": "{\r\n  \"JobId\": 7,\r\n  \"Status\": null,\r\n  \"Source\": null,\r\n  \"Target\": null,\r\n  \"StartTime\": null,\r\n  \"EndTime\": null,\r\n  \"ErrorDesc\": null,\r\n  \"TotalCount\": 0,\r\n  \"TotalSize\": null,\r\n  \"MovedCount\": 0,\r\n  \"MovedSize\": null,\r\n  \"SkippedCount\": 0,\r\n  \"SkippedSize\": null,\r\n  \"FailedCount\": 0,\r\n  \"FailedSize\": null,\r\n  \"DeletedCount\": 0,\r\n  \"DeletedSize\": null,\r\n  \"Progress\": null\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[,]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "',' is an invalid start of a value. Path: $.Items[0] | LineNumber: 0 | BytePositionInLine: 10."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7,,}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "',' is an invalid start of a property name. Expected a '\"'. Path: $.Items[0] | LineNumber: 0 | BytePositionInLine: 21."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7},,]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "',' is an invalid start of a value. Path: $.Items[1] | LineNumber: 0 | BytePositionInLine: 22."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{,}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "',' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 0 | BytePositionInLine: 1."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7}],,}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "',' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 0 | BytePositionInLine: 23."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7,\"Extra\":{\"a\":[1,2,,]}}]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "',' is an invalid start of a value. Path: $.Items[0].Extra | LineNumber: 0 | BytePositionInLine: 39."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7,\"Extra\":[1,2,]}]}",
+      "result": "{\r\n  \"JobId\": 7,\r\n  \"Status\": null,\r\n  \"Source\": null,\r\n  \"Target\": null,\r\n  \"StartTime\": null,\r\n  \"EndTime\": null,\r\n  \"ErrorDesc\": null,\r\n  \"TotalCount\": 0,\r\n  \"TotalSize\": null,\r\n  \"MovedCount\": 0,\r\n  \"MovedSize\": null,\r\n  \"SkippedCount\": 0,\r\n  \"SkippedSize\": null,\r\n  \"FailedCount\": 0,\r\n  \"FailedSize\": null,\r\n  \"DeletedCount\": 0,\r\n  \"DeletedSize\": null,\r\n  \"Progress\": null\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7,\"Extra\":{\"a\":1,}}]}",
+      "result": "{\r\n  \"JobId\": 7,\r\n  \"Status\": null,\r\n  \"Source\": null,\r\n  \"Target\": null,\r\n  \"StartTime\": null,\r\n  \"EndTime\": null,\r\n  \"ErrorDesc\": null,\r\n  \"TotalCount\": 0,\r\n  \"TotalSize\": null,\r\n  \"MovedCount\": 0,\r\n  \"MovedSize\": null,\r\n  \"SkippedCount\": 0,\r\n  \"SkippedSize\": null,\r\n  \"FailedCount\": 0,\r\n  \"FailedSize\": null,\r\n  \"DeletedCount\": 0,\r\n  \"DeletedSize\": null,\r\n  \"Progress\": null\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Expected depth to be zero at the end of the JSON payload. There is an open JSON object or array that should be closed. Path: $.Items[0] | LineNumber: 0 | BytePositionInLine: 10."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'}' is an invalid start of a value. Path: $.Items[0] | LineNumber: 0 | BytePositionInLine: 10."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[1",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'1' is an invalid end of a number. Expected a delimiter. Path: $.Items[0] | LineNumber: 0 | BytePositionInLine: 11."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":1},",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Expected start of a property name or value, but instead reached end of data. Path: $.Items[1] | LineNumber: 0 | BytePositionInLine: 21."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":1},]}",
+      "result": null,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7,}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Expected depth to be zero at the end of the JSON payload. There is an open JSON object or array that should be closed. Path: $.Items[1] | LineNumber: 0 | BytePositionInLine: 22."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7} {",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'{' is invalid after a value. Expected either ',', '}', or ']'. Path: $.Items[1] | LineNumber: 0 | BytePositionInLine: 22."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":1,\"X\"",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Expected a value, but instead reached end of data. Path: $.Items[0] | LineNumber: 0 | BytePositionInLine: 24."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":1, \"Source\"",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Expected a value, but instead reached end of data. Path: $.Items[0] | LineNumber: 0 | BytePositionInLine: 30."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":1} , ",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Expected start of a property name or value, but instead reached end of data. Path: $.Items[1] | LineNumber: 0 | BytePositionInLine: 24."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":1} , 5",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'5' is an invalid end of a number. Expected a delimiter. Path: $.Items[1] | LineNumber: 0 | BytePositionInLine: 25."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7}]} x",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'x' is invalid after a single JSON value. Expected end of data. Path: $ | LineNumber: 0 | BytePositionInLine: 24."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7}]}}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'}' is invalid after a single JSON value. Expected end of data. Path: $ | LineNumber: 0 | BytePositionInLine: 23."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7}]} ,",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "',' is invalid after a single JSON value. Expected end of data. Path: $ | LineNumber: 0 | BytePositionInLine: 24."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "  {\"Items\":[{\"JobId\":7}]}  ",
+      "result": "{\r\n  \"JobId\": 7,\r\n  \"Status\": null,\r\n  \"Source\": null,\r\n  \"Target\": null,\r\n  \"StartTime\": null,\r\n  \"EndTime\": null,\r\n  \"ErrorDesc\": null,\r\n  \"TotalCount\": 0,\r\n  \"TotalSize\": null,\r\n  \"MovedCount\": 0,\r\n  \"MovedSize\": null,\r\n  \"SkippedCount\": 0,\r\n  \"SkippedSize\": null,\r\n  \"FailedCount\": 0,\r\n  \"FailedSize\": null,\r\n  \"DeletedCount\": 0,\r\n  \"DeletedSize\": null,\r\n  \"Progress\": null\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\r\n  \"Items\": [\r\n    {\"JobId\": \"x\"}\r\n  ]\r\n}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int32. Path: $.Items[0].JobId | LineNumber: 2 | BytePositionInLine: 17."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"ITEMS\":[{\"JobId\":7}]}",
+      "result": null,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JOBID\":7}]}",
+      "result": null,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":5,\"Items\":[]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.String. Path: $.Result | LineNumber: 0 | BytePositionInLine: 11."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Message\":{\"a\":1},\"Items\":[]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.String. Path: $.Message | LineNumber: 0 | BytePositionInLine: 12."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":null,\"Message\":null,\"Items\":[{\"JobId\":7,\"Status\":null}]}",
+      "result": "{\r\n  \"JobId\": 7,\r\n  \"Status\": null,\r\n  \"Source\": null,\r\n  \"Target\": null,\r\n  \"StartTime\": null,\r\n  \"EndTime\": null,\r\n  \"ErrorDesc\": null,\r\n  \"TotalCount\": 0,\r\n  \"TotalSize\": null,\r\n  \"MovedCount\": 0,\r\n  \"MovedSize\": null,\r\n  \"SkippedCount\": 0,\r\n  \"SkippedSize\": null,\r\n  \"FailedCount\": 0,\r\n  \"FailedSize\": null,\r\n  \"DeletedCount\": 0,\r\n  \"DeletedSize\": null,\r\n  \"Progress\": null\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7,\"Progress\":\"50%\",\"Status\":\"한글\",\"StartTime\":\"2024-01-02T03:04:05Z\"}]}",
+      "result": "{\r\n  \"JobId\": 7,\r\n  \"Status\": \"\\uD55C\\uAE00\",\r\n  \"Source\": null,\r\n  \"Target\": null,\r\n  \"StartTime\": \"2024-01-02T03:04:05Z\",\r\n  \"EndTime\": null,\r\n  \"ErrorDesc\": null,\r\n  \"TotalCount\": 0,\r\n  \"TotalSize\": null,\r\n  \"MovedCount\": 0,\r\n  \"MovedSize\": null,\r\n  \"SkippedCount\": 0,\r\n  \"SkippedSize\": null,\r\n  \"FailedCount\": 0,\r\n  \"FailedSize\": null,\r\n  \"DeletedCount\": 0,\r\n  \"DeletedSize\": null,\r\n  \"Progress\": \"50%\"\r\n}",
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Items\":[{\"JobId\":7,\"Status\":\"\\u0041\\n\"}]}",
+      "result": "{\r\n  \"JobId\": 7,\r\n  \"Status\": \"A\\n\",\r\n  \"Source\": null,\r\n  \"Target\": null,\r\n  \"StartTime\": null,\r\n  \"EndTime\": null,\r\n  \"ErrorDesc\": null,\r\n  \"TotalCount\": 0,\r\n  \"TotalSize\": null,\r\n  \"MovedCount\": 0,\r\n  \"MovedSize\": null,\r\n  \"SkippedCount\": 0,\r\n  \"SkippedSize\": null,\r\n  \"FailedCount\": 0,\r\n  \"FailedSize\": null,\r\n  \"DeletedCount\": 0,\r\n  \"DeletedSize\": null,\r\n  \"Progress\": null\r\n}",
+      "error": null,
+      "logs": []
+    }
+  ]
+}

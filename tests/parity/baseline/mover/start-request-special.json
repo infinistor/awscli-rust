@@ -1,0 +1,26 @@
+{
+  "port": 64167,
+  "requests": [
+    {
+      "line": "POST /api/Start HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:64167"
+        ],
+        [
+          "Content-Type",
+          "application/json; charset=utf-8"
+        ],
+        [
+          "Content-Length",
+          "288"
+        ]
+      ],
+      "body": "{\r\n  \"UserId\": \"\\uD55C\\uAE00\\u0022\\u003C\\u0026\\u003E\\u002B\",\r\n  \"Type\": \"a\\\\b\",\r\n  \"Source\": {\r\n    \"MountPoint\": null,\r\n    \"Endpoint\": null,\r\n    \"Bucket\": null,\r\n    \"Access\": null,\r\n    \"Secret\": null,\r\n    \"Prefix\": \"line1\\nline2\\t\",\r\n    \"Move_size\": null\r\n  },\r\n  \"Target\": null\r\n}"
+    }
+  ],
+  "result": 1,
+  "error": null,
+  "logs": []
+}

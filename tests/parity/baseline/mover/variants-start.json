@@ -1,0 +1,226 @@
+{
+  "variants": [
+    {
+      "responseBody": "",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. Path: $ | LineNumber: 0 | BytePositionInLine: 0."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "null",
+      "result": -1,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{}",
+      "result": 0,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "[]",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Mover.Response.ResponseMoverStart. Path: $ | LineNumber: 0 | BytePositionInLine: 1."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "5",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Mover.Response.ResponseMoverStart. Path: $ | LineNumber: 0 | BytePositionInLine: 1."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "\"x\"",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to TestCore.Mover.Response.ResponseMoverStart. Path: $ | LineNumber: 0 | BytePositionInLine: 3."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"JobId\":5}",
+      "result": 5,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"JobId\":\"5\"}",
+      "result": 5,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"JobId\":\"+5\"}",
+      "result": 5,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"JobId\":5,}",
+      "result": 5,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"JobId\":5.5}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int32. Path: $.JobId | LineNumber: 0 | BytePositionInLine: 12."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"JobId\":\"5.5\"}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int32. Path: $.JobId | LineNumber: 0 | BytePositionInLine: 14."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"JobId\":null}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int32. Path: $.JobId | LineNumber: 0 | BytePositionInLine: 13."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"JobId\":99999999999}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.Int32. Path: $.JobId | LineNumber: 0 | BytePositionInLine: 20."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"jobId\":5}",
+      "result": 0,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":\"OK\",\"Message\":\"m\",\"JobId\":5}",
+      "result": 5,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":5,\"JobId\":5}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.String. Path: $.Result | LineNumber: 0 | BytePositionInLine: 11."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Result\":null}",
+      "result": 0,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Message\":[\"a\"]}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "The JSON value could not be converted to System.String. Path: $.Message | LineNumber: 0 | BytePositionInLine: 12."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"JobId\":5,\"JobId\":6}",
+      "result": 6,
+      "error": null,
+      "logs": []
+    },
+    {
+      "responseBody": "{\"Extra\":{\"a\":[1,,]},\"JobId\":1}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "',' is an invalid start of a value. Path: $.Extra | LineNumber: 0 | BytePositionInLine: 17."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"JobId\":5",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'5' is an invalid end of a number. Expected a delimiter. Path: $.JobId | LineNumber: 0 | BytePositionInLine: 10."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"JobId\"",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Expected a value, but instead reached end of data. Path: $ | LineNumber: 0 | BytePositionInLine: 8."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"JobId\":",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Expected depth to be zero at the end of the JSON payload. There is an open JSON object or array that should be closed. Path: $.JobId | LineNumber: 0 | BytePositionInLine: 9."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "Expected depth to be zero at the end of the JSON payload. There is an open JSON object or array that should be closed. Path: $ | LineNumber: 0 | BytePositionInLine: 1."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"JobId\":tru}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'tru}' is an invalid JSON literal. Expected the literal 'true'. Path: $.JobId | LineNumber: 0 | BytePositionInLine: 12."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{JobId:5}",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'J' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 0 | BytePositionInLine: 1."
+      },
+      "logs": []
+    },
+    {
+      "responseBody": "{\"JobId\":5} x",
+      "result": null,
+      "error": {
+        "type": "System.Text.Json.JsonException",
+        "message": "'x' is invalid after a single JSON value. Expected end of data. Path: $ | LineNumber: 0 | BytePositionInLine: 12."
+      },
+      "logs": []
+    }
+  ]
+}

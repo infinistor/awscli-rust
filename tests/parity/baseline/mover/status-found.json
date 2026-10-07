@@ -1,0 +1,18 @@
+{
+  "port": 64195,
+  "requests": [
+    {
+      "line": "GET /api/Status/user1 HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:64195"
+        ]
+      ],
+      "body": ""
+    }
+  ],
+  "result": "{\r\n  \"JobId\": 7,\r\n  \"Status\": \"Running\",\r\n  \"Source\": \"s\",\r\n  \"Target\": \"t\",\r\n  \"StartTime\": \"2024-01-02 03:04:05\",\r\n  \"EndTime\": \"\",\r\n  \"ErrorDesc\": \"\",\r\n  \"TotalCount\": 10,\r\n  \"TotalSize\": \"1.2 GB\",\r\n  \"MovedCount\": 5,\r\n  \"MovedSize\": \"600 MB\",\r\n  \"SkippedCount\": 1,\r\n  \"SkippedSize\": \"1 MB\",\r\n  \"FailedCount\": 2,\r\n  \"FailedSize\": \"2 MB\",\r\n  \"DeletedCount\": 3,\r\n  \"DeletedSize\": \"3 MB\",\r\n  \"Progress\": \"50%\"\r\n}",
+  "error": null,
+  "logs": []
+}

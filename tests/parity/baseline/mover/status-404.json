@@ -1,0 +1,21 @@
+{
+  "port": 64181,
+  "requests": [
+    {
+      "line": "GET /api/Status/user1 HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:64181"
+        ]
+      ],
+      "body": ""
+    }
+  ],
+  "result": null,
+  "error": {
+    "type": "System.Net.Http.HttpRequestException",
+    "message": "Get Failed(http://127.0.0.1:64181/api/Status/user1, NotFound) : {\"Items\":[{\"JobId\":7}]}"
+  },
+  "logs": []
+}

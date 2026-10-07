@@ -1,0 +1,29 @@
+{
+  "port": 64169,
+  "requests": [
+    {
+      "line": "POST /api/Start HTTP/1.1",
+      "headers": [
+        [
+          "Host",
+          "127.0.0.1:64169"
+        ],
+        [
+          "Content-Type",
+          "application/json; charset=utf-8"
+        ],
+        [
+          "Content-Length",
+          "377"
+        ]
+      ],
+      "body": "{\r\n  \"UserId\": \"user1\",\r\n  \"Type\": \"move\",\r\n  \"Source\": {\r\n    \"MountPoint\": \"/mnt/a\",\r\n    \"Endpoint\": \"http://s:9000\",\r\n    \"Bucket\": \"sb\",\r\n    \"Access\": \"ak\",\r\n    \"Secret\": \"sk\",\r\n    \"Prefix\": \"p/\",\r\n    \"Move_size\": \"10GB\"\r\n  },\r\n  \"Target\": {\r\n    \"Endpoint\": \"http://t:9000\",\r\n    \"Access\": \"ak2\",\r\n    \"Secret\": \"sk2\",\r\n    \"Bucket\": \"tb\",\r\n    \"Prefix\": \"q/\"\r\n  }\r\n}"
+    }
+  ],
+  "result": null,
+  "error": {
+    "type": "System.Net.Http.HttpRequestException",
+    "message": "Post Failed(http://127.0.0.1:64169/api/Start, Created) : {\"JobId\":5}"
+  },
+  "logs": []
+}
