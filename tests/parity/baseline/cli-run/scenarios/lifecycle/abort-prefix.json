@@ -1,0 +1,44 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "versioning"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "lifecycle"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "key-marker=",
+        "max-uploads=1000",
+        "prefix=big",
+        "upload-id-marker=",
+        "uploads"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : LifecycleTest Start",
+    "INFO  <TIME> : AbortIncompleteMultipartUpload Days : 7",
+    "ERROR <TIME> : Expired 1 Objects.",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

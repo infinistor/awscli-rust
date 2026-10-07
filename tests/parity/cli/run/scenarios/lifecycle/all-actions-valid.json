@@ -1,0 +1,50 @@
+{
+  "args": [
+    "--test-compare-lifecycle",
+    "-b",
+    "bkt"
+  ],
+  "routes": [
+    {
+      "contains": "GET /bkt/?versioning",
+      "status": 200,
+      "responseBody": "<VersioningConfiguration xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Status>Enabled</Status></VersioningConfiguration>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "GET /bkt/?lifecycle",
+      "status": 200,
+      "responseBody": "<LifecycleConfiguration xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Rule><ID>r1</ID><Status>Enabled</Status><Expiration><Days>30</Days></Expiration><NoncurrentVersionExpiration><NoncurrentDays>30</NoncurrentDays></NoncurrentVersionExpiration><AbortIncompleteMultipartUpload><DaysAfterInitiation>7</DaysAfterInitiation></AbortIncompleteMultipartUpload></Rule></LifecycleConfiguration>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "GET /bkt/?versions",
+      "status": 200,
+      "responseBody": "<ListVersionsResult xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Name>bkt</Name><Prefix></Prefix><KeyMarker></KeyMarker><VersionIdMarker></VersionIdMarker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Version><Key>n</Key><VersionId>v3</VersionId><IsLatest>true</IsLatest><LastModified>2099-01-01T00:00:00.000Z</LastModified><ETag>e3</ETag><Size>3</Size><StorageClass>STANDARD</StorageClass></Version></ListVersionsResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "GET /bkt/?uploads",
+      "status": 200,
+      "responseBody": "<ListMultipartUploadsResult xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Bucket>bkt</Bucket><KeyMarker></KeyMarker><UploadIdMarker></UploadIdMarker><MaxUploads>1000</MaxUploads><IsTruncated>false</IsTruncated><Upload><Key>fresh.bin</Key><UploadId>u2</UploadId><Initiator><ID>i</ID></Initiator><Owner><ID>o</ID></Owner><StorageClass>STANDARD</StorageClass><Initiated>2099-01-01T00:00:00.000Z</Initiated></Upload></ListMultipartUploadsResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "GET /bkt/?",
+      "status": 200,
+      "responseBody": "<ListBucketResult xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Name>bkt</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>n</Key><LastModified>2099-01-01T00:00:00.000Z</LastModified><ETag>e</ETag><Size>1</Size><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    }
+  ],
+  "drop_lines": "expiredDate :"
+}

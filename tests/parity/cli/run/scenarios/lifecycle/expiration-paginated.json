@@ -1,0 +1,41 @@
+{
+  "args": [
+    "--test-compare-lifecycle",
+    "-b",
+    "bkt"
+  ],
+  "routes": [
+    {
+      "contains": "GET /bkt/?versioning",
+      "status": 200,
+      "responseBody": "<VersioningConfiguration xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Status>Enabled</Status></VersioningConfiguration>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "GET /bkt/?lifecycle",
+      "status": 200,
+      "responseBody": "<LifecycleConfiguration xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Rule><ID>r1</ID><Status>Enabled</Status><Expiration><Date>2020-01-01T00:00:00.000Z</Date></Expiration></Rule></LifecycleConfiguration>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "GET /bkt/?marker=a.txt",
+      "status": 200,
+      "responseBody": "<ListBucketResult xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Name>bkt</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>b.txt</Key><LastModified>2019-06-01T00:00:00.000Z</LastModified><ETag>e2</ETag><Size>2</Size><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "GET /bkt/?",
+      "status": 200,
+      "responseBody": "<ListBucketResult xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Name>bkt</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTruncated>true</IsTruncated><NextMarker>a.txt</NextMarker><Contents><Key>a.txt</Key><LastModified>2019-06-01T00:00:00.000Z</LastModified><ETag>e1</ETag><Size>1</Size><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    }
+  ]
+}

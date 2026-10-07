@@ -1,0 +1,36 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/srcb/a.bin",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "POST",
+      "path": "/tgtb/out.bin",
+      "query": [
+        "uploads"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [
+        "range: bytes=0-9"
+      ],
+      "method": "GET",
+      "path": "/srcb/a.bin",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : RangeReadCopy Start",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: The requested range is not satisfiable"
+  ]
+}

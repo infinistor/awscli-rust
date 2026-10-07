@@ -1,0 +1,77 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "versioning"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "lifecycle"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "marker=",
+        "max-keys=1000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "key-marker=",
+        "max-keys=1000",
+        "version-id-marker=",
+        "versions"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "max-keys=1000",
+        "prefix=only",
+        "versions"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "key-marker=only",
+        "max-keys=1000",
+        "version-id-marker=d1",
+        "versions"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : LifecycleTest Start",
+    "INFO  <TIME> : Expiration Date : ",
+    "INFO  <TIME> : DeleteMarker : True",
+    "ERROR <TIME> : Expired 1 Objects.",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

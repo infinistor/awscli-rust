@@ -1,0 +1,51 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "versioning"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "lifecycle"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "marker=",
+        "max-keys=1000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/logs/a.txt",
+      "query": [
+        "tagging"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : LifecycleTest Start",
+    "INFO  <TIME> : Expiration Date : 2020-01-01 오전 12:00:00",
+    "ERROR <TIME> : System.NullReferenceException: Object reference not set to an instance of an object.",
+    "INFO  <TIME> : All Objects are Valid.",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

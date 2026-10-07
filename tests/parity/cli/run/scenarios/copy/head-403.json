@@ -1,0 +1,20 @@
+{
+  "args": [
+    "--test-range-copy",
+    "--source",
+    "srcb",
+    "--source-key",
+    "a.bin",
+    "-b",
+    "tgtb",
+    "--key",
+    "out.bin"
+  ],
+  "routes": [
+    {
+      "contains": "HEAD /srcb/a.bin",
+      "status": 403,
+      "responseBody": ""
+    }
+  ]
+}

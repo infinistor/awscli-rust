@@ -1,0 +1,214 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/dup/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": "<VersioningConfiguration><Status>Enabled</Status></VersioningConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/",
+      "query": [
+        "versioning"
+      ]
+    },
+    {
+      "body": "16 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/OBJ_0",
+      "query": []
+    },
+    {
+      "body": "16 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/OBJ_0",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/a/",
+      "query": []
+    },
+    {
+      "body": "16 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/a/OBJ_1",
+      "query": []
+    },
+    {
+      "body": "16 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/a/OBJ_1",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/a/b/",
+      "query": []
+    },
+    {
+      "body": "16 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/a/b/OBJ_2",
+      "query": []
+    },
+    {
+      "body": "16 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/a/b/OBJ_2",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/dup/a/b/OBJ_2",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/dup/a/b/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/dup/a/OBJ_1",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/dup/a/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/dup/OBJ_0",
+      "query": []
+    },
+    {
+      "body": "16 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/OBJ_0",
+      "query": []
+    },
+    {
+      "body": "16 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/OBJ_0",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/a/",
+      "query": []
+    },
+    {
+      "body": "16 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/a/OBJ_1",
+      "query": []
+    },
+    {
+      "body": "16 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/a/OBJ_1",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/a/b/",
+      "query": []
+    },
+    {
+      "body": "16 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/a/b/OBJ_2",
+      "query": []
+    },
+    {
+      "body": "16 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/a/b/OBJ_2",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/dup/a/b/OBJ_2",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/dup/a/b/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/dup/a/OBJ_1",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/dup/a/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/dup/OBJ_0",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : [Loop:0001] Create 5 Objects",
+    "INFO  <TIME> : [Loop:0001] Delete 5 Objects",
+    "INFO  <TIME> : [Loop:0002] Create 5 Objects",
+    "INFO  <TIME> : [Loop:0002] Delete 5 Objects",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/src/",
+      "query": [
+        "max-keys=1000",
+        "versions"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/tgt/",
+      "query": [
+        "max-keys=1000",
+        "versions"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/src/a.txt",
+      "query": [
+        "versionId=v2"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/tgt/a.txt",
+      "query": [
+        "versionId=v2"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/src/a.txt",
+      "query": [
+        "tagging",
+        "versionId=v2"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/tgt/a.txt",
+      "query": [
+        "tagging",
+        "versionId=v2"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/src/a.txt",
+      "query": [
+        "versionId=v1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/tgt/a.txt",
+      "query": [
+        "versionId=v1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/src/a.txt",
+      "query": [
+        "tagging",
+        "versionId=v1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/tgt/a.txt",
+      "query": [
+        "tagging",
+        "versionId=v1"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : src(3) is Match tgt",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

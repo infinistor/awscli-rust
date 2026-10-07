@@ -1,0 +1,30 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "versioning"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "lifecycle"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : LifecycleTest Start",
+    "INFO  <TIME> : All Objects are Valid.",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

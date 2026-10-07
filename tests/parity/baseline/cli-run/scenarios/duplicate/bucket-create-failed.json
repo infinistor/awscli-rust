@@ -1,0 +1,80 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/dup/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/",
+      "query": []
+    },
+    {
+      "body": "<VersioningConfiguration><Status>Enabled</Status></VersioningConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/",
+      "query": [
+        "versioning"
+      ]
+    },
+    {
+      "body": "16 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/OBJ_0",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/p/",
+      "query": []
+    },
+    {
+      "body": "16 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/dup/p/OBJ_1",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/dup/p/OBJ_1",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/dup/p/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/dup/OBJ_0",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: Access Denied",
+    "INFO  <TIME> : [Loop:0001] Create 3 Objects",
+    "INFO  <TIME> : [Loop:0001] Delete 3 Objects",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

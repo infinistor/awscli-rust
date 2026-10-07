@@ -1,0 +1,46 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/src/",
+      "query": [
+        "marker=",
+        "max-keys=1000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/tgt/",
+      "query": [
+        "marker=",
+        "max-keys=1000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/src/a.txt",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/tgt/a.txt",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "ERROR <TIME> : a.txt Does not match! LastModified 2024-01-01 오전 12:00:00 != 2024-01-02 오후 1:05:07",
+    "ERROR <TIME> : src is not Match tgt",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

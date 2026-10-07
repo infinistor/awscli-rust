@@ -1,0 +1,30 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/src/",
+      "query": [
+        "marker=",
+        "max-keys=1000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/tgt/",
+      "query": [
+        "marker=",
+        "max-keys=1000"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "ERROR <TIME> : System.NullReferenceException: Object reference not set to an instance of an object."
+  ]
+}

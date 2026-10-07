@@ -1,0 +1,16 @@
+{
+  "args": [
+    "--test-compare=false"
+  ],
+  "routes": [
+    {
+      "contains": "GET /src/?",
+      "status": 403,
+      "responseBody": "<Error><Code>AccessDenied</Code><Message>Access Denied</Message><RequestId>r1</RequestId></Error>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    }
+  ],
+  "config": "[Default]\r\nBucketName = main\r\nObjectPrefix = FILE\r\nFileSize = 1K\r\n\r\n[Compare]\r\nSourceBucket = src\r\nTargetBucket = tgt\r\n\r\n[Main User]\r\nURL = {URL}\r\nAccessKey = testcore-access\r\nSecretKey = testcore-secret-key-0123456789abcdefghij\r\n\r\n[Alt User]\r\nURL = {URL}\r\nAccessKey = testcore-alt-access\r\nSecretKey = testcore-alt-secret-0123456789abcdefghij\r\n"
+}

@@ -1,0 +1,37 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/src/",
+      "query": [
+        "marker=",
+        "max-keys=1000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/tgt/",
+      "query": [
+        "marker=",
+        "max-keys=1000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/src/a.txt",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: Error making request with Error Code NotFound and Http Status Code NotFound. No further error information was returned by the service."
+  ]
+}

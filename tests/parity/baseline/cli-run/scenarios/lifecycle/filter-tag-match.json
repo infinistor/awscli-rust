@@ -1,0 +1,60 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "versioning"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "lifecycle"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "marker=",
+        "max-keys=1000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/logs/a.txt",
+      "query": [
+        "tagging"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/docs/b.txt",
+      "query": [
+        "tagging"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : LifecycleTest Start",
+    "INFO  <TIME> : Expiration Date : 2020-01-01 오전 12:00:00",
+    "INFO  <TIME> : logs/a.txt is Not Deleted. LastModified : 2019-06-01 오전 12:00:00 / ExpiredDate : 2020-01-01 오전 12:00:00",
+    "ERROR <TIME> : Expired 1 Objects.",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

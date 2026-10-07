@@ -1,0 +1,27 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/srcb/a.bin",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "POST",
+      "path": "/tgtb/out.bin",
+      "query": [
+        "uploads"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : RangeReadCopy Start",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: Access Denied"
+  ]
+}

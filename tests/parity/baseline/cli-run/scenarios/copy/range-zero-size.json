@@ -1,0 +1,38 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "HEAD",
+      "path": "/srcb/a.bin",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "POST",
+      "path": "/tgtb/out.bin",
+      "query": [
+        "uploads"
+      ]
+    },
+    {
+      "body": "<CompleteMultipartUpload></CompleteMultipartUpload>",
+      "headers": [],
+      "method": "POST",
+      "path": "/tgtb/out.bin",
+      "query": [
+        "uploadId=u1"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : RangeReadCopy Start",
+    "INFO  <TIME> : CopyTest End. <N>ms",
+    "INFO  <TIME> : RangeReadCopy : complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "args": [
+    "--test-range-copy",
+    "--source",
+    "bkt",
+    "--source-key",
+    "a.bin",
+    "-b",
+    "bkt",
+    "--key",
+    "copy.bin"
+  ],
+  "routes": [
+    {
+      "contains": "HEAD /bkt/a.bin",
+      "status": 200,
+      "responseBody": "xxxxxxxxxx",
+      "responseHeaders": {
+        "ETag": "\"s1\""
+      }
+    },
+    {
+      "contains": "POST /bkt/copy.bin?uploads",
+      "status": 200,
+      "responseBody": "<InitiateMultipartUploadResult xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Bucket>bkt</Bucket><Key>copy.bin</Key><UploadId>u2</UploadId></InitiateMultipartUploadResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "GET /bkt/a.bin",
+      "status": 206,
+      "responseBody": "abcdefghij",
+      "responseHeaders": {
+        "Content-Range": "bytes 0-9/10"
+      }
+    },
+    {
+      "contains": "PUT /bkt/copy.bin",
+      "status": 200,
+      "responseBody": "",
+      "responseHeaders": {
+        "ETag": "\"p2etag\""
+      }
+    },
+    {
+      "contains": "POST /bkt/copy.bin?uploadId",
+      "status": 200,
+      "responseBody": "<CompleteMultipartUploadResult xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Bucket>bkt</Bucket><Key>copy.bin</Key><ETag>&quot;f2&quot;</ETag></CompleteMultipartUploadResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    }
+  ]
+}

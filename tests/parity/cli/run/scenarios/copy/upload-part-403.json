@@ -1,0 +1,49 @@
+{
+  "args": [
+    "--test-range-copy",
+    "--source",
+    "srcb",
+    "--source-key",
+    "a.bin",
+    "-b",
+    "tgtb",
+    "--key",
+    "out.bin"
+  ],
+  "routes": [
+    {
+      "contains": "HEAD /srcb/a.bin",
+      "status": 200,
+      "responseBody": "xxxxxxxxxx",
+      "responseHeaders": {
+        "Last-Modified": "Mon, 01 Jan 2024 00:00:00 GMT",
+        "ETag": "\"s1\""
+      }
+    },
+    {
+      "contains": "POST /tgtb/out.bin?uploads",
+      "status": 200,
+      "responseBody": "<InitiateMultipartUploadResult xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Bucket>tgtb</Bucket><Key>out.bin</Key><UploadId>u1</UploadId></InitiateMultipartUploadResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "GET /srcb/a.bin",
+      "status": 206,
+      "responseBody": "abcdefghij",
+      "responseHeaders": {
+        "ETag": "\"s1\"",
+        "Content-Range": "bytes 0-9/10"
+      }
+    },
+    {
+      "contains": "PUT /tgtb/out.bin",
+      "status": 403,
+      "responseBody": "<Error><Code>AccessDenied</Code><Message>Access Denied</Message><RequestId>r1</RequestId></Error>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    }
+  ]
+}

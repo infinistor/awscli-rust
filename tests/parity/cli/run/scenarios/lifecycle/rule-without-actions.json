@@ -1,0 +1,25 @@
+{
+  "args": [
+    "--test-compare-lifecycle",
+    "-b",
+    "bkt"
+  ],
+  "routes": [
+    {
+      "contains": "GET /bkt/?versioning",
+      "status": 200,
+      "responseBody": "<VersioningConfiguration xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Status>Enabled</Status></VersioningConfiguration>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "GET /bkt/?lifecycle",
+      "status": 200,
+      "responseBody": "<LifecycleConfiguration xmlns='http://s3.amazonaws.com/doc/2006-03-01/'><Rule><ID>r1</ID><Filter><Prefix>logs/</Prefix></Filter><Status>Enabled</Status></Rule></LifecycleConfiguration>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    }
+  ]
+}

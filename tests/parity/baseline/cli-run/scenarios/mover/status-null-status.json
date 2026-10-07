@@ -1,0 +1,116 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "491 bytes",
+      "headers": [],
+      "method": "POST",
+      "path": "/api/Start",
+      "query": []
+    },
+    {
+      "body": "<Delete><Object><Key>FILE_0</Key><VersionId>v1</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/msrc/",
+      "query": [
+        "delete"
+      ]
+    },
+    {
+      "body": "<Delete><Object><Key>FILE_0</Key><VersionId>v1</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/mtgt/",
+      "query": [
+        "delete"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/api/Status/muser",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/msrc/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/msrc/",
+      "query": [
+        "max-keys=1000",
+        "versions"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/msrc/",
+      "query": [
+        "max-keys=1000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/mtgt/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/mtgt/",
+      "query": [
+        "max-keys=1000",
+        "versions"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/msrc/FILE_0",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/msrc/FILE_1",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : JobId = 7",
+    "ERROR <TIME> : System.NullReferenceException: Object reference not set to an instance of an object.",
+    "ERROR <TIME> : MoverTest failed",
+    "INFO  <TIME> : BucketClear(msrc, , , 1000)",
+    "INFO  <TIME> : WaitTasks(1)",
+    "INFO  <TIME> : DeleteObjects(msrc, 1) success",
+    "INFO  <TIME> : Finish",
+    "INFO  <TIME> : BucketClear completed - Total deleted objects: 1",
+    "INFO  <TIME> : BucketClear(mtgt, , , 1000)",
+    "INFO  <TIME> : WaitTasks(1)",
+    "INFO  <TIME> : DeleteObjects(mtgt, 1) success",
+    "INFO  <TIME> : Finish",
+    "INFO  <TIME> : BucketClear completed - Total deleted objects: 1",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}
