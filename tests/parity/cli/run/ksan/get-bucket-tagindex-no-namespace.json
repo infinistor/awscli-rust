@@ -1,0 +1,17 @@
+{
+  "args" : [
+    "--get-bucket-tagindex",
+    "-b",
+    "bucket1"
+  ],
+  "routes" : [
+    {
+      "contains" : "?tag-index HTTP",
+      "responseBody" : "<TagIndexingConfiguration><Status>Enabled</Status></TagIndexingConfiguration>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

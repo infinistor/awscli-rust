@@ -1,0 +1,29 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "encoding-type=url",
+        "list-tag-search",
+        "max-keys=1000",
+        "tag=tag1%3Avalue1%2Ctag2%3Avalue2"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ListBucketTagSearch Start",
+    "--------------------------------------------------------------------------",
+    "a.txt                     2024-08-05 07:03:09      0.000 Byte",
+    "dir/long-name-file.bin    2023-59-31 23:12:58      1.465 KiB",
+    "한글키                       2024-01-30 00:11:02      2.000 GiB",
+    "--------------------------------------------------------------------------",
+    "INFO  <TIME> : 3 files. complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

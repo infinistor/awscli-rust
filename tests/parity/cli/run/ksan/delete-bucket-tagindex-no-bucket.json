@@ -1,0 +1,11 @@
+{
+  "args" : [
+    "--delete-bucket-tagindex"
+  ],
+  "routes" : [
+    {
+      "contains" : "?tag-index HTTP",
+      "status" : 204
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "args" : [
+    "--get-bucket-tagindex",
+    "-b",
+    "bucket1"
+  ],
+  "routes" : [
+    {
+      "contains" : "?tag-index HTTP",
+      "responseBody" : "<Other xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"/>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

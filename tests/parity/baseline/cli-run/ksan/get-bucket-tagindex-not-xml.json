@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "tag-index"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : GetBucketTagIndex Start",
+    "ERROR <TIME> : System.InvalidOperationException: There is an error in XML document (1, 1).",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

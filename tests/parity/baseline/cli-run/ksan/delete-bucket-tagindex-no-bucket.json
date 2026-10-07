@@ -1,0 +1,11 @@
+{
+  "exitCode": 0,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : DeleteBucketTagIndex Start",
+    "ERROR <TIME> : System.ArgumentNullException: Value cannot be null. (Parameter 's')",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "args" : [
+    "--list-bucket-tagsearch",
+    "-b",
+    "bucket1",
+    "--tag",
+    "k:v",
+    "--max-keys",
+    "0"
+  ],
+  "routes" : [
+    {
+      "contains" : "list-tag-search",
+      "responseBody" : "<ListBucketTagSearchResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><IsTruncated>false</IsTruncated><Contents><ETag>&quot;etag1&quot;</ETag><Key>a.txt</Key><LastModified>2024-03-05T07:08:09.000Z</LastModified><Owner><DisplayName>owner</DisplayName><Id>id1</Id></Owner><Size>0</Size><StorageClass>STANDARD</StorageClass></Contents><Contents><ETag>&quot;etag2&quot;</ETag><Key>dir/long-name-file.bin</Key><LastModified>2023-12-31T23:59:58.000Z</LastModified><Size>1500</Size><StorageClass>STANDARD</StorageClass></Contents><Contents><ETag>&quot;etag3&quot;</ETag><Key>한글키</Key><LastModified>2024-11-30T00:01:02.000Z</LastModified><Size>2147483647</Size></Contents></ListBucketTagSearchResult>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

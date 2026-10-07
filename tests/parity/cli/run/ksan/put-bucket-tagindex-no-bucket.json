@@ -1,0 +1,11 @@
+{
+  "args" : [
+    "--put-bucket-tagindex"
+  ],
+  "routes" : [
+    {
+      "contains" : "?tag-index HTTP",
+      "status" : 200
+    }
+  ]
+}

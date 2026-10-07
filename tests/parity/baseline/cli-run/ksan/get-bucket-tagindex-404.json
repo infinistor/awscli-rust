@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "tag-index"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : GetBucketTagIndex Start",
+    "ERROR <TIME> : System.ArgumentException: Stream was not readable.",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

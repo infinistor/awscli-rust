@@ -26,6 +26,9 @@ pub struct Element {
     pub children: Vec<Element>,
     /// 요소 이름의 위치.
     pub position: Position,
+    /// 끝 태그 다음 노드(공백 제외)의 위치. `XmlSerializer`는 요소 값을 읽은 뒤 값을 변환하므로 `int`·`bool`·
+    /// `DateTime` 변환 오류는 이 위치로 보고한다(다음 노드가 요소면 이름 위치, 끝 태그면 `</` 다음 칸).
+    pub end_position: Position,
 }
 
 impl Element {
@@ -72,6 +75,8 @@ pub fn parse(text: &str) -> Result<Element, XmlError> {
     }
     let mut reader = NsReader::from_str(text);
     let mut stack: Vec<Element> = Vec::new();
+    // 방금 닫힌 요소(부모의 마지막 자식)의 `end_position`을 다음 노드에서 채운다.
+    let mut closed = false;
     loop {
         let start = reader.buffer_position() as usize;
         let error_at = |offset: usize| XmlError(position_of(text, offset));
@@ -79,6 +84,21 @@ pub fn parse(text: &str) -> Result<Element, XmlError> {
             Ok(value) => value,
             Err(_) => return Err(error_at(reader.error_position() as usize)),
         };
+        if closed {
+            let next = match &event {
+                Event::Start(_) | Event::Empty(_) => Some(start + 1),
+                Event::End(_) => Some(start + 2),
+                // 공백만 있는 텍스트는 `XmlSerializer`가 건너뛴다.
+                Event::Text(t) if t.xml10_content().trim().is_empty() => None,
+                _ => Some(start),
+            };
+            if let Some(offset) = next {
+                if let Some(last) = stack.last_mut().and_then(|p| p.children.last_mut()) {
+                    last.end_position = position_of(text, offset);
+                }
+                closed = false;
+            }
+        }
         let open = |e: &quick_xml::events::BytesStart<'_>| -> Result<Element, XmlError> {
             let ns = match &resolved {
                 ResolveResult::Bound(ns) => ns.as_ref().to_string(),
@@ -100,6 +120,7 @@ pub fn parse(text: &str) -> Result<Element, XmlError> {
                     Some(parent) => parent.children.push(element),
                     None => return Ok(element),
                 }
+                closed = true;
             }
             Event::End(_) => {
                 let element = stack.pop().ok_or_else(|| error_at(start))?;
@@ -107,6 +128,7 @@ pub fn parse(text: &str) -> Result<Element, XmlError> {
                     Some(parent) => parent.children.push(element),
                     None => return Ok(element),
                 }
+                closed = true;
             }
             Event::Text(t) => {
                 let value = t.xml10_content();

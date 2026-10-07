@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ListBucketTagSearch Start",
+    "ERROR <TIME> : System.ArgumentException: 검색할 태그가 존재하지 않습니다."
+  ]
+}
