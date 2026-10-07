@@ -11,6 +11,7 @@
 //!   정규형, 그 밖은 `aws-chunked`·HTTP 청크를 푼 내용의 MD5와 길이)으로 바꾼다. 서버가 받은 순서대로 비교하고,
 //!   동시 요청 사례(`"unordered": true`)만 정렬해서 비교한다.
 
+use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 use std::process::Stdio;
 use std::sync::LazyLock;
@@ -43,6 +44,16 @@ pub struct CliCase {
     pub dump: bool,
     /// 요청을 동시에 보내는 사례(멀티파트 전송, 버킷 비우기 등). 요청 순서를 비교하지 않는다.
     pub unordered: bool,
+    /// 통계 줄(평균·대역폭·시간)의 숫자와 단위를 `<N>`으로 가린다. 건수는 비교한다.
+    pub stats: bool,
+    /// XML이 아닌 요청 본문은 MD5 없이 길이만 비교한다(무작위 본문).
+    pub ignore_body: bool,
+    /// 이 정규식에 맞는 출력 줄은 버린다(시간에 따라 횟수가 달라지는 진행 출력 등).
+    pub drop_lines: Option<String>,
+    /// 작업 디렉터리에 만들 빈 디렉터리(상대 경로).
+    pub dirs: Vec<String>,
+    /// 실행 뒤 내용을 비교할 파일·디렉터리(상대 경로, 디렉터리는 아래 파일 전부).
+    pub outputs: Vec<String>,
 }
 
 impl CliCase {
@@ -60,6 +71,11 @@ impl CliCase {
             files: Vec::new(),
             dump: false,
             unordered: false,
+            stats: false,
+            ignore_body: false,
+            drop_lines: None,
+            dirs: Vec::new(),
+            outputs: Vec::new(),
         }
     }
 
@@ -105,6 +121,22 @@ impl CliCase {
             .get("unordered")
             .and_then(Value::as_bool)
             .unwrap_or(false);
+        let flag = |name: &str| value.get(name).and_then(Value::as_bool).unwrap_or(false);
+        case.stats = flag("stats");
+        case.ignore_body = flag("ignore_body");
+        case.drop_lines = value
+            .get("drop_lines")
+            .and_then(Value::as_str)
+            .map(str::to_string);
+        let strings = |name: &str| -> Vec<String> {
+            value
+                .get(name)
+                .and_then(Value::as_array)
+                .map(|a| a.iter().map(|v| v.as_str().unwrap().to_string()).collect())
+                .unwrap_or_default()
+        };
+        case.dirs = strings("dirs");
+        case.outputs = strings("outputs");
         if let Some(routes) = value.get("routes").and_then(Value::as_array) {
             case.routes = routes
                 .iter()
@@ -131,16 +163,22 @@ pub struct CliOutcome {
     pub stderr: Vec<String>,
     pub exit_code: i32,
     pub requests: Vec<Value>,
+    /// 사례의 `outputs`(상대 경로 → 정규화한 줄). 비어 있으면 기준 출력에 쓰지 않는다.
+    pub outputs: BTreeMap<String, Vec<String>>,
 }
 
 impl CliOutcome {
     pub fn to_json(&self) -> Value {
-        json!({
+        let mut value = json!({
             "stdout": self.stdout,
             "stderr": self.stderr,
             "exitCode": self.exit_code,
             "requests": self.requests,
-        })
+        });
+        if !self.outputs.is_empty() {
+            value["outputs"] = json!(self.outputs);
+        }
+        value
     }
 
     pub fn from_json(value: &Value) -> Self {
@@ -156,6 +194,11 @@ impl CliOutcome {
             stderr: lines(&value["stderr"]),
             exit_code: value["exitCode"].as_i64().unwrap() as i32,
             requests: value["requests"].as_array().unwrap().clone(),
+            outputs: value
+                .get("outputs")
+                .and_then(Value::as_object)
+                .map(|o| o.iter().map(|(k, v)| (k.clone(), lines(v))).collect())
+                .unwrap_or_default(),
         }
     }
 }
@@ -186,6 +229,9 @@ pub async fn run_case(exe: &Path, case: &CliCase, encoding: OutputEncoding) -> C
             std::fs::create_dir_all(parent).unwrap();
         }
         std::fs::write(path, content).unwrap();
+    }
+    for path in &case.dirs {
+        std::fs::create_dir_all(dir.path().join(path)).unwrap();
     }
 
     let child = tokio::process::Command::new(exe)
@@ -225,7 +271,13 @@ pub async fn run_case(exe: &Path, case: &CliCase, encoding: OutputEncoding) -> C
     }
     // 긴 표기가 짧은 표기를 포함할 수 있어 긴 것부터 바꾼다.
     dirs.sort_by_key(|d| std::cmp::Reverse(d.len()));
-    let context = Context { host: &host, dirs };
+    let context = Context {
+        host: &host,
+        dirs,
+        stats: case.stats,
+        ignore_body: case.ignore_body,
+        drop_lines: case.drop_lines.as_deref().map(|r| Regex::new(r).unwrap()),
+    };
     // 요청은 서버가 받은 순서대로 둔다(동시 요청 사례는 비교할 때 정렬한다).
     let requests: Vec<Value> = server
         .requests()
@@ -237,13 +289,97 @@ pub async fn run_case(exe: &Path, case: &CliCase, encoding: OutputEncoding) -> C
         stderr: normalize_output(&decode(&output.stderr), &context, false),
         exit_code: output.status.code().unwrap_or(i32::MIN),
         requests,
+        outputs: collect_outputs(dir.path(), &case.outputs, &context),
     }
+}
+
+/// 사례의 `outputs`를 읽어 정규화한다. 디렉터리는 아래 파일 전부(이름의 `yyyyMMdd_HHmmss`는 `<TS>`).
+fn collect_outputs(
+    root: &Path,
+    outputs: &[String],
+    context: &Context<'_>,
+) -> BTreeMap<String, Vec<String>> {
+    let mut result = BTreeMap::new();
+    let mut add = |name: String, path: &Path| {
+        let lines = match std::fs::read(path) {
+            Ok(bytes) => {
+                let text = String::from_utf8_lossy(&bytes).replace("\r\n", "\n");
+                text.lines()
+                    .map(|line| {
+                        let line = ISO_TIME.replace_all(line, "<TIME>");
+                        mask_stats(&replace_context(&line, context), context)
+                    })
+                    .collect()
+            }
+            Err(_) => vec!["<없음>".to_string()],
+        };
+        result.insert(TIMESTAMP.replace_all(&name, "<TS>").into_owned(), lines);
+    };
+    for output in outputs {
+        let path = root.join(output);
+        if path.is_dir() {
+            let mut entries: Vec<_> = walk(&path);
+            entries.sort();
+            for entry in entries {
+                let name = entry
+                    .strip_prefix(root)
+                    .unwrap()
+                    .display()
+                    .to_string()
+                    .replace('\\', "/");
+                add(name, &entry);
+            }
+        } else {
+            add(output.clone(), &path);
+        }
+    }
+    result
+}
+
+fn walk(dir: &Path) -> Vec<PathBuf> {
+    let mut files = Vec::new();
+    for entry in std::fs::read_dir(dir).into_iter().flatten().flatten() {
+        let path = entry.path();
+        if path.is_dir() {
+            files.extend(walk(&path));
+        } else {
+            files.push(path);
+        }
+    }
+    files
 }
 
 struct Context<'a> {
     host: &'a str,
     /// 작업 디렉터리의 여러 표기(8.3 짧은 이름, 긴 이름, `/` 구분).
     dirs: Vec<String>,
+    stats: bool,
+    ignore_body: bool,
+    drop_lines: Option<Regex>,
+}
+
+/// JSON 결과의 시각(`2026-10-07T15:04:05.1234567+09:00`).
+static ISO_TIME: LazyLock<Regex> = LazyLock::new(|| {
+    Regex::new(r"\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(Z|[+-]\d\d:\d\d)?").unwrap()
+});
+/// 결과 파일 이름의 시각(`_20261007_150405`).
+static TIMESTAMP: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"\d{8}_\d{6}").unwrap());
+/// 통계 줄: 시간·속도에 따라 달라지는 값(평균, 대역폭, 경과 시간)을 담은 줄.
+static STATS_LINE: LazyLock<Regex> = LazyLock::new(|| {
+    Regex::new(r#"(?i)average|bandwidth|times|elapsed|\bsec\b|/s\b|"time"|"(end|start)time""#)
+        .unwrap()
+});
+/// 숫자(소수, 단위 포함).
+static STATS_NUMBER: LazyLock<Regex> =
+    LazyLock::new(|| Regex::new(r"-?\d[\d,]*(\.\d+)?( ?(Byte|[KMGTPEZY]i?B)\b)?").unwrap());
+
+/// `stats` 사례: 통계 줄의 숫자를 가린다.
+fn mask_stats(line: &str, context: &Context<'_>) -> String {
+    if context.stats && STATS_LINE.is_match(line) {
+        STATS_NUMBER.replace_all(line, "<N>").into_owned()
+    } else {
+        line.to_string()
+    }
 }
 
 static LOG_TIME: LazyLock<Regex> = LazyLock::new(|| {
@@ -329,7 +465,15 @@ fn normalize_output(text: &str, context: &Context<'_>, dump: bool) -> Vec<String
         }
         let line = LOG_TIME.replace(line, "$1 <TIME> : ");
         let line = MILLIS.replace_all(&line, "<N>ms");
-        lines.push(replace_context(&line, context));
+        let line = mask_stats(&replace_context(&line, context), context);
+        if context
+            .drop_lines
+            .as_ref()
+            .is_some_and(|r| r.is_match(&line))
+        {
+            continue;
+        }
+        lines.push(line);
     }
     while lines.last().is_some_and(String::is_empty) {
         lines.pop();
@@ -376,6 +520,8 @@ fn normalize_request(request: &CapturedRequest, context: &Context<'_>) -> Value 
         Value::Null
     } else if let Some(xml) = std::str::from_utf8(&payload).ok().and_then(canonical_xml) {
         Value::String(xml)
+    } else if context.ignore_body {
+        Value::String(format!("{} bytes", payload.len()))
     } else {
         Value::String(format!(
             "{} bytes md5={}",

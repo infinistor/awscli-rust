@@ -57,3 +57,78 @@ impl From<awscli_rest_s3::ksan::KsanError> for ScenarioError {
         Self::new(error.dotnet_type(), error.to_string())
     }
 }
+
+/// 이름 생성 등 도우미 오류를 원본 .NET 예외로.
+impl From<awscli_rest_config::UtilError> for ScenarioError {
+    fn from(error: awscli_rest_config::UtilError) -> Self {
+        use awscli_rest_config::UtilError::*;
+        match error {
+            InvalidNumber(value) => Self::new(
+                "System.FormatException",
+                format!("The input string '{value}' was not in a correct format."),
+            ),
+            DivideByZero => Self::new(
+                "System.DivideByZeroException",
+                "Attempted to divide by zero.",
+            ),
+            OutOfRange(parameter) => Self::new(
+                "System.ArgumentOutOfRangeException",
+                format!(
+                    "Specified argument was out of the range of valid values. (Parameter '{parameter}')"
+                ),
+            ),
+        }
+    }
+}
+
+/// 경로를 모르는 파일 오류(경로를 알면 [`crate::input::io_error`]).
+impl From<std::io::Error> for ScenarioError {
+    fn from(error: std::io::Error) -> Self {
+        let dotnet_type = match error.kind() {
+            std::io::ErrorKind::NotFound => "System.IO.FileNotFoundException",
+            std::io::ErrorKind::PermissionDenied => "System.UnauthorizedAccessException",
+            _ => "System.IO.IOException",
+        };
+        Self::new(dotnet_type, error.to_string())
+    }
+}
+
+/// UpDownClient 메서드 밖으로 나가던 예외.
+impl From<awscli_rest_clients::UpDownError> for ScenarioError {
+    fn from(error: awscli_rest_clients::UpDownError) -> Self {
+        use awscli_rest_clients::UpDownError::*;
+        let message = error.to_string();
+        match error {
+            S3(e) => e.into(),
+            Util(e) => e.into(),
+            Io(e) => e.into(),
+            NullReference => Self::new(
+                "System.NullReferenceException",
+                "Object reference not set to an instance of an object.",
+            ),
+            IndexOutOfRange | DivideByZero | InvalidOperation(_) => {
+                // 표시 문자열이 `형식: 메시지`다.
+                let (dotnet_type, message) = message.split_once(": ").unwrap_or(("", &message));
+                Self::new(dotnet_type, message)
+            }
+        }
+    }
+}
+
+impl From<awscli_rest_clients::LocalError> for ScenarioError {
+    fn from(error: awscli_rest_clients::LocalError) -> Self {
+        match error {
+            awscli_rest_clients::LocalError::Util(e) => e.into(),
+            awscli_rest_clients::LocalError::Io(e) => e.into(),
+        }
+    }
+}
+
+impl From<awscli_rest_clients::MultiSystemError> for ScenarioError {
+    fn from(error: awscli_rest_clients::MultiSystemError) -> Self {
+        match error {
+            awscli_rest_clients::MultiSystemError::Util(e) => e.into(),
+            awscli_rest_clients::MultiSystemError::Io(e) => e.into(),
+        }
+    }
+}

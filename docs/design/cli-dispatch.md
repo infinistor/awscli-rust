@@ -68,6 +68,15 @@ TESTCore `Util/TestCoreApplication.cs`, `Util/ConfigBootstrapper.cs`, `Commands/
 
 `routes`는 요청 줄에 `contains`가 들어 있는 첫 항목, 없으면 `default`(기본 빈 200)로 응답한다. 요청은 받은 순서대로 비교한다. 멀티파트 전송·버킷 비우기처럼 요청을 동시에 보내는 사례는 `"unordered": true`로 순서를 무시한다. `config`를 주지 않으면 `cli_harness::DEFAULT_CONFIG`(버킷 이름 없음)를 쓴다.
 
+시나리오 사례(`cli/run/scenarios/<시나리오>/`)용 옵션:
+
+-   `"stats": true`: 평균·대역폭·시간을 담은 통계 줄과 결과 JSON의 숫자(단위 포함)를 `<N>`으로 가린다. 건수 줄은 그대로 비교한다.
+-   `"ignore_body": true`: XML이 아닌 요청 본문은 MD5 없이 길이만 비교한다(무작위 더미 파일·본문).
+-   `"drop_lines": "정규식"`: 정규화한 출력 줄 중 맞는 줄을 버린다(시간에 따라 횟수가 달라지는 줄).
+-   `"dirs": ["in", "out/a"]`: 작업 디렉터리에 빈 디렉터리를 만든다.
+-   `"outputs": ["result.json", "save"]`: 실행 뒤 파일(디렉터리면 아래 파일 전부) 내용을 비교한다. 시각은 `<TIME>`, 파일 이름의 `yyyyMMdd_HHmmss`는 `<TS>`.
+-   동시 요청 사례(`unordered`)의 기준 출력은 요청을 정렬해 저장한다.
+
 기준 출력 만들기(TESTCore HEAD 빌드, `tests/parity/README.md`):
 
 ```powershell
