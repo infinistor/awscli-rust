@@ -1,0 +1,200 @@
+{
+  "exitCode": -1,
+  "outputs": {
+    "<db>": [
+      "SELECT filecount, used FROM bucket WHERE bucket = 'used-source'",
+      "SELECT filecount, used FROM bucket WHERE bucket = 'used-source'"
+    ]
+  },
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/used-source/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/used-source/",
+      "query": [
+        "max-keys=1000",
+        "versions"
+      ]
+    },
+    {
+      "body": "<Delete><Object><Key>PutObject</Key><VersionId>null</VersionId></Object><Object><Key>CopyObject</Key><VersionId>v2</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/used-source/",
+      "query": [
+        "delete"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/used-source/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/used-target/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/used-target/",
+      "query": [
+        "max-keys=1000",
+        "versions"
+      ]
+    },
+    {
+      "body": "<Delete><Object><Key>PutObject</Key><VersionId>null</VersionId></Object><Object><Key>CopyObject</Key><VersionId>v2</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/used-target/",
+      "query": [
+        "delete"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/used-target/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/used-source/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/used-target/",
+      "query": []
+    },
+    {
+      "body": "10 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/used-source/PutObject",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/used-source/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/used-source/",
+      "query": [
+        "max-keys=1000",
+        "versions"
+      ]
+    },
+    {
+      "body": "<Delete><Object><Key>PutObject</Key><VersionId>null</VersionId></Object><Object><Key>CopyObject</Key><VersionId>v2</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/used-source/",
+      "query": [
+        "delete"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/used-source/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/used-target/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/used-target/",
+      "query": [
+        "max-keys=1000",
+        "versions"
+      ]
+    },
+    {
+      "body": "<Delete><Object><Key>PutObject</Key><VersionId>null</VersionId></Object><Object><Key>CopyObject</Key><VersionId>v2</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/used-target/",
+      "query": [
+        "delete"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/used-target/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/used-source/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/used-target/",
+      "query": []
+    },
+    {
+      "body": "10 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/used-source/PutObject",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "ERROR <TIME> : PutObject(used-source) CheckUsedSize Fail",
+    "ERROR <TIME> : PutObject(used-source) CheckUsedSize Fail",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

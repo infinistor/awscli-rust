@@ -21,6 +21,9 @@ use md5::{Digest, Md5};
 use regex::Regex;
 use serde_json::{Value, json};
 
+#[path = "fake_mysql.rs"]
+mod fake_mysql;
+
 use super::http_capture::{CannedResponse, CaptureServer, CapturedRequest};
 use super::xml_canon::canonical_xml;
 
@@ -52,6 +55,8 @@ pub struct CliCase {
     pub drop_lines: Option<String>,
     /// 이 정규식에 맞는 부분은 `<RAND>`로 바꾼다(출력·요청 경로의 무작위 버킷 이름 등).
     pub mask: Option<String>,
+    /// 가짜 MySQL 서버가 사용량 조회마다 돌려줄 행(`[파일 수, 사용량]`, `null`이면 행 없음). 있으면 서버를 띄운다.
+    pub db_rows: Option<Vec<Option<(i64, i64)>>>,
     /// 작업 디렉터리에 만들 빈 디렉터리(상대 경로).
     pub dirs: Vec<String>,
     /// 실행 뒤 내용을 비교할 파일·디렉터리(상대 경로, 디렉터리는 아래 파일 전부).
@@ -77,6 +82,7 @@ impl CliCase {
             ignore_body: false,
             drop_lines: None,
             mask: None,
+            db_rows: None,
             dirs: Vec::new(),
             outputs: Vec::new(),
         }
@@ -135,6 +141,14 @@ impl CliCase {
             .get("mask")
             .and_then(Value::as_str)
             .map(str::to_string);
+        case.db_rows = value.get("db_rows").and_then(Value::as_array).map(|rows| {
+            rows.iter()
+                .map(|row| {
+                    row.as_array()
+                        .map(|r| (r[0].as_i64().unwrap(), r[1].as_i64().unwrap()))
+                })
+                .collect()
+        });
         let strings = |name: &str| -> Vec<String> {
             value
                 .get(name)
@@ -224,11 +238,17 @@ pub async fn run_case(exe: &Path, case: &CliCase, encoding: OutputEncoding) -> C
         CaptureServer::start_with_routes(case.default_response.clone(), case.routes.clone()).await;
     let host = format!("127.0.0.1:{}", server.port);
     let dir = tempfile::tempdir().unwrap();
+    // `db_rows`가 있으면 사용량 조회에 그 행을 돌려주는 가짜 MySQL 서버를 띄운다(설정의 `{DBPORT}`).
+    let db = match &case.db_rows {
+        Some(rows) => Some(fake_mysql::FakeMysql::start(rows.clone()).await),
+        None => None,
+    };
     let config = case
         .config
         .as_deref()
         .unwrap_or(DEFAULT_CONFIG)
-        .replace("{URL}", &format!("http://{host}"));
+        .replace("{URL}", &format!("http://{host}"))
+        .replace("{DBPORT}", &db.as_ref().map_or(0, |db| db.port).to_string());
     std::fs::write(dir.path().join("config.ini"), config).unwrap();
     for (path, content) in &case.files {
         let path = dir.path().join(path);
@@ -297,7 +317,17 @@ pub async fn run_case(exe: &Path, case: &CliCase, encoding: OutputEncoding) -> C
         stderr: normalize_output(&decode(&output.stderr), &context, false),
         exit_code: output.status.code().unwrap_or(i32::MIN),
         requests,
-        outputs: collect_outputs(dir.path(), &case.outputs, &context),
+        outputs: {
+            let mut outputs = collect_outputs(dir.path(), &case.outputs, &context);
+            // 가짜 DB가 받은 사용량 조회(SQL 문자열)
+            if let Some(db) = &db {
+                if std::env::var_os("FAKE_MYSQL_LOG").is_some() {
+                    eprintln!("[{}] 받은 질의: {:#?}", case.name, db.all_queries());
+                }
+                outputs.insert("<db>".to_string(), db.queries.lock().unwrap().clone());
+            }
+            outputs
+        },
     }
 }
 
@@ -633,6 +663,15 @@ pub fn diff(expected: &CliOutcome, actual: &CliOutcome) -> String {
     };
     lines("stdout", &expected.stdout, &actual.stdout, &mut out);
     lines("stderr", &expected.stderr, &actual.stderr, &mut out);
+    for (name, e) in &expected.outputs {
+        let a = actual.outputs.get(name).map_or(&[][..], Vec::as_slice);
+        lines(&format!("output {name}"), e, a, &mut out);
+    }
+    for (name, a) in &actual.outputs {
+        if !expected.outputs.contains_key(name) {
+            lines(&format!("output {name}"), &[], a, &mut out);
+        }
+    }
     if expected.exit_code != actual.exit_code {
         out.push_str(&format!(
             "  [exit] {} != {}\n",

@@ -1,0 +1,438 @@
+{
+  "exitCode": -1,
+  "outputs": {
+    "<db>": [
+      "SELECT filecount, used FROM bucket WHERE bucket = 'used-source'",
+      "SELECT filecount, used FROM bucket WHERE bucket = 'used-source'",
+      "SELECT filecount, used FROM bucket WHERE bucket = 'used-source'",
+      "SELECT filecount, used FROM bucket WHERE bucket = 'used-source'",
+      "SELECT filecount, used FROM bucket WHERE bucket = 'used-source'",
+      "SELECT filecount, used FROM bucket WHERE bucket = 'used-target'",
+      "SELECT filecount, used FROM bucket WHERE bucket = 'used-source'",
+      "SELECT filecount, used FROM bucket WHERE bucket = 'used-source'",
+      "SELECT filecount, used FROM bucket WHERE bucket = 'used-target'",
+      "SELECT filecount, used FROM bucket WHERE bucket = 'used-source'",
+      "SELECT filecount, used FROM bucket WHERE bucket = 'used-source'",
+      "SELECT filecount, used FROM bucket WHERE bucket = 'used-target'",
+      "SELECT filecount, used FROM bucket WHERE bucket = 'used-source'",
+      "SELECT filecount, used FROM bucket WHERE bucket = 'used-source'",
+      "SELECT filecount, used FROM bucket WHERE bucket = 'used-source'"
+    ]
+  },
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/used-source/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/used-source/",
+      "query": [
+        "max-keys=1000",
+        "versions"
+      ]
+    },
+    {
+      "body": "<Delete><Object><Key>PutObject</Key><VersionId>null</VersionId></Object><Object><Key>CopyObject</Key><VersionId>v2</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/used-source/",
+      "query": [
+        "delete"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/used-source/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/used-target/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/used-target/",
+      "query": [
+        "max-keys=1000",
+        "versions"
+      ]
+    },
+    {
+      "body": "<Delete><Object><Key>PutObject</Key><VersionId>null</VersionId></Object><Object><Key>CopyObject</Key><VersionId>v2</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/used-target/",
+      "query": [
+        "delete"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/used-target/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/used-source/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/used-target/",
+      "query": []
+    },
+    {
+      "body": "10 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/used-source/PutObject",
+      "query": []
+    },
+    {
+      "body": "10 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/used-source/PutObject",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [
+        "x-amz-copy-source: used-source%2FPutObject",
+        "x-amz-metadata-directive: COPY"
+      ],
+      "method": "PUT",
+      "path": "/used-source/CopyObject",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [
+        "x-amz-copy-source: used-source%2FPutObject",
+        "x-amz-metadata-directive: COPY"
+      ],
+      "method": "PUT",
+      "path": "/used-source/CopyObject",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [
+        "x-amz-copy-source: used-source%2FCopyObject",
+        "x-amz-metadata-directive: COPY"
+      ],
+      "method": "PUT",
+      "path": "/used-target/CopyObject",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "POST",
+      "path": "/used-source/MultipartUpload",
+      "query": [
+        "uploads"
+      ]
+    },
+    {
+      "body": "12 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/used-source/MultipartUpload",
+      "query": [
+        "partNumber=1",
+        "uploadId=upload-1"
+      ]
+    },
+    {
+      "body": "<CompleteMultipartUpload><Part><ETag>\"etag-1\"</ETag><PartNumber>1</PartNumber></Part></CompleteMultipartUpload>",
+      "headers": [],
+      "method": "POST",
+      "path": "/used-source/MultipartUpload",
+      "query": [
+        "uploadId=upload-1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "POST",
+      "path": "/used-source/MultipartUpload",
+      "query": [
+        "uploads"
+      ]
+    },
+    {
+      "body": "12 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/used-source/MultipartUpload",
+      "query": [
+        "partNumber=1",
+        "uploadId=upload-1"
+      ]
+    },
+    {
+      "body": "<CompleteMultipartUpload><Part><ETag>\"etag-1\"</ETag><PartNumber>1</PartNumber></Part></CompleteMultipartUpload>",
+      "headers": [],
+      "method": "POST",
+      "path": "/used-source/MultipartUpload",
+      "query": [
+        "uploadId=upload-1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "POST",
+      "path": "/used-source/MultipartCopy",
+      "query": [
+        "uploads"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [
+        "x-amz-copy-source-range: bytes=0-5242880",
+        "x-amz-copy-source: used-source%2FMultipartUpload"
+      ],
+      "method": "PUT",
+      "path": "/used-source/MultipartCopy",
+      "query": [
+        "partNumber=1",
+        "uploadId=upload-1"
+      ]
+    },
+    {
+      "body": "<CompleteMultipartUpload><Part><ETag>\"etag-1\"</ETag><PartNumber>1</PartNumber></Part></CompleteMultipartUpload>",
+      "headers": [],
+      "method": "POST",
+      "path": "/used-source/MultipartCopy",
+      "query": [
+        "uploadId=upload-1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "POST",
+      "path": "/used-source/MultipartCopy",
+      "query": [
+        "uploads"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [
+        "x-amz-copy-source-range: bytes=0-5242880",
+        "x-amz-copy-source: used-source%2FMultipartUpload"
+      ],
+      "method": "PUT",
+      "path": "/used-source/MultipartCopy",
+      "query": [
+        "partNumber=1",
+        "uploadId=upload-1"
+      ]
+    },
+    {
+      "body": "<CompleteMultipartUpload><Part><ETag>\"etag-1\"</ETag><PartNumber>1</PartNumber></Part></CompleteMultipartUpload>",
+      "headers": [],
+      "method": "POST",
+      "path": "/used-source/MultipartCopy",
+      "query": [
+        "uploadId=upload-1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "POST",
+      "path": "/used-target/MultipartCopy",
+      "query": [
+        "uploads"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [
+        "x-amz-copy-source-range: bytes=0-5242880",
+        "x-amz-copy-source: used-source%2FMultipartCopy"
+      ],
+      "method": "PUT",
+      "path": "/used-target/MultipartCopy",
+      "query": [
+        "partNumber=1",
+        "uploadId=upload-1"
+      ]
+    },
+    {
+      "body": "<CompleteMultipartUpload><Part><ETag>\"etag-1\"</ETag><PartNumber>1</PartNumber></Part></CompleteMultipartUpload>",
+      "headers": [],
+      "method": "POST",
+      "path": "/used-target/MultipartCopy",
+      "query": [
+        "uploadId=upload-1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/used-source/PutObject",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/used-source/MultipartUpload",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/used-source/",
+      "query": [
+        "max-keys=1000",
+        "versions"
+      ]
+    },
+    {
+      "body": "<Delete><Object><Key>PutObject</Key><VersionId>null</VersionId></Object><Object><Key>CopyObject</Key><VersionId>v2</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/used-source/",
+      "query": [
+        "delete"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/used-source/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/used-source/",
+      "query": [
+        "max-keys=1000",
+        "versions"
+      ]
+    },
+    {
+      "body": "<Delete><Object><Key>PutObject</Key><VersionId>null</VersionId></Object><Object><Key>CopyObject</Key><VersionId>v2</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/used-source/",
+      "query": [
+        "delete"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/used-source/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/used-target/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/used-target/",
+      "query": [
+        "max-keys=1000",
+        "versions"
+      ]
+    },
+    {
+      "body": "<Delete><Object><Key>PutObject</Key><VersionId>null</VersionId></Object><Object><Key>CopyObject</Key><VersionId>v2</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/used-target/",
+      "query": [
+        "delete"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "DELETE",
+      "path": "/used-target/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/used-source/",
+      "query": []
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "PUT",
+      "path": "/used-target/",
+      "query": []
+    },
+    {
+      "body": "10 bytes",
+      "headers": [],
+      "method": "PUT",
+      "path": "/used-source/PutObject",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "ERROR <TIME> : Access Denied",
+    "ERROR <TIME> : Access Denied",
+    "ERROR <TIME> : Access Denied",
+    "ERROR <TIME> : DeleteAllObject(used-source) Fail",
+    "ERROR <TIME> : Access Denied",
+    "ERROR <TIME> : Access Denied",
+    "ERROR <TIME> : FileCount: 0 != 1, UsedSize: 0 != 10",
+    "ERROR <TIME> : PutObject(used-source) CheckUsedSize Fail",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

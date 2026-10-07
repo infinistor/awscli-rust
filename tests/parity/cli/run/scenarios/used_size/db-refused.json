@@ -1,5 +1,5 @@
 {
   "args": ["--test-used-size"],
-  "config": "[Default]\r\nObjectPrefix = temp\r\nFileSize = 1K\r\n\r\n[Main User]\r\nURL = {URL}\r\nAccessKey = testcore-access\r\nSecretKey = testcore-secret-key-0123456789abcdefghij\r\n\r\n[Alt User]\r\nURL = {URL}\r\nAccessKey = testcore-alt-access\r\nSecretKey = testcore-alt-secret-0123456789abcdefghij\r\n\r\n[UsedSize]\r\nBucketPrefix = used\r\nFileSize = 10\r\nMultiPartSize = 12\r\n\r\n[DB]\r\nHost = 127.0.0.1\r\nPort = 1\r\nUser = ksan\r\nPassword = secret\r\nDatabase = ksan\r\n",
+  "config": "[Default]\r\nObjectPrefix = temp\r\nFileSize = 1K\r\n\r\n[Main User]\r\nURL = {URL}\r\nAccessKey = testcore-access\r\nSecretKey = testcore-secret-key-0123456789abcdefghij\r\n\r\n[Alt User]\r\nURL = {URL}\r\nAccessKey = testcore-alt-access\r\nSecretKey = testcore-alt-secret-0123456789abcdefghij\r\n\r\n[UsedSize]\r\nBucketPrefix = used\r\nFileSize = 10\r\nPartSize = 12\r\n\r\n[DB]\r\nHost = 127.0.0.1\r\nPort = 1\r\nUser = ksan\r\nPassword = secret\r\nDatabase = ksan\r\n",
   "routes": [{"contains":"versions","status":200,"responseBody":"<ListVersionsResult><Name>b</Name><IsTruncated>false</IsTruncated></ListVersionsResult>"}]
 }
