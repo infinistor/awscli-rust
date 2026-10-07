@@ -1,0 +1,11 @@
+{
+  "args": [
+    "--manual-upload",
+    "-b",
+    "mp",
+    "-k",
+    "obj.txt",
+    "-f",
+    "nope.txt"
+  ]
+}

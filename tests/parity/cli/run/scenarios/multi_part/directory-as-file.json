@@ -1,0 +1,14 @@
+{
+  "args": [
+    "--manual-upload",
+    "-b",
+    "mp",
+    "-k",
+    "obj.txt",
+    "-f",
+    "data.txt"
+  ],
+  "dirs": [
+    "data.txt"
+  ]
+}

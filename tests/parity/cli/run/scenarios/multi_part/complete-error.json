@@ -1,0 +1,41 @@
+{
+  "args": [
+    "--manual-upload",
+    "-b",
+    "mp",
+    "-k",
+    "obj.txt",
+    "-f",
+    "data.txt",
+    "--part-size",
+    "100"
+  ],
+  "files": {
+    "data.txt": "hello"
+  },
+  "routes": [
+    {
+      "contains": "POST /mp/obj.txt?uploads",
+      "status": 200,
+      "responseBody": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<InitiateMultipartUploadResult><Bucket>mp</Bucket><Key>obj.txt</Key><UploadId>UP1</UploadId></InitiateMultipartUploadResult>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "contains": "partNumber=1",
+      "status": 200,
+      "responseHeaders": {
+        "ETag": "\"etag1\""
+      }
+    },
+    {
+      "contains": "POST /mp/obj.txt?uploadId=UP1",
+      "status": 403,
+      "responseBody": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Error><Code>AccessDenied</Code><Message>Access Denied</Message><RequestId>REQ1</RequestId></Error>",
+      "responseHeaders": {
+        "Content-Type": "application/xml"
+      }
+    }
+  ]
+}
