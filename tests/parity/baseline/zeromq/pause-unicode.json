@@ -1,0 +1,12 @@
+{
+  "port": 58305,
+  "received": "서비스.type.pause",
+  "result": 0,
+  "error": null,
+  "logs": [
+    {
+      "level": "INFO",
+      "message": "Paused 서비스.type on 127.0.0.1:58305"
+    }
+  ]
+}

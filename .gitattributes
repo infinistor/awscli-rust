@@ -10,3 +10,4 @@ tests/parity/json/** -text
 tests/parity/s3/** -text
 tests/parity/portal/** -text
 tests/parity/mover/** -text
+tests/parity/zeromq/** -text

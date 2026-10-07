@@ -23,6 +23,7 @@ serde_json.workspace = true
 thiserror.workspace = true
 tokio.workspace = true
 tracing.workspace = true
+zeromq.workspace = true
 
 [dev-dependencies]
 rcgen.workspace = true
@@ -36,6 +37,10 @@ path = "../../tests/parity/portal.rs"
 [[test]]
 name = "parity_mover"
 path = "../../tests/parity/mover.rs"
+
+[[test]]
+name = "parity_zeromq"
+path = "../../tests/parity/zeromq.rs"
 
 [lints]
 workspace = true
