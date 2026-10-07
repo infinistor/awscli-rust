@@ -76,14 +76,16 @@ impl GranteeInput {
     }
 
     fn to_sdk(&self) -> Result<Grantee, CommandError> {
-        // Rust SDK의 `Grantee`는 `Type`이 필수라 `Type`이 없는 입력은 빈 문자열로 보낸다
-        // (.NET은 `xsi:type` 없이 보낸다).
+        // Rust SDK의 `Grantee`는 `Type`이 필수라 `Type`이 없는 입력은 표식(`UNSET`)으로 만들고, 서명 전에
+        // `xsi:type` 속성을 지운다(.NET은 `xsi:type` 없이 보낸다).
         Grantee::builder()
             .set_id(self.canonical_user.clone())
             .set_display_name(self.display_name.clone())
             .set_email_address(self.email_address.clone())
             .set_uri(self.uri.clone())
-            .r#type(Type::from(self.grantee_type().unwrap_or("")))
+            .r#type(Type::from(
+                self.grantee_type().unwrap_or(awscli_rest_s3::UNSET),
+            ))
             .build()
             .map_err(|e| CommandError::new("Amazon.Runtime.AmazonClientException", e.to_string()))
     }

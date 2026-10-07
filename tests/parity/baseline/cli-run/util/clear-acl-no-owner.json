@@ -2,15 +2,6 @@
   "exitCode": 0,
   "requests": [
     {
-      "body": "<Delete><Object><Key>a.txt</Key><VersionId>v1</VersionId></Object><Object><Key>b.log</Key><VersionId>v2</VersionId></Object></Delete>",
-      "headers": [],
-      "method": "POST",
-      "path": "/bucket1/",
-      "query": [
-        "delete"
-      ]
-    },
-    {
       "body": null,
       "headers": [],
       "method": "GET",
@@ -43,8 +34,7 @@
       "method": "GET",
       "path": "/bucket1/",
       "query": [
-        "max-keys=1000",
-        "versions"
+        "object-lock"
       ]
     },
     {
@@ -53,7 +43,17 @@
       "method": "GET",
       "path": "/bucket1/",
       "query": [
-        "object-lock"
+        "max-keys=1000",
+        "versions"
+      ]
+    },
+    {
+      "body": "<Delete><Object><Key>a.txt</Key><VersionId>v1</VersionId></Object><Object><Key>b.log</Key><VersionId>v2</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/bucket1/",
+      "query": [
+        "delete"
       ]
     }
   ],

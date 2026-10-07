@@ -56,9 +56,16 @@ fn dotnet_date_to_smithy(date: &DotnetDateTime) -> Result<DateTime, CommandError
     Ok(DateTime::from_secs_and_nanos(seconds, nanos))
 }
 
-/// 필수 값이 빠진 SDK 모델은 빈 문자열로 채운다(.NET은 그 요소를 생략한다. 모듈 문서 참고).
+/// 값이 없으면 빈 문자열(수명주기 필터 `Prefix`처럼 .NET도 빈 요소를 보내는 곳).
 fn blank(value: &Option<String>) -> String {
     value.clone().unwrap_or_default()
+}
+
+/// 필수 값이 빠지면 표식(`UNSET`)을 넣는다. S3 클라이언트가 서명 전에 그 요소를 지워 .NET처럼 생략한다.
+fn required(value: &Option<String>) -> String {
+    value
+        .clone()
+        .unwrap_or_else(|| awscli_rest_s3::UNSET.to_string())
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -260,8 +267,10 @@ impl MyLifecycleRule {
     fn to_sdk(&self) -> Result<LifecycleRule, CommandError> {
         let mut rule = LifecycleRule::builder()
             .set_id(self.id.clone())
-            // 원본은 `Status`가 없으면 `<Status>` 요소를 생략한다(SDK 모델은 필수 값).
-            .status(ExpirationStatus::from(blank(&self.status).as_str()));
+            // .NET은 `Status`가 없으면 `<Status>Disabled</Status>`를 보낸다(.NET 기준 출력으로 확인).
+            .status(ExpirationStatus::from(
+                self.status.as_deref().unwrap_or("Disabled"),
+            ));
         if let Some(expiration) = &self.expiration {
             rule = rule.expiration(
                 LifecycleExpiration::builder()
@@ -458,7 +467,7 @@ impl MyReplicationConfiguration {
             .map(MyReplicationRule::to_sdk)
             .collect::<Result<Vec<_>, _>>()?;
         ReplicationConfiguration::builder()
-            .role(blank(&self.role))
+            .role(required(&self.role))
             .set_rules(Some(rules))
             .build()
             .map_err(|e| CommandError::new("Amazon.Runtime.AmazonClientException", e.to_string()))
@@ -470,14 +479,21 @@ impl MyReplicationRule {
         let client_error = |e: aws_sdk_s3::error::BuildError| {
             CommandError::new("Amazon.Runtime.AmazonClientException", e.to_string())
         };
+        // 원본 `new ReplicationRuleStatus(Status)`: `Status`가 없으면 ArgumentNullException.
+        let Some(status) = self.status.as_deref() else {
+            return Err(CommandError::new(
+                "System.ArgumentNullException",
+                "Value cannot be null. (Parameter 'key')",
+            ));
+        };
         let mut rule = ReplicationRule::builder()
             .set_id(self.id.clone())
             .priority(self.priority)
-            .status(ReplicationRuleStatus::from(blank(&self.status).as_str()));
+            .status(ReplicationRuleStatus::from(status));
         if let Some(destination) = &self.destination {
             rule = rule.destination(
                 Destination::builder()
-                    .bucket(blank(&destination.bucket))
+                    .bucket(required(&destination.bucket))
                     .set_storage_class(destination.storage_class.as_deref().map(StorageClass::from))
                     .set_account(destination.account_id.clone())
                     .build()
@@ -554,8 +570,8 @@ impl FromJson for TagInput {
 }
 
 impl TaggingInput {
-    /// `setting.TagSet`. 목록의 `null` 요소는 요청에서 빠진다. `Key`·`Value`가 없는 태그는 원본이 해당 요소를
-    /// 생략하지만 SDK 모델은 필수 값이라 빈 문자열로 채운다.
+    /// `setting.TagSet`. 목록의 `null` 요소는 요청에서 빠진다. `Key`·`Value`가 없는 태그는 표식(`UNSET`)으로
+    /// 만들어 요청에서 그 요소를 뺀다(원본과 같다).
     pub fn tag_set(&self) -> Result<Vec<Tag>, CommandError> {
         self.tag_set
             .iter()
@@ -563,8 +579,8 @@ impl TaggingInput {
             .flatten()
             .map(|tag| {
                 Tag::builder()
-                    .key(blank(&tag.key))
-                    .value(blank(&tag.value))
+                    .key(required(&tag.key))
+                    .value(required(&tag.value))
                     .build()
                     .map_err(|e| {
                         CommandError::new("Amazon.Runtime.AmazonClientException", e.to_string())

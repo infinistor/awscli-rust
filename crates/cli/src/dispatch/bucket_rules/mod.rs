@@ -21,14 +21,16 @@
 //!
 //! .NET과 다른 점(SDK 모델이 필수 값을 요구해 같은 요청을 만들 수 없는 경우)
 //!
-//! - 필수 값이 빠진 입력(수명주기·복제 규칙의 `Status`, 복제 `Role`·`Destination.Bucket`, 태그의 `Key`·`Value`)은
-//!   .NET은 해당 요소를 생략하지만 여기서는 빈 문자열 요소를 보낸다. 복제 규칙에 `Destination`이 없으면 요소를 생략한다.
+//! - 필수 값이 빠진 입력(복제 `Role`·`Destination.Bucket`, 태그의 `Key`·`Value`)은 표식(`UNSET`)으로 모델을 만들고
+//!   S3 클라이언트가 서명 전에 그 요소를 지워 .NET처럼 생략한다. 수명주기 `Status`가 없으면 .NET처럼 `Disabled`,
+//!   복제 규칙 `Status`가 없으면 .NET처럼 `ArgumentNullException`이다.
 //!   `TagSet`이 없는 입력은 .NET이 `<Tagging/>`을 보내지만 여기서는 빈 `<TagSet/>`이 붙는다.
 //! - PublicAccessBlock 파일이 JSON `null`이면 .NET은 본문 없는 요청을 보내지만 여기서는 빈 설정을 보낸다.
 //! - 수명주기 `Expiration.Date`의 소수 초는 .NET이 밀리초 3자리(`.500`)로, SDK가 최소 자릿수(`.5`)로 쓴다.
 
 mod dto;
 
+use super::input::blank;
 use std::path::Path;
 use std::time::Instant;
 
@@ -146,11 +148,6 @@ fn help_text(menu: MenuList) -> String {
     }
 }
 
-/// `string.IsNullOrWhiteSpace`.
-fn blank(value: &Option<String>) -> bool {
-    value.as_deref().is_none_or(|v| v.trim().is_empty())
-}
-
 /// Get 응답: .NET은 2xx(200이 아닌 `NoContent` 등)를 상태만 다른 정상 응답으로 돌려주고, `not_found_ok`인 연산
 /// (수명주기, 정책, 복제)은 404도 그렇다. SDK가 이를 오류로 돌려주면 상태만 남긴다.
 fn tolerate<T>(
@@ -168,31 +165,9 @@ fn tolerate<T>(
     }
 }
 
-fn null_reference() -> CommandError {
-    CommandError::new(
-        "System.NullReferenceException",
-        "Object reference not set to an instance of an object.",
-    )
-}
+use super::input::null_reference;
 
-/// `File.ReadAllText(path)`: BOM으로 UTF-8·UTF-16을 구분하고 없으면 UTF-8로 읽는다(잘못된 바이트는 U+FFFD).
-fn read_all_text(path: &str) -> Result<String, CommandError> {
-    let bytes = std::fs::read(path).map_err(|e| S3Error::io(Path::new(path), &e))?;
-    Ok(match bytes.as_slice() {
-        [0xEF, 0xBB, 0xBF, rest @ ..] => String::from_utf8_lossy(rest).into_owned(),
-        [0xFF, 0xFE, rest @ ..] => decode_utf16(rest, u16::from_le_bytes),
-        [0xFE, 0xFF, rest @ ..] => decode_utf16(rest, u16::from_be_bytes),
-        other => String::from_utf8_lossy(other).into_owned(),
-    })
-}
-
-fn decode_utf16(bytes: &[u8], unit: fn([u8; 2]) -> u16) -> String {
-    let units: Vec<u16> = bytes
-        .chunks(2)
-        .map(|c| unit([c[0], *c.get(1).unwrap_or(&0)]))
-        .collect();
-    String::from_utf16_lossy(&units)
-}
+use super::input::read_all_text;
 
 /// `JsonSerializer.Deserialize<T>(text)`. JSON `null`이면 `None`.
 fn read_json<T: FromJson>(text: &str) -> Result<Option<T>, CommandError> {

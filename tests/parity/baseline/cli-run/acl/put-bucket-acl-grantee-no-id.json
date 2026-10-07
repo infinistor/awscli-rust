@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<AccessControlPolicy><AccessControlList><Grant><Grantee><DisplayName>only-name</DisplayName></Grantee><Permission>READ</Permission></Grant></AccessControlList><Owner></Owner></AccessControlPolicy>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "acl"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketAcl Start",
+    "INFO  <TIME> : bucket1 Put Bucket Acl! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

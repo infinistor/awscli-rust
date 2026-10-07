@@ -223,7 +223,8 @@ impl S3Client {
                 .put_bucket_acl()
                 .bucket(bucket_name)
                 .set_acl(acl)
-                .set_access_control_policy(access_control_policy)
+                .set_access_control_policy(access_control_policy),
+            mutate = strip_unset
         )
     }
 
@@ -277,7 +278,8 @@ impl S3Client {
             self.client
                 .put_bucket_tagging()
                 .bucket(bucket_name)
-                .tagging(tagging)
+                .tagging(tagging),
+            mutate = strip_unset
         )
     }
 
@@ -299,7 +301,8 @@ impl S3Client {
             self.client
                 .put_bucket_lifecycle_configuration()
                 .bucket(bucket_name)
-                .lifecycle_configuration(lifecycle_config)
+                .lifecycle_configuration(lifecycle_config),
+            mutate = strip_unset
         )
     }
 

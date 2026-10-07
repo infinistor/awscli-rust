@@ -8,7 +8,8 @@
 //! - 예외 스택 추적 줄(`   at `, ` ---> `, `   --- End of`)은 버린다.
 //! - `dump` 사례는 SDK 응답 JSON 덤프 블록(0열의 `{`·`[`부터 짝이 되는 `}`·`]`까지)을 버린다.
 //! - 요청은 메서드·경로·쿼리(정렬)·`x-`/`range` 헤더(시각·서명·체크섬 등 SDK마다 다른 것 제외)·본문(XML은 의미 비교용
-//!   정규형, 그 밖은 `aws-chunked`·HTTP 청크를 푼 내용의 MD5와 길이)으로 바꾸고 정렬한다.
+//!   정규형, 그 밖은 `aws-chunked`·HTTP 청크를 푼 내용의 MD5와 길이)으로 바꾼다. 서버가 받은 순서대로 비교하고,
+//!   동시 요청 사례(`"unordered": true`)만 정렬해서 비교한다.
 
 use std::path::{Path, PathBuf};
 use std::process::Stdio;
@@ -40,6 +41,8 @@ pub struct CliCase {
     pub files: Vec<(String, String)>,
     /// SDK 응답 JSON 덤프를 비교에서 뺄지.
     pub dump: bool,
+    /// 요청을 동시에 보내는 사례(멀티파트 전송, 버킷 비우기 등). 요청 순서를 비교하지 않는다.
+    pub unordered: bool,
 }
 
 impl CliCase {
@@ -56,6 +59,7 @@ impl CliCase {
             },
             files: Vec::new(),
             dump: false,
+            unordered: false,
         }
     }
 
@@ -97,6 +101,10 @@ impl CliCase {
             .and_then(Value::as_str)
             .map(str::to_string);
         case.dump = value.get("dump").and_then(Value::as_bool).unwrap_or(false);
+        case.unordered = value
+            .get("unordered")
+            .and_then(Value::as_bool)
+            .unwrap_or(false);
         if let Some(routes) = value.get("routes").and_then(Value::as_array) {
             case.routes = routes
                 .iter()
@@ -218,12 +226,12 @@ pub async fn run_case(exe: &Path, case: &CliCase, encoding: OutputEncoding) -> C
     // 긴 표기가 짧은 표기를 포함할 수 있어 긴 것부터 바꾼다.
     dirs.sort_by_key(|d| std::cmp::Reverse(d.len()));
     let context = Context { host: &host, dirs };
-    let mut requests: Vec<Value> = server
+    // 요청은 서버가 받은 순서대로 둔다(동시 요청 사례는 비교할 때 정렬한다).
+    let requests: Vec<Value> = server
         .requests()
         .iter()
         .map(|r| normalize_request(r, &context))
         .collect();
-    requests.sort_by_key(Value::to_string);
     CliOutcome {
         stdout: normalize_output(&decode(&output.stdout), &context, case.dump),
         stderr: normalize_output(&decode(&output.stderr), &context, false),
@@ -465,4 +473,16 @@ pub fn diff(expected: &CliOutcome, actual: &CliOutcome) -> String {
         }
     }
     out
+}
+
+impl CliOutcome {
+    /// 요청 순서를 무시하고 비교할 수 있게 정렬한 사본.
+    pub fn sorted(&self) -> Self {
+        let mut requests = self.requests.clone();
+        requests.sort_by_key(Value::to_string);
+        Self {
+            requests,
+            ..self.clone()
+        }
+    }
 }

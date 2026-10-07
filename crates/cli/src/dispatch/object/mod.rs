@@ -38,6 +38,7 @@ mod read;
 mod settings;
 mod write;
 
+use super::input::blank;
 use awscli_rest_s3::S3Error;
 
 use super::{CommandContext, CommandError, CommandResult};
@@ -89,11 +90,6 @@ pub(super) const PORTED: &[MenuList] = &[
     MenuList::PutObjectTagging,
     MenuList::StorageMove,
 ];
-
-/// 원본 `string.IsNullOrWhiteSpace`.
-fn blank(value: &Option<String>) -> bool {
-    value.as_deref().is_none_or(|v| v.trim().is_empty())
-}
 
 /// `--bucket`(검증을 통과했으므로 값이 있다).
 fn bucket_name(ctx: &CommandContext) -> &str {

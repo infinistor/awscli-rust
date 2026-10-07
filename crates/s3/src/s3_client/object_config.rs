@@ -22,7 +22,7 @@ use aws_sdk_s3::types::{
     ObjectLockRetention, ReplicationConfiguration, RestoreRequest, Tagging,
 };
 
-use super::{S3Client, S3Error, S3Response, zero_content_length};
+use super::{S3Client, S3Error, S3Response, strip_unset, zero_content_length};
 
 /// `x-amz-copy-source` 값. .NET은 `{버킷}/{키}` 전체를 RFC 3986으로 인코딩(`/`도 `%2F`)하고,
 /// 버전 ID는 `?versionId=`에 `/`, `+`를 남기고 인코딩한다.
@@ -65,7 +65,8 @@ impl S3Client {
                 .bucket(bucket_name)
                 .key(key)
                 .set_acl(acl)
-                .set_access_control_policy(access_control_policy)
+                .set_access_control_policy(access_control_policy),
+            mutate = strip_unset
         )
     }
 
@@ -156,7 +157,8 @@ impl S3Client {
                 .put_object_tagging()
                 .bucket(bucket_name)
                 .key(key)
-                .tagging(tagging)
+                .tagging(tagging),
+            mutate = strip_unset
         )
     }
 
@@ -268,7 +270,8 @@ impl S3Client {
             self.client
                 .put_bucket_replication()
                 .bucket(bucket_name)
-                .replication_configuration(replication_config)
+                .replication_configuration(replication_config),
+            mutate = strip_unset
         )
     }
 

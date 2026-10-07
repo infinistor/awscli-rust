@@ -18,6 +18,7 @@
 
 mod input;
 
+use super::input::blank;
 use std::path::{Path, PathBuf};
 use std::time::Instant;
 
@@ -162,11 +163,6 @@ fn help_text(menu: MenuList) -> Option<String> {
         .concat(),
         _ => return Option::None,
     })
-}
-
-/// `string.IsNullOrWhiteSpace`.
-fn blank(value: &Option<String>) -> bool {
-    value.as_deref().is_none_or(|v| v.trim().is_empty())
 }
 
 /// `AbortMultipartUpload`가 전용 예외(`NoSuchUploadException`)로 던지는 오류.

@@ -41,7 +41,10 @@ TESTCore `Util/TestCoreApplication.cs`, `Util/ConfigBootstrapper.cs`, `Commands/
 -   응답 상태 비교(`response.HttpStatusCode == HttpStatusCode.OK`)는 `response.status == 200`. 실패 로그의 상태 이름은 `awscli_rest_common::dotnet_http::status_name`.
 -   S3 예외는 `?`로 `CommandError`가 된다. 최상위가 `ERROR` 로그(`형식: 메시지`)를 남기고 -1로 끝낸다(`Main complete time` 없음). 그 밖의 .NET 예외는 `CommandError::new(".NET 형식", "메시지")`.
 -   입력 JSON 파일(`JsonSerializer.Deserialize<T>`)은 `awscli_rest_common::json`의 `FromJson`(System.Text.Json 읽기 규칙, `JsonException` 메시지 포함)으로 읽는다.
--   날짜: `ToString("yyyy-MM-dd HH:mm:ss", InvariantInfo)`는 `output::invariant_time`, 기본 `ToString()`은 ko-KR 형식 `output::ko_kr_time`(사용자 결정).
+-   날짜: `ToString("yyyy-MM-dd HH:mm:ss", InvariantInfo)`는 `output::invariant_time`, 기본 `ToString()`은 ko-KR 형식 `output::ko_kr_time`(사용자 결정). .NET SDK v4는 응답 시각을 UTC로 읽으므로 둘 다 UTC로 쓴다.
+-   S3 오류의 예외 형식: `?`(`From<S3Error>`)는 서비스 오류를 모두 `AmazonS3Exception`으로 만든다. 연산이 전용 예외로 모델링한 코드가 있으면 `CommandError::s3(e, &["NoSuchKey"])`.
+-   SDK 모델이 필수로 요구하지만 .NET은 생략하는 값은 `awscli_rest_s3::UNSET`을 넣는다. S3 클라이언트가 서명 전에 그 요소·속성을 지운다(`mutate = strip_unset`).
+-   공용 입력 처리(`IsNullOrWhiteSpace`, `File.ReadAllText`, 파일 예외, `NullReferenceException`)는 `dispatch::input`.
 -   원본 버그는 고치지 않는다. 모듈 문서 주석에 적는다.
 
 ## 실행 비교 (`tests/parity/cli_run.rs`)
@@ -58,11 +61,12 @@ TESTCore `Util/TestCoreApplication.cs`, `Util/ConfigBootstrapper.cs`, `Commands/
   "routes": [{ "contains": "GET /bucket1?acl", "status": 200, "responseBody": "<AccessControlPolicy>...</AccessControlPolicy>", "responseHeaders": { "Content-Type": "application/xml" } }],
   "default": { "status": 404, "responseBody": "<Error><Code>NoSuchKey</Code></Error>" },
   "files": { "acl.json": "{ ... }" },
+  "unordered": false,
   "config": "[Main User]\r\nURL = {URL}\r\n..."
 }
 ```
 
-`routes`는 요청 줄에 `contains`가 들어 있는 첫 항목, 없으면 `default`(기본 빈 200)로 응답한다. `config`를 주지 않으면 `cli_harness::DEFAULT_CONFIG`(버킷 이름 없음)를 쓴다.
+`routes`는 요청 줄에 `contains`가 들어 있는 첫 항목, 없으면 `default`(기본 빈 200)로 응답한다. 요청은 받은 순서대로 비교한다. 멀티파트 전송·버킷 비우기처럼 요청을 동시에 보내는 사례는 `"unordered": true`로 순서를 무시한다. `config`를 주지 않으면 `cli_harness::DEFAULT_CONFIG`(버킷 이름 없음)를 쓴다.
 
 기준 출력 만들기(TESTCore HEAD 빌드, `tests/parity/README.md`):
 

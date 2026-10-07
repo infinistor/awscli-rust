@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<Tagging><TagSet><Tag><Value>v1</Value></Tag><Tag><Key>k2</Key></Tag><Tag><Key>k3</Key><Value>v3</Value></Tag></TagSet></Tagging>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/key1",
+      "query": [
+        "tagging"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutObjectTagging Start",
+    "INFO  <TIME> : key1 Put Object Tagging! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

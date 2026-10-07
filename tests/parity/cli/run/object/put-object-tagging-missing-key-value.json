@@ -1,0 +1,17 @@
+{
+   "args" : [
+      "--put-object-tagging",
+      "-b",
+      "bucket1",
+      "-k",
+      "key1",
+      "-f",
+      "tags.json"
+   ],
+   "default" : {
+      "status" : 200
+   },
+   "files" : {
+      "tags.json" : "{\"TagSet\":[{\"Value\":\"v1\"},{\"Key\":\"k2\"},{\"Key\":\"k3\",\"Value\":\"v3\"}]}"
+   }
+}

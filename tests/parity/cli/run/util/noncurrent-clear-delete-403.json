@@ -1,23 +1,24 @@
 {
-  "args" : [
-    "--noncurrent-clear=bucket1"
-  ],
-  "routes" : [
-    {
-      "contains" : "?versions",
-      "responseBody" : "<ListVersionsResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>bucket1</Name><Prefix></Prefix><KeyMarker></KeyMarker><VersionIdMarker></VersionIdMarker><MaxKeys>2</MaxKeys><IsTruncated>false</IsTruncated><Version><Key>a.txt</Key><VersionId>v1</VersionId><IsLatest>true</IsLatest><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>&quot;e&quot;</ETag><Size>1</Size><StorageClass>STANDARD</StorageClass><Owner><ID>owner1</ID></Owner></Version><DeleteMarker><Key>b.txt</Key><VersionId>v2</VersionId><IsLatest>true</IsLatest><LastModified>2024-01-01T00:00:00.000Z</LastModified><Owner><ID>owner1</ID></Owner></DeleteMarker><Version><Key>c.txt</Key><VersionId>v3</VersionId><IsLatest>true</IsLatest><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>&quot;e&quot;</ETag><Size>1</Size><StorageClass>STANDARD</StorageClass><Owner><ID>owner1</ID></Owner></Version></ListVersionsResult>",
-      "responseHeaders" : {
-        "Content-Type" : "application/xml"
+   "args" : [
+      "--noncurrent-clear=bucket1"
+   ],
+   "routes" : [
+      {
+         "contains" : "?versions",
+         "responseBody" : "<ListVersionsResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>bucket1</Name><Prefix></Prefix><KeyMarker></KeyMarker><VersionIdMarker></VersionIdMarker><MaxKeys>2</MaxKeys><IsTruncated>false</IsTruncated><Version><Key>a.txt</Key><VersionId>v1</VersionId><IsLatest>true</IsLatest><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>&quot;e&quot;</ETag><Size>1</Size><StorageClass>STANDARD</StorageClass><Owner><ID>owner1</ID></Owner></Version><DeleteMarker><Key>b.txt</Key><VersionId>v2</VersionId><IsLatest>true</IsLatest><LastModified>2024-01-01T00:00:00.000Z</LastModified><Owner><ID>owner1</ID></Owner></DeleteMarker><Version><Key>c.txt</Key><VersionId>v3</VersionId><IsLatest>true</IsLatest><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>&quot;e&quot;</ETag><Size>1</Size><StorageClass>STANDARD</StorageClass><Owner><ID>owner1</ID></Owner></Version></ListVersionsResult>",
+         "responseHeaders" : {
+            "Content-Type" : "application/xml"
+         },
+         "status" : 200
       },
-      "status" : 200
-    },
-    {
-      "contains" : "?delete HTTP",
-      "responseBody" : "<Error><Code>AccessDenied</Code><Message>Access Denied</Message><RequestId>REQ1</RequestId></Error>",
-      "responseHeaders" : {
-        "Content-Type" : "application/xml"
-      },
-      "status" : 403
-    }
-  ]
+      {
+         "contains" : "?delete HTTP",
+         "responseBody" : "<Error><Code>AccessDenied</Code><Message>Access Denied</Message><RequestId>REQ1</RequestId></Error>",
+         "responseHeaders" : {
+            "Content-Type" : "application/xml"
+         },
+         "status" : 403
+      }
+   ],
+   "unordered" : true
 }

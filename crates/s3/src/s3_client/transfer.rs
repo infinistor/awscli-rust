@@ -19,6 +19,7 @@
 
 use std::path::Path;
 use std::sync::Arc;
+use std::sync::atomic::{AtomicBool, Ordering};
 
 use aws_sdk_s3::operation::put_object::PutObjectOutput;
 use aws_sdk_s3::types::ServerSideEncryption;
@@ -177,6 +178,8 @@ impl S3Client {
         thread_count: usize,
     ) -> Result<Vec<PartETag>, S3Error> {
         let semaphore = Arc::new(Semaphore::new(thread_count));
+        // 한 파트가 실패하면 아직 시작하지 않은 파트는 보내지 않는다(.NET은 취소 토큰으로 대기 중인 파트를 취소한다).
+        let failed = Arc::new(AtomicBool::new(false));
         let mut tasks = JoinSet::new();
         let mut number = 0;
         let mut position = 0;
@@ -203,11 +206,15 @@ impl S3Client {
                 upload_id.to_string(),
             );
             let semaphore = semaphore.clone();
+            let failed = failed.clone();
             tasks.spawn(async move {
                 let _permit = semaphore
                     .acquire_owned()
                     .await
                     .expect("세마포어는 닫지 않는다");
+                if failed.load(Ordering::SeqCst) {
+                    return Ok(None);
+                }
                 let body = match part {
                     PartSource::File(path) => PutBody::File(path),
                     PartSource::Memory(bytes, range) => PutBody::Bytes(bytes[range].to_vec()),
@@ -223,20 +230,32 @@ impl S3Client {
                         part_length,
                         true,
                     )
-                    .await?;
+                    .await
+                    .inspect_err(|_| failed.store(true, Ordering::SeqCst))?;
                 let e_tag = response.output.e_tag().unwrap_or_default().to_string();
-                Ok::<_, S3Error>(PartETag::new(number, e_tag))
+                Ok::<_, S3Error>(Some(PartETag::new(number, e_tag)))
             });
             position += length;
         }
 
+        // .NET `TransferUtility`는 파트 하나가 실패해도 이미 보낸 파트가 끝날 때까지 기다린 뒤(`Task.WhenAll`)
+        // 업로드를 중단한다. 첫 오류를 기억해 두고 남은 작업을 모두 끝낸다.
         let mut parts = Vec::new();
+        let mut first_error = None;
         while let Some(result) = tasks.join_next().await {
             match result {
-                Ok(Ok(part)) => parts.push(part),
-                Ok(Err(error)) => return Err(error),
-                Err(error) => return Err(S3Error::Request(error.to_string())),
+                Ok(Ok(Some(part))) => parts.push(part),
+                Ok(Ok(None)) => {}
+                Ok(Err(error)) => {
+                    first_error.get_or_insert(error);
+                }
+                Err(error) => {
+                    first_error.get_or_insert(S3Error::Request(error.to_string()));
+                }
             }
+        }
+        if let Some(error) = first_error {
+            return Err(error);
         }
         parts.sort_by_key(|p| p.part_number);
         Ok(parts)

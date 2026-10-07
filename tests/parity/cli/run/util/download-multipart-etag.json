@@ -1,21 +1,22 @@
 {
-  "args" : [
-    "--download",
-    "-b",
-    "bucket1",
-    "-k",
-    "obj.txt",
-    "-f",
-    "out.txt"
-  ],
-  "routes" : [
-    {
-      "contains" : "GET /bucket1/obj.txt",
-      "responseBody" : "hellx",
-      "responseHeaders" : {
-        "ETag" : "\"abc123-3\""
-      },
-      "status" : 200
-    }
-  ]
+   "args" : [
+      "--download",
+      "-b",
+      "bucket1",
+      "-k",
+      "obj.txt",
+      "-f",
+      "out.txt"
+   ],
+   "routes" : [
+      {
+         "contains" : "GET /bucket1/obj.txt",
+         "responseBody" : "hellx",
+         "responseHeaders" : {
+            "ETag" : "\"abc123-3\""
+         },
+         "status" : 200
+      }
+   ],
+   "unordered" : true
 }

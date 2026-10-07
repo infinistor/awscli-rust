@@ -12,6 +12,7 @@ mod backend;
 mod bucket;
 mod bucket_config;
 mod bucket_rules;
+pub mod input;
 mod ksan;
 mod multipart;
 mod object;

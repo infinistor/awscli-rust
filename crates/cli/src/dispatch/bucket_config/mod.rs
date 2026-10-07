@@ -26,6 +26,7 @@ mod metrics;
 mod notification;
 mod website;
 
+use super::input::blank;
 use std::time::Instant;
 
 use aws_sdk_s3::error::BuildError;
@@ -78,13 +79,7 @@ pub(super) const PORTED: &[MenuList] = &[
     MenuList::DeleteBucketWebsite,
 ];
 
-/// 원본의 `NullReferenceException`.
-fn null_reference() -> CommandError {
-    CommandError::new(
-        "System.NullReferenceException",
-        "Object reference not set to an instance of an object.",
-    )
-}
+use crate::dispatch::input::null_reference;
 
 /// SDK 빌더의 `build()`. 필수 값은 항상 채우므로(없는 값은 `UNSET` 표식) 실패하지 않는다.
 fn built<T>(result: Result<T, BuildError>) -> T {
@@ -118,11 +113,6 @@ fn required_id(id: Option<&str>, property: &str) -> Result<String, CommandError>
             format!("Request object does not have required field {property} set"),
         )),
     }
-}
-
-/// `string.IsNullOrWhiteSpace`.
-fn blank(value: &Option<String>) -> bool {
-    value.as_deref().is_none_or(|v| v.trim().is_empty())
 }
 
 /// 메뉴별 도움말. 이 모듈의 메뉴가 아니면 `None`.
@@ -326,23 +316,7 @@ fn needs_file(menu: MenuList) -> bool {
     )
 }
 
-/// `File.ReadAllText`: BOM으로 인코딩을 알아보고(UTF-8, UTF-16), 없으면 UTF-8(잘못된 바이트는 U+FFFD).
-fn read_all_text(path: &str) -> Result<String, CommandError> {
-    let bytes = std::fs::read(path)
-        .map_err(|e| CommandError::new("System.IO.IOException", e.to_string()))?;
-    let utf16 = |bytes: &[u8], to_unit: fn([u8; 2]) -> u16| {
-        let units = bytes.iter().step_by(2).zip(bytes.iter().skip(1).step_by(2));
-        char::decode_utf16(units.map(|(a, b)| to_unit([*a, *b])))
-            .map(|c| c.unwrap_or(char::REPLACEMENT_CHARACTER))
-            .collect::<String>()
-    };
-    Ok(match bytes.as_slice() {
-        [0xEF, 0xBB, 0xBF, rest @ ..] => String::from_utf8_lossy(rest).into_owned(),
-        [0xFF, 0xFE, rest @ ..] => utf16(rest, u16::from_le_bytes),
-        [0xFE, 0xFF, rest @ ..] => utf16(rest, u16::from_be_bytes),
-        _ => String::from_utf8_lossy(&bytes).into_owned(),
-    })
-}
+use super::input::read_all_text;
 
 /// `--file`의 JSON을 `T`로 읽는다(`JsonSerializer.Deserialize<T>(File.ReadAllText(filePath))`). `null`이면 `None`.
 fn load<T: FromJson>(path: &str) -> Result<Option<T>, CommandError> {

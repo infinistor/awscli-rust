@@ -64,12 +64,13 @@ impl PutBody {
             Self::File(path) => {
                 let io = |e: std::io::Error| S3Error::io(&path, &e);
                 // .NET처럼 먼저 파일을 연다(디렉터리면 접근 거부, 없으면 파일 없음).
-                let opened = tokio::fs::File::open(&path).await.map_err(io)?;
+                let mut opened = tokio::fs::File::open(&path).await.map_err(io)?;
                 let length = opened.metadata().await.map_err(io)?.len();
                 let start = u64::try_from(position).unwrap_or(0).min(length);
                 let remaining = length - start;
                 let take = u64::try_from(size).map_or(remaining, |s| s.min(remaining));
                 if streaming {
+                    // 재시도 때 다시 열 수 있도록 경로로 만든다(열린 핸들로 만든 본문은 재시도할 수 없다).
                     ByteStream::read_from()
                         .path(&path)
                         .offset(start)
@@ -78,12 +79,16 @@ impl PutBody {
                         .await
                         .map_err(|e| S3Error::Request(e.to_string()))?
                 } else {
-                    let mut file = tokio::fs::File::open(&path).await.map_err(io)?;
-                    file.seek(std::io::SeekFrom::Start(start))
+                    opened
+                        .seek(std::io::SeekFrom::Start(start))
                         .await
                         .map_err(io)?;
                     let mut buffer = Vec::new();
-                    file.take(take).read_to_end(&mut buffer).await.map_err(io)?;
+                    opened
+                        .take(take)
+                        .read_to_end(&mut buffer)
+                        .await
+                        .map_err(io)?;
                     ByteStream::from(buffer)
                 }
             }

@@ -19,6 +19,7 @@
 
 mod clear;
 
+use super::input::blank;
 use std::path::Path;
 use std::time::Instant;
 
@@ -48,11 +49,6 @@ pub(super) const PORTED: &[MenuList] = &[
     MenuList::NoncurrentClear,
     MenuList::MarkerClear,
 ];
-
-/// `string.IsNullOrWhiteSpace`.
-fn blank(value: &Option<String>) -> bool {
-    value.as_deref().is_none_or(|v| v.trim().is_empty())
-}
 
 fn help_text(menu: MenuList) -> String {
     use MenuList::*;

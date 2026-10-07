@@ -13,6 +13,7 @@
 //!   `NetMQ.NetMQException` 형식의 `zeromq` 크레이트 오류 메시지를 낸다. 하네스는 ZeroMQ 상대를 만들지 못하므로
 //!   성공·`OK!` 아닌 응답·연결 실패 경로는 실행 비교를 하지 않는다(`tests/parity/zeromq.rs`가 클라이언트 단위로 확인한다).
 
+use super::input::blank;
 use std::time::Instant;
 
 use awscli_rest_clients::zeromq;
@@ -24,11 +25,6 @@ use crate::usage;
 
 /// 옮긴 메뉴.
 pub(super) const PORTED: &[MenuList] = &[MenuList::S3backendPause, MenuList::S3backendResume];
-
-/// `string.IsNullOrWhiteSpace`.
-fn blank(value: &Option<String>) -> bool {
-    value.as_deref().is_none_or(|v| v.trim().is_empty())
-}
 
 pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResult {
     let (flag, name) = match menu {

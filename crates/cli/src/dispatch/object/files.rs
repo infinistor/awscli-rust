@@ -2,11 +2,9 @@
 //!
 //! .NET 예외의 형식 이름과 메시지(전체 경로, `File name:` 줄)를 `CommandError`로 옮긴다.
 
-use std::io;
-use std::path::{Path, PathBuf};
+use std::path::Path;
 
 use aws_sdk_s3::primitives::ByteStream;
-use awscli_rest_s3::S3Error;
 use base64::Engine;
 use md5::{Digest, Md5};
 use tokio::io::AsyncWriteExt;
@@ -14,53 +12,14 @@ use tracing::error;
 
 use crate::dispatch::CommandError;
 
-/// `Path.GetFullPath`.
-pub(super) fn full_path(path: &str) -> PathBuf {
-    std::path::absolute(path).unwrap_or_else(|_| PathBuf::from(path))
-}
-
-/// 파일 입출력 오류를 .NET 예외로 바꾼다. `FileNotFoundException`은 `File name:` 줄이 붙는다.
-pub(super) fn io_error(path: &Path, error: &io::Error) -> CommandError {
-    let mapped = S3Error::io(path, error);
-    let mut message = mapped.to_string();
-    if mapped.dotnet_type() == "System.IO.FileNotFoundException" {
-        message.push_str(&format!("\nFile name: '{}'", path.display()));
-    }
-    CommandError::new(mapped.dotnet_type(), message)
-}
+pub(super) use crate::dispatch::input::{full_path_of as full_path, io_error};
 
 /// `File.Exists`: 디렉터리는 `false`.
 pub(super) fn file_exists(path: &str) -> bool {
     Path::new(path).is_file()
 }
 
-/// `File.ReadAllText`: BOM으로 UTF-8/UTF-16을 판별하고 잘못된 바이트는 U+FFFD로 바꾼다.
-pub(super) fn read_all_text(path: &str) -> Result<String, CommandError> {
-    let full = full_path(path);
-    let bytes = std::fs::read(&full).map_err(|e| io_error(&full, &e))?;
-    Ok(decode_text(&bytes))
-}
-
-/// `StreamReader` 기본 인코딩 판별.
-fn decode_text(bytes: &[u8]) -> String {
-    let utf16 = |data: &[u8], little: bool| {
-        let units: Vec<u16> = data
-            .chunks(2)
-            .map(|c| match (c, little) {
-                ([a, b], true) => u16::from_le_bytes([*a, *b]),
-                ([a, b], false) => u16::from_be_bytes([*a, *b]),
-                _ => 0xFFFD,
-            })
-            .collect();
-        String::from_utf16_lossy(&units)
-    };
-    match bytes {
-        [0xEF, 0xBB, 0xBF, rest @ ..] => String::from_utf8_lossy(rest).into_owned(),
-        [0xFF, 0xFE, rest @ ..] => utf16(rest, true),
-        [0xFE, 0xFF, rest @ ..] => utf16(rest, false),
-        _ => String::from_utf8_lossy(bytes).into_owned(),
-    }
-}
+pub(super) use crate::dispatch::input::read_all_text;
 
 /// `Utility.GetMD5(fileName)`: 파일 MD5의 Base64. 파일이 없으면 `FileNotFoundException`.
 pub(super) fn file_md5_base64(path: &str) -> Result<String, CommandError> {
@@ -166,6 +125,7 @@ pub(super) fn read_error(error: impl std::fmt::Display) -> CommandError {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::dispatch::input::decode_text;
 
     #[test]
     fn text_decoding_follows_bom() {

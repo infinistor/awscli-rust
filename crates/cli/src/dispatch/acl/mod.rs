@@ -12,11 +12,12 @@
 //! - `S3Grantee.Type`은 입력에서 읽지 않고 `EmailAddress` > `URI` > `CanonicalUser` 순으로 정해진다.
 //! - `GetBucketAcl`·`GetObjectAcl`의 성공 로그는 `Get bucket ACL!`·`Get Object ACL!`로 대소문자가 다르다.
 //!
-//! .NET과 다른 점: Rust SDK의 `Grantee`는 `Type`이 필수라 `CanonicalUser`·`URI`·`EmailAddress`가 모두 없는
-//! `Grantee`(예: `DisplayName`만 있는 입력)는 `xsi:type`을 빈 문자열로 보낸다(.NET은 속성을 생략한다).
+//! Rust SDK의 `Grantee`는 `Type`이 필수라 `CanonicalUser`·`URI`·`EmailAddress`가 모두 없는 `Grantee`(예:
+//! `DisplayName`만 있는 입력)는 표식(`UNSET`)으로 만들고, S3 클라이언트가 서명 전에 `xsi:type`을 지워 .NET처럼 생략한다.
 
 mod input;
 
+use super::input::blank;
 use std::path::Path;
 use std::time::Instant;
 
@@ -124,11 +125,6 @@ fn help_text(menu: MenuList) -> Option<String> {
         .concat(),
         _ => return Option::None,
     })
-}
-
-/// `string.IsNullOrWhiteSpace`.
-fn blank(value: &Option<String>) -> bool {
-    value.as_deref().is_none_or(|v| v.trim().is_empty())
 }
 
 /// 객체 ACL 연산에서 .NET SDK가 전용 예외로 던지는 오류 코드.

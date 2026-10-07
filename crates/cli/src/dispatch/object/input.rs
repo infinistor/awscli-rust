@@ -186,8 +186,8 @@ impl FromJson for TaggingInput {
 }
 
 impl TaggingInput {
-    /// 요청에 넣는 값. `null` 요소는 건너뛴다. SDK 형식은 `TagSet`과 `Tag`의 키·값이 필수라
-    /// 없는 값은 빈 문자열로 보낸다(원본은 요소를 빼고 보낸다).
+    /// 요청에 넣는 값. `null` 요소는 건너뛴다. SDK 형식은 `Tag`의 키·값이 필수라 없는 값은 표식(`UNSET`)으로
+    /// 만들고, S3 클라이언트가 서명 전에 그 요소를 지운다(원본처럼 요소를 빼고 보낸다).
     pub(super) fn to_sdk(&self) -> Result<Tagging, S3Error> {
         let tags = self
             .tag_set
@@ -196,8 +196,16 @@ impl TaggingInput {
             .flatten()
             .map(|tag| {
                 Tag::builder()
-                    .key(tag.key.clone().unwrap_or_default())
-                    .value(tag.value.clone().unwrap_or_default())
+                    .key(
+                        tag.key
+                            .clone()
+                            .unwrap_or_else(|| awscli_rest_s3::UNSET.to_string()),
+                    )
+                    .value(
+                        tag.value
+                            .clone()
+                            .unwrap_or_else(|| awscli_rest_s3::UNSET.to_string()),
+                    )
                     .build()
                     .map_err(|e| S3Error::Request(e.to_string()))
             })

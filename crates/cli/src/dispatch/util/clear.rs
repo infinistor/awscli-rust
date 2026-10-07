@@ -29,12 +29,7 @@ use crate::dispatch::CommandError;
 /// 삭제할 (키, 버전 ID).
 type Keys = Vec<(String, Option<String>)>;
 
-fn null_reference() -> CommandError {
-    CommandError::new(
-        "System.NullReferenceException",
-        "Object reference not set to an instance of an object.",
-    )
-}
+use crate::dispatch::input::null_reference;
 
 /// .NET `bool.ToString()`
 fn dotnet_bool(value: bool) -> &'static str {

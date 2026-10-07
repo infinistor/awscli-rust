@@ -29,7 +29,11 @@ fn strip_text(text: &str) -> String {
         } else if before.ends_with('>') {
             // 요소: `<name>표식</name>`
             before.rfind('<').and_then(|open| {
-                let tag = &before[open + 1..before.len() - 1];
+                // 여는 태그에 속성이 있으면 이름은 첫 공백 앞까지다.
+                let tag = before[open + 1..before.len() - 1]
+                    .split_whitespace()
+                    .next()
+                    .unwrap_or_default();
                 let close = format!("</{tag}>");
                 text[end..]
                     .starts_with(&close)
@@ -98,6 +102,8 @@ mod tests {
             strip_text(&text),
             "<A><C>x</C><Grantee><ID>1</ID></Grantee><D></D></A>"
         );
+        let with_attr = format!("<A><G xsi:type=\"x\">{UNSET}</G><C>y</C></A>");
+        assert_eq!(strip_text(&with_attr), "<A><C>y</C></A>");
     }
 
     #[test]

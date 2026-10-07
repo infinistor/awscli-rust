@@ -1,0 +1,21 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<ReplicationConfiguration><Rule><Destination><Bucket>arn:aws:s3:::T</Bucket></Destination><ID>Rule1</ID><Priority>1</Priority><Status>Enabled</Status></Rule></ReplicationConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "replication"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : PutBucketReplication Start",
+    "INFO  <TIME> : bucket1 Put Bucket Replication! complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

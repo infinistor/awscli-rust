@@ -207,13 +207,17 @@ async fn cli_run_matches_dotnet() {
     let total = cases.len();
     let mut failures = Vec::new();
     for (case, actual) in run_all(exe, cases, OutputEncoding::Utf8).await {
-        let expected = &expected[&case.name];
-        if *expected != actual {
+        let (expected, actual) = if case.unordered {
+            (expected[&case.name].sorted(), actual.sorted())
+        } else {
+            (expected[&case.name].clone(), actual)
+        };
+        if expected != actual {
             failures.push(format!(
                 "{} {:?}\n{}",
                 case.name,
                 case.args,
-                diff(expected, &actual)
+                diff(&expected, &actual)
             ));
         }
     }

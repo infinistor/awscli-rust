@@ -14,6 +14,7 @@
 pub(super) mod constant;
 pub(super) mod format;
 
+use super::input::blank;
 use std::time::Instant;
 
 use aws_sdk_s3::types::{BucketCannedAcl, BucketVersioningStatus, ObjectOwnership};
@@ -109,11 +110,6 @@ fn help_text(menu: MenuList) -> Option<String> {
         .concat(),
         _ => return Option::None,
     })
-}
-
-/// `string.IsNullOrWhiteSpace`.
-fn blank(value: &Option<String>) -> bool {
-    value.as_deref().is_none_or(|v| v.trim().is_empty())
 }
 
 /// 버킷 목록 출력용 항목(원본 `BucketData`).

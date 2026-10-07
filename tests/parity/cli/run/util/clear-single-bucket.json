@@ -1,47 +1,48 @@
 {
-  "args" : [
-    "--clear=false"
-  ],
-  "routes" : [
-    {
-      "contains" : "GET /?",
-      "responseBody" : "<ListAllMyBucketsResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Owner><ID>owner1</ID><DisplayName>owner</DisplayName></Owner><Buckets><Bucket><Name>bucket1</Name><CreationDate>2024-01-01T00:00:00.000Z</CreationDate></Bucket></Buckets></ListAllMyBucketsResult>",
-      "responseHeaders" : {
-        "Content-Type" : "application/xml"
+   "args" : [
+      "--clear=false"
+   ],
+   "routes" : [
+      {
+         "contains" : "GET /?",
+         "responseBody" : "<ListAllMyBucketsResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Owner><ID>owner1</ID><DisplayName>owner</DisplayName></Owner><Buckets><Bucket><Name>bucket1</Name><CreationDate>2024-01-01T00:00:00.000Z</CreationDate></Bucket></Buckets></ListAllMyBucketsResult>",
+         "responseHeaders" : {
+            "Content-Type" : "application/xml"
+         },
+         "status" : 200
       },
-      "status" : 200
-    },
-    {
-      "contains" : "?acl HTTP",
-      "responseBody" : "<AccessControlPolicy xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Owner><ID>owner1</ID><DisplayName>owner</DisplayName></Owner><AccessControlList><Grant><Grantee xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"CanonicalUser\"><ID>owner1</ID><DisplayName>owner</DisplayName></Grantee><Permission>FULL_CONTROL</Permission></Grant></AccessControlList></AccessControlPolicy>",
-      "responseHeaders" : {
-        "Content-Type" : "application/xml"
+      {
+         "contains" : "?acl HTTP",
+         "responseBody" : "<AccessControlPolicy xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Owner><ID>owner1</ID><DisplayName>owner</DisplayName></Owner><AccessControlList><Grant><Grantee xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"CanonicalUser\"><ID>owner1</ID><DisplayName>owner</DisplayName></Grantee><Permission>FULL_CONTROL</Permission></Grant></AccessControlList></AccessControlPolicy>",
+         "responseHeaders" : {
+            "Content-Type" : "application/xml"
+         },
+         "status" : 200
       },
-      "status" : 200
-    },
-    {
-      "contains" : "?object-lock HTTP",
-      "responseBody" : "<Error><Code>ObjectLockConfigurationNotFoundError</Code><Message>Object Lock configuration does not exist for this bucket</Message><RequestId>REQ1</RequestId></Error>",
-      "responseHeaders" : {
-        "Content-Type" : "application/xml"
+      {
+         "contains" : "?object-lock HTTP",
+         "responseBody" : "<Error><Code>ObjectLockConfigurationNotFoundError</Code><Message>Object Lock configuration does not exist for this bucket</Message><RequestId>REQ1</RequestId></Error>",
+         "responseHeaders" : {
+            "Content-Type" : "application/xml"
+         },
+         "status" : 404
       },
-      "status" : 404
-    },
-    {
-      "contains" : "?versions",
-      "responseBody" : "<ListVersionsResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>bucket1</Name><Prefix></Prefix><KeyMarker></KeyMarker><VersionIdMarker></VersionIdMarker><MaxKeys>2</MaxKeys><IsTruncated>false</IsTruncated><Version><Key>a.txt</Key><VersionId>v1</VersionId><IsLatest>true</IsLatest><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>&quot;e&quot;</ETag><Size>1</Size><StorageClass>STANDARD</StorageClass><Owner><ID>owner1</ID></Owner></Version><Version><Key>b.log</Key><VersionId>v2</VersionId><IsLatest>true</IsLatest><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>&quot;e&quot;</ETag><Size>1</Size><StorageClass>STANDARD</StorageClass><Owner><ID>owner1</ID></Owner></Version></ListVersionsResult>",
-      "responseHeaders" : {
-        "Content-Type" : "application/xml"
+      {
+         "contains" : "?versions",
+         "responseBody" : "<ListVersionsResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>bucket1</Name><Prefix></Prefix><KeyMarker></KeyMarker><VersionIdMarker></VersionIdMarker><MaxKeys>2</MaxKeys><IsTruncated>false</IsTruncated><Version><Key>a.txt</Key><VersionId>v1</VersionId><IsLatest>true</IsLatest><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>&quot;e&quot;</ETag><Size>1</Size><StorageClass>STANDARD</StorageClass><Owner><ID>owner1</ID></Owner></Version><Version><Key>b.log</Key><VersionId>v2</VersionId><IsLatest>true</IsLatest><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>&quot;e&quot;</ETag><Size>1</Size><StorageClass>STANDARD</StorageClass><Owner><ID>owner1</ID></Owner></Version></ListVersionsResult>",
+         "responseHeaders" : {
+            "Content-Type" : "application/xml"
+         },
+         "status" : 200
       },
-      "status" : 200
-    },
-    {
-      "contains" : "?delete HTTP",
-      "responseBody" : "<DeleteResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Deleted><Key>a</Key></Deleted></DeleteResult>",
-      "responseHeaders" : {
-        "Content-Type" : "application/xml"
-      },
-      "status" : 200
-    }
-  ]
+      {
+         "contains" : "?delete HTTP",
+         "responseBody" : "<DeleteResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Deleted><Key>a</Key></Deleted></DeleteResult>",
+         "responseHeaders" : {
+            "Content-Type" : "application/xml"
+         },
+         "status" : 200
+      }
+   ],
+   "unordered" : true
 }

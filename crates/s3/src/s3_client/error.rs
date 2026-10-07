@@ -143,7 +143,7 @@ impl S3Error {
     /// 권한이 없으면 `UnauthorizedAccessException`, 그 밖은 `IOException`.
     pub fn io(path: &std::path::Path, error: &std::io::Error) -> Self {
         // .NET 메시지는 `Path.GetFullPath`한 전체 경로를 쓴다.
-        let full = std::path::absolute(path).unwrap_or_else(|_| path.to_path_buf());
+        let full = full_path(path);
         let path = full.as_path();
         let shown = path.display();
         let (dotnet_type, message) = match error.kind() {
@@ -176,9 +176,38 @@ impl S3Error {
     }
 }
 
+/// .NET `Path.GetFullPath`: 현재 디렉터리 기준 절대 경로로 바꾸고 `.`·`..`를 글자 그대로 정리한다.
+pub fn full_path(path: &std::path::Path) -> std::path::PathBuf {
+    use std::path::Component;
+    let absolute = std::path::absolute(path).unwrap_or_else(|_| path.to_path_buf());
+    let mut out = std::path::PathBuf::new();
+    for component in absolute.components() {
+        match component {
+            Component::CurDir => {}
+            Component::ParentDir => {
+                // 루트 위로는 올라가지 않는다.
+                if out.parent().is_some() {
+                    out.pop();
+                }
+            }
+            other => out.push(other),
+        }
+    }
+    out
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn full_path_collapses_dots() {
+        let base = std::env::current_dir().unwrap();
+        assert_eq!(
+            full_path(std::path::Path::new("a/./b/../c.txt")),
+            base.join("a").join("c.txt")
+        );
+    }
 
     #[test]
     fn io_error_types() {

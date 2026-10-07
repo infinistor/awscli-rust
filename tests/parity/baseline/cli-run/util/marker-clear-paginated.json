@@ -2,24 +2,6 @@
   "exitCode": 0,
   "requests": [
     {
-      "body": "<Delete><Object><Key>m1</Key><VersionId>v1</VersionId></Object><Object><Key>m2</Key><VersionId>v2</VersionId></Object></Delete>",
-      "headers": [],
-      "method": "POST",
-      "path": "/bucket1/",
-      "query": [
-        "delete"
-      ]
-    },
-    {
-      "body": "<Delete><Object><Key>m3</Key><VersionId>v3</VersionId></Object><Object><Key>m4</Key><VersionId>v4</VersionId></Object></Delete>",
-      "headers": [],
-      "method": "POST",
-      "path": "/bucket1/",
-      "query": [
-        "delete"
-      ]
-    },
-    {
       "body": null,
       "headers": [],
       "method": "GET",
@@ -41,6 +23,24 @@
         "max-keys=1000",
         "version-id-marker=v2",
         "versions"
+      ]
+    },
+    {
+      "body": "<Delete><Object><Key>m1</Key><VersionId>v1</VersionId></Object><Object><Key>m2</Key><VersionId>v2</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/bucket1/",
+      "query": [
+        "delete"
+      ]
+    },
+    {
+      "body": "<Delete><Object><Key>m3</Key><VersionId>v3</VersionId></Object><Object><Key>m4</Key><VersionId>v4</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/bucket1/",
+      "query": [
+        "delete"
       ]
     }
   ],

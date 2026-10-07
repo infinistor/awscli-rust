@@ -1,0 +1,18 @@
+{
+   "args" : [
+      "--put-bucket-replication",
+      "-b",
+      "bucket1",
+      "-f",
+      "in.json"
+   ],
+   "files" : {
+      "in.json" : "{\"Rules\":[{\"Id\":\"Rule1\",\"Priority\":1,\"Status\":\"Enabled\",\"Destination\":{\"Bucket\":\"arn:aws:s3:::T\"}}]}"
+   },
+   "routes" : [
+      {
+         "contains" : "?replication HTTP",
+         "status" : 200
+      }
+   ]
+}

@@ -4,7 +4,8 @@
 //! 원본 `MixV2Test`는 `--help`여도 도움말을 출력한 뒤 테스트를 실행하므로(원본 버그), 실행을 옮기기 전까지
 //! 비교 대상(`PORTED`)에서 뺀다.
 
-use super::{CommandContext, CommandError, CommandResult, ERROR_NORMAL, not_ported};
+use super::input::blank;
+use super::{CommandContext, CommandResult, ERROR_NORMAL, not_ported};
 use crate::menu::MenuList;
 use crate::usage;
 
@@ -486,11 +487,6 @@ fn help_text(menu: MenuList) -> Option<String> {
     })
 }
 
-/// `string.IsNullOrWhiteSpace`.
-fn blank(value: &Option<String>) -> bool {
-    value.as_deref().is_none_or(|v| v.trim().is_empty())
-}
-
 pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResult {
     use MenuList::*;
     let Some(help) = help_text(menu) else {
@@ -533,10 +529,7 @@ pub(super) async fn run(ctx: &mut CommandContext, menu: MenuList) -> CommandResu
             // 삭제 비율이 생성 비율보다 높을 경우 에러
             // 도움말 실행이면 설정이 없을 수 있다(원본은 NullReferenceException).
             let Some(config) = &ctx.config else {
-                return Err(CommandError::new(
-                    "System.NullReferenceException",
-                    "Object reference not set to an instance of an object.",
-                ));
+                return Err(super::input::null_reference());
             };
             let up_down = &config.up_down;
             if up_down.delete_ratio > up_down.write_ratio {

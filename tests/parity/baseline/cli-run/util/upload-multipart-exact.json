@@ -2,13 +2,12 @@
   "exitCode": 0,
   "requests": [
     {
-      "body": "1000 bytes md5=427008b3fe192f663d665f56cd75716c",
+      "body": null,
       "headers": [],
-      "method": "PUT",
+      "method": "POST",
       "path": "/bucket1/big.bin",
       "query": [
-        "partNumber=1",
-        "uploadId=UP1"
+        "uploads"
       ]
     },
     {
@@ -22,21 +21,22 @@
       ]
     },
     {
+      "body": "1000 bytes md5=427008b3fe192f663d665f56cd75716c",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/big.bin",
+      "query": [
+        "partNumber=1",
+        "uploadId=UP1"
+      ]
+    },
+    {
       "body": "<CompleteMultipartUpload><Part><ETag>\"partetag\"</ETag><PartNumber>1</PartNumber></Part><Part><ETag>\"partetag\"</ETag><PartNumber>2</PartNumber></Part></CompleteMultipartUpload>",
       "headers": [],
       "method": "POST",
       "path": "/bucket1/big.bin",
       "query": [
         "uploadId=UP1"
-      ]
-    },
-    {
-      "body": null,
-      "headers": [],
-      "method": "POST",
-      "path": "/bucket1/big.bin",
-      "query": [
-        "uploads"
       ]
     }
   ],

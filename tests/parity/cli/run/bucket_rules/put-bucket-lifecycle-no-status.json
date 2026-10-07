@@ -1,0 +1,18 @@
+{
+   "args" : [
+      "--put-bucket-lifecycle",
+      "-b",
+      "bucket1",
+      "-f",
+      "in.json"
+   ],
+   "files" : {
+      "in.json" : "{\"Rules\":[{\"Id\":\"rule1\",\"Expiration\":{\"Days\":30},\"Filter\":{\"Prefix\":\"logs/\"}}]}"
+   },
+   "routes" : [
+      {
+         "contains" : "?lifecycle HTTP",
+         "status" : 200
+      }
+   ]
+}
