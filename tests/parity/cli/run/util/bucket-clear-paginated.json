@@ -1,0 +1,33 @@
+{
+  "args" : [
+    "--bucket-clear=bucket1",
+    "--max-keys",
+    "2"
+  ],
+  "routes" : [
+    {
+      "contains" : "key-marker=b.log",
+      "responseBody" : "<ListVersionsResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>bucket1</Name><Prefix></Prefix><KeyMarker></KeyMarker><VersionIdMarker></VersionIdMarker><MaxKeys>2</MaxKeys><IsTruncated>false</IsTruncated><Version><Key>c.txt</Key><VersionId>v3</VersionId><IsLatest>true</IsLatest><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>&quot;e&quot;</ETag><Size>1</Size><StorageClass>STANDARD</StorageClass><Owner><ID>owner1</ID></Owner></Version><DeleteMarker><Key>d.txt</Key><VersionId>v4</VersionId><IsLatest>true</IsLatest><LastModified>2024-01-01T00:00:00.000Z</LastModified><Owner><ID>owner1</ID></Owner></DeleteMarker></ListVersionsResult>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    },
+    {
+      "contains" : "?versions",
+      "responseBody" : "<ListVersionsResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>bucket1</Name><Prefix></Prefix><KeyMarker></KeyMarker><VersionIdMarker></VersionIdMarker><MaxKeys>2</MaxKeys><IsTruncated>true</IsTruncated><NextKeyMarker>b.log</NextKeyMarker><NextVersionIdMarker>v2</NextVersionIdMarker><Version><Key>a.txt</Key><VersionId>v1</VersionId><IsLatest>true</IsLatest><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>&quot;e&quot;</ETag><Size>1</Size><StorageClass>STANDARD</StorageClass><Owner><ID>owner1</ID></Owner></Version><Version><Key>b.log</Key><VersionId>v2</VersionId><IsLatest>true</IsLatest><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>&quot;e&quot;</ETag><Size>1</Size><StorageClass>STANDARD</StorageClass><Owner><ID>owner1</ID></Owner></Version></ListVersionsResult>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    },
+    {
+      "contains" : "?delete HTTP",
+      "responseBody" : "<DeleteResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Deleted><Key>a</Key></Deleted></DeleteResult>",
+      "responseHeaders" : {
+        "Content-Type" : "application/xml"
+      },
+      "status" : 200
+    }
+  ]
+}

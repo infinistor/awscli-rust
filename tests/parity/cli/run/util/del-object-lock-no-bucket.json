@@ -1,0 +1,7 @@
+{
+  "args" : [
+    "--del-object-lock",
+    "-k",
+    "obj.txt"
+  ]
+}

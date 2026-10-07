@@ -1,0 +1,22 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": "<ServerSideEncryptionConfiguration><Rule><ApplyServerSideEncryptionByDefault><SSEAlgorithm>AES256</SSEAlgorithm></ApplyServerSideEncryptionByDefault></Rule></ServerSideEncryptionConfiguration>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/",
+      "query": [
+        "encryption"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : BucketEncryption Start",
+    "ERROR <TIME> : StatusCode : Forbidden, ErrorCode : AccessDenied",
+    "Amazon.S3.AmazonS3Exception: Access Denied",
+    "ERROR <TIME> : System.NullReferenceException: Object reference not set to an instance of an object."
+  ]
+}

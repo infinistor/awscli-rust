@@ -1,0 +1,20 @@
+{
+  "args" : [
+    "--upload",
+    "-b",
+    "bucket1",
+    "-f",
+    "small.txt",
+    "-k",
+    "dir/small.txt"
+  ],
+  "files" : {
+    "small.txt" : "hello upload"
+  },
+  "routes" : [
+    {
+      "contains" : "PUT /bucket1/dir/small.txt",
+      "status" : 200
+    }
+  ]
+}

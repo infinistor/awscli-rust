@@ -1,0 +1,37 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "<Delete><Object><Key>a.txt</Key><VersionId>v1</VersionId></Object><Object><Key>b.log</Key><VersionId>v2</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/bucket1/",
+      "query": [
+        "delete"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "max-keys=1000",
+        "versions"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : BucketClear Start",
+    "INFO  <TIME> : BucketClear(bucket1, , , 1000)",
+    "INFO  <TIME> : WaitTasks(1)",
+    "ERROR <TIME> : StatusCode : NoContent",
+    "INFO  <TIME> : DeleteObjects(bucket1, 2) success",
+    "INFO  <TIME> : Finish",
+    "INFO  <TIME> : BucketClear completed - Total deleted objects: 2",
+    "INFO  <TIME> : bucket1 BucketClear : complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

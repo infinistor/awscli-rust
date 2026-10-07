@@ -1,0 +1,54 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "max-buckets=10000"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "max-keys=1000",
+        "versions"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "object-lock"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Clear Start",
+    "INFO  <TIME> : AllClear(, 1000, False, 20)",
+    "INFO  <TIME> : 권한 확인 중: bucket1",
+    "INFO  <TIME> : 삭제 권한이 확인되었습니다: bucket1",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: The specified bucket does not exist",
+    "INFO  <TIME> : AllClear completed - Total deleted objects: 0",
+    "INFO  <TIME> : Clear complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

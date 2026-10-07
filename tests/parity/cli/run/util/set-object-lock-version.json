@@ -1,0 +1,17 @@
+{
+  "args" : [
+    "--set-object-lock",
+    "-b",
+    "bucket1",
+    "-k",
+    "obj.txt",
+    "--version-id",
+    "ver 1"
+  ],
+  "routes" : [
+    {
+      "contains" : "?legal-hold",
+      "status" : 200
+    }
+  ]
+}

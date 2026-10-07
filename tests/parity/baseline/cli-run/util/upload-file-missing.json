@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Upload Start",
+    "ERROR <TIME> : System.ArgumentException: The file indicated by the FilePath property does not exist!"
+  ]
+}

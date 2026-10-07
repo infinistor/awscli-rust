@@ -1,0 +1,27 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "marker=",
+        "max-keys=1000"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : CurrentClear Start",
+    "INFO  <TIME> : CurrentClear(bucket1)",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: Access Denied",
+    "INFO  <TIME> : WaitTasks(0)",
+    "INFO  <TIME> : Finish",
+    "INFO  <TIME> : CurrentClear completed - Total deleted objects: 0",
+    "INFO  <TIME> : CurrentClear(bucket1) : complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

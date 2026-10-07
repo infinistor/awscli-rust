@@ -1,0 +1,20 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": "<LegalHold><Status>OFF</Status></LegalHold>",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/obj.txt",
+      "query": [
+        "legal-hold"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Set Object Legal Hold (OFF) Start",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: Access Denied"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "args" : [
+    "--set-object-lock",
+    "-b",
+    "bucket1",
+    "-k",
+    "  "
+  ]
+}

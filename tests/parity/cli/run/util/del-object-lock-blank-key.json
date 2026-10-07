@@ -1,0 +1,9 @@
+{
+  "args" : [
+    "--del-object-lock",
+    "-b",
+    "bucket1",
+    "-k",
+    "  "
+  ]
+}

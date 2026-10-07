@@ -1,0 +1,18 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": "12 bytes md5=bb90d3de01263ed27b959cb2eff027f9",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/k",
+      "query": []
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Upload Start",
+    "ERROR <TIME> : Amazon.S3.AmazonS3Exception: Access Denied"
+  ]
+}

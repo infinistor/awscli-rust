@@ -1,0 +1,15 @@
+{
+  "args" : [
+    "--set-object-lock",
+    "-b",
+    "bucket1",
+    "-k",
+    "obj.txt"
+  ],
+  "routes" : [
+    {
+      "contains" : "?legal-hold HTTP",
+      "status" : 404
+    }
+  ]
+}
