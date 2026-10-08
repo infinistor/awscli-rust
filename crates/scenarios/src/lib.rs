@@ -9,6 +9,7 @@
 pub mod error;
 pub mod files;
 pub mod input;
+pub mod run_control;
 pub mod runner;
 pub mod shutdown;
 pub mod util;

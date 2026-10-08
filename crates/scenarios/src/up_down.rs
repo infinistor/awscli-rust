@@ -11,10 +11,10 @@
 //! 경합은 재현하지 않는다, [`crate::shutdown`]). `FullTest`처럼 다음 테스트를 이어 가면 새 테스트는 새 토큰이라
 //! 원본처럼 정상 실행된다.
 //!
-//! 분산 실행(`RunControl`, 원본의 `_control != null` 분기)은 6단계에서 옮긴다. 이 모듈은 `_control == null`만 다룬다.
-//! 분산 분기가 들어갈 자리는 `6단계` 주석으로 표시했다. 그 분기는 `TimeWatcher.Start()`를 이미 실행 중인
-//! 스톱워치에 다시 부르는데(.NET은 아무 일도 안 한다) Rust의 `TimeWatcher::start`는 시작 시각을 다시 잡는다.
-//! 여기서는 시작을 한 번만 하므로 차이가 없다.
+//! 분산 실행([`UpDownTest::with_control`], 원본의 `_control != null` 분기): 스레드는 시작 게이트(`ThreadReadyAndWait`)를
+//! 기다리고 예외는 `RunControl.Stop(failed)`로 넘긴다. 작업 시작은 `ReadyAndWait`(예약 시각까지 대기)이고 감시 루프의 시간 제한은
+//! 예약 시각 기준 `DurationReached`다. 버킷·파일 준비 실패는 예외다. 원본은 `ReadyAndWait`가 시작한 스톱워치에
+//! `_watcher.Start()`를 다시 부르지만(.NET은 아무 일도 안 한다) Rust `TimeWatcher::start`는 다시 잡으므로 부르지 않는다.
 //!
 //! 원본 특이점(그대로 둔다)
 //!
@@ -36,7 +36,7 @@ mod save;
 
 use std::future::Future;
 use std::path::Path;
-use std::sync::Arc;
+use std::sync::{Arc, Mutex};
 
 use aws_sdk_s3::types::{
     BucketLifecycleConfiguration, BucketVersioningStatus, ExpirationStatus, LifecycleExpiration,
@@ -54,6 +54,7 @@ use tokio_util::sync::CancellationToken;
 use tracing::{error, info};
 
 use crate::ScenarioError;
+use crate::run_control::{RunControl, operation_canceled};
 use crate::runner::{FinalResult, TestTasks, idle};
 use crate::shutdown::{ActiveGuard, Handler, activate};
 use crate::util::dummy_file_name;
@@ -108,6 +109,10 @@ pub struct UpDownTest {
     cancel: CancellationToken,
     /// 원본 `_activeTests` 등록(작업 시작부터 `FinalizeTasks`까지).
     active: Option<ActiveGuard>,
+    /// 원본 `_control`: 분산 실행 제어(`None`이면 단일 실행).
+    control: Option<Arc<RunControl>>,
+    /// 원본 `_publishedClients`: 분산 실행 중 통계를 조회할 클라이언트(작업 시작 때 공개).
+    published: Arc<Mutex<Vec<Arc<UpDownClient>>>>,
 }
 
 impl UpDownTest {
@@ -147,7 +152,16 @@ impl UpDownTest {
             final_result: FinalResult::default(),
             cancel: cancel.child_token(),
             active: None,
+            control: None,
+            published: Arc::default(),
         }
+    }
+
+    /// 원본 `UpDownTest(..., control)`: 분산 실행으로 만든다(`_clientConfig.Distributed = true`).
+    pub fn with_control(mut self, control: Arc<RunControl>) -> Self {
+        self.client_config.distributed = true;
+        self.control = Some(control);
+        self
     }
 
     // ---- CosBench Like Test ----
@@ -161,11 +175,11 @@ impl UpDownTest {
     ) -> Result<(), ScenarioError> {
         self.test_start_time = DotnetDateTime::now();
         info!("Prepare Test Initialize");
-        self.create_main_bucket().await;
+        self.create_main_bucket().await?;
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, true).await;
+            let bucket = self.thread_bucket(index, true).await?;
             let dummy_file = self.dummy_file(index);
-            self.create_test_file(&dummy_file).await;
+            self.create_test_file(&dummy_file).await?;
             let client = self.new_client(bucket, index, &dummy_file);
             let count = self.config.file_count;
             if super_random {
@@ -181,7 +195,7 @@ impl UpDownTest {
         info!("Prepare Test Start");
         if self
             .watch(Report::Prepare, Report::PrepareFinal, "Prepare", false)
-            .await
+            .await?
         {
             info!("Prepare Test End");
         }
@@ -192,9 +206,9 @@ impl UpDownTest {
     pub async fn prepare_dir(&mut self, check: bool, start: i32) -> Result<(), ScenarioError> {
         self.test_start_time = DotnetDateTime::now();
         info!("Prepare Dir Test Initialize");
-        self.create_main_bucket().await;
+        self.create_main_bucket().await?;
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, true).await;
+            let bucket = self.thread_bucket(index, true).await?;
             // 폴더는 빈 본문이라 더미 파일이 필요 없다.
             let client = self.new_client(bucket, index, "");
             let count = self.config.file_count;
@@ -205,7 +219,7 @@ impl UpDownTest {
         info!("Prepare Dir Test Start");
         if self
             .watch(Report::Prepare, Report::PrepareFinal, "PrepareDir", false)
-            .await
+            .await?
         {
             info!("Prepare Dir Test End");
         }
@@ -216,11 +230,11 @@ impl UpDownTest {
     pub async fn prepare_new(&mut self, check: bool, start: i32) -> Result<(), ScenarioError> {
         self.test_start_time = DotnetDateTime::now();
         info!("Prepare New Client Test Initialize");
-        self.create_main_bucket().await;
+        self.create_main_bucket().await?;
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, true).await;
+            let bucket = self.thread_bucket(index, true).await?;
             let dummy_file = self.dummy_file(index);
-            self.create_test_file(&dummy_file).await;
+            self.create_test_file(&dummy_file).await?;
             let client = self.new_client(bucket, index, &dummy_file);
             let count = self.config.file_count;
             self.add_work(client, move |c| async move {
@@ -230,7 +244,7 @@ impl UpDownTest {
         info!("Prepare New Client Test Start");
         if self
             .watch(Report::Prepare, Report::PrepareFinal, "PrepareNew", false)
-            .await
+            .await?
         {
             info!("Prepare New Client Test End");
         }
@@ -242,7 +256,7 @@ impl UpDownTest {
         self.test_start_time = DotnetDateTime::now();
         info!("Head Test Initialize");
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, false).await;
+            let bucket = self.thread_bucket(index, false).await?;
             let file_path = self.main_config.file_path.clone();
             let client = self.new_client(bucket, index, &file_path);
             let count = self.config.file_count;
@@ -251,7 +265,7 @@ impl UpDownTest {
         info!("Head Test Start");
         if self
             .watch(Report::Head, Report::HeadFinal, "Head", false)
-            .await
+            .await?
         {
             info!("Head Test End");
         }
@@ -263,17 +277,20 @@ impl UpDownTest {
         self.test_start_time = DotnetDateTime::now();
         info!("Random Read Test Initialize");
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, false).await;
+            let bucket = self.thread_bucket(index, false).await?;
             let dummy_file = self.dummy_file(index);
             let client = self.new_client(bucket, index, &dummy_file);
             let count = self.config.file_count;
+            let prepared = client.clone();
             self.add_work(client, move |c| async move { c.read(count).await });
-            // 6단계: `_control != null`이면 `PrepareDistributedRead()`.
+            if self.control.is_some() {
+                prepared.prepare_distributed_read()?;
+            }
         }
         info!("Random Read Test Start");
         if self
             .watch(Report::Read, Report::ReadFinal, "Read", true)
-            .await
+            .await?
         {
             info!("Random Read Test End");
         }
@@ -285,7 +302,7 @@ impl UpDownTest {
         self.test_start_time = DotnetDateTime::now();
         info!("Sequential Read Test Initialize");
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, false).await;
+            let bucket = self.thread_bucket(index, false).await?;
             let dummy_file = self.dummy_file(index);
             let client = self.new_client(bucket, index, &dummy_file);
             let count = self.config.file_count;
@@ -297,7 +314,7 @@ impl UpDownTest {
         info!("Sequential Read Test Start");
         if self
             .watch(Report::ReadV2, Report::ReadV2Final, "ReadV2", false)
-            .await
+            .await?
         {
             info!("Sequential Read Test End");
         }
@@ -309,7 +326,7 @@ impl UpDownTest {
         self.test_start_time = DotnetDateTime::now();
         info!("Sequential Read New Client Test Initialize");
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, false).await;
+            let bucket = self.thread_bucket(index, false).await?;
             let dummy_file = self.dummy_file(index);
             let client = self.new_client(bucket, index, &dummy_file);
             let count = self.config.file_count;
@@ -321,7 +338,7 @@ impl UpDownTest {
         info!("Sequential Read New Client Test Start");
         if self
             .watch(Report::ReadV2, Report::ReadV2Final, "ReadNew", false)
-            .await
+            .await?
         {
             info!("Sequential Read New Client Test End");
         }
@@ -333,7 +350,7 @@ impl UpDownTest {
         self.test_start_time = DotnetDateTime::now();
         info!("Listing Read Test Initialize");
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, false).await;
+            let bucket = self.thread_bucket(index, false).await?;
             let dummy_file = self.dummy_file(index);
             let client = self.new_client(bucket, index, &dummy_file);
             self.add_work(client, move |c| async move { c.read_v3().await });
@@ -341,7 +358,7 @@ impl UpDownTest {
         info!("Listing Read Test Start");
         if self
             .watch(Report::Read, Report::ReadFinal, "ReadV3", true)
-            .await
+            .await?
         {
             info!("Listing Read Test End");
         }
@@ -352,11 +369,11 @@ impl UpDownTest {
     pub async fn write(&mut self, start: i32, super_random: bool) -> Result<(), ScenarioError> {
         self.test_start_time = DotnetDateTime::now();
         info!("Write Test Initialize");
-        self.create_main_bucket().await;
+        self.create_main_bucket().await?;
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, true).await;
+            let bucket = self.thread_bucket(index, true).await?;
             let dummy_file = self.dummy_file(index);
-            self.create_test_file(&dummy_file).await;
+            self.create_test_file(&dummy_file).await?;
             let client = self.new_client(bucket, index, &dummy_file);
             if super_random {
                 self.add_work(client, move |c| async move { c.write_random(start).await });
@@ -366,7 +383,7 @@ impl UpDownTest {
         }
         info!("Write Test Start");
         self.watch(Report::Write, Report::WriteFinal, "Write", true)
-            .await;
+            .await?;
         Ok(())
     }
 
@@ -374,11 +391,11 @@ impl UpDownTest {
     pub async fn mix(&mut self) -> Result<(), ScenarioError> {
         self.test_start_time = DotnetDateTime::now();
         info!("MIX Test Initialize");
-        self.create_main_bucket().await;
+        self.create_main_bucket().await?;
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, true).await;
+            let bucket = self.thread_bucket(index, true).await?;
             let dummy_file = self.dummy_file(index);
-            self.create_test_file(&dummy_file).await;
+            self.create_test_file(&dummy_file).await?;
             let client = self.new_client(bucket, index, &dummy_file);
             self.add_work(client, move |c| async move { c.mix().await });
         }
@@ -387,7 +404,8 @@ impl UpDownTest {
             "Write/Read({}:{})",
             self.config.write_ratio, self.config.read_ratio
         );
-        self.watch(Report::Mix, Report::MixFinal, &name, true).await;
+        self.watch(Report::Mix, Report::MixFinal, &name, true)
+            .await?;
         Ok(())
     }
 
@@ -395,11 +413,11 @@ impl UpDownTest {
     pub async fn mix_v2(&mut self) -> Result<(), ScenarioError> {
         self.test_start_time = DotnetDateTime::now();
         info!("MIX V2 Test Initialize");
-        self.create_main_bucket().await;
+        self.create_main_bucket().await?;
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, true).await;
+            let bucket = self.thread_bucket(index, true).await?;
             let dummy_file = self.dummy_file(index);
-            self.create_test_file(&dummy_file).await;
+            self.create_test_file(&dummy_file).await?;
             let client = self.new_client(bucket, index, &dummy_file);
             self.add_work(client, move |c| async move { c.mix_v2().await });
         }
@@ -408,7 +426,8 @@ impl UpDownTest {
             "Write/Read/Delete({}:{}:{})",
             self.config.write_ratio, self.config.read_ratio, self.config.delete_ratio
         );
-        self.watch(Report::All, Report::AllFinal, &name, true).await;
+        self.watch(Report::All, Report::AllFinal, &name, true)
+            .await?;
         Ok(())
     }
 
@@ -416,17 +435,17 @@ impl UpDownTest {
     pub async fn mix_new(&mut self) -> Result<(), ScenarioError> {
         self.test_start_time = DotnetDateTime::now();
         info!("MIX New Client Test Initialize");
-        self.create_main_bucket().await;
+        self.create_main_bucket().await?;
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, true).await;
+            let bucket = self.thread_bucket(index, true).await?;
             let dummy_file = self.dummy_file(index);
-            self.create_test_file(&dummy_file).await;
+            self.create_test_file(&dummy_file).await?;
             let client = self.new_client(bucket, index, &dummy_file);
             self.add_work(client, move |c| async move { c.mix_new().await });
         }
         info!("MIX New Client Test Start");
         self.watch(Report::All, Report::AllFinal, "MixNew", true)
-            .await;
+            .await?;
         Ok(())
     }
 
@@ -434,17 +453,17 @@ impl UpDownTest {
     pub async fn put_get(&mut self) -> Result<(), ScenarioError> {
         self.test_start_time = DotnetDateTime::now();
         info!("PutGet Test Initialize");
-        self.create_main_bucket().await;
+        self.create_main_bucket().await?;
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, true).await;
+            let bucket = self.thread_bucket(index, true).await?;
             let dummy_file = self.dummy_file(index);
-            self.create_test_file(&dummy_file).await;
+            self.create_test_file(&dummy_file).await?;
             let client = self.new_client(bucket, index, &dummy_file);
             self.add_work(client, move |c| async move { c.put_get().await });
         }
         info!("PutGet Test Start");
         self.watch(Report::Mix, Report::MixFinal, "Write/Read(1:1)", true)
-            .await;
+            .await?;
         Ok(())
     }
 
@@ -452,16 +471,17 @@ impl UpDownTest {
     pub async fn all(&mut self) -> Result<(), ScenarioError> {
         self.test_start_time = DotnetDateTime::now();
         info!("All Test Initialize");
-        self.create_main_bucket().await;
+        self.create_main_bucket().await?;
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, true).await;
+            let bucket = self.thread_bucket(index, true).await?;
             let dummy_file = self.dummy_file(index);
-            self.create_test_file(&dummy_file).await;
+            self.create_test_file(&dummy_file).await?;
             let client = self.new_client(bucket, index, &dummy_file);
             self.add_work(client, move |c| async move { c.all().await });
         }
         info!("All Test Start");
-        self.watch(Report::All, Report::AllFinal, "All", true).await;
+        self.watch(Report::All, Report::AllFinal, "All", true)
+            .await?;
         Ok(())
     }
 
@@ -513,7 +533,7 @@ impl UpDownTest {
         info!("One Object Delete Test Start");
         if self
             .watch(Report::Delete, Report::DeleteFinal, "DeleteOne", false)
-            .await
+            .await?
         {
             info!("One Object Delete Test End");
         }
@@ -524,9 +544,9 @@ impl UpDownTest {
     pub async fn delete(&mut self, bulk: bool, max_count: i32) -> Result<(), ScenarioError> {
         self.test_start_time = DotnetDateTime::now();
         info!("Listing Delete Test Initialize");
-        self.create_main_bucket().await;
+        self.create_main_bucket().await?;
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, true).await;
+            let bucket = self.thread_bucket(index, true).await?;
             let client = self.new_client(bucket, index, "");
             self.add_work(
                 client,
@@ -536,7 +556,7 @@ impl UpDownTest {
         info!("Listing Delete Test Start");
         if self
             .watch(Report::Delete, Report::DeleteFinal, "Delete", false)
-            .await
+            .await?
         {
             info!("Listing Delete Test End");
         }
@@ -547,9 +567,9 @@ impl UpDownTest {
     pub async fn delete_v2(&mut self, start: i32) -> Result<(), ScenarioError> {
         self.test_start_time = DotnetDateTime::now();
         info!("Sequential Delete Test Initialize");
-        self.create_main_bucket().await;
+        self.create_main_bucket().await?;
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, true).await;
+            let bucket = self.thread_bucket(index, true).await?;
             let client = self.new_client(bucket, index, "");
             let count = self.config.file_count;
             self.add_work(
@@ -560,7 +580,7 @@ impl UpDownTest {
         info!("Sequential Delete Test Start");
         if self
             .watch(Report::DeleteV2, Report::DeleteV2Final, "DeleteV2", false)
-            .await
+            .await?
         {
             info!("Sequential Delete Test End");
         }
@@ -571,9 +591,9 @@ impl UpDownTest {
     pub async fn delete_new(&mut self, start: i32) -> Result<(), ScenarioError> {
         self.test_start_time = DotnetDateTime::now();
         info!("Sequential Delete New Client Test Initialize");
-        self.create_main_bucket().await;
+        self.create_main_bucket().await?;
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, true).await;
+            let bucket = self.thread_bucket(index, true).await?;
             let client = self.new_client(bucket, index, "");
             let count = self.config.file_count;
             self.add_work(
@@ -584,7 +604,7 @@ impl UpDownTest {
         info!("Sequential Delete New Client Test Start");
         if self
             .watch(Report::DeleteV2, Report::DeleteV2Final, "DeleteNew", false)
-            .await
+            .await?
         {
             info!("Sequential Delete New Client Test End");
         }
@@ -600,9 +620,9 @@ impl UpDownTest {
     ) -> Result<(), ScenarioError> {
         self.test_start_time = DotnetDateTime::now();
         info!("ListVersions Delete Test Initialize");
-        self.create_main_bucket().await;
+        self.create_main_bucket().await?;
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, true).await;
+            let bucket = self.thread_bucket(index, true).await?;
             let client = self.new_client(bucket, index, "");
             let prefix = prefix.map(str::to_string);
             self.add_work(client, move |c| async move {
@@ -612,7 +632,7 @@ impl UpDownTest {
         info!("ListVersions Delete Test Start");
         if self
             .watch(Report::Delete, Report::DeleteFinal, "DeleteVersion", false)
-            .await
+            .await?
         {
             info!("ListVersions Delete Test End");
         }
@@ -623,16 +643,16 @@ impl UpDownTest {
     pub async fn delete_directory(&mut self) -> Result<(), ScenarioError> {
         self.test_start_time = DotnetDateTime::now();
         info!("Delete Directory Test Initialize");
-        self.create_main_bucket().await;
+        self.create_main_bucket().await?;
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, true).await;
+            let bucket = self.thread_bucket(index, true).await?;
             let client = self.new_client(bucket, index, "");
             self.add_work(client, move |c| async move { c.delete_directory().await });
         }
         info!("Delete Directory Test Start");
         if self
             .watch(Report::Delete, Report::DeleteFinal, "DeleteDirectory", true)
-            .await
+            .await?
         {
             info!("Delete Directory Test End");
         }
@@ -645,11 +665,11 @@ impl UpDownTest {
     pub async fn upload(&mut self) -> Result<(), ScenarioError> {
         self.test_start_time = DotnetDateTime::now();
         info!("Upload Test Initialize");
-        self.create_main_bucket().await;
+        self.create_main_bucket().await?;
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, true).await;
+            let bucket = self.thread_bucket(index, true).await?;
             let dummy_file = self.dummy_file(index);
-            self.create_test_file(&dummy_file).await;
+            self.create_test_file(&dummy_file).await?;
             let client = self.new_client(bucket, index, &dummy_file);
             let (count, part_size) = (self.config.file_count, self.main_config.part_size);
             self.add_work(
@@ -660,7 +680,7 @@ impl UpDownTest {
         info!("Upload Test Start");
         // 마지막 출력도 진행 상황 형식이다(원본은 `PrintMultiUpload`를 그대로 쓴다).
         self.watch(Report::MultiUpload, Report::MultiUpload, "Upload", false)
-            .await;
+            .await?;
         Ok(())
     }
 
@@ -669,7 +689,7 @@ impl UpDownTest {
         self.test_start_time = DotnetDateTime::now();
         info!("Download Test Initialize");
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, false).await;
+            let bucket = self.thread_bucket(index, false).await?;
             let dummy_file = self.dummy_file(index);
             let client = self.new_client(bucket, index, &dummy_file);
             let count = self.config.file_count;
@@ -677,7 +697,7 @@ impl UpDownTest {
         }
         info!("Download Test Start");
         self.watch(Report::Download, Report::Download, "Download", false)
-            .await;
+            .await?;
         Ok(())
     }
 
@@ -687,11 +707,11 @@ impl UpDownTest {
     pub async fn upload_tag(&mut self) -> Result<(), ScenarioError> {
         self.test_start_time = DotnetDateTime::now();
         info!("UploadTag Test Initialize");
-        self.create_main_bucket().await;
+        self.create_main_bucket().await?;
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, true).await;
+            let bucket = self.thread_bucket(index, true).await?;
             let dummy_file = self.dummy_file(index);
-            self.create_test_file(&dummy_file).await;
+            self.create_test_file(&dummy_file).await?;
             let client = self.new_client(bucket, index, &dummy_file);
             let count = self.config.file_count;
             if index < 2 {
@@ -706,7 +726,7 @@ impl UpDownTest {
         }
         info!("UploadTag Test Start");
         self.watch(Report::Prepare, Report::Prepare, "UploadTag", false)
-            .await;
+            .await?;
         Ok(())
     }
 
@@ -720,13 +740,14 @@ impl UpDownTest {
         self.client.create_bucket(&bucket).await;
         for index in 0..self.config.thread_count {
             let dummy_file = self.dummy_file(index);
-            self.create_test_file(&dummy_file).await;
+            self.create_test_file(&dummy_file).await?;
             let client = self.new_client(bucket.clone(), index, &dummy_file);
             let count = self.config.file_count;
             self.add_work(client, move |c| async move { c.aws_test(count).await });
         }
         info!("AWS Test Start");
-        self.watch(Report::Aws, Report::Aws, "AWSTest", false).await;
+        self.watch(Report::Aws, Report::Aws, "AWSTest", false)
+            .await?;
         Ok(())
     }
 
@@ -736,11 +757,11 @@ impl UpDownTest {
     pub async fn multipart_upload(&mut self) -> Result<(), ScenarioError> {
         self.test_start_time = DotnetDateTime::now();
         info!("MultipartUpload Test Initialize");
-        self.create_main_bucket().await;
+        self.create_main_bucket().await?;
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, true).await;
+            let bucket = self.thread_bucket(index, true).await?;
             let dummy_file = self.dummy_file(index);
-            self.create_test_file(&dummy_file).await;
+            self.create_test_file(&dummy_file).await?;
             let client = self.new_client(bucket, index, &dummy_file);
             let (count, part_size) = (self.config.file_count, self.main_config.part_size);
             self.add_work(client, move |c| async move {
@@ -754,7 +775,7 @@ impl UpDownTest {
             "MultipartUpload",
             false,
         )
-        .await;
+        .await?;
         Ok(())
     }
 
@@ -762,11 +783,11 @@ impl UpDownTest {
     pub async fn multipart_upload_v2(&mut self) -> Result<(), ScenarioError> {
         self.test_start_time = DotnetDateTime::now();
         info!("MultipartUploadV2 Test Initialize");
-        self.create_main_bucket().await;
+        self.create_main_bucket().await?;
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, true).await;
+            let bucket = self.thread_bucket(index, true).await?;
             let dummy_file = self.dummy_file(index);
-            self.create_test_file(&dummy_file).await;
+            self.create_test_file(&dummy_file).await?;
             let client = self.new_client(bucket, index, &dummy_file);
             let (count, part_size) = (self.config.file_count, self.main_config.part_size);
             self.add_work(client, move |c| async move {
@@ -780,7 +801,7 @@ impl UpDownTest {
             "MultipartUploadV2",
             false,
         )
-        .await;
+        .await?;
         Ok(())
     }
 
@@ -791,7 +812,7 @@ impl UpDownTest {
         self.test_start_time = DotnetDateTime::now();
         info!("ListObjectTest Test Initialize");
         for index in 0..self.config.thread_count {
-            let bucket = self.thread_bucket(index, false).await;
+            let bucket = self.thread_bucket(index, false).await?;
             let client = self.new_client(bucket, index, "");
             self.add_work(client, move |c| async move { c.list_object().await });
         }
@@ -802,32 +823,47 @@ impl UpDownTest {
             "ListObjectTest",
             true,
         )
-        .await;
+        .await?;
         Ok(())
     }
 
     // ---- 공통 틀 ----
 
     /// `BucketType`이 `Thread`가 아니면 공용 버킷을 만든다(원본 `CreateTestBucket`/`_client.CreateBucket`).
-    async fn create_main_bucket(&self) {
+    async fn create_main_bucket(&self) -> Result<(), ScenarioError> {
         if self.config.bucket_type != EnumBucketTypes::Thread {
-            self.client
-                .create_bucket(&self.main_config.bucket_name)
-                .await;
+            self.create_test_bucket(&self.main_config.bucket_name)
+                .await?;
         }
+        Ok(())
     }
 
     /// 스레드가 쓸 버킷 이름. `Thread`면 `{BucketName}-{index:0000}`(`create`면 만든다).
-    async fn thread_bucket(&self, index: i32, create: bool) -> String {
+    async fn thread_bucket(&self, index: i32, create: bool) -> Result<String, ScenarioError> {
         if self.config.bucket_type == EnumBucketTypes::Thread {
             let bucket = format!("{}-{index:04}", self.main_config.bucket_name);
             if create {
-                self.client.create_bucket(&bucket).await;
+                self.create_test_bucket(&bucket).await?;
             }
-            bucket
+            Ok(bucket)
         } else {
-            self.main_config.bucket_name.clone()
+            Ok(self.main_config.bucket_name.clone())
         }
+    }
+
+    /// 원본 `CreateTestBucket`: 실패는 로그만 남긴다. 분산 실행에서는 버킷을 만들지도 못하고 없으면 예외다.
+    async fn create_test_bucket(&self, bucket: &str) -> Result<(), ScenarioError> {
+        if let Some(control) = &self.control {
+            control.throw_if_cancelled()?;
+        }
+        let created = self.client.create_bucket(bucket).await;
+        if self.control.is_some() && !created && !self.client.does_s3_bucket_exist(bucket).await {
+            return Err(ScenarioError::new(
+                "System.InvalidOperationException",
+                "테스트 버킷 준비 실패",
+            ));
+        }
+        Ok(())
     }
 
     /// 원본 `Utility.GetDummyFileName(index, _mainConfig.FilePath)`.
@@ -835,14 +871,25 @@ impl UpDownTest {
         dummy_file_name(index, Some(&self.main_config.file_path))
     }
 
-    /// 원본 `CreateTestFile`/`Utility.CreateRandomFile(path, FileSize)`. 실패는 로그만 남긴다.
-    async fn create_test_file(&self, path: &str) {
+    /// 원본 `CreateTestFile`/`Utility.CreateRandomFile(path, FileSize)`. 실패는 로그만 남긴다(분산 실행은 예외).
+    async fn create_test_file(&self, path: &str) -> Result<(), ScenarioError> {
+        if let Some(control) = &self.control {
+            control.throw_if_cancelled()?;
+        }
         let path = path.to_string();
         let size = self.main_config.file_size;
         // 파일 쓰기는 블로킹 작업이라 별도 스레드에서 한다.
-        let _ =
+        let success =
             tokio::task::spawn_blocking(move || create_random_file(Path::new(&path), size, false))
-                .await;
+                .await
+                .unwrap_or(false);
+        if self.control.is_some() && !success {
+            return Err(ScenarioError::new(
+                "System.IO.IOException",
+                "테스트 파일 준비 실패",
+            ));
+        }
+        Ok(())
     }
 
     /// 원본 `new UpDownClient(bucketName, index, file, _clientConfig, _user)`. `Quit`은 이 테스트의 토큰에 묶는다.
@@ -859,53 +906,116 @@ impl UpDownTest {
         )
     }
 
-    /// 원본 `_testList.Add(client)`, `_taskList.Add(new Thread(...))`.
+    /// 원본 `_testList.Add(client)`, `_taskList.Add(CreateTestThread(...))`.
+    ///
+    /// 분산 실행(`CreateTestThread`)은 시작 게이트를 기다린 뒤 실행하고, 예외로 프로세스를 끝내지 않는다. 멈춘 뒤의
+    /// 취소는 무시하고 그 밖의 예외는 `Stop("테스트 스레드 오류: 형식", failed)`.
     fn add_work<F, Fut>(&mut self, client: Arc<UpDownClient>, work: F)
     where
         F: FnOnce(Arc<UpDownClient>) -> Fut,
         Fut: Future<Output = Result<(), UpDownError>> + Send + 'static,
     {
         let worker = client.clone();
-        self.tasks.add(client, work(worker));
+        let Some(control) = self.control.clone() else {
+            self.tasks.add(client, work(worker));
+            return;
+        };
+        let work = work(worker);
+        let gate = control.clone();
+        self.tasks.add_with(
+            client,
+            async move {
+                gate.thread_ready_and_wait().await?;
+                work.await.map_err(ScenarioError::from)
+            },
+            move |e| {
+                if e.dotnet_type == operation_canceled().dotnet_type && control.is_stopped() {
+                    return;
+                }
+                let name = e.dotnet_type.rsplit('.').next().unwrap_or_default();
+                control.stop(Some(&format!("테스트 스레드 오류: {name}")), true);
+            },
+        );
+    }
+
+    /// 감시 루프의 시간 제한(원본 `DurationReached()`, 분산 실행은 예약 시각 기준).
+    fn duration_reached(&self) -> bool {
+        match &self.control {
+            Some(control) => control.duration_reached(self.config.times),
+            None => self.watcher.is_end(),
+        }
     }
 
     /// 시작 로그 뒤의 공통 흐름: 최종 결과 준비 → 시작 → 감시 루프 → 최종 결과.
-    /// `until_end`는 감시 루프의 `!_watcher.IsEnd`(시간 제한) 검사. 시작에 실패하면 `false`(원본은 여기서 끝낸다).
+    /// `until_end`는 감시 루프의 시간 제한 검사. 시작에 실패하면 `false`(원본은 여기서 끝낸다).
     async fn watch(
         &mut self,
         progress: Report,
         final_report: Report,
         name: &str,
         until_end: bool,
-    ) -> bool {
+    ) -> Result<bool, ScenarioError> {
         self.final_report = Some((final_report, name.to_string()));
         self.final_result = FinalResult::default();
-        if !self.task_start().await {
-            return false;
+        if !self.task_start().await? {
+            return Ok(false);
         }
-        self.watcher.start();
-        while (!until_end || !self.watcher.is_end()) && self.tasks.check() {
+        // 분산 실행은 `ReadyAndWait`가 이미 시작했다(.NET `Stopwatch.Start()` 재호출은 아무 일도 하지 않는다).
+        if self.control.is_none() {
+            self.watcher.start();
+        }
+        while (!until_end || !self.duration_reached()) && self.task_check() {
             if self.watcher.is_next() {
                 self.print(progress);
             } else {
                 idle().await;
             }
         }
-        self.tasks.stop();
+        self.test_stop();
         self.complete_final_result().await;
-        true
+        Ok(true)
     }
 
-    /// 원본 `TaskStart()`(`_control == null`): 종료 처리기를 등록하고 작업을 시작한다.
-    async fn task_start(&mut self) -> bool {
+    /// 원본 `TaskStart()`.
+    async fn task_start(&mut self) -> Result<bool, ScenarioError> {
         if self.tasks.is_empty() {
             error!("Task Start Failed");
-            return false;
+            return Ok(false);
         }
-        // 6단계: `_control != null`이면 `ThrowIfCancellationRequested`, 클라이언트 공개, `ReadyAndWait`.
+        if let Some(control) = self.control.clone() {
+            control.throw_if_cancelled()?;
+            *self.published.lock().unwrap_or_else(|e| e.into_inner()) =
+                self.tasks.clients().to_vec();
+            self.tasks.start_with(false).await;
+            let (start_time, watcher) = (&mut self.test_start_time, &mut self.watcher);
+            control
+                .ready_and_wait(|| {
+                    *start_time = DotnetDateTime::utc(chrono::Utc::now());
+                    watcher.start();
+                })
+                .await?;
+            return Ok(true);
+        }
         // 원본 `RegisterShutdownHandlers()`, `RegisterActiveTest()`.
         self.active = Some(activate(&self.cancel, Handler::Persistent));
-        self.tasks.start().await
+        Ok(self.tasks.start().await)
+    }
+
+    /// 원본 `TaskCheck()`: 분산 실행이 멈췄으면 `TestStop` 후 `false`.
+    fn task_check(&self) -> bool {
+        if self.control.as_ref().is_some_and(|c| c.is_stopped()) {
+            self.test_stop();
+            return false;
+        }
+        self.tasks.check()
+    }
+
+    /// 원본 `TestStop()`: 신규 요청 발행 중단을 알리고 모든 클라이언트를 `Quit`으로.
+    fn test_stop(&self) {
+        if let Some(control) = &self.control {
+            control.issuing_stopped();
+        }
+        self.tasks.stop();
     }
 
     /// 원본 `FinalizeTasks()`: 클라이언트를 멈추고 작업이 끝나길 기다린다(한 번만).
@@ -913,11 +1023,54 @@ impl UpDownTest {
         if self.finalized {
             return;
         }
-        self.tasks.stop();
+        self.test_stop();
         self.tasks.join().await;
         // 원본 `UnregisterActiveTest()`.
         self.active = None;
         self.finalized = true;
+    }
+
+    /// 원본 `DrainDistributed()`: 발행을 멈추고 진행 중인 요청이 끝날 때까지 기다린다.
+    pub async fn drain_distributed(&mut self) {
+        self.test_stop();
+        self.tasks.join().await;
+    }
+
+    /// 분산 실행 통계를 조회할 클라이언트 목록(작업 시작 뒤 채워진다). 실행 중에도 다른 작업에서 읽는다.
+    pub fn published_clients(&self) -> Arc<Mutex<Vec<Arc<UpDownClient>>>> {
+        self.published.clone()
+    }
+
+    /// 원본 `GetDistributedResult(type)`: 공개된 클라이언트의 통계. `Total`은 열 가지 건수를 모두 더한다.
+    pub fn distributed_result(
+        clients: &Mutex<Vec<Arc<UpDownClient>>>,
+        test_type: &str,
+        config: &UpDownConfig,
+        main_config: &MainConfig,
+        elapsed_seconds: f64,
+    ) -> awscli_rest_model::UpDownResult {
+        let clients = clients.lock().unwrap_or_else(|e| e.into_inner()).clone();
+        let refs: Vec<&UpDownClient> = clients.iter().map(|c| &**c).collect();
+        let mut stats = UpDownStats::new(main_config.file_size);
+        stats.update(&refs);
+        let elapsed = Decimal::from_f64_retain(elapsed_seconds).unwrap_or_default();
+        let mut result = stats.to_up_down_result(test_type, config, main_config, elapsed);
+        result.total = result.read
+            + result.read_failed
+            + result.write
+            + result.write_failed
+            + result.head
+            + result.head_failed
+            + result.delete
+            + result.delete_failed
+            + result.list
+            + result.list_failed;
+        result.total_failed = result.read_failed
+            + result.write_failed
+            + result.head_failed
+            + result.delete_failed
+            + result.list_failed;
+        result
     }
 
     /// 원본 `CompleteFinalResult()`: 마무리, 최종 출력, 결과 저장을 한 번만 한다.

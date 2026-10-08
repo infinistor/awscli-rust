@@ -94,6 +94,20 @@ impl<C: Quit + ?Sized + 'static> TestTasks<C> {
         })));
     }
 
+    /// [`Self::add`]와 같으나 작업의 `Err`를 `on_error`로 넘긴다(분산 실행: 프로세스를 끝내지 않고 `RunControl.Stop`).
+    pub fn add_with<F, H>(&mut self, client: Arc<C>, work: F, on_error: H)
+    where
+        F: Future<Output = Result<(), ScenarioError>> + Send + 'static,
+        H: FnOnce(ScenarioError) + Send + 'static,
+    {
+        self.clients.push(client);
+        self.pending.push(Pending::Async(Box::pin(async move {
+            if let Err(e) = work.await {
+                on_error(e);
+            }
+        })));
+    }
+
     /// [`Self::add`]의 동기 작업판(블로킹 스레드에서 실행).
     pub fn add_blocking<F, E>(&mut self, client: Arc<C>, work: F)
     where
@@ -121,6 +135,11 @@ impl<C: Quit + ?Sized + 'static> TestTasks<C> {
     /// 원본 `foreach (var item in _taskList) { item.Start(); Thread.Sleep(1); }`. 작업이 없으면 `false`
     /// (원본은 여기서 `Task Start Failed` 등을 로그로 남긴다. 문구가 시나리오마다 달라 호출한 쪽이 남긴다).
     pub async fn start(&mut self) -> bool {
+        self.start_with(true).await
+    }
+
+    /// [`Self::start`]. `gap`이 아니면 1ms 간격 없이 띄운다(원본 분산 실행 `TaskStart`).
+    pub async fn start_with(&mut self, gap: bool) -> bool {
         if self.pending.is_empty() {
             return false;
         }
@@ -130,7 +149,9 @@ impl<C: Quit + ?Sized + 'static> TestTasks<C> {
                 Pending::Blocking(work) => tokio::task::spawn_blocking(work),
             };
             self.handles.push(handle);
-            tokio::time::sleep(Duration::from_millis(1)).await;
+            if gap {
+                tokio::time::sleep(Duration::from_millis(1)).await;
+            }
         }
         true
     }

@@ -147,7 +147,7 @@ impl UpDownClient {
                 &self.client,
                 &self.bucket_name,
                 &object_name,
-                &self.file_path,
+                &self.random_file_path(),
                 self.config.use_chunk_encoding,
             )
             .await
@@ -168,8 +168,20 @@ impl UpDownClient {
         Ok(())
     }
 
+    /// 무작위 업로드 파일. 분산 실행에서는 공유 데이터셋 파일(Get의 ETag 기준)을 덮어쓰지 않도록 따로 둔다
+    /// (TESTCore `RandomFilePath`, ec427f2).
+    fn random_file_path(&self) -> std::path::PathBuf {
+        if self.config.distributed {
+            let mut path = self.file_path.clone().into_os_string();
+            path.push(".random");
+            path.into()
+        } else {
+            self.file_path.clone()
+        }
+    }
+
     async fn create_random_file(&self) {
-        let path = self.file_path.clone();
+        let path = self.random_file_path();
         let size = self.config.file_size;
         // 파일 쓰기는 블로킹 작업이라 별도 스레드에서 한다.
         let _ = tokio::task::spawn_blocking(move || create_random_file(&path, size, true)).await;
@@ -348,11 +360,15 @@ impl UpDownClient {
     }
 
     async fn count_put(&self, object_name: &str) -> bool {
+        self.count_put_file(object_name, &self.file_path).await
+    }
+
+    async fn count_put_file(&self, object_name: &str, path: &std::path::Path) -> bool {
         let ok = put_object(
             &self.client,
             &self.bucket_name,
             object_name,
-            &self.file_path,
+            path,
             self.config.use_chunk_encoding,
         )
         .await;
@@ -396,7 +412,8 @@ impl UpDownClient {
         while !self.quit.get() {
             let object_name = self.next_object_name()?;
             self.create_random_file().await;
-            self.count_put(&object_name).await;
+            self.count_put_file(&object_name, &self.random_file_path())
+                .await;
         }
         Ok(())
     }
