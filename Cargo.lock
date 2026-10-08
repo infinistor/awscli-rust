@@ -501,6 +501,7 @@ dependencies = [
  "awscli-rest-model",
  "awscli-rest-s3",
  "awscli-rest-scenarios",
+ "axum",
  "base64 0.23.1",
  "chrono",
  "encoding_rs",

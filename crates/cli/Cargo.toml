@@ -30,6 +30,10 @@ path = "../../tests/parity/cli_help.rs"
 name = "parity_cli_run"
 path = "../../tests/parity/cli_run.rs"
 
+[[test]]
+name = "parity_distributed_e2e"
+path = "../../tests/parity/distributed_e2e.rs"
+
 [dependencies]
 awscli-rest-clients.workspace = true
 awscli-rest-common.workspace = true
@@ -55,6 +59,7 @@ tracing-subscriber.workspace = true
 workspace = true
 
 [dev-dependencies]
+axum.workspace = true
 encoding_rs.workspace = true
 hex.workspace = true
 md-5.workspace = true
