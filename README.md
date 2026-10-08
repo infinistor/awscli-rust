@@ -21,7 +21,7 @@ cargo build --release
 
 -   요구 사항: Rust stable. Windows에서는 Visual Studio Build Tools의 C++ 워크로드(MSVC 타깃 `x86_64-pc-windows-msvc`)가 필요하며, cargo는 PowerShell에서 실행한다(Git Bash의 `/usr/bin/link`가 MSVC `link.exe`를 가려 링크가 실패한다).
 -   Release 빌드 산출물: `target/release/awscli-rust`(Windows는 `awscli-rust.exe`). 런타임 설치는 필요 없다.
--   Linux 정적 바이너리(musl)는 Docker Desktop이 있으면 `pwsh tools/perf/build-linux.ps1`로 만들 수 있다(성능 비교 묶음에 포함됨). `rust:alpine` 컨테이너에서 직접 만들 때는 다음과 같다.
+-   Windows 실행 파일(`.exe`)은 Linux에서 쓸 수 없다. Linux용 정적 바이너리(musl)는 Docker Desktop이 있으면 `pwsh ./build-linux.ps1`로 빌드·압축하고 테스트 장비에 배포한다(`-SkipDeploy`면 빌드만, 대상은 `-Targets`로 지정. [운영 절차](docs/operations.md#linux-정적-musl-바이너리) 참고). `rust:alpine` 컨테이너에서 직접 만들 때는 다음과 같다.
     ```bash
     cargo build --release --target x86_64-unknown-linux-musl
     ```

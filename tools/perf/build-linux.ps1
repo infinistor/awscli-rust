@@ -1,6 +1,6 @@
 # 성능 비교용 Linux 묶음을 만든다(Docker Desktop 필요).
 #
-# - awscli-rust: rust:alpine 컨테이너에서 x86_64-unknown-linux-musl 정적 바이너리(대상 장비의 glibc와 무관).
+# - awscli-rust: 저장소 루트의 build-linux.ps1(x86_64-unknown-linux-musl 정적 바이너리, 대상 장비의 glibc와 무관).
 # - TESTCore: TESTCore 저장소의 지정 커밋을 git archive로 내보내(원본 디렉터리는 건드리지 않는다)
 #   `dotnet publish -r linux-x64 --self-contained`(대상 장비에 .NET 런타임이 없어도 된다).
 # - dist/perf-bundle.tar.gz: awscli-rust, testcore/, compare.sh, README.txt(실행 권한은 컨테이너 안에서 묶을 때 준다).
@@ -17,11 +17,10 @@ $bundle = Join-Path $dist "perf-bundle"
 if (Test-Path $bundle) { Remove-Item -Recurse -Force $bundle }
 New-Item -ItemType Directory -Force (Join-Path $bundle "testcore") | Out-Null
 
-# awscli-rust(정적 musl). 레지스트리 캐시는 이름 있는 볼륨에 둔다.
-docker run --rm -v "${root}:/src" -v awscli-rust-cargo-registry:/usr/local/cargo/registry -w /src rust:alpine `
-	sh -c "apk add --no-cache musl-dev gcc >/dev/null && cargo build --release -p awscli-rust-cli --target-dir /src/target/linux"
+# awscli-rust(정적 musl): 저장소 루트의 build-linux.ps1로 만든다.
+& (Join-Path $root "build-linux.ps1") -SkipDeploy
 if ($LASTEXITCODE -ne 0) { throw "awscli-rust Linux 빌드 실패" }
-Copy-Item (Join-Path $root "target\linux\release\awscli-rust") $bundle
+Copy-Item (Join-Path $root "dist\linux\awscli-rust\awscli-rust") $bundle
 
 # TESTCore(self-contained linux-x64)
 $commit = git -C $TestCore rev-parse --short "$Ref^{commit}"

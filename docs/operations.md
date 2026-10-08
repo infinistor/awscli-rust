@@ -16,14 +16,26 @@ cargo build --release
 
 ### Linux (정적 musl 바이너리)
 
-Docker Desktop이 있는 Windows에서 `pwsh tools/perf/build-linux.ps1`을 실행하면 `rust:alpine` 컨테이너에서 `x86_64-unknown-linux-musl` 정적 바이너리를 만든다(성능 비교 묶음에 들어가며 `target/linux/release/awscli-rust`에 남는다). 대상 장비의 glibc 버전과 무관하게 실행되고 런타임 설치도 필요 없다. 컨테이너 안에서 직접 만들 때는 다음과 같다.
+Windows 실행 파일(`.exe`)은 Linux에서 쓸 수 없다. Docker Desktop이 있는 Windows에서 저장소 루트의 `build-linux.ps1`(TESTCore `build.ps1`·`upload.ps1`과 같은 흐름)을 실행하면 `rust:alpine` 컨테이너에서 `x86_64-unknown-linux-musl` 정적 바이너리를 만들고 배포까지 한다. 대상 장비의 glibc 버전과 무관하게 실행되고 런타임 설치도 필요 없다.
 
-```bash
-apk add --no-cache musl-dev gcc
-cargo build --release --target x86_64-unknown-linux-musl
+```powershell
+pwsh ./build-linux.ps1                 # 빌드 후 기본 대상(root@192.168.11.156:/root/workspace/awscli-rest)에 배포
+pwsh ./build-linux.ps1 -SkipDeploy     # 빌드만
+pwsh ./build-linux.ps1 -Targets root@192.168.31.103:/root/workspace/awscli-rust, root@192.168.31.104:/root/workspace/awscli-rust
 ```
 
-배포는 바이너리를 복사하고 실행 권한(`chmod +x awscli-rust`)을 주면 끝이다.
+1.  정리: `dist/linux/awscli-rust/`와 이전 압축 파일을 지운다(빌드 캐시 `target/linux`는 남긴다).
+2.  빌드: 버전은 TESTCore와 같은 `태그_커밋수_해시`다(컨테이너에 `git`을 설치해 계산한다).
+3.  추가 파일: `sample.ini`, `controller.sample.ini`, `worker.sample.ini`를 함께 둔다.
+4.  압축: `dist/linux/awscli-rust_<버전>.tar.gz`(실행 권한 포함).
+5.  배포: 대상마다 디렉터리가 없으면 만들고(`mkdir -p`), 파일을 올리고, 실행 권한을 준 뒤 `--version`으로 확인한다. 대상 장비의 `config.ini`는 올리지도 덮어쓰지도 않으므로 장비마다 직접 둔다. ssh 키 인증(`BatchMode`)이 되어 있어야 한다.
+
+컨테이너 안에서 직접 만들 때는 다음과 같다.
+
+```bash
+apk add --no-cache musl-dev gcc git
+cargo build --release --target x86_64-unknown-linux-musl
+```
 
 ### 변경 후 검증
 
