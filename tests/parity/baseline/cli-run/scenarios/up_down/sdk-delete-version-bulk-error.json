@@ -1,0 +1,42 @@
+{
+  "exitCode": -532462766,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "max-keys=1000",
+        "prefix=TH_000",
+        "versions"
+      ]
+    },
+    {
+      "body": "<Delete><Object><Key>a</Key><VersionId>v1</VersionId></Object><Object><Key>a</Key><VersionId>m1</VersionId></Object><Object><Key>b</Key><VersionId>v3</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/bkt/",
+      "query": [
+        "delete"
+      ]
+    }
+  ],
+  "stderr": [
+    "Unhandled exception. Amazon.S3.DeleteObjectsException: Error deleting objects. Deleted objects: 1. Delete errors: 2"
+  ],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ListVersions Delete Test Initialize",
+    "INFO  <TIME> : ListVersions Delete Test Start"
+  ]
+}

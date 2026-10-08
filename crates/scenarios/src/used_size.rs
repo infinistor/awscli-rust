@@ -593,13 +593,12 @@ impl UsedSizeTest {
             Err(e) => return caught(e).map(|_| false),
         };
         // `response.Versions`가 `null`이면 `Select`에서 ArgumentNullException
-        let versions = response.output.versions();
-        if versions.is_empty() {
+        let Some(versions) = response.output.entries() else {
             return Err(ScenarioError::new(
                 "System.ArgumentNullException",
                 "Value cannot be null. (Parameter 'source')",
             ));
-        }
+        };
         let keys: Vec<(String, Option<String>)> = versions
             .iter()
             .map(|v| {

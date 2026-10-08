@@ -1,0 +1,33 @@
+{
+  "exitCode": -1073741819,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "max-keys=1000",
+        "prefix=TH_000",
+        "versions"
+      ]
+    }
+  ],
+  "stderr": [
+    "Unhandled exception. System.NullReferenceException: Object reference not set to an instance of an object."
+  ],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ListVersions Delete Test Initialize",
+    "INFO  <TIME> : ListVersions Delete Test Start"
+  ]
+}

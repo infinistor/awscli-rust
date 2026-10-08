@@ -22,6 +22,7 @@ use aws_sdk_s3::types::{
     ObjectLockRetention, ReplicationConfiguration, RestoreRequest, Tagging,
 };
 
+use super::versions::{ListVersions, VersionOrder};
 use super::{S3Client, S3Error, S3Response, strip_unset, zero_content_length};
 
 /// `x-amz-copy-source` 값. .NET은 `{버킷}/{키}` 전체를 RFC 3986으로 인코딩(`/`도 `%2F`)하고,
@@ -116,8 +117,10 @@ impl S3Client {
         next_version_id_marker: Option<&str>,
         max_keys: i32,
         delimiter: Option<&str>,
-    ) -> Result<S3Response<ListObjectVersionsOutput>, S3Error> {
-        send!(
+    ) -> Result<S3Response<ListVersions>, S3Error> {
+        let order = VersionOrder::default();
+        let slot = order.slot();
+        let response: Result<S3Response<ListObjectVersionsOutput>, S3Error> = send!(
             self.client
                 .list_object_versions()
                 .bucket(bucket_name)
@@ -125,8 +128,16 @@ impl S3Client {
                 .set_key_marker(next_key_marker.map(str::to_string))
                 .set_version_id_marker(next_version_id_marker.map(str::to_string))
                 .set_prefix(prefix.map(str::to_string))
-                .set_delimiter(delimiter.map(str::to_string))
-        )
+                .set_delimiter(delimiter.map(str::to_string)),
+            empty_body = "ListVersionsResult",
+            interceptor = order
+        );
+        let response = response?;
+        let order = std::mem::take(&mut *slot.lock().unwrap());
+        Ok(S3Response {
+            status: response.status,
+            output: ListVersions::new(response.output, order),
+        })
     }
 
     /// 원본 `GetObjectTagging(bucketName, key, versionId = null)`.

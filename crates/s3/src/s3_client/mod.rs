@@ -70,8 +70,9 @@ pub struct S3Client {
 /// - `config = Builder`: 이 요청만 클라이언트 설정을 바꾼다(`checksum`과 함께 쓰지 않는다).
 /// - `mutate = |request| ...`: 서명 전에 요청(헤더 등)을 고친다.
 /// - `empty_body = "Root"`: 성공 응답의 본문이 비어 있으면 `<Root/>`로 읽는다(.NET은 빈 결과로 읽는다).
+/// - `interceptor = ...`: 이 요청에만 인터셉터를 더한다.
 macro_rules! send {
-    ($builder:expr $(, checksum = $checksum:expr)? $(, config = $config:expr)? $(, mutate = $mutate:expr)? $(, empty_body = $root:expr)? $(,)?) => {{
+    ($builder:expr $(, checksum = $checksum:expr)? $(, config = $config:expr)? $(, mutate = $mutate:expr)? $(, empty_body = $root:expr)? $(, interceptor = $extra:expr)? $(,)?) => {{
         let capture = $crate::s3_client::interceptors::StatusCapture::default();
         let slot = capture.slot();
         let customized = $builder.customize().interceptor(capture);
@@ -89,6 +90,9 @@ macro_rules! send {
         $(
             let customized = customized
                 .interceptor($crate::s3_client::interceptors::EmptyBodyAsRoot($root));
+        )?
+        $(
+            let customized = customized.interceptor($extra);
         )?
         let output = customized
             .send()
@@ -110,12 +114,14 @@ mod object_config;
 mod presign;
 mod transfer;
 mod unset;
+mod versions;
 
 pub use multipart::PartETag;
 pub use object::{PutBody, PutObjectRequest};
 pub use presign::HttpVerb;
 pub use unset::UNSET;
 pub(crate) use unset::{strip_unset, strip_unset_crc32, strip_unset_md5, strip_unset_query};
+pub use versions::{ListVersions, VersionEntry};
 
 /// SDK 빌더의 `build()` 오류(필수 값 누락)를 [`S3Error`]로 바꾼다.
 pub(crate) fn built<T>(result: Result<T, aws_sdk_s3::error::BuildError>) -> Result<T, S3Error> {

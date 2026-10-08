@@ -1,0 +1,38 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "key-marker=",
+        "max-keys=1000",
+        "version-id-marker=",
+        "versions"
+      ]
+    },
+    {
+      "body": "<Delete><Object><Key>z</Key><VersionId>m1</VersionId></Object><Object><Key>a</Key><VersionId>m2</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/bucket1/",
+      "query": [
+        "delete"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : MarkerClear Start",
+    "INFO  <TIME> : MarkerClear(bucket1)",
+    "INFO  <TIME> : WaitTasks(1)",
+    "INFO  <TIME> : DeleteObjects(bucket1, 2) success",
+    "INFO  <TIME> : Finish",
+    "INFO  <TIME> : MarkerClear completed - Total deleted objects: 2",
+    "INFO  <TIME> : MarkerClear(bucket1) : complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

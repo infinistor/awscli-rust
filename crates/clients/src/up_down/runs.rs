@@ -618,10 +618,8 @@ impl UpDownClient {
             if self.quit.get() {
                 break;
             }
-            let versions = response
-                .versions
-                .as_ref()
-                .ok_or(UpDownError::NullReference)?;
+            // 원본 `Versions`는 버전과 삭제 마커를 문서 순서로 담는다(`null`이면 `NullReferenceException`).
+            let versions = response.entries().ok_or(UpDownError::NullReference)?;
             if bulk {
                 let keys: Vec<(String, Option<String>)> = versions
                     .iter()
