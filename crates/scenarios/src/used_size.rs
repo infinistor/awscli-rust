@@ -496,10 +496,7 @@ impl UsedSizeTest {
                         true,
                     )
                     .await?;
-                parts.push(PartETag::new(
-                    part_number,
-                    response.output.e_tag().unwrap_or_default(),
-                ));
+                parts.push(PartETag::new(part_number, response.output.e_tag()));
                 part_number += 1;
             }
             self.client
@@ -549,11 +546,7 @@ impl UsedSizeTest {
                         None,
                     )
                     .await?;
-                let e_tag = response
-                    .output
-                    .copy_part_result()
-                    .and_then(|r| r.e_tag())
-                    .unwrap_or_default();
+                let e_tag = response.output.copy_part_result().and_then(|r| r.e_tag());
                 parts.push(PartETag::new(part_number, e_tag));
 
                 part_number += 1;

@@ -232,8 +232,7 @@ impl S3Client {
                     )
                     .await
                     .inspect_err(|_| failed.store(true, Ordering::SeqCst))?;
-                let e_tag = response.output.e_tag().unwrap_or_default().to_string();
-                Ok::<_, S3Error>(Some(PartETag::new(number, e_tag)))
+                Ok::<_, S3Error>(Some(PartETag::new(number, response.output.e_tag())))
             });
             position += length;
         }

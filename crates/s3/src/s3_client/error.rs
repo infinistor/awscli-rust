@@ -207,6 +207,22 @@ pub fn required(value: &str, property: &str, request: &str) -> Result<(), S3Erro
     Ok(())
 }
 
+/// AWSSDK v4의 생성된 마샬러가 필수 쿼리 값(`null`·빈 문자열)을 확인하며 던지는 `AmazonS3Exception`
+/// (`StatusCode` 0, `ErrorCode` 없음). 요청을 보내지 않는다.
+pub fn required_field(value: &str, field: &str) -> Result<(), S3Error> {
+    if value.is_empty() {
+        return Err(S3Error::Service {
+            status: 0,
+            code: String::new(),
+            message: Some(format!(
+                "Request object does not have required field {field} set"
+            )),
+            request_id: None,
+        });
+    }
+    Ok(())
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

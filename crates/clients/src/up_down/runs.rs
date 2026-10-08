@@ -995,8 +995,8 @@ impl UpDownClient {
             if self.quit.get() {
                 break;
             }
-            // 원본은 Head 결과의 버전 ID(실패하면 빈 문자열)를 그대로 넘긴다.
-            self.count_delete(&object_name, Some(&version_id)).await;
+            // 원본은 Head 결과의 버전 ID(실패하면 빈 문자열, 헤더가 없으면 null)를 그대로 넘긴다.
+            self.count_delete(&object_name, version_id.as_deref()).await;
             if self.quit.get() {
                 break;
             }

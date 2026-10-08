@@ -133,23 +133,24 @@ pub async fn upload_object(
     }
 }
 
-/// 원본 `HeadObject`: 성공하면 버전 ID도 돌려준다(없으면 빈 문자열).
-pub async fn head_object(client: &S3Client, bucket: &str, key: &str) -> (bool, String) {
+/// 원본 `HeadObject`: 성공하면 응답의 버전 ID(헤더가 없으면 `None` = .NET `null`)를, 실패하면 원본의 초기값
+/// `string.Empty`(`Some("")`)를 돌려준다.
+pub async fn head_object(client: &S3Client, bucket: &str, key: &str) -> (bool, Option<String>) {
+    let failed = || (false, Some(String::new()));
     match client.head_object(bucket, key, None, None).await {
-        Ok(response) if response.status == 200 => (
-            true,
-            response.output.version_id().unwrap_or_default().to_string(),
-        ),
+        Ok(response) if response.status == 200 => {
+            (true, response.output.version_id().map(str::to_string))
+        }
         Ok(response) => {
             error!(
                 "HeadObject Failed({}). S3://{bucket}/{key}",
                 status_name(response.status)
             );
-            (false, String::new())
+            failed()
         }
         Err(e) => {
             log_error(&log("HeadObject", format!("{bucket}, {key}")), &e);
-            (false, String::new())
+            failed()
         }
     }
 }
@@ -370,10 +371,7 @@ impl UpDownClient {
                         .await?;
                     return Ok(false);
                 }
-                parts.push(PartETag::new(
-                    part_number,
-                    response.output.e_tag().unwrap_or_default(),
-                ));
+                parts.push(PartETag::new(part_number, response.output.e_tag()));
                 start += part_size;
                 part_number += 1;
                 // 원본 `onPartUploaded`: `Stats.Write.Part++`

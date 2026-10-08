@@ -9,12 +9,24 @@ use aws_sdk_s3::operation::upload_part::UploadPartOutput;
 use aws_sdk_s3::operation::upload_part_copy::UploadPartCopyOutput;
 use aws_sdk_s3::types::{CompletedMultipartUpload, CompletedPart};
 
+use super::error::required_field;
 use super::mime::initiate_content_type;
 use super::object_config::copy_source;
 use super::{
-    PutBody, S3Client, S3Error, S3Response, add_content_md5, chunk_checksum, set_content_type,
-    zero_content_length,
+    PutBody, S3Client, S3Error, S3Response, UNSET, add_content_md5, chunk_checksum,
+    set_content_type, strip_unset_query, zero_content_length,
 };
+
+/// .NET의 `UploadPart`·`CopyPart` 마샬러는 `UploadId`가 `null`이면 쿼리에서 뺀 채 요청을 보낸다. 호출 쪽은
+/// 시작 응답에 `UploadId`가 없으면 빈 문자열을 넘기므로, 빈 값은 표식으로 바꿔 서명 전에 쿼리에서 지운다.
+/// (`CompleteMultipartUpload`·`AbortMultipartUpload`·`ListParts`는 요청을 만들지 않고 `required_field` 예외.)
+fn unset_if_empty(upload_id: &str) -> &str {
+    if upload_id.is_empty() {
+        UNSET
+    } else {
+        upload_id
+    }
+}
 
 /// 원본 `PartETag`: 완료할 파트 번호와 ETag(와 파트 체크섬). 모두 비어 있을 수 있다(입력 파일에서 읽은 값).
 ///
@@ -31,10 +43,11 @@ pub struct PartETag {
 }
 
 impl PartETag {
-    pub fn new(part_number: i32, e_tag: impl Into<String>) -> Self {
+    /// 원본 `new PartETag(partNumber, eTag)`. 응답에 ETag가 없으면(.NET `null`) 완료 요청 XML에서 `<ETag>`가 빠진다.
+    pub fn new(part_number: i32, e_tag: Option<&str>) -> Self {
         Self {
             part_number: Some(part_number),
-            e_tag: Some(e_tag.into()),
+            e_tag: e_tag.map(str::to_string),
             ..Self::default()
         }
     }
@@ -92,11 +105,14 @@ impl S3Client {
                 .upload_part()
                 .bucket(bucket_name)
                 .key(key)
-                .upload_id(upload_id)
+                .upload_id(unset_if_empty(upload_id))
                 .part_number(part_number)
                 .body(stream),
             checksum = chunk_checksum(use_chunk_encoding),
-            mutate = |request| set_content_type(request, "text/plain")
+            mutate = |request| {
+                set_content_type(request, "text/plain");
+                strip_unset_query(request);
+            }
         )
     }
 
@@ -120,10 +136,13 @@ impl S3Client {
                 .bucket(destination_bucket)
                 .key(destination_key)
                 .copy_source(copy_source(source_bucket, source_key, version_id))
-                .upload_id(upload_id)
+                .upload_id(unset_if_empty(upload_id))
                 .part_number(part_number)
                 .copy_source_range(format!("bytes={start}-{end}")),
-            mutate = zero_content_length
+            mutate = |request| {
+                zero_content_length(request);
+                strip_unset_query(request);
+            }
         )
     }
 
@@ -136,6 +155,7 @@ impl S3Client {
         upload_id: &str,
         parts: &[PartETag],
     ) -> Result<S3Response<CompleteMultipartUploadOutput>, S3Error> {
+        required_field(upload_id, "UploadId")?;
         let completed = CompletedMultipartUpload::builder()
             .set_parts(Some(
                 parts
@@ -172,6 +192,7 @@ impl S3Client {
         key: &str,
         upload_id: &str,
     ) -> Result<S3Response<AbortMultipartUploadOutput>, S3Error> {
+        required_field(upload_id, "UploadId")?;
         send!(
             self.client
                 .abort_multipart_upload()
@@ -213,6 +234,7 @@ impl S3Client {
         part_number_marker: i32,
         max_keys: i32,
     ) -> Result<S3Response<ListPartsOutput>, S3Error> {
+        required_field(upload_id, "UploadId")?;
         send!(
             self.client
                 .list_parts()
