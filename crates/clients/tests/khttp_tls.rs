@@ -4,9 +4,9 @@
 
 use std::sync::{Arc, Mutex};
 
-use awscli_rest_clients::curl::{CurlClient, CurlError};
-use awscli_rest_clients::khttp::KHttpClient;
-use awscli_rest_clients::portal::PortalResponse;
+use awscli_rust_clients::curl::{CurlClient, CurlError};
+use awscli_rust_clients::khttp::KHttpClient;
+use awscli_rust_clients::portal::PortalResponse;
 use rustls::pki_types::{PrivateKeyDer, PrivatePkcs8KeyDer};
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use tokio::net::TcpListener;

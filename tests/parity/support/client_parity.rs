@@ -15,8 +15,8 @@ use std::io;
 use std::path::{Path, PathBuf};
 use std::sync::{Arc, Mutex};
 
-use awscli_rest_common::DotnetDateTime;
-use awscli_rest_common::dotnet_json::NEW_LINE;
+use awscli_rust_common::DotnetDateTime;
+use awscli_rust_common::dotnet_json::NEW_LINE;
 use serde_json::Value;
 use tracing_subscriber::fmt::MakeWriter;
 
@@ -72,7 +72,7 @@ fn mask_ports(text: &str) -> String {
 }
 
 /// 결과 문자열 정규화: 포트를 가리고, `UserData`의 `null` 자격 증명은 빈 문자열로 본다
-/// (`awscli_rest_config::UserData`가 `String`이라 `null`을 표현하지 못한다).
+/// (`awscli_rust_config::UserData`가 `String`이라 `null`을 표현하지 못한다).
 fn normalize_result(text: &str) -> String {
     mask_ports(text)
         .replace("\"AccessKey\": null", "\"AccessKey\": \"\"")

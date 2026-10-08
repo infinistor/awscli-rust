@@ -3,7 +3,7 @@
 use std::time::Instant;
 
 use aws_sdk_s3::types::Object;
-use awscli_rest_s3::s3_client::ListVersions;
+use awscli_rust_s3::s3_client::ListVersions;
 use chrono::Local;
 use rust_decimal::Decimal;
 use tracing::info;
@@ -40,7 +40,7 @@ impl ObjectData {
 
     /// 원본 `SizeToString`(`Utility.GetFileSizeUint(Size)`).
     fn size_to_string(&self) -> String {
-        awscli_rest_model::units::file_size_unit(Decimal::from(self.size), false, false)
+        awscli_rust_model::units::file_size_unit(Decimal::from(self.size), false, false)
     }
 }
 

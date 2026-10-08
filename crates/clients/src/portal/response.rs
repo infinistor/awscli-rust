@@ -2,7 +2,7 @@
 
 use std::ops::Deref;
 
-use awscli_rest_common::DotnetDateTime;
+use awscli_rust_common::DotnetDateTime;
 use serde::Serialize;
 
 use super::data::{

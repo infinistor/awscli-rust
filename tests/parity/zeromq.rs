@@ -14,7 +14,7 @@ mod client_parity;
 mod http_capture;
 
 use ::zeromq::{Endpoint, RepSocket, Socket, SocketRecv, SocketSend};
-use awscli_rest_clients::zeromq as client;
+use awscli_rust_clients::zeromq as client;
 use client_parity::{actual_logs, case_names, expected_logs, parity_root, read_json, with_logs};
 use serde_json::Value;
 
@@ -116,7 +116,7 @@ async fn pause_waits_until_server_appears() {
 //
 //   dotnet build tools/dotnet-oracle -p:TestCoreBin=E:\Code\Git\TESTCore\bin\TestCore
 //   $env:TESTCORE_BIN = "E:\Code\Git\TESTCore\bin\TestCore"
-//   cargo test -p awscli-rest-clients --test parity_zeromq -- --ignored
+//   cargo test -p awscli-rust-clients --test parity_zeromq -- --ignored
 
 fn oracle_command() -> tokio::process::Command {
     let dll = parity_root().join("../../tools/dotnet-oracle/bin/Debug/net10.0/DotnetOracle.dll");

@@ -14,9 +14,9 @@ mod client_parity;
 #[path = "support/http_capture.rs"]
 mod http_capture;
 
-use awscli_rest_clients::portal::{PortalError, PortalManager};
-use awscli_rest_common::to_dotnet_json;
-use awscli_rest_config::PortalConfig;
+use awscli_rust_clients::portal::{PortalError, PortalManager};
+use awscli_rust_common::to_dotnet_json;
+use awscli_rust_config::PortalConfig;
 use client_parity::{
     actual_logs, actual_outcome, actual_requests, case_names, expected_logs, expected_outcome,
     expected_requests, mask_local_regdate_in_outcome, parity_root, read_json, with_logs,

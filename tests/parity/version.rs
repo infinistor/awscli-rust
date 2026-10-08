@@ -2,13 +2,13 @@
 
 use std::process::{Command, Output};
 
-const BIN: &str = env!("CARGO_BIN_EXE_awscli-rest");
+const BIN: &str = env!("CARGO_BIN_EXE_awscli-rust");
 
 fn run(args: &[&str]) -> Output {
     Command::new(BIN)
         .args(args)
         .output()
-        .expect("awscli-rest 실행")
+        .expect("awscli-rust 실행")
 }
 
 fn git(args: &[&str]) -> Option<String> {

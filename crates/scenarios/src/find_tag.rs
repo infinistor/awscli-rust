@@ -19,7 +19,7 @@ use std::sync::Arc;
 use std::sync::atomic::{AtomicUsize, Ordering};
 use std::time::Instant;
 
-use awscli_rest_s3::S3Client;
+use awscli_rust_s3::S3Client;
 use tokio::sync::Semaphore;
 use tokio::task::JoinSet;
 use tracing::{error, info};

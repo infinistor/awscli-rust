@@ -3,7 +3,7 @@
 
 use std::path::Path;
 
-use awscli_rest_config::IniFile;
+use awscli_rust_config::IniFile;
 use serde_json::{Value, json};
 
 const FIXTURES: &[&str] = &[

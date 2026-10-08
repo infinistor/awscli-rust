@@ -7,10 +7,10 @@
 use std::path::{Path, PathBuf};
 use std::sync::LazyLock;
 
-use awscli_rest_config::{IniFile, UserData};
-use awscli_rest_s3::S3Error;
-use awscli_rest_s3::s3_client::error::full_path;
-use awscli_rest_scenarios::ScenarioError;
+use awscli_rust_config::{IniFile, UserData};
+use awscli_rust_s3::S3Error;
+use awscli_rust_s3::s3_client::error::full_path;
+use awscli_rust_scenarios::ScenarioError;
 use regex::Regex;
 
 use crate::contracts::validate_user;

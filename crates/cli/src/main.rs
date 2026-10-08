@@ -1,6 +1,6 @@
-//! awscli-rest 진입점 (TESTCore `Program.cs`).
+//! awscli-rust 진입점 (TESTCore `Program.cs`).
 
-use awscli_rest_cli::{app, logging};
+use awscli_rust_cli::{app, logging};
 
 fn main() {
     logging::init();

@@ -1,4 +1,4 @@
-//! awscli-rest 실행 파일의 라이브러리 부분(옵션 파서, 사용법 문자열, 실행 흐름, 명령 디스패치).
+//! awscli-rust 실행 파일의 라이브러리 부분(옵션 파서, 사용법 문자열, 실행 흐름, 명령 디스패치).
 
 pub mod app;
 pub mod bootstrap;

@@ -23,9 +23,9 @@ use aws_sdk_s3::types::{
     StorageClassAnalysis, StorageClassAnalysisDataExport, StorageClassAnalysisSchemaVersion, Tag,
     Tagging, TopicConfiguration, Transition, TransitionStorageClass, Type, WebsiteConfiguration,
 };
-use awscli_rest_s3::S3Client;
-use awscli_rest_s3::S3Error;
-use awscli_rest_s3::s3_client::{PartETag, PutBody, S3_MAX_KEYS};
+use awscli_rust_s3::S3Client;
+use awscli_rust_s3::S3Error;
+use awscli_rust_s3::s3_client::{PartETag, PutBody, S3_MAX_KEYS};
 use serde_json::Value;
 
 /// 성공 결과: HTTP 상태 코드와, 상태 코드만으로 비교할 수 없는 값(내려받은 내용 등).
@@ -37,7 +37,7 @@ pub struct OpOk {
 
 pub type OpResult = Result<OpOk, S3Error>;
 
-fn status<T>(result: Result<awscli_rest_s3::S3Response<T>, S3Error>) -> OpResult {
+fn status<T>(result: Result<awscli_rust_s3::S3Response<T>, S3Error>) -> OpResult {
     result.map(|r| OpOk {
         status: Some(r.status),
         detail: None,

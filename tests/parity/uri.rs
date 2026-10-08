@@ -3,7 +3,7 @@
 
 use std::path::Path;
 
-use awscli_rest_s3::dotnet_uri::DotnetUri;
+use awscli_rust_s3::dotnet_uri::DotnetUri;
 use serde_json::{Value, json};
 
 #[test]

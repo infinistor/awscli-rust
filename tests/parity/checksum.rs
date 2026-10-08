@@ -4,8 +4,8 @@
 use std::collections::BTreeMap;
 use std::path::Path;
 
-use awscli_rest_s3::ChecksumAlgorithm;
-use awscli_rest_s3::checksum::{calculate_checksum, checksum_bytes};
+use awscli_rust_s3::ChecksumAlgorithm;
+use awscli_rust_s3::checksum::{calculate_checksum, checksum_bytes};
 
 const FIXTURES: &[&str] = &[
     "empty.bin",

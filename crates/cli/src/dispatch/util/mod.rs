@@ -25,14 +25,14 @@ use aws_sdk_s3::types::{
     ObjectLockLegalHold, ObjectLockLegalHoldStatus, ServerSideEncryption,
     ServerSideEncryptionByDefault, ServerSideEncryptionConfiguration, ServerSideEncryptionRule,
 };
-use awscli_rest_common::dotnet_http::status_name;
-use awscli_rest_s3::S3Error;
+use awscli_rust_common::dotnet_http::status_name;
+use awscli_rust_s3::S3Error;
 use tracing::{error, info};
 
 use super::{CommandContext, CommandError, CommandResult, not_ported};
 use crate::menu::MenuList;
 use crate::usage;
-use awscli_rest_scenarios::clear::ClearTest;
+use awscli_rust_scenarios::clear::ClearTest;
 
 /// 옮긴 메뉴.
 pub(super) const PORTED: &[MenuList] = &[

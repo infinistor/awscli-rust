@@ -5,7 +5,7 @@
 
 use std::path::Path;
 
-use awscli_rest_cli::options::{CommandOptions, ParseError, parse};
+use awscli_rust_cli::options::{CommandOptions, ParseError, parse};
 use serde_json::{Map, Value, json};
 
 fn baseline(name: &str) -> String {

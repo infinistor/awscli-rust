@@ -12,7 +12,7 @@ mod backend;
 mod bucket;
 mod bucket_config;
 mod bucket_rules;
-pub use awscli_rest_scenarios::input;
+pub use awscli_rust_scenarios::input;
 mod ksan;
 mod multipart;
 mod object;
@@ -20,8 +20,8 @@ pub mod output;
 mod tests;
 mod util;
 
-use awscli_rest_config::Config;
-use awscli_rest_s3::S3Client;
+use awscli_rust_config::Config;
+use awscli_rust_s3::S3Client;
 use tokio_util::sync::CancellationToken;
 
 use crate::menu::MenuList;
@@ -66,7 +66,7 @@ impl CommandContext {
 }
 
 /// 명령 실행 중 난 예외. 원본 최상위의 `catch (Exception e) { _log.Error(e); return ERROR_NORMAL; }`로 간다.
-pub use awscli_rest_scenarios::ScenarioError as CommandError;
+pub use awscli_rust_scenarios::ScenarioError as CommandError;
 
 pub type CommandResult = Result<i32, CommandError>;
 

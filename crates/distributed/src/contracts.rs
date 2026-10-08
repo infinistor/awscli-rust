@@ -4,16 +4,16 @@
 //!   [`from_web_json`], Worker 결과 파일과 해시 입력은 [`to_dotnet_json`]·`serde_json`(PascalCase)을 쓴다.
 //! - 열거형(`BucketType`)은 정수, `null`도 그대로 쓴다. `RunSnapshot.IsFinal`은 쓰기만 한다.
 //!
-//! [`to_web_json`]: awscli_rest_common::to_web_json
-//! [`from_web_json`]: awscli_rest_common::from_web_json
-//! [`to_dotnet_json`]: awscli_rest_common::to_dotnet_json
+//! [`to_web_json`]: awscli_rust_common::to_web_json
+//! [`from_web_json`]: awscli_rust_common::from_web_json
+//! [`to_dotnet_json`]: awscli_rust_common::to_dotnet_json
 
 use std::sync::LazyLock;
 
-use awscli_rest_common::{DotnetDateTime, DotnetDateTimeOffset};
-use awscli_rest_config::{Config, EnumBucketTypes, MainConfig, UpDownConfig, UserData};
-use awscli_rest_model::UpDownResult;
-use awscli_rest_scenarios::ScenarioError;
+use awscli_rust_common::{DotnetDateTime, DotnetDateTimeOffset};
+use awscli_rust_config::{Config, EnumBucketTypes, MainConfig, UpDownConfig, UserData};
+use awscli_rust_model::UpDownResult;
+use awscli_rust_scenarios::ScenarioError;
 use regex::Regex;
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 
@@ -310,7 +310,7 @@ impl From<&UpDownResult> for RunResult {
 }
 
 fn date_time_json<S: Serializer>(value: &DotnetDateTime, serializer: S) -> Result<S::Ok, S::Error> {
-    awscli_rest_common::dotnet_json::raw_string(&value.to_json_text(), serializer)
+    awscli_rust_common::dotnet_json::raw_string(&value.to_json_text(), serializer)
 }
 
 fn parse_date_time<'de, D: Deserializer<'de>>(deserializer: D) -> Result<DotnetDateTime, D::Error> {

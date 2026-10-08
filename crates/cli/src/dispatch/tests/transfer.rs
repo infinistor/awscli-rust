@@ -2,12 +2,12 @@
 
 use std::time::Instant;
 
-use awscli_rest_scenarios::find_tag::FindTagTest;
-use awscli_rest_scenarios::io::IoTest;
-use awscli_rest_scenarios::multi_download::MultiDownloadTest;
-use awscli_rest_scenarios::multi_part::MultiPartTest;
-use awscli_rest_scenarios::multi_upload::MultiUploadTest;
-use awscli_rest_scenarios::range_read;
+use awscli_rust_scenarios::find_tag::FindTagTest;
+use awscli_rust_scenarios::io::IoTest;
+use awscli_rust_scenarios::multi_download::MultiDownloadTest;
+use awscli_rust_scenarios::multi_part::MultiPartTest;
+use awscli_rust_scenarios::multi_upload::MultiUploadTest;
+use awscli_rust_scenarios::range_read;
 use tracing::info;
 
 use super::super::{CommandContext, CommandError, CommandResult, not_ported};

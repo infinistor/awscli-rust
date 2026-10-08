@@ -1,5 +1,5 @@
 [package]
-name = "awscli-rest-distributed"
+name = "awscli-rust-distributed"
 description = "분산 Controller·Worker와 결과 기록 (TESTCore Distributed/*)"
 version.workspace = true
 edition.workspace = true
@@ -7,13 +7,13 @@ repository.workspace = true
 publish.workspace = true
 
 [dependencies]
-awscli-rest-clients.workspace = true
-awscli-rest-common.workspace = true
-awscli-rest-config.workspace = true
-awscli-rest-model.workspace = true
-awscli-rest-s3.workspace = true
+awscli-rust-clients.workspace = true
+awscli-rust-common.workspace = true
+awscli-rust-config.workspace = true
+awscli-rust-model.workspace = true
+awscli-rust-s3.workspace = true
 axum.workspace = true
-awscli-rest-scenarios.workspace = true
+awscli-rust-scenarios.workspace = true
 bytes.workspace = true
 chrono.workspace = true
 hex.workspace = true

@@ -8,13 +8,13 @@ use std::path::Path;
 use std::pin::Pin;
 use std::sync::{Arc, Mutex};
 
-use awscli_rest_clients::up_down::UpDownClient;
-use awscli_rest_config::{MainConfig, UpDownConfig};
-use awscli_rest_model::UpDownResult;
-use awscli_rest_scenarios::ScenarioError;
-use awscli_rest_scenarios::run_control::RunControl;
-use awscli_rest_scenarios::up_down::UpDownTest;
-use awscli_rest_scenarios::util::dummy_file_name;
+use awscli_rust_clients::up_down::UpDownClient;
+use awscli_rust_config::{MainConfig, UpDownConfig};
+use awscli_rust_model::UpDownResult;
+use awscli_rust_scenarios::ScenarioError;
+use awscli_rust_scenarios::run_control::RunControl;
+use awscli_rust_scenarios::up_down::UpDownTest;
+use awscli_rust_scenarios::util::dummy_file_name;
 use sha2::{Digest, Sha256};
 use tokio_util::sync::CancellationToken;
 
@@ -289,7 +289,7 @@ mod tests {
     fn identity_matches_system_text_json() {
         let request = TestRequest {
             worker_id: Some("driver1".into()),
-            user: Some(awscli_rest_config::UserData::new(
+            user: Some(awscli_rust_config::UserData::new(
                 "http://h:9/?a=b+c",
                 "",
                 "",

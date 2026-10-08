@@ -25,7 +25,7 @@
 
 use aws_sdk_s3::primitives::DateTime as SdkTime;
 use aws_sdk_s3::types::{LifecycleExpiration, LifecycleRuleFilter};
-use awscli_rest_s3::{S3Client, S3Error};
+use awscli_rust_s3::{S3Client, S3Error};
 use chrono::{Duration, Utc};
 use tracing::{error, info};
 

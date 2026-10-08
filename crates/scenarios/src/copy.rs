@@ -14,9 +14,9 @@
 
 use std::time::Instant;
 
-use awscli_rest_config::{CopyConfig, UserData};
-use awscli_rest_s3::S3Client;
-use awscli_rest_s3::s3_client::{PartETag, PutBody};
+use awscli_rust_config::{CopyConfig, UserData};
+use awscli_rust_s3::S3Client;
+use awscli_rust_s3::s3_client::{PartETag, PutBody};
 use tracing::info;
 
 use crate::ScenarioError;
@@ -27,7 +27,7 @@ const GIB: i64 = 1024 * 1024 * 1024;
 
 /// 요청을 만들 때 필수 값이 비어 있으면 SDK가 던지는 `ArgumentException`.
 fn required(value: &str, property: &str, request: &str) -> Result<(), ScenarioError> {
-    Ok(awscli_rest_s3::s3_client::error::required(
+    Ok(awscli_rust_s3::s3_client::error::required(
         value, property, request,
     )?)
 }

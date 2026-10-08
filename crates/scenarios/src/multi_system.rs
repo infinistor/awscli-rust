@@ -20,17 +20,17 @@
 use std::sync::Arc;
 use std::sync::atomic::Ordering;
 
-use awscli_rest_clients::file_util::create_random_file;
-use awscli_rest_clients::multi_system::MultiSystemClient;
-use awscli_rest_common::dotnet_format::{align, decimal_text, fixed_aligned};
-use awscli_rest_config::enum_bucket_types::DEFAULT_DIVISION_COUNT;
-use awscli_rest_config::{
+use awscli_rust_clients::file_util::create_random_file;
+use awscli_rust_clients::multi_system::MultiSystemClient;
+use awscli_rust_common::dotnet_format::{align, decimal_text, fixed_aligned};
+use awscli_rust_config::enum_bucket_types::DEFAULT_DIVISION_COUNT;
+use awscli_rust_config::{
     EnumBucketTypes, MainConfig, MultiSystemClientConfig, MultiSystemConfig, UserData,
 };
-use awscli_rest_model::units::file_size_unit;
-use awscli_rest_model::up_down_stats::log_info;
-use awscli_rest_model::{Average, TimeWatcher};
-use awscli_rest_s3::S3Client;
+use awscli_rust_model::units::file_size_unit;
+use awscli_rust_model::up_down_stats::log_info;
+use awscli_rust_model::{Average, TimeWatcher};
+use awscli_rust_s3::S3Client;
 use rust_decimal::Decimal;
 use std::path::Path;
 use tokio_util::sync::CancellationToken;

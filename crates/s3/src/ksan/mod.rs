@@ -15,7 +15,7 @@
 pub mod error;
 pub mod model;
 
-use awscli_rest_config::UserData;
+use awscli_rust_config::UserData;
 use bytes::Bytes;
 use chrono::Utc;
 use http::Method;

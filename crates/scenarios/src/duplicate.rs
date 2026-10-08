@@ -14,10 +14,10 @@
 //! - `Delete N Objects`의 N은 키 개수(폴더 포함)이고 실제 삭제 요청 수와 같다. 오브젝트를 `ObjectCount`번 올려도 버전만 늘 뿐이다.
 
 use aws_sdk_s3::types::BucketVersioningStatus;
-use awscli_rest_config::util::random_text_long;
-use awscli_rest_config::{DuplicateConfig, MainConfig, UserData};
-use awscli_rest_s3::S3Client;
-use awscli_rest_s3::s3_client::{PutBody, PutObjectRequest};
+use awscli_rust_config::util::random_text_long;
+use awscli_rust_config::{DuplicateConfig, MainConfig, UserData};
+use awscli_rust_s3::S3Client;
+use awscli_rust_s3::s3_client::{PutBody, PutObjectRequest};
 use tracing::{error, info};
 
 use crate::ScenarioError;

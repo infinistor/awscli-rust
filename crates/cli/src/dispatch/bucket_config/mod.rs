@@ -31,9 +31,9 @@ use std::time::Instant;
 
 use aws_sdk_s3::error::BuildError;
 use aws_sdk_s3::types::{BucketLoggingStatus, CorsConfiguration, WebsiteConfiguration};
-use awscli_rest_common::dotnet_http::status_name;
-use awscli_rest_common::json::FromJson;
-use awscli_rest_s3::{S3Error, S3Response};
+use awscli_rust_common::dotnet_http::status_name;
+use awscli_rust_common::json::FromJson;
+use awscli_rust_s3::{S3Error, S3Response};
 use tracing::{error, info};
 
 use super::output::print_json;

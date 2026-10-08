@@ -490,17 +490,17 @@ dependencies = [
 ]
 
 [[package]]
-name = "awscli-rest-cli"
+name = "awscli-rust-cli"
 version = "0.1.0"
 dependencies = [
  "aws-sdk-s3",
- "awscli-rest-clients",
- "awscli-rest-common",
- "awscli-rest-config",
- "awscli-rest-distributed",
- "awscli-rest-model",
- "awscli-rest-s3",
- "awscli-rest-scenarios",
+ "awscli-rust-clients",
+ "awscli-rust-common",
+ "awscli-rust-config",
+ "awscli-rust-distributed",
+ "awscli-rust-model",
+ "awscli-rust-s3",
+ "awscli-rust-scenarios",
  "axum",
  "base64 0.23.1",
  "chrono",
@@ -521,14 +521,14 @@ dependencies = [
 ]
 
 [[package]]
-name = "awscli-rest-clients"
+name = "awscli-rust-clients"
 version = "0.1.0"
 dependencies = [
  "aws-sdk-s3",
- "awscli-rest-common",
- "awscli-rest-config",
- "awscli-rest-model",
- "awscli-rest-s3",
+ "awscli-rust-common",
+ "awscli-rust-config",
+ "awscli-rust-model",
+ "awscli-rust-s3",
  "base64 0.23.1",
  "bytes",
  "chrono",
@@ -555,7 +555,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "awscli-rest-common"
+name = "awscli-rust-common"
 version = "0.1.0"
 dependencies = [
  "chrono",
@@ -566,10 +566,10 @@ dependencies = [
 ]
 
 [[package]]
-name = "awscli-rest-config"
+name = "awscli-rust-config"
 version = "0.1.0"
 dependencies = [
- "awscli-rest-common",
+ "awscli-rust-common",
  "chrono",
  "rand 0.9.5",
  "regex",
@@ -580,15 +580,15 @@ dependencies = [
 ]
 
 [[package]]
-name = "awscli-rest-distributed"
+name = "awscli-rust-distributed"
 version = "0.1.0"
 dependencies = [
- "awscli-rest-clients",
- "awscli-rest-common",
- "awscli-rest-config",
- "awscli-rest-model",
- "awscli-rest-s3",
- "awscli-rest-scenarios",
+ "awscli-rust-clients",
+ "awscli-rust-common",
+ "awscli-rust-config",
+ "awscli-rust-model",
+ "awscli-rust-s3",
+ "awscli-rust-scenarios",
  "axum",
  "bytes",
  "chrono",
@@ -613,11 +613,11 @@ dependencies = [
 ]
 
 [[package]]
-name = "awscli-rest-model"
+name = "awscli-rust-model"
 version = "0.1.0"
 dependencies = [
- "awscli-rest-common",
- "awscli-rest-config",
+ "awscli-rust-common",
+ "awscli-rust-config",
  "chrono",
  "rust_decimal",
  "serde",
@@ -627,12 +627,12 @@ dependencies = [
 ]
 
 [[package]]
-name = "awscli-rest-s3"
+name = "awscli-rust-s3"
 version = "0.1.0"
 dependencies = [
  "aws-sdk-s3",
- "awscli-rest-common",
- "awscli-rest-config",
+ "awscli-rust-common",
+ "awscli-rust-config",
  "base64 0.23.1",
  "bytes",
  "chrono",
@@ -658,15 +658,15 @@ dependencies = [
 ]
 
 [[package]]
-name = "awscli-rest-scenarios"
+name = "awscli-rust-scenarios"
 version = "0.1.0"
 dependencies = [
  "aws-sdk-s3",
- "awscli-rest-clients",
- "awscli-rest-common",
- "awscli-rest-config",
- "awscli-rest-model",
- "awscli-rest-s3",
+ "awscli-rust-clients",
+ "awscli-rust-common",
+ "awscli-rust-config",
+ "awscli-rust-model",
+ "awscli-rust-s3",
  "base64 0.23.1",
  "chrono",
  "md-5",

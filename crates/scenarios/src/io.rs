@@ -26,8 +26,8 @@
 use std::path::Path;
 use std::time::Duration;
 
-use awscli_rest_config::UserData;
-use awscli_rest_s3::S3Client;
+use awscli_rust_config::UserData;
+use awscli_rust_s3::S3Client;
 use tracing::error;
 
 use crate::ScenarioError;

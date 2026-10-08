@@ -2,13 +2,13 @@
 
 use std::time::Instant;
 
-use awscli_rest_config::{CompareConfig, CopyConfig};
-use awscli_rest_scenarios::clear::ClearTest;
-use awscli_rest_scenarios::compare::CompareTest;
-use awscli_rest_scenarios::copy::CopyTest;
-use awscli_rest_scenarios::duplicate::DuplicateTest;
-use awscli_rest_scenarios::lifecycle::LifecycleTest;
-use awscli_rest_scenarios::mover::MoverTest;
+use awscli_rust_config::{CompareConfig, CopyConfig};
+use awscli_rust_scenarios::clear::ClearTest;
+use awscli_rust_scenarios::compare::CompareTest;
+use awscli_rust_scenarios::copy::CopyTest;
+use awscli_rust_scenarios::duplicate::DuplicateTest;
+use awscli_rust_scenarios::lifecycle::LifecycleTest;
+use awscli_rust_scenarios::mover::MoverTest;
 use tracing::{error, info};
 
 use super::super::{CommandContext, CommandResult};

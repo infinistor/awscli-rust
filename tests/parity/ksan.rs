@@ -9,9 +9,9 @@ use std::collections::BTreeSet;
 use std::path::Path;
 use std::time::Duration;
 
-use awscli_rest_common::DotnetDateTime;
-use awscli_rest_common::dotnet_json::{NEW_LINE, to_dotnet_json};
-use awscli_rest_s3::ksan::{KsanClient, KsanError};
+use awscli_rust_common::DotnetDateTime;
+use awscli_rust_common::dotnet_json::{NEW_LINE, to_dotnet_json};
+use awscli_rust_s3::ksan::{KsanClient, KsanError};
 use serde_json::Value;
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use tokio::net::TcpListener;

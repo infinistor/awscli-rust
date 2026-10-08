@@ -30,11 +30,11 @@ use std::sync::atomic::{AtomicI64, Ordering};
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
 
-use awscli_rest_common::dotnet_format::{align, fixed, fixed_aligned};
-use awscli_rest_config::UserData;
-use awscli_rest_model::TimeWatcher;
-use awscli_rest_model::units::file_size_unit;
-use awscli_rest_s3::S3Client;
+use awscli_rust_common::dotnet_format::{align, fixed, fixed_aligned};
+use awscli_rust_config::UserData;
+use awscli_rust_model::TimeWatcher;
+use awscli_rust_model::units::file_size_unit;
+use awscli_rust_s3::S3Client;
 use rust_decimal::Decimal;
 use tracing::{error, info};
 

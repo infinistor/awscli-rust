@@ -4,10 +4,10 @@
 use std::path::Path;
 use std::str::FromStr;
 
-use awscli_rest_common::DotnetDateTime;
-use awscli_rest_common::dotnet_json::NEW_LINE;
-use awscli_rest_config::Config;
-use awscli_rest_model::{OperationStats, QuitFlag, TestClient, TestStats, UpDownStats};
+use awscli_rust_common::DotnetDateTime;
+use awscli_rust_common::dotnet_json::NEW_LINE;
+use awscli_rust_config::Config;
+use awscli_rust_model::{OperationStats, QuitFlag, TestClient, TestStats, UpDownStats};
 use chrono::{TimeZone, Utc};
 use rust_decimal::Decimal;
 use serde_json::Value;
@@ -150,7 +150,7 @@ fn stats_output_matches_dotnet() {
 /// `DateTime.MinValue`(기본 `EndTime`)는 양의 오프셋 시간대에서 유닉스 초로 바꿀 수 없다(.NET 예외).
 #[test]
 fn min_value_end_time_fails_in_positive_offset() {
-    let result = awscli_rest_model::UpDownResult::default();
+    let result = awscli_rust_model::UpDownResult::default();
     let local_offset = chrono::Local::now().offset().local_minus_utc();
     assert_eq!(result.to_json().is_err(), local_offset > 0);
 }

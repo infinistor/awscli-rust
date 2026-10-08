@@ -1,4 +1,4 @@
-# awscli-rest
+# awscli-rust
 
 TESTCore(.NET)를 Rust로 옮기는 프로젝트. 전체 계획과 단계는 [RUST_MIGRATION.md](RUST_MIGRATION.md)를 따른다.
 
@@ -10,12 +10,12 @@ TESTCore(.NET)를 Rust로 옮기는 프로젝트. 전체 계획과 단계는 [RU
 
 ## 호환 원칙
 
--   바이너리 이름은 `awscli-rest`. 그 외 CLI 옵션 이름, `config.ini` 형식, 콘솔 출력, CSV·JSON 결과, Controller·Worker HTTP 계약은 TESTCore와 같아야 한다.
+-   바이너리 이름은 `awscli-rust`. 그 외 CLI 옵션 이름, `config.ini` 형식, 콘솔 출력, CSV·JSON 결과, Controller·Worker HTTP 계약은 TESTCore와 같아야 한다.
 -   통계 측정 구간(`TimeWatcher`, `UpDownStats`)과 체크섬·서명 결과가 원본과 일치해야 한다.
 
 ## 구조
 
--   cargo workspace. 크레이트는 `crates/<이름>`에 두고 패키지 이름은 `awscli-rest-<이름>`으로 한다.
+-   cargo workspace. 크레이트는 `crates/<이름>`에 두고 패키지 이름은 `awscli-rust-<이름>`으로 한다.
 -   비동기 런타임은 `tokio`, 취소는 `tokio_util::sync::CancellationToken`으로 통일한다.
 -   라이브러리 크레이트의 오류는 `thiserror`, 바이너리는 `anyhow`를 쓴다.
 -   큰 C# 파일(`CommandDispatcher.cs`, `UpDownTest.cs`, `UpDownClient.cs`, `INIParser.cs`)은 기능 단위로 나눠 옮긴다.

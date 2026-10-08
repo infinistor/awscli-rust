@@ -5,8 +5,8 @@
 use std::collections::BTreeMap;
 use std::path::Path;
 
-use awscli_rest_s3::signer::{Headers, SignError, X_AMZ_DATE};
-use awscli_rest_s3::{AuthorizationHeaderSigner, DotnetUri};
+use awscli_rust_s3::signer::{Headers, SignError, X_AMZ_DATE};
+use awscli_rust_s3::{AuthorizationHeaderSigner, DotnetUri};
 use chrono::{NaiveDateTime, TimeZone, Utc};
 use serde_json::Value;
 

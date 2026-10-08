@@ -22,10 +22,10 @@ use super::input::blank;
 use std::path::{Path, PathBuf};
 use std::time::Instant;
 
-use awscli_rest_common::dotnet_http::status_name;
-use awscli_rest_common::json::{ReadOptions, deserialize};
-use awscli_rest_s3::S3Error;
-use awscli_rest_s3::s3_client::PutBody;
+use awscli_rust_common::dotnet_http::status_name;
+use awscli_rust_common::json::{ReadOptions, deserialize};
+use awscli_rust_s3::S3Error;
+use awscli_rust_s3::s3_client::PutBody;
 use tracing::{error, info};
 
 use super::bucket::format;

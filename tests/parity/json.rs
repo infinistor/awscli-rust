@@ -3,7 +3,7 @@
 
 use std::path::Path;
 
-use awscli_rest_common::dotnet_json::{NEW_LINE, to_dotnet_json};
+use awscli_rust_common::dotnet_json::{NEW_LINE, to_dotnet_json};
 use serde::Serialize;
 
 #[derive(Serialize)]

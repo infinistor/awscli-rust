@@ -2,9 +2,9 @@
 
 use std::path::Path;
 
-use awscli_rest_cli::options::{OPTIONS, option_names, write_option_descriptions};
-use awscli_rest_cli::usage;
-use awscli_rest_common::dotnet_json::NEW_LINE;
+use awscli_rust_cli::options::{OPTIONS, option_names, write_option_descriptions};
+use awscli_rust_cli::usage;
+use awscli_rust_common::dotnet_json::NEW_LINE;
 use serde_json::Value;
 
 fn baseline(name: &str) -> String {

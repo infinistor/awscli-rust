@@ -8,11 +8,11 @@ use std::future::Future;
 use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
 
-use awscli_rest_common::{DotnetDateTimeOffset, from_web_json, to_web_json};
-use awscli_rest_config::Config;
-use awscli_rest_s3::DotnetUri;
-use awscli_rest_s3::http_transport::HttpTransport;
-use awscli_rest_scenarios::ScenarioError;
+use awscli_rust_common::{DotnetDateTimeOffset, from_web_json, to_web_json};
+use awscli_rust_config::Config;
+use awscli_rust_s3::DotnetUri;
+use awscli_rust_s3::http_transport::HttpTransport;
+use awscli_rust_scenarios::ScenarioError;
 use bytes::Bytes;
 use http::Method;
 use hyper_rustls::HttpsConnectorBuilder;
@@ -109,7 +109,7 @@ impl Http {
         url: &str,
         body: Option<String>,
         token: &CancellationToken,
-    ) -> Result<awscli_rest_s3::http_transport::HttpResponse, NetError> {
+    ) -> Result<awscli_rust_s3::http_transport::HttpResponse, NetError> {
         let uri =
             DotnetUri::parse(url).map_err(|_| NetError::Http(format!("잘못된 주소: {url}")))?;
         let host = if uri.is_default_port() {

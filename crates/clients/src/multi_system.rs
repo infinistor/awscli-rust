@@ -11,12 +11,12 @@
 use std::path::PathBuf;
 use std::sync::atomic::{AtomicI32, Ordering};
 
-use awscli_rest_common::dotnet_http::status_name;
-use awscli_rest_config::enum_bucket_types::DEFAULT_DIVISION_COUNT;
-use awscli_rest_config::{MultiSystemClientConfig, UtilError};
-use awscli_rest_model::QuitFlag;
-use awscli_rest_s3::s3_client::{PartETag, PutBody};
-use awscli_rest_s3::{S3Client, S3Error};
+use awscli_rust_common::dotnet_http::status_name;
+use awscli_rust_config::enum_bucket_types::DEFAULT_DIVISION_COUNT;
+use awscli_rust_config::{MultiSystemClientConfig, UtilError};
+use awscli_rust_model::QuitFlag;
+use awscli_rust_s3::s3_client::{PartETag, PutBody};
+use awscli_rust_s3::{S3Client, S3Error};
 use tracing::error;
 
 use crate::file_util::{bytes_etag, file_md5_base64};

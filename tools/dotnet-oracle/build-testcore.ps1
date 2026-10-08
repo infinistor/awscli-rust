@@ -9,7 +9,7 @@
 param(
 	[string]$TestCore = "E:\Code\Git\TESTCore",
 	[string]$Ref = "HEAD",
-	[string]$Out = (Join-Path ([IO.Path]::GetTempPath()) "awscli-rest-testcore-head")
+	[string]$Out = (Join-Path ([IO.Path]::GetTempPath()) "awscli-rust-testcore-head")
 )
 $ErrorActionPreference = "Stop"
 $commit = git -C $TestCore rev-parse --short "$Ref^{commit}"

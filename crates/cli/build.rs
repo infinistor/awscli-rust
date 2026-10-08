@@ -17,7 +17,7 @@ fn main() {
     let tag = git(&["describe", "--tags", "--abbrev=0"]).unwrap_or_else(|| "v0.0.0".into());
     let count = git(&["rev-list", "--count", "HEAD"]).unwrap_or_else(|| "0".into());
     let hash = git(&["rev-parse", "--short", "HEAD"]).unwrap_or_else(|| "unknown".into());
-    println!("cargo:rustc-env=AWSCLI_REST_GIT_VERSION={tag}_{count}_{hash}");
+    println!("cargo:rustc-env=AWSCLI_RUST_GIT_VERSION={tag}_{count}_{hash}");
 
     // 커밋·태그가 바뀌면 다시 계산한다.
     if let Some(git_dir) = git(&["rev-parse", "--absolute-git-dir"]).map(PathBuf::from) {

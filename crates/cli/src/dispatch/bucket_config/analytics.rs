@@ -10,8 +10,8 @@ use aws_sdk_s3::types::{
     AnalyticsS3BucketDestination, AnalyticsS3ExportFileFormat, StorageClassAnalysis,
     StorageClassAnalysisDataExport, StorageClassAnalysisSchemaVersion,
 };
-use awscli_rest_common::json::{Deserializer, FromJson, JsonError, Token};
-use awscli_rest_s3::UNSET;
+use awscli_rust_common::json::{Deserializer, FromJson, JsonError, Token};
+use awscli_rust_s3::UNSET;
 
 use super::filter::{MyFilter, Predicate};
 use super::{CommandError, built, null_reference, required_id};

@@ -7,12 +7,12 @@
 use std::collections::BTreeMap;
 use std::path::PathBuf;
 
-use awscli_rest_common::dotnet_datetime::DateTimeKind;
-use awscli_rest_common::{
+use awscli_rust_common::dotnet_datetime::DateTimeKind;
+use awscli_rust_common::{
     DotnetDateTime, DotnetDateTimeOffset, from_web_json, to_dotnet_json, to_web_json,
 };
-use awscli_rest_config::UserData;
-use awscli_rest_distributed::contracts::{
+use awscli_rust_config::UserData;
+use awscli_rust_distributed::contracts::{
     RunResult, RunSnapshot, StartRequest, TestRequest, WorkerStatus, WorkloadSettings,
 };
 use serde::Serialize;

@@ -9,9 +9,9 @@ use std::path::Path;
 use std::sync::atomic::Ordering;
 use std::sync::{Arc, Mutex};
 
-use awscli_rest_clients::MultiSystemClient;
-use awscli_rest_config::{EnumBucketTypes, MultiSystemClientConfig, UserData};
-use awscli_rest_s3::S3Client;
+use awscli_rust_clients::MultiSystemClient;
+use awscli_rust_config::{EnumBucketTypes, MultiSystemClientConfig, UserData};
+use awscli_rust_s3::S3Client;
 use route_server::{RouteServer, routes};
 use serde_json::{Value, json};
 use tracing::field::{Field, Visit};

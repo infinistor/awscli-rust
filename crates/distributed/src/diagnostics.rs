@@ -4,10 +4,10 @@
 
 use std::path::Path;
 
-use awscli_rest_common::to_dotnet_json;
-use awscli_rest_config::UserData;
-use awscli_rest_s3::s3_client::error::full_path;
-use awscli_rest_scenarios::ScenarioError;
+use awscli_rust_common::to_dotnet_json;
+use awscli_rust_config::UserData;
+use awscli_rust_s3::s3_client::error::full_path;
+use awscli_rust_scenarios::ScenarioError;
 use serde::Serialize;
 
 use crate::contracts::{TestRequest, WorkloadSettings};

@@ -6,9 +6,9 @@ use std::time::Instant;
 use aws_sdk_s3::operation::get_object::GetObjectOutput;
 use aws_sdk_s3::operation::head_object::HeadObjectOutput;
 use aws_sdk_s3::types::ChecksumMode;
-use awscli_rest_common::dotnet_http::status_name;
-use awscli_rest_s3::checksum::{ChecksumAlgorithm, ChecksumError, calculate_checksum};
-use awscli_rest_s3::s3_client::HttpVerb;
+use awscli_rust_common::dotnet_http::status_name;
+use awscli_rust_s3::checksum::{ChecksumAlgorithm, ChecksumError, calculate_checksum};
+use awscli_rust_s3::s3_client::HttpVerb;
 use chrono::{Duration, Utc};
 use tokio::io::AsyncWriteExt;
 use tracing::{error, info};
@@ -16,7 +16,7 @@ use tracing::{error, info};
 use super::{S3Result, bucket_name, key_name};
 use crate::dispatch::output::print_json;
 use crate::dispatch::{CommandContext, CommandError, CommandResult};
-use awscli_rest_scenarios::files::{full_path, io_error, read_error, save_file};
+use awscli_rust_scenarios::files::{full_path, io_error, read_error, save_file};
 
 pub(super) async fn get_object(ctx: &CommandContext) -> CommandResult {
     let o = &ctx.options;

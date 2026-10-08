@@ -18,13 +18,13 @@ use std::path::Path;
 use std::sync::Arc;
 use std::time::Instant;
 
-use awscli_rest_clients::file_util::create_random_file;
-use awscli_rest_clients::local::LocalClient;
-use awscli_rest_common::dotnet_datetime::DotnetDateTime;
-use awscli_rest_config::{MainConfig, UpDownClientConfig, UpDownConfig};
-use awscli_rest_model::time_watcher::seconds;
-use awscli_rest_model::up_down_stats::log_info;
-use awscli_rest_model::{TimeWatcher, UpDownStats};
+use awscli_rust_clients::file_util::create_random_file;
+use awscli_rust_clients::local::LocalClient;
+use awscli_rust_common::dotnet_datetime::DotnetDateTime;
+use awscli_rust_config::{MainConfig, UpDownClientConfig, UpDownConfig};
+use awscli_rust_model::time_watcher::seconds;
+use awscli_rust_model::up_down_stats::log_info;
+use awscli_rust_model::{TimeWatcher, UpDownStats};
 use rust_decimal::Decimal;
 use tokio_util::sync::CancellationToken;
 use tracing::{error, info};
@@ -121,7 +121,7 @@ impl LocalTest {
     /// 스레드마다 더미 파일과 클라이언트를 만든다. `always_create`가 아니면 파일이 이미 있을 때 만들지 않는다.
     fn add_clients<F>(&mut self, always_create: bool, work: F)
     where
-        F: Fn(&LocalClient) -> Result<(), awscli_rest_clients::LocalError> + Clone + Send + 'static,
+        F: Fn(&LocalClient) -> Result<(), awscli_rust_clients::LocalError> + Clone + Send + 'static,
     {
         for index in 0..self.config.thread_count {
             let temp_file = dummy_file_name(index, Some(&self.main_config.file_path));

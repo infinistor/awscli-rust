@@ -4,7 +4,7 @@
 
 use std::path::Path;
 
-use awscli_rest_common::{DotnetDateTime, to_dotnet_json};
+use awscli_rust_common::{DotnetDateTime, to_dotnet_json};
 use serde::{Serialize, Serializer};
 
 /// 원본 `UpDownResult`.

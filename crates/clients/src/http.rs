@@ -1,10 +1,10 @@
-//! `KHttpClient`·`CurlClient`가 함께 쓰는 HTTP 전송. 실제 전송은 공용 `awscli_rest_s3::http_transport`가 하고,
+//! `KHttpClient`·`CurlClient`가 함께 쓰는 HTTP 전송. 실제 전송은 공용 `awscli_rust_s3::http_transport`가 하고,
 //! 여기서는 .NET `HttpClient`가 붙이는 `Host`·`Content-Type`·`Content-Length`만 더한다.
 
 use std::sync::Arc;
 
-use awscli_rest_s3::DotnetUri;
-use awscli_rest_s3::http_transport::{self, HttpTransport};
+use awscli_rust_s3::DotnetUri;
+use awscli_rust_s3::http_transport::{self, HttpTransport};
 use bytes::Bytes;
 use http::Method;
 use hyper_rustls::{HttpsConnector, HttpsConnectorBuilder};

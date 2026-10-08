@@ -10,21 +10,21 @@ use std::sync::atomic::{AtomicU64, AtomicUsize, Ordering};
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
 
-use awscli_rest_common::{DotnetDateTimeOffset, to_web_json};
-use awscli_rest_config::UserData;
-use awscli_rest_distributed::contracts::{
+use awscli_rust_common::{DotnetDateTimeOffset, to_web_json};
+use awscli_rust_config::UserData;
+use awscli_rust_distributed::contracts::{
     RunSnapshot, StartRequest, TestRequest, WorkerStatus, WorkloadSettings,
 };
-use awscli_rest_distributed::diagnostics;
-use awscli_rest_distributed::runner::{
+use awscli_rust_distributed::diagnostics;
+use awscli_rust_distributed::runner::{
     BoxFuture, DistributedTestRunner, RunnerFactory, UpDownRunner, dataset_identity, dataset_name,
 };
-use awscli_rest_distributed::settings::DistributedSettings;
-use awscli_rest_distributed::worker::{self, WorkerManager};
-use awscli_rest_model::UpDownResult;
-use awscli_rest_s3::s3_client::error::full_path;
-use awscli_rest_scenarios::ScenarioError;
-use awscli_rest_scenarios::run_control::RunControl;
+use awscli_rust_distributed::settings::DistributedSettings;
+use awscli_rust_distributed::worker::{self, WorkerManager};
+use awscli_rust_model::UpDownResult;
+use awscli_rust_s3::s3_client::error::full_path;
+use awscli_rust_scenarios::ScenarioError;
+use awscli_rust_scenarios::run_control::RunControl;
 use bytes::Bytes;
 use chrono::Utc;
 use http_body_util::{BodyExt, Full};
@@ -753,7 +753,7 @@ async fn http_api() {
     let body = to_web_json(&req);
     let accepted = call("POST", &format!("{base}/runs"), Some(&body)).await;
     assert_eq!(accepted.status, 202);
-    let snapshot: RunSnapshot = awscli_rest_common::from_web_json(&accepted.body).unwrap();
+    let snapshot: RunSnapshot = awscli_rust_common::from_web_json(&accepted.body).unwrap();
     assert_eq!(snapshot.run_id.as_deref(), Some(id(&req)));
     assert_eq!(snapshot.worker_id.as_deref(), Some("driver1"));
     let again = call("POST", &format!("{base}/runs"), Some(&body)).await;
@@ -786,7 +786,7 @@ async fn http_api() {
         assert!(reply.body.is_empty());
     }
     let status = call("GET", &format!("{base}/status"), None).await;
-    let status: WorkerStatus = awscli_rest_common::from_web_json(&status.body).unwrap();
+    let status: WorkerStatus = awscli_rust_common::from_web_json(&status.body).unwrap();
     assert!(!status.available);
     assert_eq!(status.run_id.as_deref(), Some(id(&req)));
 
@@ -839,7 +839,7 @@ async fn http_api() {
     assert_eq!((scheduled.status, scheduled.body.as_str()), (200, ""));
     until(|| manager.status().available).await;
     let done = call("GET", &format!("{base}/runs/{}", id(&req)), None).await;
-    let done: RunSnapshot = awscli_rest_common::from_web_json(&done.body).unwrap();
+    let done: RunSnapshot = awscli_rust_common::from_web_json(&done.body).unwrap();
     assert_eq!(done.state.as_deref(), Some("Completed"));
     assert_eq!(done.result.unwrap().write, 1);
     let stop = call("POST", &format!("{base}/runs/{}/stop", id(&req)), None).await;
@@ -1085,7 +1085,7 @@ async fn dotnet_worker_parity() {
         let text = tokio::time::timeout(Duration::from_secs(120), async {
             loop {
                 let reply = call("GET", &format!("{base}{run}"), None).await;
-                let snapshot: RunSnapshot = awscli_rest_common::from_web_json(&reply.body).unwrap();
+                let snapshot: RunSnapshot = awscli_rust_common::from_web_json(&reply.body).unwrap();
                 if snapshot.is_final() {
                     break reply.body;
                 }

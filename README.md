@@ -1,4 +1,4 @@
-# awscli-rest
+# awscli-rust
 
 Controller·Worker 분산 부하 테스트와 CSV 통계 수집은 [분산 테스트 사용법](DISTRIBUTED.md)을 참고하세요. 설정 예제: [일반](sample.ini), [Controller](controller.sample.ini), [Worker](worker.sample.ini). 빌드·배포·전환·롤백 절차는 [운영 절차](docs/operations.md)에 있습니다.
 
@@ -14,25 +14,27 @@ S3 Compatible 스토리지에 접근하고 기능·성능을 검증하기 위한
 ## 빌드 및 실행
 
 ```bash
+git clone https://github.com/infinistor/awscli-rust.git
+cd awscli-rust
 cargo build --release
 ```
 
 -   요구 사항: Rust stable. Windows에서는 Visual Studio Build Tools의 C++ 워크로드(MSVC 타깃 `x86_64-pc-windows-msvc`)가 필요하며, cargo는 PowerShell에서 실행한다(Git Bash의 `/usr/bin/link`가 MSVC `link.exe`를 가려 링크가 실패한다).
--   Release 빌드 산출물: `target/release/awscli-rest`(Windows는 `awscli-rest.exe`). 런타임 설치는 필요 없다.
+-   Release 빌드 산출물: `target/release/awscli-rust`(Windows는 `awscli-rust.exe`). 런타임 설치는 필요 없다.
 -   Linux 정적 바이너리(musl)는 Docker Desktop이 있으면 `pwsh tools/perf/build-linux.ps1`로 만들 수 있다(성능 비교 묶음에 포함됨). `rust:alpine` 컨테이너에서 직접 만들 때는 다음과 같다.
     ```bash
     cargo build --release --target x86_64-unknown-linux-musl
     ```
 
 ```bash
-awscli-rest --list-buckets
-awscli-rest --put-object -b test-bucket -k test.txt -f ./test.txt
-awscli-rest --test-prepare --thread 10 --count 1000 --size 1M
+awscli-rust --list-buckets
+awscli-rust --put-object -b test-bucket -k test.txt -f ./test.txt
+awscli-rust --test-prepare --thread 10 --count 1000 --size 1M
 ```
 
 -   각 명령의 세부 사용법은 해당 명령과 `-?`, `-h`, `--help`를 함께 지정하면 출력된다.
     ```bash
-    awscli-rest --put-object --help
+    awscli-rust --put-object --help
     ```
 -   옵션 없이 `--help`만 지정하면 아래 [전체 옵션](#전체-옵션) 목록이 출력된다.
 
@@ -120,10 +122,10 @@ awscli-rest --test-prepare --thread 10 --count 1000 --size 1M
 
 ## 전체 옵션
 
-아래 목록은 `awscli-rest --help` 출력을 그대로 옮긴 것이다. 옵션을 추가·변경한 경우 다음 명령으로 다시 생성해 갱신한다. 옵션 정의는 `crates/cli/src/options/definitions.rs`에 있다.
+아래 목록은 `awscli-rust --help` 출력을 그대로 옮긴 것이다. 옵션을 추가·변경한 경우 다음 명령으로 다시 생성해 갱신한다. 옵션 정의는 `crates/cli/src/options/definitions.rs`에 있다.
 
 ```bash
-awscli-rest --help
+awscli-rust --help
 ```
 
 ```
@@ -433,7 +435,7 @@ awscli-rest --help
 
 ## TESTCore와의 관계
 
-awscli-rest는 TESTCore(.NET)와 같은 계약을 지키도록 만들었다. 바이너리 이름(`awscli-rest`)만 다르고, 아래는 같다.
+awscli-rust는 TESTCore(.NET)와 같은 계약을 지키도록 만들었다. 실행 파일 이름(`awscli-rust`)만 다르고, 아래는 같다.
 
 -   CLI 옵션 이름과 `config.ini` 형식
 -   콘솔 출력, CSV·JSON 결과 파일
@@ -470,4 +472,5 @@ awscli-rest는 TESTCore(.NET)와 같은 계약을 지키도록 만들었다. 바
 
 -   [DISTRIBUTED.md](DISTRIBUTED.md): Controller·Worker 분산 부하 테스트
 -   [docs/operations.md](docs/operations.md): 빌드·배포, TESTCore에서의 전환, 성능 비교, 롤백
+-   [docs/perf/](docs/perf/2026-10-08-ksan.md): TESTCore와의 성능 비교 결과(사내 KSAN)
 -   [RUST_MIGRATION.md](RUST_MIGRATION.md): 전환 계획과 단계
