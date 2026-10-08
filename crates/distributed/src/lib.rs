@@ -57,7 +57,7 @@ pub async fn run(
         }
         if args.debug {
             // TODO: Worker 진단 이식 후 `diagnostics`의 PrintSettings로 바꾼다.
-            print_worker_settings(&settings, &args.config_path);
+            diagnostics::print_settings(&settings, &args.config_path);
         }
         // 원본 호스트는 Ctrl+C에 정상 종료한다(종료 코드 0).
         let shutdown_token = CancellationToken::new();
@@ -77,5 +77,3 @@ pub async fn run(
     )
     .await
 }
-
-fn print_worker_settings(_settings: &DistributedSettings, _config_path: &str) {}

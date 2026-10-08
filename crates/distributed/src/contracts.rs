@@ -151,6 +151,8 @@ pub struct WorkerStatus {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct StartRequest {
+    /// 없으면 `default(DateTimeOffset)`(.NET은 그대로 읽고 `Schedule`이 409로 거절한다).
+    #[serde(default = "DotnetDateTimeOffset::min_value")]
     pub start_at_utc: DotnetDateTimeOffset,
 }
 
@@ -263,9 +265,15 @@ pub struct RunResult {
 }
 
 impl Default for RunResult {
-    /// 원본 생성자: `StartTime = DateTime.Now`, `TestType = "Unknown"`.
+    /// 원본 생성자: `StartTime = DateTime.Now`, `TestType = "Unknown"`, 나머지 문자열은 `null`.
     fn default() -> Self {
-        Self::from(&UpDownResult::default())
+        Self {
+            bucket_type: None,
+            bucket_name: None,
+            object_prefix: None,
+            thread_prefix: None,
+            ..Self::from(&UpDownResult::default())
+        }
     }
 }
 
