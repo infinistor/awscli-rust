@@ -1,4 +1,4 @@
-# 분산 실행 (`crates/distributed`, 6단계)
+# 분산 실행 (`crates/distributed`)
 
 TESTCore `Distributed/*`를 옮겼다. `--controller`가 여러 `--worker`에 같은 부하 테스트(Prepare·Put·Get·Delete·Mix)를 나눠 실행하고, 결과를 CSV·JSON으로 모은다. .NET Controller·Worker와 섞어 쓸 수 있도록 통신 계약, 상태 전이, 결과 파일 형식을 원본과 같게 맞췄다.
 

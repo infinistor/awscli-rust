@@ -1,10 +1,10 @@
 # awscli-rust
 
-TESTCore(.NET)를 Rust로 옮기는 프로젝트. 전체 계획과 단계는 [RUST_MIGRATION.md](RUST_MIGRATION.md)를 따른다.
+TESTCore(.NET)를 Rust로 옮긴 프로젝트. `v1.0.0`에서 이식을 마쳤다. 이식 당시 계획과 단계는 [RUST_MIGRATION.md](RUST_MIGRATION.md)(읽기 전용 기록)에 있다.
 
 ## 원본
 
--   .NET 원본: `E:\Code\Git\TESTCore` (전환 기간 동안 기준 구현, 수정하지 않음)
+-   .NET 원본: `E:\Code\Git\TESTCore`. 기준 구현은 태그 `dotnet-final`(`ec427f2`)이며 수정하지 않는다(원본 버그 수정은 사용자 결정이 있을 때만).
 -   이식할 때는 원본 C# 파일을 먼저 읽고, 동작(출력, 오류 메시지, 종료 코드, 요청 헤더)을 그대로 맞춘다.
 -   원본에 버그가 있어 보여도 임의로 고치지 말고, 사용자에게 알린 뒤 결정을 따른다.
 
@@ -30,6 +30,11 @@ TESTCore(.NET)를 Rust로 옮기는 프로젝트. 전체 계획과 단계는 [RU
     ```
 -   모듈 하나를 옮기면 원본과 비교하는 테스트를 함께 추가한다(`tests/parity/`).
 -   커밋은 모듈 단위로 하나씩, 메시지는 한국어로 TESTCore 저장소와 같은 형식으로 쓴다.
+
+## 빌드·배포
+
+-   Linux 실행 파일은 `pwsh ./build-linux.ps1`로 만든다(Docker `rust:alpine`, musl 정적 바이너리). 기본 대상 장비에 배포까지 하며, 빌드만 할 때는 `-SkipDeploy`.
+-   릴리스는 주석 태그 `vX.Y.Z`를 단 뒤 빌드한다. 버전 문자열은 `태그_커밋수_해시`다. 절차는 [docs/operations.md](docs/operations.md#릴리스).
 
 ## 개발 환경
 

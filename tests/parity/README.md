@@ -4,7 +4,7 @@ TESTCore(.NET)와 awscli-rust의 외부 동작을 비교한다.
 
 -   `baseline/`: .NET으로 수집한 기준 출력. 콘솔 출력은 UTF-8로 저장하고, 로그 줄(`INFO `, `ERROR` 등)은 필요할 때만 남긴다.
     -   `version.txt`: `TestCore --version` 출력 (`78004ff` 빌드)
-    -   `help.txt`: `TestCore --help` 출력에서 로그 줄을 뺀 것 (`78004ff` 빌드, 4단계 옵션 파서 비교용)
+    -   `help.txt`: `TestCore --help` 출력에서 로그 줄을 뺀 것 (`78004ff` 빌드, 옵션 파서 비교용)
     -   `ini/*.json`: `ini/*.ini`를 TESTCore `IniFile`로 읽은 결과
     -   `config/*.json`: `config/*.ini`를 `Config.GetConfig`로 읽은 뒤 `Config.ToString()`한 JSON. 사용자 섹션을 지정한 경우 `<픽스처>.user-<이름>.json`(Windows는 파일 이름 대소문자를 구분하지 않으므로 이름이 겹치지 않게 한다). 로드에 실패한 입력은 `null`이다. `Default.FilePath`가 비어 있으면 원본이 현재 디렉터리를 쓰므로 `<CWD>`로 바꿔 저장했다.
     -   `portal/*.json`·`mover/*.json`·`zeromq/*.json`: 오라클의 같은 이름 명령(`portal`, `mover`, `zeromq`)이 실제 `PortalManager`·`MoverClient`·`ZeroMqClient`를 로컬 서버에 연결해 기록한 요청(요청 줄·헤더·본문), 결과(반환값·예외 형식과 메시지), log4net 로그. `variants`가 있는 사례는 응답 본문만 바꿔가며 JSON 읽기 경계(`System.Text.Json` 오류 메시지 포함)를 비교한다. 다시 만들 때는 `pwsh tests/parity/gen-client-baselines.ps1`.
@@ -21,10 +21,10 @@ TESTCore(.NET)와 awscli-rust의 외부 동작을 비교한다.
 
 `tools/dotnet-oracle`은 TESTCore 빌드 결과(`TestCore.dll`)를 그대로 호출해 기준 출력을 만든다.
 
-**TESTCore 저장소의 `bin/TestCore`는 예전 커밋으로 빌드된 것일 수 있다.** 기준 출력은 반드시 TESTCore HEAD로 빌드한 결과로 만든다. `build-testcore.ps1`이 HEAD 소스를 임시 디렉터리로 내보내(`git archive`, TESTCore는 건드리지 않음) 빌드하고 그 경로를 출력한다.
+**TESTCore 저장소의 `bin/TestCore`는 예전 커밋으로 빌드된 것일 수 있다.** 기준 출력은 반드시 기준 구현 태그 `dotnet-final`(`ec427f2`, 지금의 TESTCore HEAD)로 빌드한 결과로 만든다. `build-testcore.ps1`이 지정한 커밋(`-Ref`, 기본 `HEAD`)의 소스를 임시 디렉터리로 내보내(`git archive`, TESTCore는 건드리지 않음) 빌드하고 그 경로를 출력한다.
 
 ```powershell
-$bin = pwsh tools/dotnet-oracle/build-testcore.ps1
+$bin = pwsh tools/dotnet-oracle/build-testcore.ps1 -Ref dotnet-final
 dotnet build tools/dotnet-oracle -p:TestCoreBin=$bin
 $env:TESTCORE_BIN = $bin
 dotnet tools/dotnet-oracle/bin/Debug/net10.0/DotnetOracle.dll ini tests/parity/ini/sample.ini > tests/parity/baseline/ini/sample.json
@@ -32,7 +32,13 @@ dotnet tools/dotnet-oracle/bin/Debug/net10.0/DotnetOracle.dll config tests/parit
 pwsh tools/dotnet-oracle/gen-updown-cases.ps1   # UpDownClient 사례와 기준 출력
 ```
 
-`78004ff` 빌드로 만든 기준 출력(`version.txt`, `help.txt`, ini·config·checksum·sign·uri·ksan·s3·json·stats)은 그 뒤 HEAD(`8d27dc2`)까지 바뀐 파일(`UpDownClient.cs`, `MultiSystemClient.cs`, `MultiSystemTest.cs`)과 관계없어 그대로 쓴다. `updown/`, `local/`, `multisystem/`은 HEAD 빌드로 만들었다.
+기준 출력은 만든 시점의 TESTCore 커밋으로 빌드해 만들었다.
+
+-   `78004ff`: `version.txt`, `help.txt`, ini·config·checksum·sign·uri·ksan·s3·json·stats. 그 뒤 바뀐 TESTCore 파일과 관계없어 그대로 쓴다.
+-   `8d27dc2`: `updown/`, `local/`, `multisystem/`.
+-   `c83e35f`·`3c4b0ea`·`ec427f2`: 사용자 결정으로 고친 원본 버그(README의 "TESTCore에서 함께 고친 원본 버그"). 관련 시나리오·분산 사례의 기준 출력은 고친 뒤의 빌드로 만든다.
+
+.NET과 섞어 도는 테스트(`TESTCORE_BIN`이 있을 때만 도는 분산 E2E·Worker 비교 등)도 `dotnet-final` 빌드를 `TESTCORE_BIN`에 지정해 돌린다.
 
 Windows에서 .NET 콘솔은 파이프 출력에 시스템 코드 페이지(CP949)를 쓰므로 `TestCore.exe` 출력은 UTF-8로 바꿔서 수집한다(오라클은 UTF-8로 출력한다).
 

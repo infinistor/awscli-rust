@@ -1,4 +1,4 @@
-# 테스트 시나리오 (`crates/scenarios`, 5단계)
+# 테스트 시나리오 (`crates/scenarios`)
 
 TESTCore `Test/*.cs`를 옮긴 크레이트다. 원본 클래스 하나를 모듈 하나(`src/<이름>.rs`)로 옮겼다. 메뉴 연결은 `crates/cli/src/dispatch/tests/`의 묶음별 모듈이 맡는다.
 
@@ -49,4 +49,4 @@ TESTCore `Test/*.cs`를 옮긴 크레이트다. 원본 클래스 하나를 모�
 -   CompareTest 메타데이터 비교: .NET은 서버가 보낸 `x-amz-meta-*` 헤더 이름의 대소문자를 그대로 두고 이름의 서수(ordinal) 순서로 비교한다. Rust(hyper)는 헤더 이름을 소문자로 바꾸므로, 대문자가 섞인 메타데이터 헤더는 로그의 이름과 비교 순서가 다를 수 있다(S3는 소문자로 보낸다). 받은 대소문자를 얻으려면 HTTP 전송을 바꿔야 해서 그대로 두었다.
 -   빈 버킷 이름: `DoesS3BucketExist`(`GET /?acl`, 경로 방식 주소일 때만)와 `PutBucket`(`ArgumentException`)만 .NET과 맞췄다. 그 밖의 연산은 빈 버킷으로 부르는 곳이 없어 확인하지 않았다.
 
-3단계에서 피했던 차이(`HeadObject`의 `null` 버전 ID, ETag 없는 파트, `UploadId` 없는 시작 응답, 본문이 빈 목록 응답, `DeleteObjectsException`, `/`로 시작하는 키, 빈 버킷 이름의 `GET /?acl`, 버전·삭제 마커의 문서 순서, `ContentLength` 없음)는 고쳤다. 동작은 [s3-client.md](s3-client.md)의 ".NET 응답·예외와 맞춘 것"에 있고, 사례는 이름에 `sdk-`가 붙은 `cli/run` 사례와 `s3/`의 `*-leading-slash`·`*-empty-*`·`delete-objects-errors`다.
+S3 클라이언트를 처음 옮길 때 피했던 차이(`HeadObject`의 `null` 버전 ID, ETag 없는 파트, `UploadId` 없는 시작 응답, 본문이 빈 목록 응답, `DeleteObjectsException`, `/`로 시작하는 키, 빈 버킷 이름의 `GET /?acl`, 버전·삭제 마커의 문서 순서, `ContentLength` 없음)는 고쳤다. 동작은 [s3-client.md](s3-client.md)의 ".NET 응답·예외와 맞춘 것"에 있고, 사례는 이름에 `sdk-`가 붙은 `cli/run` 사례와 `s3/`의 `*-leading-slash`·`*-empty-*`·`delete-objects-errors`다.

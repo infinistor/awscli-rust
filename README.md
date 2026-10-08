@@ -2,7 +2,7 @@
 
 Controller·Worker 분산 부하 테스트와 CSV 통계 수집은 [분산 테스트 사용법](DISTRIBUTED.md)을 참고하세요. 설정 예제: [일반](sample.ini), [Controller](controller.sample.ini), [Worker](worker.sample.ini). 빌드·배포·전환·롤백 절차는 [운영 절차](docs/operations.md)에 있습니다.
 
-S3 Compatible 스토리지에 접근하고 기능·성능을 검증하기 위한 CLI 도구. 기존 .NET 기반 TESTCore를 Rust로 옮긴 것이며, 전환 계획과 진행 단계는 [RUST_MIGRATION.md](RUST_MIGRATION.md)에 있다.
+S3 Compatible 스토리지에 접근하고 기능·성능을 검증하기 위한 CLI 도구. 기존 .NET 기반 TESTCore를 Rust로 옮긴 것으로, `v1.0.0`에서 이식을 마쳤다(.NET 기준 구현은 TESTCore 태그 `dotnet-final`). 이식 당시 계획은 [RUST_MIGRATION.md](RUST_MIGRATION.md)에 있다.
 
 ## 용도
 
@@ -473,4 +473,4 @@ awscli-rust는 TESTCore(.NET)와 같은 계약을 지키도록 만들었다. 실
 -   [DISTRIBUTED.md](DISTRIBUTED.md): Controller·Worker 분산 부하 테스트
 -   [docs/operations.md](docs/operations.md): 빌드·배포, TESTCore에서의 전환, 성능 비교, 롤백
 -   [docs/perf/](docs/perf/2026-10-08-ksan.md): TESTCore와의 성능 비교 결과(사내 KSAN)
--   [RUST_MIGRATION.md](RUST_MIGRATION.md): 전환 계획과 단계
+-   [RUST_MIGRATION.md](RUST_MIGRATION.md): 이식 당시의 전환 계획과 단계(기록)

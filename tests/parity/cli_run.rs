@@ -5,7 +5,7 @@
 //!   S3·KSAN 메뉴를 인자 없이 실행(필수 값 검증 문구).
 //! - 파일 사례(`cli/run/**/*.json` → `baseline/cli-run/<같은 경로>.json`): 서버 응답을 정한 실제 실행.
 //!
-//! 아직 옮기지 않은 메뉴(`dispatch::is_ported`가 `false`)의 사례는 건너뛴다.
+//! `dispatch::is_ported`가 `false`인 메뉴(원본 디스패처에 `case`가 없는 메뉴)의 사례는 건너뛴다.
 //!
 //! 기준 출력 다시 만들기(TESTCore HEAD 빌드 필요, `tests/parity/README.md`):
 //! `$env:TESTCORE_BIN = ...; cargo test -p awscli-rust-cli --test parity_cli_run -- --ignored generate`

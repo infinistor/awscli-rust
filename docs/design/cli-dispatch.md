@@ -27,7 +27,7 @@ TESTCore `Util/TestCoreApplication.cs`, `Util/ConfigBootstrapper.cs`, `Commands/
 | `ksan` | Delete/Get/PutBucketTagIndex, ListBucketTagSearch |
 | `backend` | S3backendPause/Resume |
 | `util` | Set/DelObjectLock, Encryption, Upload, Download, Clear, Bucket/Current/Noncurrent/MarkerClear |
-| `tests` | 테스트 시나리오(`Test/*`), RangeReadCopy, ManualUpload. 4단계는 도움말·실행 전 검증만, 실행은 5단계 |
+| `tests` | 테스트 시나리오(`Test/*`), RangeReadCopy, ManualUpload. 도움말·실행 전 검증은 이 모듈, 시나리오 실행은 `crates/scenarios`([scenarios.md](scenarios.md)) |
 
 각 모듈은 `pub(super) async fn run(ctx, menu) -> CommandResult`와 옮긴 메뉴 목록 `PORTED`를 둔다. 모듈이 커지면 `<묶음>/mod.rs`와 하위 파일(입력 DTO 등)로 나눈다.
 
@@ -91,4 +91,4 @@ cargo test -p awscli-rust-cli --test parity_cli_run -- --ignored generate
 cargo test -p awscli-rust-cli --test parity_cli_run
 ```
 
-`dispatch::is_ported`가 `false`인 메뉴의 사례는 비교하지 않는다. 메뉴를 옮기면 모듈의 `PORTED`에 넣는다.
+원본 디스패처의 `case`는 모두 옮겼다. `PORTED`에 없는 메뉴는 원본에도 `case`가 없는 것(`ReplicationTest`, `GetTestAll`, `AccessKey`·`SecretKey`·`URL`·`MaxCount`)뿐이다. `dispatch::is_ported`가 `false`인 메뉴의 사례는 비교하지 않으므로, 메뉴를 새로 추가하면 해당 모듈의 `PORTED`에도 넣는다.

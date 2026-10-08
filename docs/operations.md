@@ -1,6 +1,6 @@
 # 운영 절차
 
-awscli-rust의 빌드·배포, TESTCore에서의 전환, 분산 실행 교체 순서, 성능 비교, 롤백, 기준 출력 갱신 절차를 정리한다.
+awscli-rust의 빌드·배포, 릴리스, TESTCore에서의 전환, 분산 실행 교체 순서, 성능 비교, 롤백, 기준 출력 갱신 절차를 정리한다.
 
 ## 빌드와 배포
 
@@ -44,6 +44,19 @@ cargo fmt --all
 cargo clippy --workspace --all-targets -- -D warnings
 cargo test --workspace
 ```
+
+## 릴리스
+
+버전 문자열은 TESTCore와 같은 `태그_커밋수_해시`(예: `v1.0.0_101_289204a`)이며 `--version`으로 확인한다. 태그가 없으면 `v0.0.0`으로 나온다.
+
+1.  변경 후 검증(위)을 통과시키고 커밋한다.
+2.  주석 태그를 단다: `git tag -a vX.Y.Z -m "awscli-rust X.Y.Z: <요약>"`
+3.  `pwsh ./build-linux.ps1`로 빌드·배포한다. 압축본은 `dist/linux/awscli-rust_<버전>.tar.gz`다. Windows용은 `cargo build --release`.
+4.  원격 저장소에 커밋과 태그를 올린다: `git push origin main vX.Y.Z`
+
+| 버전 | 커밋 | 내용 |
+| --- | --- | --- |
+| `v1.0.0` | `289204a` | TESTCore(.NET, `dotnet-final`) 이식 완료. 성능 비교는 [docs/perf/2026-10-08-ksan.md](perf/2026-10-08-ksan.md) |
 
 ## TESTCore에서 전환
 
