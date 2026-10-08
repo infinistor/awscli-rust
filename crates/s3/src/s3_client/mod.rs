@@ -19,6 +19,7 @@
 //!   청크 서명(`STREAMING-AWS4-HMAC-SHA256-PAYLOAD`)을 쓰므로 트레일러 두 줄만 다르다.
 //!   `false`면 `WhenRequired`로 본문 전체를 서명해 한 번에 보낸다(.NET과 같음).
 //! - Rust SDK가 붙이는 `x-id` 쿼리 매개변수는 서명 전에 지운다.
+//! - 키가 `/`로 시작하면 .NET처럼 요청 경로에서 `/` 하나를 뺀다(`TrimKeySlash`).
 
 pub mod error;
 mod interceptors;
@@ -33,7 +34,7 @@ use aws_sdk_s3::config::{
 use awscli_rest_config::UserData;
 
 pub use error::S3Error;
-use interceptors::{AdminHeaders, StripOperationId};
+use interceptors::{AdminHeaders, StripOperationId, TrimKeySlash};
 
 /// 원본 `S3_TIMEOUT`(초).
 pub const S3_TIMEOUT: u64 = 3600;
@@ -225,7 +226,10 @@ impl S3Client {
             )
             .request_checksum_calculation(checksum)
             .response_checksum_validation(ResponseChecksumValidation::WhenRequired)
-            .interceptor(StripOperationId);
+            .interceptor(StripOperationId)
+            .interceptor(TrimKeySlash {
+                path_style: url.is_some(),
+            });
         config = match url {
             Some(url) => config
                 .endpoint_url(with_scheme(url))

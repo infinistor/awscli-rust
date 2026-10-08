@@ -1,0 +1,6 @@
+{
+  "args" : [ "--copy-object", "--source", "src", "--source-key", "/s.txt", "-b", "bucket1", "-k", "/d.txt" ],
+  "routes" : [
+    { "contains" : "PUT", "status" : 200, "responseBody" : "<CopyObjectResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><LastModified>2024-01-01T00:00:00.000Z</LastModified><ETag>&quot;e&quot;</ETag></CopyObjectResult>", "responseHeaders" : { "Content-Type" : "application/xml" } }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "dump" : true,
+  "args" : [ "--head-object", "-b", "bucket1", "-k", "/a.txt" ],
+  "routes" : [
+    { "contains" : "HEAD", "status" : 200, "responseBody" : "", "responseHeaders" : { "ETag" : "\"e\"", "Last-Modified" : "Tue, 02 Jan 2024 03:04:05 GMT" } }
+  ]
+}

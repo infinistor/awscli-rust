@@ -1,0 +1,6 @@
+{
+  "args" : [ "--delete-object", "-b", "bucket1", "-k", "/a.txt" ],
+  "routes" : [
+    { "contains" : "DELETE", "status" : 204, "responseBody" : "", "responseHeaders" : { } }
+  ]
+}
