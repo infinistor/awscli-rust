@@ -1,0 +1,182 @@
+{
+  "get": {
+    "csv": "\uFEFFRunId,SampleId,TestType,Scope,WorkerId,CollectedAtUtc,WorkerSampleAtUtc,ElapsedSeconds,IntervalSeconds,State,Available,IsFinal,Error,ReadSuccess,ReadFailed,ReadOpsPerSecond,WriteSuccess,WriteFailed,WriteOpsPerSecond,HeadSuccess,HeadFailed,HeadOpsPerSecond,DeleteSuccess,DeleteFailed,DeleteOpsPerSecond,ListSuccess,ListFailed,ListOpsPerSecond,EstimatedReadBytesPerSecond,EstimatedWriteBytesPerSecond,ExpectedWorkers,ReportedWorkers\r\n0123456789abcdef0123456789abcdef,1,Get,worker,w1,2026-10-08T01:00:00.0000000+00:00,2026-10-08T01:00:00.0000000+00:00,0,,Running,true,false,,0,0,,0,0,,0,0,,0,0,,0,0,,,,2,2\r\n0123456789abcdef0123456789abcdef,1,Get,worker,w2,2026-10-08T01:00:00.0000000+00:00,2026-10-08T01:00:00.0000000+00:00,0,,Running,true,false,,0,0,,0,0,,0,0,,0,0,,0,0,,,,2,2\r\n0123456789abcdef0123456789abcdef,1,Get,total,,2026-10-08T01:00:00.0000000+00:00,2026-10-08T01:00:00.0000000+00:00,0,,Running,true,false,,0,0,,0,0,,0,0,,0,0,,0,0,,,,2,2\r\n0123456789abcdef0123456789abcdef,2,Get,worker,w1,2026-10-08T01:00:02.0000000+00:00,2026-10-08T01:00:02.0000000+00:00,2,2,Running,true,false,,3,0,1.5,0,0,0,0,0,0,0,0,0,0,0,0,1536,0,2,2\r\n0123456789abcdef0123456789abcdef,2,Get,worker,w2,2026-10-08T01:00:02.0000000+00:00,2026-10-08T01:00:02.0000000+00:00,2,2,Running,true,false,,5,0,2.5,0,0,0,0,0,0,0,0,0,0,0,0,2560,0,2,2\r\n0123456789abcdef0123456789abcdef,2,Get,total,,2026-10-08T01:00:02.0000000+00:00,2026-10-08T01:00:02.0000000+00:00,2,2,Running,true,false,,8,0,4,0,0,0,0,0,0,0,0,0,0,0,0,4096,0,2,2\r\n0123456789abcdef0123456789abcdef,3,Get,worker,w1,2026-10-08T01:00:04.0000000+00:00,,,,Unavailable,false,false,\"bad,\"\"quoted\"\"\nerror\",,,,,,,,,,,,,,,,,,2,1\r\n0123456789abcdef0123456789abcdef,3,Get,worker,w2,2026-10-08T01:00:04.0000000+00:00,2026-10-08T01:00:04.0000000+00:00,4,2,Running,true,false,,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1\r\n0123456789abcdef0123456789abcdef,3,Get,total,,2026-10-08T01:00:04.0000000+00:00,2026-10-08T01:00:04.0000000+00:00,4,,Running,false,false,일부 Worker 통계 누락,8,0,,0,0,,0,0,,0,0,,0,0,,,,2,1\r\n0123456789abcdef0123456789abcdef,4,Get,worker,w1,2026-10-08T01:00:06.0000000+00:00,2026-10-08T01:00:06.0000000+00:00,6,4,Completed,true,true,,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2\r\n0123456789abcdef0123456789abcdef,4,Get,worker,w2,2026-10-08T01:00:06.0000000+00:00,2026-10-08T01:00:06.0000000+00:00,6,2,Completed,true,true,,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2\r\n0123456789abcdef0123456789abcdef,4,Get,total,,2026-10-08T01:00:06.0000000+00:00,2026-10-08T01:00:06.0000000+00:00,6,,Completed,true,true,,8,0,,0,0,,0,0,,0,0,,0,0,,,,2,2\r\n",
+    "csvBom": true,
+    "json": "{\r\n  \"RunId\": \"0123456789abcdef0123456789abcdef\",\r\n  \"TestType\": \"Get\",\r\n  \"State\": \"Completed\",\r\n  \"Error\": null,\r\n  \"Settings\": {\r\n    \"Workload\": {\r\n      \"BucketName\": \"bucket-a\",\r\n      \"ThreadPrefix\": \"TH\",\r\n      \"ObjectPrefix\": \"FILE\",\r\n      \"FileSize\": 1024,\r\n      \"RetryCount\": 3,\r\n      \"IsAdmin\": false,\r\n      \"ThreadCount\": 2,\r\n      \"FileCount\": 3,\r\n      \"Times\": 5,\r\n      \"ReadRatio\": 1,\r\n      \"WriteRatio\": 1,\r\n      \"DeleteRatio\": 0,\r\n      \"BucketType\": 4,\r\n      \"DivisionCount\": 1000,\r\n      \"ETagCheck\": false,\r\n      \"UseChunkEncoding\": false,\r\n      \"Check\": false,\r\n      \"Start\": 0,\r\n      \"Random\": false,\r\n      \"Bulk\": false,\r\n      \"MaxCount\": 0\r\n    },\r\n    \"Drivers\": [\r\n      {\r\n        \"Name\": \"w1\",\r\n        \"Url\": \"http://127.0.0.1:18001/driver\"\r\n      },\r\n      {\r\n        \"Name\": \"w2\",\r\n        \"Url\": \"http://127.0.0.1:18002/driver\"\r\n      }\r\n    ],\r\n    \"PollIntervalSeconds\": 2,\r\n    \"StartDelaySeconds\": 5,\r\n    \"LeaseTimeoutSeconds\": 15\r\n  },\r\n  \"ExpectedWorkers\": 2,\r\n  \"ReportedWorkers\": 2,\r\n  \"UnavailableWorkers\": [],\r\n  \"Complete\": true,\r\n  \"StartSkewMilliseconds\": 0,\r\n  \"SuccessOpsPerSecond\": 1.3333333333333333,\r\n  \"Total\": {\r\n    \"RunId\": \"0123456789abcdef0123456789abcdef\",\r\n    \"WorkerId\": null,\r\n    \"TestType\": \"Get\",\r\n    \"State\": \"Completed\",\r\n    \"Error\": null,\r\n    \"SampleAtUtc\": \"<NOW>\",\r\n    \"ScheduledAtUtc\": null,\r\n    \"StartedAtUtc\": \"2026-10-08T01:00:00+00:00\",\r\n    \"IssuingStoppedAtUtc\": null,\r\n    \"CompletedAtUtc\": \"2026-10-08T01:00:06+00:00\",\r\n    \"ElapsedSeconds\": 6,\r\n    \"Result\": {\r\n      \"Read\": 8,\r\n      \"ReadFailed\": 0,\r\n      \"Head\": 0,\r\n      \"HeadFailed\": 0,\r\n      \"Write\": 0,\r\n      \"WriteFailed\": 0,\r\n      \"Delete\": 0,\r\n      \"DeleteFailed\": 0,\r\n      \"List\": 0,\r\n      \"ListFailed\": 0,\r\n      \"Total\": 8,\r\n      \"TotalFailed\": 0,\r\n      \"Time\": 6,\r\n      \"StartTime\": \"2026-10-08T01:00:00Z\",\r\n      \"EndTime\": \"2026-10-08T01:00:06Z\",\r\n      \"TestType\": \"Get\",\r\n      \"ThreadCount\": 0,\r\n      \"FileSize\": 1024,\r\n      \"ReadRatio\": 0,\r\n      \"WriteRatio\": 0,\r\n      \"DeleteRatio\": 0,\r\n      \"BucketType\": null,\r\n      \"BucketName\": null,\r\n      \"ObjectPrefix\": null,\r\n      \"ThreadPrefix\": null\r\n    },\r\n    \"IsFinal\": true\r\n  },\r\n  \"Workers\": [\r\n    {\r\n      \"RunId\": \"0123456789abcdef0123456789abcdef\",\r\n      \"WorkerId\": \"w1\",\r\n      \"TestType\": \"Get\",\r\n      \"State\": \"Completed\",\r\n      \"Error\": null,\r\n      \"SampleAtUtc\": \"2026-10-08T01:00:06+00:00\",\r\n      \"ScheduledAtUtc\": null,\r\n      \"StartedAtUtc\": \"2026-10-08T01:00:00+00:00\",\r\n      \"IssuingStoppedAtUtc\": null,\r\n      \"CompletedAtUtc\": \"2026-10-08T01:00:06+00:00\",\r\n      \"ElapsedSeconds\": 6,\r\n      \"Result\": {\r\n        \"Read\": 3,\r\n        \"ReadFailed\": 0,\r\n        \"Head\": 0,\r\n        \"HeadFailed\": 0,\r\n        \"Write\": 0,\r\n        \"WriteFailed\": 0,\r\n        \"Delete\": 0,\r\n        \"DeleteFailed\": 0,\r\n        \"List\": 0,\r\n        \"ListFailed\": 0,\r\n        \"Total\": 0,\r\n        \"TotalFailed\": 0,\r\n        \"Time\": 0,\r\n        \"StartTime\": \"2026-10-08T01:00:00Z\",\r\n        \"EndTime\": \"0001-01-01T00:00:00\",\r\n        \"TestType\": \"Get\",\r\n        \"ThreadCount\": 0,\r\n        \"FileSize\": 1024,\r\n        \"ReadRatio\": 0,\r\n        \"WriteRatio\": 0,\r\n        \"DeleteRatio\": 0,\r\n        \"BucketType\": null,\r\n        \"BucketName\": null,\r\n        \"ObjectPrefix\": null,\r\n        \"ThreadPrefix\": null\r\n      },\r\n      \"IsFinal\": true\r\n    },\r\n    {\r\n      \"RunId\": \"0123456789abcdef0123456789abcdef\",\r\n      \"WorkerId\": \"w2\",\r\n      \"TestType\": \"Get\",\r\n      \"State\": \"Completed\",\r\n      \"Error\": null,\r\n      \"SampleAtUtc\": \"2026-10-08T01:00:06+00:00\",\r\n      \"ScheduledAtUtc\": null,\r\n      \"StartedAtUtc\": \"2026-10-08T01:00:00+00:00\",\r\n      \"IssuingStoppedAtUtc\": null,\r\n      \"CompletedAtUtc\": \"2026-10-08T01:00:06+00:00\",\r\n      \"ElapsedSeconds\": 6,\r\n      \"Result\": {\r\n        \"Read\": 5,\r\n        \"ReadFailed\": 0,\r\n        \"Head\": 0,\r\n        \"HeadFailed\": 0,\r\n        \"Write\": 0,\r\n        \"WriteFailed\": 0,\r\n        \"Delete\": 0,\r\n        \"DeleteFailed\": 0,\r\n        \"List\": 0,\r\n        \"ListFailed\": 0,\r\n        \"Total\": 0,\r\n        \"TotalFailed\": 0,\r\n        \"Time\": 0,\r\n        \"StartTime\": \"2026-10-08T01:00:00Z\",\r\n        \"EndTime\": \"0001-01-01T00:00:00\",\r\n        \"TestType\": \"Get\",\r\n        \"ThreadCount\": 0,\r\n        \"FileSize\": 1024,\r\n        \"ReadRatio\": 0,\r\n        \"WriteRatio\": 0,\r\n        \"DeleteRatio\": 0,\r\n        \"BucketType\": null,\r\n        \"BucketName\": null,\r\n        \"ObjectPrefix\": null,\r\n        \"ThreadPrefix\": null\r\n      },\r\n      \"IsFinal\": true\r\n    }\r\n  ]\r\n}",
+    "messages": [
+      "\n[READ TEST PROGRESS]\nWorker Count    :       2/2\nState           :   Running\nRead Count      :         0 (+ N/A)\nRead Error      :         0\nRead Average    :       N/A\nBandwidth       :       N/A\nSuccess Ratio   :   0.000 %\nTimes           : 0.000 sec\n--------------------------------------------------------------",
+      "\n[READ TEST PROGRESS]\nWorker Count    :       2/2\nState           :   Running\nRead Count      :         8 (+ 8)\nRead Error      :         0\nRead Average    : 4.000 file/sec\nBandwidth       : 0.004 MiB/s\nSuccess Ratio   : 100.000 %\nTimes           : 2.000 sec\n--------------------------------------------------------------",
+      "\n[READ TEST PROGRESS]\nWorker Count    :       1/2\nState           :   Running\nStatistics      : Partial (last reported counts)\nRead Count      :         8 (+ N/A)\nRead Error      :         0\nRead Average    :       N/A\nBandwidth       :       N/A\nSuccess Ratio   : 100.000 %\nTimes           : 4.000 sec\nError           : 일부 Worker 통계 누락\n--------------------------------------------------------------",
+      "\n[READ TEST FINAL RESULTS]\nWorker Count    :       2/2\nState           : Completed\nRead Success    :         8\nRead Error      :         0\nTotal Average   : 1.333 file/sec\nTotal Bandwidth : 0.001 MiB/s\nSuccess Ratio   : 100.000 %\nTotal Time      : 6.000 sec\n--------------------------------------------------------------"
+    ]
+  },
+  "mix": {
+    "csv": "\uFEFFRunId,SampleId,TestType,Scope,WorkerId,CollectedAtUtc,WorkerSampleAtUtc,ElapsedSeconds,IntervalSeconds,State,Available,IsFinal,Error,ReadSuccess,ReadFailed,ReadOpsPerSecond,WriteSuccess,WriteFailed,WriteOpsPerSecond,HeadSuccess,HeadFailed,HeadOpsPerSecond,DeleteSuccess,DeleteFailed,DeleteOpsPerSecond,ListSuccess,ListFailed,ListOpsPerSecond,EstimatedReadBytesPerSecond,EstimatedWriteBytesPerSecond,ExpectedWorkers,ReportedWorkers\r\n0123456789abcdef0123456789abcdef,1,Mix,worker,w1,2026-10-08T01:00:00.0000000+00:00,2026-10-08T01:00:00.0000000+00:00,0,,Preparing,true,false,,0,0,,0,0,,0,0,,0,0,,0,0,,,,3,3\r\n0123456789abcdef0123456789abcdef,1,Mix,worker,w2,2026-10-08T01:00:00.0000000+00:00,2026-10-08T01:00:00.0000000+00:00,0,,Ready,true,false,,0,0,,0,0,,0,0,,0,0,,0,0,,,,3,3\r\n0123456789abcdef0123456789abcdef,1,Mix,worker,w3,2026-10-08T01:00:00.0000000+00:00,2026-10-08T01:00:00.0000000+00:00,0,,Preparing,true,false,,0,0,,0,0,,0,0,,0,0,,0,0,,,,3,3\r\n0123456789abcdef0123456789abcdef,1,Mix,total,,2026-10-08T01:00:00.0000000+00:00,2026-10-08T01:00:00.0000000+00:00,0,,Preparing,true,false,,0,0,,0,0,,0,0,,0,0,,0,0,,,,3,3\r\n0123456789abcdef0123456789abcdef,2,Mix,worker,w1,2026-10-08T01:00:02.0000000+00:00,2026-10-08T01:00:02.0000000+00:00,1,2,Running,true,false,,10,0,5,20,1,10,1,0,0.5,2,0,1,3,1,1.5,5242880,10485760,3,2\r\n0123456789abcdef0123456789abcdef,2,Mix,worker,w2,2026-10-08T01:00:02.0000000+00:00,2026-10-08T01:00:02.0000000+00:00,0.9,2,Running,true,false,,7,0,3.5,9,0,4.5,0,0,0,0,0,0,0,0,0,3670016,4718592,3,2\r\n0123456789abcdef0123456789abcdef,2,Mix,worker,w3,2026-10-08T01:00:02.0000000+00:00,,,,Unavailable,false,false,Worker 조회 실패: HttpRequestException,,,,,,,,,,,,,,,,,,3,2\r\n0123456789abcdef0123456789abcdef,2,Mix,total,,2026-10-08T01:00:02.0000000+00:00,2026-10-08T01:00:02.0000000+00:00,1,,Running,false,false,일부 Worker 통계 누락,17,0,,29,1,,1,0,,2,0,,3,1,,,,3,2\r\n0123456789abcdef0123456789abcdef,3,Mix,worker,w1,2026-10-08T01:00:04.0000000+00:00,2026-10-08T01:00:04.0000000+00:00,3,2,Running,true,false,,30,0,10,41,1,10.5,1,0,0,5,0,1.5,3,1,0,10485760,11010048,3,3\r\n0123456789abcdef0123456789abcdef,3,Mix,worker,w2,2026-10-08T01:00:04.0000000+00:00,2026-10-08T01:00:04.0000000+00:00,2.9,2,Running,true,false,,5,0,,19,0,5,0,0,0,0,0,0,0,0,0,,5242880,3,3\r\n0123456789abcdef0123456789abcdef,3,Mix,worker,w3,2026-10-08T01:00:04.0000000+00:00,2026-10-08T01:00:04.0000000+00:00,1,4,Running,true,false,,1,0,0.25,1,0,0.25,0,0,0,0,0,0,0,0,0,262144,262144,3,3\r\n0123456789abcdef0123456789abcdef,3,Mix,total,,2026-10-08T01:00:04.0000000+00:00,2026-10-08T01:00:04.0000000+00:00,3,,Running,true,false,,36,0,,61,1,,1,0,,5,0,,3,1,,,,3,3\r\n0123456789abcdef0123456789abcdef,4,Mix,worker,w1,2026-10-08T01:00:06.0000000+00:00,2026-10-08T01:00:06.0000000+00:00,5,2,Cancelled,true,true,stopped,31,0,0.5,42,1,0.5,1,0,0,5,0,0,3,1,0,524288,524288,3,3\r\n0123456789abcdef0123456789abcdef,4,Mix,worker,w2,2026-10-08T01:00:06.0000000+00:00,2026-10-08T01:00:06.0000000+00:00,4.4,2,Failed,true,true,\"x,y\",5,0,0,19,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3\r\n0123456789abcdef0123456789abcdef,4,Mix,worker,w3,2026-10-08T01:00:06.0000000+00:00,2026-10-08T01:00:06.0000000+00:00,3,2,Completed,true,true,,2,0,0.5,2,0,0.5,0,0,0,0,0,0,0,0,0,524288,524288,3,3\r\n0123456789abcdef0123456789abcdef,4,Mix,total,,2026-10-08T01:00:06.0000000+00:00,2026-10-08T01:00:06.0000000+00:00,5,2,Failed,true,true,,38,0,1,63,1,1,1,0,0,5,0,0,3,1,0,1048576,1048576,3,3\r\n0123456789abcdef0123456789abcdef,5,Mix,worker,w1,2026-10-08T01:00:08.0000000+00:00,2026-10-08T01:00:08.0000000+00:00,7,2,Completed,true,true,,31,0,0,42,1,0,1,0,0,5,0,0,3,1,0,0,0,3,2\r\n0123456789abcdef0123456789abcdef,5,Mix,worker,w2,2026-10-08T01:00:08.0000000+00:00,2026-10-08T01:00:08.0000000+00:00,6.9,2,Completed,true,true,,5,0,0,19,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2\r\n0123456789abcdef0123456789abcdef,5,Mix,worker,w3,2026-10-08T01:00:08.0000000+00:00,,,,Unavailable,false,false,Worker 조회 실패: TaskCanceledException,,,,,,,,,,,,,,,,,,3,2\r\n0123456789abcdef0123456789abcdef,5,Mix,total,,2026-10-08T01:00:08.0000000+00:00,2026-10-08T01:00:08.0000000+00:00,7,,Incomplete,false,false,일부 Worker 통계 누락,38,0,,63,1,,1,0,,5,0,,3,1,,,,3,2\r\n",
+    "csvBom": true,
+    "json": "{\r\n  \"RunId\": \"0123456789abcdef0123456789abcdef\",\r\n  \"TestType\": \"Mix\",\r\n  \"State\": \"Cancelled\",\r\n  \"Error\": \"\\uC0AC\\uC6A9\\uC790 \\uC911\\uB2E8\",\r\n  \"Settings\": {\r\n    \"Workload\": {\r\n      \"BucketName\": \"bucket-a\",\r\n      \"ThreadPrefix\": \"TH\",\r\n      \"ObjectPrefix\": \"FILE\",\r\n      \"FileSize\": 1024,\r\n      \"RetryCount\": 3,\r\n      \"IsAdmin\": false,\r\n      \"ThreadCount\": 2,\r\n      \"FileCount\": 3,\r\n      \"Times\": 5,\r\n      \"ReadRatio\": 1,\r\n      \"WriteRatio\": 1,\r\n      \"DeleteRatio\": 0,\r\n      \"BucketType\": 4,\r\n      \"DivisionCount\": 1000,\r\n      \"ETagCheck\": false,\r\n      \"UseChunkEncoding\": false,\r\n      \"Check\": false,\r\n      \"Start\": 0,\r\n      \"Random\": false,\r\n      \"Bulk\": false,\r\n      \"MaxCount\": 0\r\n    },\r\n    \"Drivers\": [\r\n      {\r\n        \"Name\": \"w1\",\r\n        \"Url\": \"http://127.0.0.1:18001/driver\"\r\n      },\r\n      {\r\n        \"Name\": \"w2\",\r\n        \"Url\": \"http://127.0.0.1:18002/driver\"\r\n      },\r\n      {\r\n        \"Name\": \"w3\",\r\n        \"Url\": \"http://127.0.0.1:18003/driver\"\r\n      }\r\n    ],\r\n    \"PollIntervalSeconds\": 2,\r\n    \"StartDelaySeconds\": 5,\r\n    \"LeaseTimeoutSeconds\": 15\r\n  },\r\n  \"ExpectedWorkers\": 3,\r\n  \"ReportedWorkers\": 2,\r\n  \"UnavailableWorkers\": [\r\n    \"w3\"\r\n  ],\r\n  \"Complete\": false,\r\n  \"StartSkewMilliseconds\": 2000,\r\n  \"SuccessOpsPerSecond\": 15.714285714285714,\r\n  \"Total\": {\r\n    \"RunId\": \"0123456789abcdef0123456789abcdef\",\r\n    \"WorkerId\": null,\r\n    \"TestType\": \"Mix\",\r\n    \"State\": \"Completed\",\r\n    \"Error\": null,\r\n    \"SampleAtUtc\": \"<NOW>\",\r\n    \"ScheduledAtUtc\": null,\r\n    \"StartedAtUtc\": \"2026-10-08T01:00:01+00:00\",\r\n    \"IssuingStoppedAtUtc\": \"2026-10-08T01:00:05.5+00:00\",\r\n    \"CompletedAtUtc\": \"2026-10-08T01:00:08+00:00\",\r\n    \"ElapsedSeconds\": 7,\r\n    \"Result\": {\r\n      \"Read\": 38,\r\n      \"ReadFailed\": 0,\r\n      \"Head\": 1,\r\n      \"HeadFailed\": 0,\r\n      \"Write\": 63,\r\n      \"WriteFailed\": 1,\r\n      \"Delete\": 5,\r\n      \"DeleteFailed\": 0,\r\n      \"List\": 3,\r\n      \"ListFailed\": 1,\r\n      \"Total\": 112,\r\n      \"TotalFailed\": 2,\r\n      \"Time\": 7,\r\n      \"StartTime\": \"2026-10-08T01:00:01Z\",\r\n      \"EndTime\": \"2026-10-08T01:00:08Z\",\r\n      \"TestType\": \"Mix\",\r\n      \"ThreadCount\": 8,\r\n      \"FileSize\": 1048576,\r\n      \"ReadRatio\": 0,\r\n      \"WriteRatio\": 0,\r\n      \"DeleteRatio\": 0,\r\n      \"BucketType\": null,\r\n      \"BucketName\": null,\r\n      \"ObjectPrefix\": null,\r\n      \"ThreadPrefix\": null\r\n    },\r\n    \"IsFinal\": true\r\n  },\r\n  \"Workers\": [\r\n    {\r\n      \"RunId\": \"0123456789abcdef0123456789abcdef\",\r\n      \"WorkerId\": \"w1\",\r\n      \"TestType\": \"Mix\",\r\n      \"State\": \"Completed\",\r\n      \"Error\": null,\r\n      \"SampleAtUtc\": \"2026-10-08T01:00:08+00:00\",\r\n      \"ScheduledAtUtc\": null,\r\n      \"StartedAtUtc\": \"2026-10-08T01:00:01+00:00\",\r\n      \"IssuingStoppedAtUtc\": null,\r\n      \"CompletedAtUtc\": \"2026-10-08T01:00:08+00:00\",\r\n      \"ElapsedSeconds\": 7,\r\n      \"Result\": {\r\n        \"Read\": 31,\r\n        \"ReadFailed\": 0,\r\n        \"Head\": 1,\r\n        \"HeadFailed\": 0,\r\n        \"Write\": 42,\r\n        \"WriteFailed\": 1,\r\n        \"Delete\": 5,\r\n        \"DeleteFailed\": 0,\r\n        \"List\": 3,\r\n        \"ListFailed\": 1,\r\n        \"Total\": 0,\r\n        \"TotalFailed\": 0,\r\n        \"Time\": 0,\r\n        \"StartTime\": \"2026-10-08T01:00:01Z\",\r\n        \"EndTime\": \"0001-01-01T00:00:00\",\r\n        \"TestType\": \"Mix\",\r\n        \"ThreadCount\": 2,\r\n        \"FileSize\": 1048576,\r\n        \"ReadRatio\": 0,\r\n        \"WriteRatio\": 0,\r\n        \"DeleteRatio\": 0,\r\n        \"BucketType\": null,\r\n        \"BucketName\": null,\r\n        \"ObjectPrefix\": null,\r\n        \"ThreadPrefix\": null\r\n      },\r\n      \"IsFinal\": true\r\n    },\r\n    {\r\n      \"RunId\": \"0123456789abcdef0123456789abcdef\",\r\n      \"WorkerId\": \"w2\",\r\n      \"TestType\": \"Mix\",\r\n      \"State\": \"Completed\",\r\n      \"Error\": null,\r\n      \"SampleAtUtc\": \"2026-10-08T01:00:08+00:00\",\r\n      \"ScheduledAtUtc\": null,\r\n      \"StartedAtUtc\": \"2026-10-08T01:00:01.1+00:00\",\r\n      \"IssuingStoppedAtUtc\": null,\r\n      \"CompletedAtUtc\": \"2026-10-08T01:00:08+00:00\",\r\n      \"ElapsedSeconds\": 6.9,\r\n      \"Result\": {\r\n        \"Read\": 5,\r\n        \"ReadFailed\": 0,\r\n        \"Head\": 0,\r\n        \"HeadFailed\": 0,\r\n        \"Write\": 19,\r\n        \"WriteFailed\": 0,\r\n        \"Delete\": 0,\r\n        \"DeleteFailed\": 0,\r\n        \"List\": 0,\r\n        \"ListFailed\": 0,\r\n        \"Total\": 0,\r\n        \"TotalFailed\": 0,\r\n        \"Time\": 0,\r\n        \"StartTime\": \"2026-10-08T01:00:01.1Z\",\r\n        \"EndTime\": \"0001-01-01T00:00:00\",\r\n        \"TestType\": \"Mix\",\r\n        \"ThreadCount\": 2,\r\n        \"FileSize\": 1048576,\r\n        \"ReadRatio\": 0,\r\n        \"WriteRatio\": 0,\r\n        \"DeleteRatio\": 0,\r\n        \"BucketType\": null,\r\n        \"BucketName\": null,\r\n        \"ObjectPrefix\": null,\r\n        \"ThreadPrefix\": null\r\n      },\r\n      \"IsFinal\": true\r\n    },\r\n    {\r\n      \"RunId\": \"0123456789abcdef0123456789abcdef\",\r\n      \"WorkerId\": \"w3\",\r\n      \"TestType\": \"Mix\",\r\n      \"State\": \"Completed\",\r\n      \"Error\": null,\r\n      \"SampleAtUtc\": \"2026-10-08T01:00:06+00:00\",\r\n      \"ScheduledAtUtc\": null,\r\n      \"StartedAtUtc\": \"2026-10-08T01:00:03+00:00\",\r\n      \"IssuingStoppedAtUtc\": \"2026-10-08T01:00:05.5+00:00\",\r\n      \"CompletedAtUtc\": \"2026-10-08T01:00:06+00:00\",\r\n      \"ElapsedSeconds\": 3,\r\n      \"Result\": {\r\n        \"Read\": 2,\r\n        \"ReadFailed\": 0,\r\n        \"Head\": 0,\r\n        \"HeadFailed\": 0,\r\n        \"Write\": 2,\r\n        \"WriteFailed\": 0,\r\n        \"Delete\": 0,\r\n        \"DeleteFailed\": 0,\r\n        \"List\": 0,\r\n        \"ListFailed\": 0,\r\n        \"Total\": 0,\r\n        \"TotalFailed\": 0,\r\n        \"Time\": 0,\r\n        \"StartTime\": \"2026-10-08T01:00:03Z\",\r\n        \"EndTime\": \"0001-01-01T00:00:00\",\r\n        \"TestType\": \"Mix\",\r\n        \"ThreadCount\": 4,\r\n        \"FileSize\": 1048576,\r\n        \"ReadRatio\": 0,\r\n        \"WriteRatio\": 0,\r\n        \"DeleteRatio\": 0,\r\n        \"BucketType\": null,\r\n        \"BucketName\": null,\r\n        \"ObjectPrefix\": null,\r\n        \"ThreadPrefix\": null\r\n      },\r\n      \"IsFinal\": true\r\n    }\r\n  ]\r\n}",
+    "messages": [
+      "\n[MIX TEST PROGRESS]\nWorker Count    :       3/3\nState           : Preparing\nRead Count      :         0 (+ N/A)\nRead Error      :         0\nRead Average    :       N/A\nWrite Count     :         0 (+ N/A)\nWrite Error     :         0\nWrite Average   :       N/A\nTotal Average   :       N/A\nBandwidth       :       N/A\nSuccess Ratio   :   0.000 %\nTimes           : 0.000 sec\n--------------------------------------------------------------",
+      "\n[MIX TEST PROGRESS]\nWorker Count    :       2/3\nState           :   Running\nStatistics      : Partial (last reported counts)\nRead Count      :        17 (+ N/A)\nRead Error      :         0\nRead Average    :       N/A\nWrite Count     :        29 (+ N/A)\nWrite Error     :         1\nWrite Average   :       N/A\nTotal Average   :       N/A\nBandwidth       :       N/A\nSuccess Ratio   :  97.872 %\nTimes           : 1.000 sec\nError           : 일부 Worker 통계 누락\n--------------------------------------------------------------",
+      "\n[MIX TEST PROGRESS]\nWorker Count    :       3/3\nState           :   Running\nRead Count      :        36 (+ N/A)\nRead Error      :         0\nRead Average    :       N/A\nWrite Count     :        61 (+ N/A)\nWrite Error     :         1\nWrite Average   :       N/A\nTotal Average   :       N/A\nBandwidth       :       N/A\nSuccess Ratio   :  98.980 %\nTimes           : 3.000 sec\n--------------------------------------------------------------",
+      "\n[MIX TEST PROGRESS]\nWorker Count    :       2/3\nState           : Incomplete\nStatistics      : Partial (last reported counts)\nRead Count      :        38 (+ N/A)\nRead Error      :         0\nRead Average    :       N/A\nWrite Count     :        63 (+ N/A)\nWrite Error     :         1\nWrite Average   :       N/A\nTotal Average   :       N/A\nBandwidth       :       N/A\nSuccess Ratio   :  99.020 %\nTimes           : 7.000 sec\nError           : 일부 Worker 통계 누락\n--------------------------------------------------------------",
+      "\n[MIX TEST FINAL RESULTS]\nWorker Count    :       2/3\nState           : Cancelled\nStatistics      : Partial (last reported counts)\nRead Success    :        38\nRead Error      :         0\nRead Average    : 5.429 file/sec\nWrite Success   :        63\nWrite Error     :         1\nWrite Average   : 9.000 file/sec\nTotal Average   : 14.429 file/sec\nTotal Bandwidth : 14.429 MiB/s\nSuccess Ratio   :  99.020 %\nTotal Time      : 7.000 sec\nError           :    사용자 중단\n--------------------------------------------------------------"
+    ]
+  },
+  "console": {
+    "mix-progress": "\n[MIX TEST PROGRESS]\nWorker Count    :       2/2\nState           :   Running\nRead Count      :        20 (+ 0)\nRead Error      :         0\nRead Average    :       N/A\nWrite Count     :        50 (+ 12)\nWrite Error     :         0\nWrite Average   :       N/A\nTotal Average   :       N/A\nBandwidth       :       N/A\nSuccess Ratio   : 100.000 %\nTimes           : 4.000 sec\n--------------------------------------------------------------",
+    "mix-progress-rates": "\n[MIX TEST PROGRESS]\nWorker Count    :       2/2\nState           :   Running\nRead Count      :        20 (+ 11)\nRead Error      :         0\nRead Average    : 5.500 file/sec\nWrite Count     :        50 (+ 49)\nWrite Error     :         0\nWrite Average   : 12.250 file/sec\nTotal Average   : 17.750 file/sec\nBandwidth       : 0.035 MiB/s\nSuccess Ratio   : 100.000 %\nTimes           : 4.000 sec\n--------------------------------------------------------------",
+    "mix-progress-missing-rate": "\n[MIX TEST PROGRESS]\nWorker Count    :       1/2\nState           :   Running\nStatistics      : Partial (last reported counts)\nRead Count      :        20 (+ 1)\nRead Error      :         0\nRead Average    : 5.500 file/sec\nWrite Count     :        50 (+ N/A)\nWrite Error     :         0\nWrite Average   :       N/A\nTotal Average   :       N/A\nBandwidth       :       N/A\nSuccess Ratio   : 100.000 %\nTimes           : 4.000 sec\nError           : 일부 Worker 통계 누락\n--------------------------------------------------------------",
+    "mix-cancelled": "\n[MIX TEST FINAL RESULTS]\nWorker Count    :       2/3\nState           : Cancelled\nStatistics      : Partial (last reported counts)\nRead Success    :        10\nRead Error      :         0\nRead Average    : 4.000 file/sec\nWrite Success   :        20\nWrite Error     :         2\nWrite Average   : 8.000 file/sec\nTotal Average   : 12.000 file/sec\nTotal Bandwidth : 12.000 MiB/s\nSuccess Ratio   :  93.750 %\nTotal Time      : 2.500 sec\nError           :    사용자 중단\n--------------------------------------------------------------",
+    "get-progress": "\n[READ TEST PROGRESS]\nWorker Count    :       1/2\nState           :   Running\nStatistics      : Partial (last reported counts)\nRead Count      :         8 (+ 8)\nRead Error      :         1\nRead Average    : 4.000 file/sec\nBandwidth       : 0.004 MiB/s\nSuccess Ratio   :  88.889 %\nTimes           : 1.000 sec\n--------------------------------------------------------------",
+    "get-progress-no-input": "\n[READ TEST PROGRESS]\nWorker Count    :       2/2\nState           :   Running\nRead Count      :         8 (+ N/A)\nRead Error      :         0\nRead Average    :       N/A\nBandwidth       :       N/A\nSuccess Ratio   : 100.000 %\nTimes           : 1.000 sec\n--------------------------------------------------------------",
+    "get-final": "\n[READ TEST FINAL RESULTS]\nWorker Count    :       2/2\nState           : Completed\nRead Success    :         8\nRead Error      :         0\nTotal Average   : 1.333 file/sec\nTotal Bandwidth : 0.001 MiB/s\nSuccess Ratio   : 100.000 %\nTotal Time      : 6.000 sec\n--------------------------------------------------------------",
+    "delete-progress": "\n[DELETE TEST PROGRESS]\nWorker Count    :       2/2\nState           :   Running\nDelete Count    :       100 (+ 100)\nDelete Error    :         3\nDelete Average  : 33.333 file/sec\nBandwidth       : 0.000 MiB/s\nSuccess Ratio   :  97.087 %\nTimes           : 3.000 sec\n--------------------------------------------------------------",
+    "put-final-rounding": "\n[WRITE TEST FINAL RESULTS]\nWorker Count    :       2/2\nState           : Completed\nWrite Success   :         1\nWrite Error     :         2\nTotal Average   : 0.333 file/sec\nTotal Bandwidth : 0.000 MiB/s\nSuccess Ratio   :  33.333 %\nTotal Time      : 3.000 sec\n--------------------------------------------------------------",
+    "empty-failed-Put": "\n[WRITE TEST FINAL RESULTS]\nWorker Count    :       0/2\nState           :    Failed\nStatistics      : Partial (last reported counts)\nWrite Success   :         0\nWrite Error     :         0\nTotal Average   : 0.000 file/sec\nTotal Bandwidth : 0.000 MiB/s\nSuccess Ratio   :   0.000 %\nTotal Time      : 0.000 sec\n--------------------------------------------------------------",
+    "empty-failed-Prepare": "\n[PREPARE TEST FINAL RESULTS]\nWorker Count    :       0/2\nState           :    Failed\nStatistics      : Partial (last reported counts)\nWrite Success   :         0\nWrite Error     :         0\nTotal Average   : 0.000 file/sec\nTotal Bandwidth : 0.000 MiB/s\nSuccess Ratio   :   0.000 %\nTotal Time      : 0.000 sec\n--------------------------------------------------------------",
+    "empty-failed-Delete": "\n[DELETE TEST FINAL RESULTS]\nWorker Count    :       0/2\nState           :    Failed\nStatistics      : Partial (last reported counts)\nDelete Success  :         0\nDelete Error    :         0\nTotal Average   : 0.000 file/sec\nTotal Bandwidth : 0.000 MiB/s\nSuccess Ratio   :   0.000 %\nTotal Time      : 0.000 sec\n--------------------------------------------------------------",
+    "empty-failed-Get": "\n[READ TEST FINAL RESULTS]\nWorker Count    :       0/2\nState           :    Failed\nStatistics      : Partial (last reported counts)\nRead Success    :         0\nRead Error      :         0\nTotal Average   : 0.000 file/sec\nTotal Bandwidth : 0.000 MiB/s\nSuccess Ratio   :   0.000 %\nTotal Time      : 0.000 sec\n--------------------------------------------------------------",
+    "empty-failed-Mix": "\n[MIX TEST FINAL RESULTS]\nWorker Count    :       0/2\nState           :    Failed\nStatistics      : Partial (last reported counts)\nRead Success    :         0\nRead Error      :         0\nRead Average    : 0.000 file/sec\nWrite Success   :         0\nWrite Error     :         0\nWrite Average   : 0.000 file/sec\nTotal Average   : 0.000 file/sec\nTotal Bandwidth : 0.000 MiB/s\nSuccess Ratio   :   0.000 %\nTotal Time      : 0.000 sec\n--------------------------------------------------------------",
+    "prepare-progress": "\n[PREPARE TEST PROGRESS]\nWorker Count    :       0/2\nState           : Preparing\nStatistics      : Partial (last reported counts)\nWrite Count     :         0 (+ N/A)\nWrite Error     :         0\nWrite Average   :       N/A\nBandwidth       :       N/A\nSuccess Ratio   :   0.000 %\nTimes           : 0.000 sec\n--------------------------------------------------------------"
+  },
+  "paths": {
+    "default": {
+      "json": "results/0123456789abcdef0123456789abcdef.json",
+      "csv": "results/0123456789abcdef0123456789abcdef.csv",
+      "files": [
+        "results",
+        "results/0123456789abcdef0123456789abcdef.csv",
+        "results/0123456789abcdef0123456789abcdef.json"
+      ]
+    },
+    "empty": {
+      "json": "results/0123456789abcdef0123456789abcdef.json",
+      "csv": "results/0123456789abcdef0123456789abcdef.csv",
+      "files": [
+        "results",
+        "results/0123456789abcdef0123456789abcdef.csv",
+        "results/0123456789abcdef0123456789abcdef.json"
+      ]
+    },
+    "blank": {
+      "json": "results/0123456789abcdef0123456789abcdef.json",
+      "csv": "results/0123456789abcdef0123456789abcdef.csv",
+      "files": [
+        "results",
+        "results/0123456789abcdef0123456789abcdef.csv",
+        "results/0123456789abcdef0123456789abcdef.json"
+      ]
+    },
+    "dir": {
+      "json": "out/0123456789abcdef0123456789abcdef.json",
+      "csv": "out/0123456789abcdef0123456789abcdef.csv",
+      "files": [
+        "out",
+        "out/0123456789abcdef0123456789abcdef.csv",
+        "out/0123456789abcdef0123456789abcdef.json"
+      ]
+    },
+    "dir-dotted": {
+      "json": "dir.d/name/0123456789abcdef0123456789abcdef.json",
+      "csv": "dir.d/name/0123456789abcdef0123456789abcdef.csv",
+      "files": [
+        "dir.d",
+        "dir.d/name",
+        "dir.d/name/0123456789abcdef0123456789abcdef.csv",
+        "dir.d/name/0123456789abcdef0123456789abcdef.json"
+      ]
+    },
+    "json": {
+      "json": "out/x.json",
+      "csv": "out/x.csv",
+      "files": [
+        "out",
+        "out/x.csv",
+        "out/x.json"
+      ]
+    },
+    "json-upper": {
+      "json": "out/x.JSON",
+      "csv": "out/x.csv",
+      "files": [
+        "out",
+        "out/x.JSON",
+        "out/x.csv"
+      ]
+    },
+    "csv-extension": {
+      "error": "ArgumentException",
+      "message": "--save 파일 경로의 확장자는 .json이어야 합니다.",
+      "files": []
+    },
+    "trailing-dot": {
+      "json": "out/name/0123456789abcdef0123456789abcdef.json",
+      "csv": "out/name/0123456789abcdef0123456789abcdef.csv",
+      "files": [
+        "out",
+        "out/name",
+        "out/name/0123456789abcdef0123456789abcdef.csv",
+        "out/name/0123456789abcdef0123456789abcdef.json"
+      ]
+    },
+    "hidden": {
+      "json": "out/.json",
+      "csv": "out/.csv",
+      "files": [
+        "out",
+        "out/.csv",
+        "out/.json"
+      ]
+    },
+    "double-extension": {
+      "json": "out/a.b.json",
+      "csv": "out/a.b.csv",
+      "files": [
+        "out",
+        "out/a.b.csv",
+        "out/a.b.json"
+      ]
+    },
+    "absolute": {
+      "json": "abs/z.json",
+      "csv": "abs/z.csv",
+      "files": [
+        "abs",
+        "abs/z.csv",
+        "abs/z.json"
+      ]
+    },
+    "json-exists": {
+      "error": "IOException",
+      "message": "결과 파일이 이미 존재합니다.",
+      "files": [
+        "out",
+        "out/x.json"
+      ]
+    },
+    "csv-exists": {
+      "error": "IOException",
+      "message": "결과 파일이 이미 존재합니다.",
+      "files": [
+        "out",
+        "out/x.csv"
+      ]
+    },
+    "default-json-exists": {
+      "error": "IOException",
+      "message": "결과 파일이 이미 존재합니다.",
+      "files": [
+        "results",
+        "results/0123456789abcdef0123456789abcdef.json"
+      ]
+    },
+    "csv-is-directory": {
+      "error": "IOException",
+      "message": "The file '<DIR>\\out\\x.csv' already exists.",
+      "files": [
+        "out",
+        "out/x.csv"
+      ]
+    }
+  }
+}
