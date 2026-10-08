@@ -24,7 +24,7 @@ if ($LASTEXITCODE -ne 0) { throw "awscli-rest Linux 빌드 실패" }
 Copy-Item (Join-Path $root "target\linux\release\awscli-rest") $bundle
 
 # TESTCore(self-contained linux-x64)
-$commit = git -C $TestCore rev-parse --short $Ref
+$commit = git -C $TestCore rev-parse --short "$Ref^{commit}"
 $src = Join-Path ([IO.Path]::GetTempPath()) "awscli-rest-testcore-linux-$commit"
 if (Test-Path $src) { Remove-Item -Recurse -Force $src }
 New-Item -ItemType Directory -Force $src | Out-Null
