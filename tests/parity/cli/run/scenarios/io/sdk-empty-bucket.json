@@ -1,0 +1,10 @@
+{
+  "args": [
+    "--test-io",
+    "--source=srcdir",
+    "--target=dl/"
+  ],
+  "files": {
+    "srcdir/a.txt": "AAA"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/",
+      "query": [
+        "acl"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "IO Test Start",
+    "ERROR <TIME> : System.ArgumentException: BucketName is a required property and must be set before making this call. (Parameter 'PutBucketRequest.BucketName')",
+    "ERROR <TIME> : <DIR>\\srcdir\\a.txt upload failed!",
+    "",
+    "System.InvalidOperationException: Please specify BucketName to PUT an object into Amazon S3.",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}
