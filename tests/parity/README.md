@@ -10,6 +10,7 @@ TESTCore(.NET)와 awscli-rest의 외부 동작을 비교한다.
     -   `portal/*.json`·`mover/*.json`·`zeromq/*.json`: 오라클의 같은 이름 명령(`portal`, `mover`, `zeromq`)이 실제 `PortalManager`·`MoverClient`·`ZeroMqClient`를 로컬 서버에 연결해 기록한 요청(요청 줄·헤더·본문), 결과(반환값·예외 형식과 메시지), log4net 로그. `variants`가 있는 사례는 응답 본문만 바꿔가며 JSON 읽기 경계(`System.Text.Json` 오류 메시지 포함)를 비교한다. 다시 만들 때는 `pwsh tests/parity/gen-client-baselines.ps1`.
     -   `cli/options.json`·`cli/help.txt`·`cli/usage.json`: 오라클 `cli-options`(OptionSet 옵션 표), `cli-help`(`WriteOptionDescriptions` 원문), `cli-usage`(`Usage` 공개 문자열 필드). `crates/cli/src/usage.rs`는 `usage.json`에서 만든다.
     -   `cli/parse.json`: 오라클 `cli-parse tests/parity/cli/parse-cases.json`. 사례마다 기본값과 다른 `CommandOptions` 속성, Extra, 예외(형식·메시지·`OptionName`).
+    -   `distributed/writer.json`: 오라클 `distributed-writer <긴 경로의 빈 디렉터리>`(분산 Controller의 `ResultWriter`·`ResultConsoleFormatter`를 고정 표본으로 돌린 CSV·JSON·콘솔 로그·`--save` 경로 규칙). `Total.SampleAtUtc`는 `<NOW>`로 가린다. 경로에 8.3 이름이 섞이면 오류 메시지의 경로 가리기가 어긋나므로 긴 경로를 쓴다.
     -   `cli-run/`: `TestCore.exe`를 자식 프로세스로 실행해 정규화한 표준 출력·오류, 종료 코드, 서버가 받은 요청(`cli_run.rs`의 `generate`, 절차는 `docs/design/cli-dispatch.md`). `top.json`·`help.json`·`bare.json`은 자동 사례, 하위 디렉터리는 `cli/run/`의 같은 경로 사례.
 -   `config/`: Config 픽스처(`-text`로 보관).
 -   `portal/`, `mover/`, `zeromq/`: 위 기준 출력을 만드는 사례(`op`와 응답 본문 등). Portal·Mover 테스트는 이 디렉터리를 모두 읽는다.

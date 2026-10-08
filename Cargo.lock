@@ -497,6 +497,7 @@ dependencies = [
  "awscli-rest-clients",
  "awscli-rest-common",
  "awscli-rest-config",
+ "awscli-rest-distributed",
  "awscli-rest-model",
  "awscli-rest-s3",
  "awscli-rest-scenarios",
@@ -587,10 +588,15 @@ dependencies = [
  "awscli-rest-model",
  "awscli-rest-s3",
  "awscli-rest-scenarios",
+ "bytes",
  "chrono",
  "hex",
  "http 1.5.0",
+ "hyper-rustls 0.27.10",
+ "rand 0.9.5",
  "regex",
+ "rust_decimal",
+ "rustls 0.23.45",
  "serde",
  "serde_json",
  "sha2 0.11.0",
@@ -598,6 +604,7 @@ dependencies = [
  "tokio",
  "tokio-util",
  "tracing",
+ "tracing-subscriber",
 ]
 
 [[package]]

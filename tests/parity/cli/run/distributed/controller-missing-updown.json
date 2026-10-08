@@ -1,0 +1,7 @@
+{
+  "args": [
+    "--controller",
+    "--test-put"
+  ],
+  "config": "[controller]\r\nResultPath = results\r\n[driver1]\r\nname = w1\r\nurl = {URL}/driver\r\n"
+}

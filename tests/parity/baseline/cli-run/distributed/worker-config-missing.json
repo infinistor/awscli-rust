@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [
+    "분산 실행 오류: Could not find file '<DIR>\\nope.ini'."
+  ],
+  "stdout": [
+    "INFO  <TIME> : Main start"
+  ]
+}

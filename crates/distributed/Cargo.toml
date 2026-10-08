@@ -13,10 +13,15 @@ awscli-rest-config.workspace = true
 awscli-rest-model.workspace = true
 awscli-rest-s3.workspace = true
 awscli-rest-scenarios.workspace = true
+bytes.workspace = true
 chrono.workspace = true
 hex.workspace = true
+hyper-rustls.workspace = true
 http.workspace = true
+rand.workspace = true
 regex.workspace = true
+rust_decimal.workspace = true
+rustls.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 sha2.workspace = true
@@ -26,10 +31,15 @@ tracing.workspace = true
 
 [dev-dependencies]
 tempfile.workspace = true
+tracing-subscriber.workspace = true
 
 [[test]]
 name = "parity_distributed"
 path = "../../tests/parity/distributed.rs"
+
+[[test]]
+name = "parity_distributed_controller"
+path = "../../tests/parity/distributed_controller.rs"
 
 [lints]
 workspace = true

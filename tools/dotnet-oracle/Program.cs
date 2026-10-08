@@ -68,6 +68,7 @@ static partial class Program
 			case "local": Console.WriteLine(LocalProbe(args[1])); return 0;
 			case "multisystem": Console.WriteLine(MultiSystemProbe(args[1])); return 0;
 			case "contracts": Console.WriteLine(Contracts()); return 0;
+			case "distributed-writer": Console.WriteLine(DistributedWriter(args[1])); return 0;
 			case "cli-options": Console.WriteLine(CliOptions()); return 0;
 			case "cli-help": Console.Write(CliHelp()); return 0;
 			case "cli-usage": Console.WriteLine(CliUsage.Dump()); return 0;

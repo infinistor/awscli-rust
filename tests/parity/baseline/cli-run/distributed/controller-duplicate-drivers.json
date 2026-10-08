@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [
+    "분산 실행 오류: Worker 이름은 1~40자의 소문자 영숫자·하이픈이어야 합니다."
+  ],
+  "stdout": [
+    "INFO  <TIME> : Main start"
+  ]
+}
