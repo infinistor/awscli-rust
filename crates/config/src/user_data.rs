@@ -1,23 +1,29 @@
 //! TESTCore `Data/Config/UserData.cs` 이식.
 
-use serde::Serialize;
+use serde::{Deserialize, Deserializer, Serialize};
 
 use crate::util::{UtilError, try_parse_i32};
 
 /// S3 접속 정보. JSON 속성 이름은 원본 그대로 `URL`, `RegionName`, `AccessKey`, `SecretKey`.
-#[derive(Debug, Clone, Default, PartialEq, Eq, Serialize)]
+/// 읽을 때는 분산 실행 계약(웹 JSON의 `url`을 첫 글자만 대문자로 바꾼 `Url`)도 받고, `null`은 빈 문자열로 둔다.
+#[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
 pub struct UserData {
     /// S3 URL
-    #[serde(rename = "URL")]
+    #[serde(
+        rename = "URL",
+        alias = "Url",
+        default,
+        deserialize_with = "null_as_empty"
+    )]
     pub url: String,
     /// S3 Region
-    #[serde(rename = "RegionName")]
+    #[serde(rename = "RegionName", default, deserialize_with = "null_as_empty")]
     pub region_name: String,
     /// S3 AccessKey
-    #[serde(rename = "AccessKey")]
+    #[serde(rename = "AccessKey", default, deserialize_with = "null_as_empty")]
     pub access_key: String,
     /// S3 SecretKey
-    #[serde(rename = "SecretKey")]
+    #[serde(rename = "SecretKey", default, deserialize_with = "null_as_empty")]
     pub secret_key: String,
 }
 
@@ -94,6 +100,11 @@ impl UserData {
 
 fn find_slashes(units: &[u16]) -> Option<usize> {
     units.windows(2).position(|w| w == [b'/' as u16; 2])
+}
+
+/// JSON `null`을 빈 문자열로 읽는다(.NET `string` 속성은 `null`일 수 있다).
+fn null_as_empty<'de, D: Deserializer<'de>>(deserializer: D) -> Result<String, D::Error> {
+    Ok(Option::<String>::deserialize(deserializer)?.unwrap_or_default())
 }
 
 #[cfg(test)]

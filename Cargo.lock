@@ -580,6 +580,25 @@ dependencies = [
 [[package]]
 name = "awscli-rest-distributed"
 version = "0.1.0"
+dependencies = [
+ "awscli-rest-clients",
+ "awscli-rest-common",
+ "awscli-rest-config",
+ "awscli-rest-model",
+ "awscli-rest-s3",
+ "awscli-rest-scenarios",
+ "chrono",
+ "hex",
+ "http 1.5.0",
+ "regex",
+ "serde",
+ "serde_json",
+ "sha2 0.11.0",
+ "tempfile",
+ "tokio",
+ "tokio-util",
+ "tracing",
+]
 
 [[package]]
 name = "awscli-rest-model"

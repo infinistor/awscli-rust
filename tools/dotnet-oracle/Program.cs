@@ -34,7 +34,7 @@ static partial class Program
 			return File.Exists(path) ? Assembly.LoadFrom(path) : null;
 		};
 		Console.OutputEncoding = System.Text.Encoding.UTF8;
-		return args.Length >= 2 || (args.Length == 1 && args[0].StartsWith("cli-")) ? Run(args) : Usage();
+		return args.Length >= 2 || (args.Length == 1 && (args[0].StartsWith("cli-") || args[0] == "contracts")) ? Run(args) : Usage();
 	}
 
 	static int Usage()
@@ -67,6 +67,7 @@ static partial class Program
 			case "updown": Console.WriteLine(UpDownProbe(args[1])); return 0;
 			case "local": Console.WriteLine(LocalProbe(args[1])); return 0;
 			case "multisystem": Console.WriteLine(MultiSystemProbe(args[1])); return 0;
+			case "contracts": Console.WriteLine(Contracts()); return 0;
 			case "cli-options": Console.WriteLine(CliOptions()); return 0;
 			case "cli-help": Console.Write(CliHelp()); return 0;
 			case "cli-usage": Console.WriteLine(CliUsage.Dump()); return 0;

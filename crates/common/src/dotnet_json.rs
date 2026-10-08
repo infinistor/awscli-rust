@@ -19,8 +19,74 @@ pub const NEW_LINE: &str = "\n";
 
 /// `ToJsonString()`과 같은 형식으로 직렬화한다.
 pub fn to_dotnet_json<T: Serialize + ?Sized>(value: &T) -> String {
+    write_json(value, DotnetFormatter::indented())
+}
+
+/// ASP.NET·`HttpClient` JSON 확장(`JsonSerializerDefaults.Web`)의 출력: 속성 이름 camelCase(`JsonNamingPolicy.CamelCase`),
+/// 들여쓰기 없음, 문자열 이스케이프·실수 형식은 [`to_dotnet_json`]과 같다. 형식의 serde 이름은 .NET 속성 이름(PascalCase)으로 둔다.
+pub fn to_web_json<T: Serialize + ?Sized>(value: &T) -> String {
+    write_json(
+        value,
+        DotnetFormatter {
+            compact: true,
+            camel_case: true,
+            ..DotnetFormatter::default()
+        },
+    )
+}
+
+/// 웹 JSON(camelCase)을 읽는다. 속성 이름의 첫 글자를 대문자로 바꿔 .NET 속성 이름(serde 이름)에 맞춘다
+/// (`PropertyNameCaseInsensitive` 중 실제로 오가는 camelCase·PascalCase를 다룬다).
+pub fn from_web_json<T: serde::de::DeserializeOwned>(text: &str) -> serde_json::Result<T> {
+    let mut value: serde_json::Value = serde_json::from_str(text)?;
+    pascalize_keys(&mut value);
+    serde_json::from_value(value)
+}
+
+fn pascalize_keys(value: &mut serde_json::Value) {
+    match value {
+        serde_json::Value::Object(map) => {
+            let entries = std::mem::take(map);
+            for (key, mut item) in entries {
+                pascalize_keys(&mut item);
+                let mut chars = key.chars();
+                let key = match chars.next() {
+                    Some(first) => first.to_uppercase().chain(chars).collect(),
+                    None => key,
+                };
+                map.insert(key, item);
+            }
+        }
+        serde_json::Value::Array(items) => items.iter_mut().for_each(pascalize_keys),
+        _ => {}
+    }
+}
+
+/// `JsonNamingPolicy.CamelCase.ConvertName`: 앞쪽 대문자 연속을 소문자로(다음 글자가 소문자인 마지막 대문자는 남긴다).
+pub fn camel_case(name: &str) -> String {
+    let mut chars: Vec<char> = name.chars().collect();
+    if chars.first().is_none_or(|c| !c.is_uppercase()) {
+        return name.to_string();
+    }
+    for i in 0..chars.len() {
+        if i == 1 && !chars[i].is_uppercase() {
+            break;
+        }
+        let has_next = i + 1 < chars.len();
+        if i > 0 && has_next && !chars[i + 1].is_uppercase() {
+            if chars[i + 1] == ' ' {
+                chars[i] = chars[i].to_lowercase().next().unwrap_or(chars[i]);
+            }
+            break;
+        }
+        chars[i] = chars[i].to_lowercase().next().unwrap_or(chars[i]);
+    }
+    chars.into_iter().collect()
+}
+
+fn write_json<T: Serialize + ?Sized>(value: &T, formatter: DotnetFormatter) -> String {
     let mut out = Vec::new();
-    let mut serializer = Serializer::with_formatter(&mut out, DotnetFormatter::default());
+    let mut serializer = Serializer::with_formatter(&mut out, formatter);
     value
         .serialize(&mut serializer)
         .expect("메모리 직렬화는 실패하지 않는다");
@@ -31,10 +97,23 @@ pub fn to_dotnet_json<T: Serialize + ?Sized>(value: &T) -> String {
 struct DotnetFormatter {
     indent: usize,
     has_value: bool,
+    /// 들여쓰기·줄바꿈 없이 쓴다.
+    compact: bool,
+    /// 속성 이름을 camelCase로 쓴다.
+    camel_case: bool,
+    /// 속성 이름을 쓰는 중.
+    in_key: bool,
 }
 
 impl DotnetFormatter {
+    fn indented() -> Self {
+        Self::default()
+    }
+
     fn newline<W: ?Sized + io::Write>(&self, writer: &mut W) -> io::Result<()> {
+        if self.compact {
+            return Ok(());
+        }
         writer.write_all(NEW_LINE.as_bytes())?;
         for _ in 0..self.indent {
             writer.write_all(b"  ")?;
@@ -55,7 +134,18 @@ fn write_unicode<W: ?Sized + io::Write>(writer: &mut W, c: char) -> io::Result<(
     Ok(())
 }
 
-/// .NET `double.ToString("R")` 형식.
+/// 이스케이프하지 않고 그대로 쓰는 JSON 문자열(System.Text.Json이 인코더 없이 쓰는 날짜 등). `text`에 `"`·`\`·제어 문자가 없어야 한다.
+pub fn raw_string<S: serde::Serializer>(text: &str, serializer: S) -> Result<S::Ok, S::Error> {
+    let raw = serde_json::value::RawValue::from_string(format!("\"{text}\""))
+        .map_err(serde::ser::Error::custom)?;
+    raw.serialize(serializer)
+}
+
+/// .NET `double.ToString("R")` 형식(가장 짧은 왕복 표현).
+pub fn double_text(value: f64) -> String {
+    format_f64(value)
+}
+
 fn format_f64(value: f64) -> String {
     if value == 0.0 {
         return if value.is_sign_negative() { "-0" } else { "0" }.into();
@@ -107,6 +197,13 @@ impl Formatter for DotnetFormatter {
         writer: &mut W,
         fragment: &str,
     ) -> io::Result<()> {
+        let renamed;
+        let fragment = if self.in_key && self.camel_case {
+            renamed = camel_case(fragment);
+            renamed.as_str()
+        } else {
+            fragment
+        };
         let mut start = 0;
         for (index, c) in fragment.char_indices() {
             if must_escape(c) {
@@ -188,14 +285,20 @@ impl Formatter for DotnetFormatter {
         writer: &mut W,
         first: bool,
     ) -> io::Result<()> {
+        self.in_key = true;
         if !first {
             writer.write_all(b",")?;
         }
         self.newline(writer)
     }
 
+    fn end_object_key<W: ?Sized + io::Write>(&mut self, _writer: &mut W) -> io::Result<()> {
+        self.in_key = false;
+        Ok(())
+    }
+
     fn begin_object_value<W: ?Sized + io::Write>(&mut self, writer: &mut W) -> io::Result<()> {
-        writer.write_all(b": ")
+        writer.write_all(if self.compact { b":" } else { b": " })
     }
 
     fn end_object_value<W: ?Sized + io::Write>(&mut self, _writer: &mut W) -> io::Result<()> {
@@ -229,6 +332,53 @@ mod tests {
         for (value, expected) in cases {
             assert_eq!(format_f64(value), expected, "{value:e}");
         }
+    }
+
+    #[test]
+    fn camel_case_like_dotnet() {
+        for (name, expected) in [
+            ("URL", "url"),
+            ("ETagCheck", "eTagCheck"),
+            ("IsAdmin", "isAdmin"),
+            ("StartAtUtc", "startAtUtc"),
+            ("runId", "runId"),
+            ("A", "a"),
+            ("ABCDef", "abcDef"),
+        ] {
+            assert_eq!(camel_case(name), expected);
+        }
+    }
+
+    #[test]
+    fn web_json_round_trip() {
+        #[derive(Serialize, serde::Deserialize, Debug, PartialEq)]
+        struct Inner {
+            #[serde(rename = "URL", alias = "Url")]
+            url: String,
+        }
+        #[derive(Serialize, serde::Deserialize, Debug, PartialEq)]
+        #[serde(rename_all = "PascalCase")]
+        struct Outer {
+            run_id: String,
+            #[serde(rename = "ETagCheck")]
+            e_tag_check: bool,
+            elapsed_seconds: f64,
+            user: Option<Inner>,
+        }
+        let value = Outer {
+            run_id: "r".into(),
+            e_tag_check: true,
+            elapsed_seconds: 12.0,
+            user: Some(Inner {
+                url: "http://x".into(),
+            }),
+        };
+        let text = to_web_json(&value);
+        assert_eq!(
+            text,
+            r#"{"runId":"r","eTagCheck":true,"elapsedSeconds":12,"user":{"url":"http://x"}}"#
+        );
+        assert_eq!(from_web_json::<Outer>(&text).unwrap(), value);
     }
 
     #[test]
