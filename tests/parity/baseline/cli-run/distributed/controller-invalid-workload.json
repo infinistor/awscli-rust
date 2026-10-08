@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [
+    "분산 실행 오류: 부하 설정 범위 오류: FileCount=-1 (허용: 1 이상)"
+  ],
+  "stdout": [
+    "INFO  <TIME> : Main start"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [
+    "분산 실행 오류: 분산 실행은 test-prepare/put/get/delete/mix만 지원합니다."
+  ],
+  "stdout": [
+    "INFO  <TIME> : Main start"
+  ]
+}

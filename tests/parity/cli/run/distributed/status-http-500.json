@@ -1,0 +1,24 @@
+{
+  "args": [
+    "--controller",
+    "--test-put",
+    "--save=out.json"
+  ],
+  "config": "[Default]\r\nObjectPrefix = temp\r\nFileSize = 1K\r\nBucketName = test-bucket\r\n\r\n[UpDown]\r\nThreadCount = 2\r\nTimes = 1\r\n\r\n[Main User]\r\nURL = {URL}\r\nAccessKey = testcore-access\r\nSecretKey = testcore-secret-key-0123456789abcdefghij\r\n\r\n[controller]\r\nResultPath = results\r\n[driver1]\r\nname = w1\r\nurl = {URL}/driver\r\n",
+  "routes": [
+    {
+      "contains": "GET /driver/status",
+      "status": 500,
+      "responseHeaders": {
+        "Content-Type": "application/json"
+      },
+      "responseBody": ""
+    }
+  ],
+  "mask": "[0-9a-f]{32}",
+  "stats": true,
+  "outputs": [
+    "out.json",
+    "out.csv"
+  ]
+}

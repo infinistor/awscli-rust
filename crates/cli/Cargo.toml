@@ -34,6 +34,7 @@ path = "../../tests/parity/cli_run.rs"
 awscli-rest-clients.workspace = true
 awscli-rest-common.workspace = true
 awscli-rest-config.workspace = true
+awscli-rest-distributed.workspace = true
 awscli-rest-model.workspace = true
 awscli-rest-s3.workspace = true
 awscli-rest-scenarios.workspace = true

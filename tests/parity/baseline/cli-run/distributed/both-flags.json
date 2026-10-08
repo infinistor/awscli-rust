@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [
+    "분산 실행 오류: --worker와 --controller는 함께 지정할 수 없습니다."
+  ],
+  "stdout": [
+    "INFO  <TIME> : Main start"
+  ]
+}

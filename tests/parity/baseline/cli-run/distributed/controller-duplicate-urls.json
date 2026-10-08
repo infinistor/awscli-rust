@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [
+    "분산 실행 오류: Worker 이름과 주소는 중복될 수 없습니다."
+  ],
+  "stdout": [
+    "INFO  <TIME> : Main start"
+  ]
+}

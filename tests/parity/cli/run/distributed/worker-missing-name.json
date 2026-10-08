@@ -1,0 +1,6 @@
+{
+  "args": [
+    "--worker"
+  ],
+  "config": "[worker]\r\nurl = http://127.0.0.1:18011/driver\r\n"
+}

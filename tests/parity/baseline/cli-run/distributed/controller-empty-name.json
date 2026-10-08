@@ -1,0 +1,10 @@
+{
+  "exitCode": -1,
+  "requests": [],
+  "stderr": [
+    "분산 실행 오류: [driver1] name 값이 비어 있습니다."
+  ],
+  "stdout": [
+    "INFO  <TIME> : Main start"
+  ]
+}
