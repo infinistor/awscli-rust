@@ -22,7 +22,6 @@ use std::time::{Duration, Instant};
 use awscli_rest_common::{
     DotnetDateTime, DotnetDateTimeOffset, from_web_json, to_dotnet_json, to_web_json,
 };
-use awscli_rest_model::UpDownResult;
 use awscli_rest_scenarios::ScenarioError;
 use awscli_rest_scenarios::run_control::RunControl;
 use axum::Router;
@@ -432,15 +431,15 @@ impl WorkerJob {
 
     /// 원본 `SnapshotCore()`.
     fn snapshot_core(&self, runner: Option<&dyn DistributedTestRunner>) -> RunSnapshot {
-        let result = match runner {
-            Some(runner) => runner.snapshot(),
-            None => UpDownResult {
+        // 실행기가 없으면 `new UpDownResult { FileSize, ThreadCount }`(문자열 속성은 `null`).
+        let mut result = match runner {
+            Some(runner) => RunResult::from(&runner.snapshot()),
+            None => RunResult {
                 file_size: self.file_size,
                 thread_count: self.thread_count,
-                ..UpDownResult::default()
+                ..RunResult::default()
             },
         };
-        let mut result = RunResult::from(&result);
         let control = self.control.apply();
         result.start_time = control
             .started_at_utc
