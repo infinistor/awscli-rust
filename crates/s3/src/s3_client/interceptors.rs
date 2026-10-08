@@ -192,9 +192,74 @@ impl Intercept for StatusCapture {
     }
 }
 
+/// 응답의 HTTP 날짜 헤더(`Last-Modified`, `Expires`, `Date`)에서 한 자리 일·시·분·초를 두 자리로 맞춘다.
+///
+/// KSAN은 `Thu, 8 Oct 2026 03:26:06 GMT`처럼 일을 한 자리로 보낸다. .NET SDK는 그대로 읽지만 Rust SDK의 HTTP 날짜
+/// 해석은 IMF-fixdate(두 자리 일)만 받아 GetObject·HeadObject 응답 전체를 오류로 본다(매달 1~9일에만 드러난다).
+#[derive(Debug)]
+pub struct NormalizeHttpDates;
+
+/// `Wdy, D Mon YYYY H:M:S GMT` → `Wdy, DD Mon YYYY HH:MM:SS GMT`. 형식이 다르면 그대로 둔다.
+pub fn normalize_http_date(value: &str) -> Option<String> {
+    let (weekday, rest) = value.split_once(", ")?;
+    let parts: Vec<&str> = rest.split(' ').collect();
+    let [day, month, year, time, zone] = parts.as_slice() else {
+        return None;
+    };
+    let pad = |text: &str| -> Option<String> {
+        (!text.is_empty() && text.len() <= 2 && text.bytes().all(|b| b.is_ascii_digit()))
+            .then(|| format!("{text:0>2}"))
+    };
+    let clock: Vec<String> = time.split(':').map(pad).collect::<Option<_>>()?;
+    if clock.len() != 3 {
+        return None;
+    }
+    let normalized = format!(
+        "{weekday}, {} {month} {year} {} {zone}",
+        pad(day)?,
+        clock.join(":")
+    );
+    (normalized != value).then_some(normalized)
+}
+
+impl Intercept for NormalizeHttpDates {
+    fn name(&self) -> &'static str {
+        "NormalizeHttpDates"
+    }
+
+    fn modify_before_deserialization(
+        &self,
+        context: &mut BeforeDeserializationInterceptorContextMut<'_>,
+        _runtime_components: &RuntimeComponents,
+        _cfg: &mut ConfigBag,
+    ) -> Result<(), BoxError> {
+        let headers = context.response_mut().headers_mut();
+        for name in ["last-modified", "expires", "date"] {
+            if let Some(fixed) = headers.get(name).and_then(normalize_http_date) {
+                headers.insert(name, fixed);
+            }
+        }
+        Ok(())
+    }
+}
+
 #[cfg(test)]
 mod tests {
-    use super::{strip_x_id, trim_key_slash};
+    use super::{normalize_http_date, strip_x_id, trim_key_slash};
+
+    #[test]
+    fn pads_single_digit_http_dates() {
+        assert_eq!(
+            normalize_http_date("Thu, 8 Oct 2026 03:26:06 GMT").as_deref(),
+            Some("Thu, 08 Oct 2026 03:26:06 GMT")
+        );
+        assert_eq!(
+            normalize_http_date("Thu, 8 Oct 2026 3:6:6 GMT").as_deref(),
+            Some("Thu, 08 Oct 2026 03:06:06 GMT")
+        );
+        assert_eq!(normalize_http_date("Thu, 08 Oct 2026 03:26:06 GMT"), None);
+        assert_eq!(normalize_http_date("garbage"), None);
+    }
 
     #[test]
     fn trims_one_leading_key_slash() {

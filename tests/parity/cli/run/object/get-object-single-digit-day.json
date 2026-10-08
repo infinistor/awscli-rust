@@ -1,0 +1,17 @@
+{
+  "args": ["--get-object", "-b", "bucket1", "-k", "key1", "-f", "out.txt"],
+  "outputs": ["out.txt"],
+  "routes": [
+    {
+      "contains": "GET /bucket1/key1",
+      "status": 200,
+      "responseBody": "hello",
+      "responseHeaders": {
+        "Content-Type": "text/plain",
+        "ETag": "\"5d41402abc4b2a76b9719d911017c592\"",
+        "Last-Modified": "Thu, 8 Oct 2026 3:6:6 GMT",
+        "x-amz-tagging-count": "0"
+      }
+    }
+  ]
+}

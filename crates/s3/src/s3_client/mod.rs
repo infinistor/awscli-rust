@@ -34,7 +34,7 @@ use aws_sdk_s3::config::{
 use awscli_rest_config::UserData;
 
 pub use error::S3Error;
-use interceptors::{AdminHeaders, StripOperationId, TrimKeySlash};
+use interceptors::{AdminHeaders, NormalizeHttpDates, StripOperationId, TrimKeySlash};
 
 /// 원본 `S3_TIMEOUT`(초).
 pub const S3_TIMEOUT: u64 = 3600;
@@ -233,6 +233,7 @@ impl S3Client {
             .request_checksum_calculation(checksum)
             .response_checksum_validation(ResponseChecksumValidation::WhenRequired)
             .interceptor(StripOperationId)
+            .interceptor(NormalizeHttpDates)
             .interceptor(TrimKeySlash {
                 path_style: url.is_some(),
             });
