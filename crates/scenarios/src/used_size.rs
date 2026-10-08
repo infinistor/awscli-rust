@@ -113,12 +113,11 @@ enum Db {
 
 /// `AmazonS3Exception`이면 `e.Message`를 로그로 남기고 `false`, 그 밖의 오류는 그대로 던진다.
 fn caught(error: S3Error) -> Result<bool, ScenarioError> {
-    match error {
-        S3Error::Service { .. } => {
-            error!("{error}");
-            Ok(false)
-        }
-        other => Err(other.into()),
+    if error.is_amazon_s3_exception() {
+        error!("{error}");
+        Ok(false)
+    } else {
+        Err(error.into())
     }
 }
 

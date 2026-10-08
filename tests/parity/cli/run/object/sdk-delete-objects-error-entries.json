@@ -1,0 +1,7 @@
+{
+  "args" : [ "--delete-objects", "-b", "bucket1", "-f", "keys.json" ],
+  "routes" : [
+    { "contains" : "?delete", "status" : 200, "responseBody" : "<DeleteResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Deleted><Key>Key1</Key></Deleted><Error><Key>Key2</Key><VersionId>V2</VersionId><Code>AccessDenied</Code><Message>Access Denied</Message></Error><Error><Key>Key3</Key><Code>InternalError</Code><Message>We encountered an internal error.</Message></Error></DeleteResult>", "responseHeaders" : { "Content-Type" : "application/xml" } }
+  ],
+  "files" : { "keys.json" : "[ { \"Key\": \"Key1\" }, { \"Key\": \"Key2\", \"VersionId\": \"V2\" }, { \"Key\": \"Key3\" } ]" }
+}

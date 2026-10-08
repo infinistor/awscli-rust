@@ -1,0 +1,7 @@
+{
+  "args" : [ "--delete-objects", "-b", "bucket1", "-f", "keys.json" ],
+  "routes" : [
+    { "contains" : "?delete", "status" : 200, "responseBody" : "<DeleteResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Error><Key>Key1</Key><Code>AccessDenied</Code><Message>Access Denied</Message></Error></DeleteResult>", "responseHeaders" : { "Content-Type" : "application/xml" } }
+  ],
+  "files" : { "keys.json" : "[ { \"Key\": \"Key1\" } ]" }
+}

@@ -1,0 +1,20 @@
+{
+  "exitCode": -1,
+  "requests": [
+    {
+      "body": "<Delete><Object><Key>Key1</Key></Object><Object><Key>Key2</Key><VersionId>V2</VersionId></Object><Object><Key>Key3</Key></Object><Quiet>false</Quiet></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/bucket1/",
+      "query": [
+        "delete"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : DeleteObject Start",
+    "ERROR <TIME> : Amazon.S3.DeleteObjectsException: Error deleting objects. Deleted objects: 1. Delete errors: 2"
+  ]
+}

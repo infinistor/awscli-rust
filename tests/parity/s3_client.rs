@@ -124,6 +124,7 @@ const NEW_CASES: &[&str] = &[
     "copy-object",
     "copy-object-special",
     "list-versions",
+    "delete-objects-errors",
     "get-object-tagging",
     "put-object-tagging",
     "delete-object-tagging",

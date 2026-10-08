@@ -440,13 +440,23 @@ impl S3Client {
             .set_quiet(quiet)
             .build()
             .map_err(|e| S3Error::Request(e.to_string()))?;
-        send!(
+        let response: Result<S3Response<DeleteObjectsOutput>, S3Error> = send!(
             self.client
                 .delete_objects()
                 .bucket(bucket_name)
                 .delete(delete)
                 .set_bypass_governance_retention((bypass == Some(true)).then_some(true))
-        )
+        );
+        let response = response?;
+        // .NET SDK는 응답에 `<Error>`가 하나라도 있으면 `DeleteObjectsException`을 던진다.
+        let errors = response.output.errors().len();
+        if errors > 0 {
+            return Err(S3Error::DeleteObjects {
+                deleted: response.output.deleted().len(),
+                errors,
+            });
+        }
+        Ok(response)
     }
 }
 
