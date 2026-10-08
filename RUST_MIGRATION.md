@@ -1,15 +1,15 @@
 # TESTCore .NET → Rust 전환 계획
 
-TESTCore(`net10.0`, C# 약 26,600줄, 172개 파일)를 Rust 프로젝트 `awscli-rest`로 옮기기 위한 진행 방식과 Claude Code 모델 사용 기준을 정리한다.
+TESTCore(`net10.0`, C# 약 26,600줄, 172개 파일)를 Rust 프로젝트 `awscli-rust`로 옮기기 위한 진행 방식과 Claude Code 모델 사용 기준을 정리한다.
 
 -   원본: `E:\Code\Git\TESTCore` (.NET, 전환 기간 동안 기준 구현)
--   대상: `E:\Code\Git\awscli-rest` (<https://github.com/infinistor/awscli-rest>)
--   바이너리 이름: `awscli-rest` (기존 `TestCore`)
+-   대상: `E:\Code\Git\awscli-rust` (<https://github.com/infinistor/awscli-rust>)
+-   바이너리 이름: `awscli-rust` (기존 `TestCore`)
 
 ## 1. 기본 방향
 
 -   **한 번에 다시 쓰지 않고 모듈 단위로 옮긴다.** 각 단계가 끝날 때마다 .NET 버전과 같은 결과가 나오는지 확인한 뒤 다음 단계로 넘어간다.
--   **외부 동작은 그대로 유지한다.** CLI 옵션 이름, `config.ini` 형식, 콘솔 출력, CSV·JSON 결과 형식, Controller·Worker HTTP 계약이 바뀌지 않아야 기존 스크립트와 Jenkins 작업을 그대로 쓸 수 있다. 바이너리 이름만 `TestCore`에서 `awscli-rest`로 바뀌므로 기존 스크립트는 실행 파일 이름만 바꾸면 된다.
+-   **외부 동작은 그대로 유지한다.** CLI 옵션 이름, `config.ini` 형식, 콘솔 출력, CSV·JSON 결과 형식, Controller·Worker HTTP 계약이 바뀌지 않아야 기존 스크립트와 Jenkins 작업을 그대로 쓸 수 있다. 바이너리 이름만 `TestCore`에서 `awscli-rust`로 바뀌므로 기존 스크립트는 실행 파일 이름만 바꾸면 된다.
 -   **전환 기간에는 .NET 버전이 기준(oracle)이다.** 같은 입력으로 두 바이너리를 실행해 결과를 비교한다. 기능 추가는 전환이 끝날 때까지 .NET 쪽에서 멈추거나, 추가할 경우 Rust 작업 목록에도 같이 등록한다.
 -   **Controller·Worker 계약(`Distributed/Contracts.cs`)을 JSON 수준에서 동일하게 유지한다.** 그러면 .NET Controller가 Rust Worker를 구동하는 혼합 구성으로 단계적으로 검증할 수 있다.
 
@@ -54,20 +54,20 @@ TESTCore(`net10.0`, C# 약 26,600줄, 172개 파일)를 Rust 프로젝트 `awscl
 ## 4. Cargo 구조
 
 ```text
-awscli-rest/
+awscli-rust/
 ├─ Cargo.toml                 # workspace
 ├─ crates/
-│  ├─ config/                 # awscli-rest-config: INI 파서, Config/*, UserData
-│  ├─ model/                  # awscli-rest-model: Data/*, Portal·Mover DTO, 통계 구조체
-│  ├─ s3/                     # awscli-rest-s3: Signers, 체크섬, S3Client·KHttpClient·KsanClient
-│  ├─ clients/                # awscli-rest-clients: Local·Curl·ZeroMq·MultiSystem·UpDown 클라이언트, Portal·Jenkins·Mover
-│  ├─ scenarios/              # awscli-rest-scenarios: Test/* 시나리오
-│  ├─ distributed/            # awscli-rest-distributed: Controller, Worker(axum), ResultWriter
-│  └─ cli/                    # awscli-rest-cli: main, 옵션 파서, 명령 디스패치 (바이너리 이름 awscli-rest)
+│  ├─ config/                 # awscli-rust-config: INI 파서, Config/*, UserData
+│  ├─ model/                  # awscli-rust-model: Data/*, Portal·Mover DTO, 통계 구조체
+│  ├─ s3/                     # awscli-rust-s3: Signers, 체크섬, S3Client·KHttpClient·KsanClient
+│  ├─ clients/                # awscli-rust-clients: Local·Curl·ZeroMq·MultiSystem·UpDown 클라이언트, Portal·Jenkins·Mover
+│  ├─ scenarios/              # awscli-rust-scenarios: Test/* 시나리오
+│  ├─ distributed/            # awscli-rust-distributed: Controller, Worker(axum), ResultWriter
+│  └─ cli/                    # awscli-rust-cli: main, 옵션 파서, 명령 디스패치 (바이너리 이름 awscli-rust)
 └─ tests/parity/              # .NET 결과와 비교하는 통합 테스트
 ```
 
-디렉터리 이름은 짧게 두고, 패키지 이름에는 `awscli-rest-` 접두사를 붙인다.
+디렉터리 이름은 짧게 두고, 패키지 이름에는 `awscli-rust-` 접두사를 붙인다.
 
 `Commands/CommandDispatcher.cs`(4,310줄)는 그대로 옮기지 않고 명령 그룹별 모듈(bucket, object, multipart, lifecycle, replication, ksan, test 등)로 나눈다.
 
