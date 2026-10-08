@@ -1,0 +1,7 @@
+{
+  "dump" : true,
+  "args" : [ "--put-object", "-b", "bucket1", "-k", "/dir//a.txt", "--body", "abc" ],
+  "routes" : [
+    { "contains" : "PUT", "status" : 200, "responseBody" : "", "responseHeaders" : { "ETag" : "\"e\"" } }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "max-keys=1000",
+        "versions"
+      ]
+    },
+    {
+      "body": "<Delete><Object><Key>z</Key><VersionId>m1</VersionId></Object><Object><Key>a</Key><VersionId>v1</VersionId></Object><Object><Key>a</Key><VersionId>m2</VersionId></Object><Object><Key>b</Key><VersionId>v3</VersionId></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/bucket1/",
+      "query": [
+        "delete"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : BucketClear Start",
+    "INFO  <TIME> : BucketClear(bucket1, , , 1000)",
+    "INFO  <TIME> : WaitTasks(1)",
+    "ERROR <TIME> : Amazon.S3.DeleteObjectsException: Error deleting objects. Deleted objects: 1. Delete errors: 1",
+    "INFO  <TIME> : Finish",
+    "INFO  <TIME> : BucketClear completed - Total deleted objects: 4",
+    "INFO  <TIME> : bucket1 BucketClear : complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

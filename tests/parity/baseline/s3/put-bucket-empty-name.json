@@ -1,0 +1,11 @@
+{
+  "port": 53313,
+  "requests": [],
+  "result": null,
+  "error": {
+    "type": "System.ArgumentException",
+    "message": "BucketName is a required property and must be set before making this call. (Parameter 'PutBucketRequest.BucketName')",
+    "status": null,
+    "ErrorCode": null
+  }
+}

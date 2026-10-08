@@ -1,0 +1,42 @@
+{
+  "exitCode": -532462766,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "acl"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bkt/",
+      "query": [
+        "list-type=2",
+        "max-keys=1000",
+        "prefix=TH_000"
+      ]
+    },
+    {
+      "body": "<Delete><Object><Key>TH_000/00000/temp_00000</Key></Object><Object><Key>TH_000/00000/temp_00001</Key></Object><Object><Key>TH_000/00000/temp_00002</Key></Object></Delete>",
+      "headers": [],
+      "method": "POST",
+      "path": "/bkt/",
+      "query": [
+        "delete"
+      ]
+    }
+  ],
+  "stderr": [
+    "Unhandled exception. Amazon.S3.DeleteObjectsException: Error deleting objects. Deleted objects: 1. Delete errors: 1"
+  ],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Listing Delete Test Initialize",
+    "INFO  <TIME> : Listing Delete Test Start"
+  ]
+}

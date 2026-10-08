@@ -504,7 +504,8 @@ impl S3Client {
         send!(
             self.client
                 .list_bucket_inventory_configurations()
-                .bucket(bucket_name)
+                .bucket(bucket_name),
+            empty_body = "ListInventoryConfigurationsResult"
         )
     }
 
@@ -562,7 +563,8 @@ impl S3Client {
         send!(
             self.client
                 .list_bucket_metrics_configurations()
-                .bucket(bucket_name)
+                .bucket(bucket_name),
+            empty_body = "ListMetricsConfigurationsResult"
         )
     }
 
@@ -633,7 +635,8 @@ impl S3Client {
         send!(
             self.client
                 .list_bucket_analytics_configurations()
-                .bucket(bucket_name)
+                .bucket(bucket_name),
+            empty_body = "ListBucketAnalyticsConfigurationResult"
         )
     }
 

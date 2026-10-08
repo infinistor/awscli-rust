@@ -375,10 +375,7 @@ impl MultiSystemClient {
                         .await?;
                     return Ok(None);
                 }
-                parts.push(PartETag::new(
-                    part_number,
-                    response.output.e_tag().unwrap_or_default(),
-                ));
+                parts.push(PartETag::new(part_number, response.output.e_tag()));
                 start += self.config.part_size;
                 part_number += 1;
             }

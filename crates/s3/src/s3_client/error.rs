@@ -29,12 +29,16 @@ pub enum S3Error {
     },
     /// 응답은 받았지만 본문을 해석하지 못한 경우(.NET `AmazonUnmarshallingException`).
     Unmarshalling(String),
+    /// `DeleteObjects` 응답에 `<Error>` 항목이 있는 경우(.NET `DeleteObjectsException`, `AmazonS3Exception`의 하위 형식).
+    /// 값은 `Deleted`·`Error` 항목 수. .NET 예외의 `StatusCode`는 0, `ErrorCode`는 `null`이다.
+    DeleteObjects { deleted: usize, errors: usize },
 }
 
 impl S3Error {
     pub fn status(&self) -> Option<u16> {
         match self {
             Self::Service { status, .. } => Some(*status),
+            Self::DeleteObjects { .. } => Some(0),
             _ => None,
         }
     }
@@ -70,7 +74,13 @@ impl S3Error {
             Self::Format(_) => "System.FormatException",
             Self::Io { dotnet_type, .. } => dotnet_type,
             Self::Unmarshalling(_) => "Amazon.Runtime.AmazonUnmarshallingException",
+            Self::DeleteObjects { .. } => "Amazon.S3.DeleteObjectsException",
         }
+    }
+
+    /// .NET `catch (AmazonS3Exception)`에 잡히는 오류(서비스 오류와 그 하위 형식인 `DeleteObjectsException`).
+    pub fn is_amazon_s3_exception(&self) -> bool {
+        matches!(self, Self::Service { .. } | Self::DeleteObjects { .. })
     }
 }
 
@@ -99,6 +109,12 @@ impl fmt::Display for S3Error {
             | Self::Format(message)
             | Self::Io { message, .. }
             | Self::Unmarshalling(message) => f.write_str(message),
+            Self::DeleteObjects {
+                deleted, errors, ..
+            } => write!(
+                f,
+                "Error deleting objects. Deleted objects: {deleted}. Delete errors: {errors}"
+            ),
         }
     }
 }
@@ -203,6 +219,22 @@ pub fn required(value: &str, property: &str, request: &str) -> Result<(), S3Erro
         return Err(S3Error::Argument(format!(
             "{property} is a required property and must be set before making this call. (Parameter '{request}.{property}')"
         )));
+    }
+    Ok(())
+}
+
+/// AWSSDK v4의 생성된 마샬러가 필수 쿼리 값(`null`·빈 문자열)을 확인하며 던지는 `AmazonS3Exception`
+/// (`StatusCode` 0, `ErrorCode` 없음). 요청을 보내지 않는다.
+pub fn required_field(value: &str, field: &str) -> Result<(), S3Error> {
+    if value.is_empty() {
+        return Err(S3Error::Service {
+            status: 0,
+            code: String::new(),
+            message: Some(format!(
+                "Request object does not have required field {field} set"
+            )),
+            request_id: None,
+        });
     }
     Ok(())
 }

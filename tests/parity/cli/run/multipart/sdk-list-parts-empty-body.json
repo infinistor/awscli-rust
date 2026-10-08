@@ -1,0 +1,6 @@
+{
+  "args" : [ "--list-parts", "-b", "bucket1", "-k", "dir/key1", "--upload-id", "UID1" ],
+  "routes" : [
+    { "contains" : "GET /bucket1/dir/key1?", "status" : 200, "responseBody" : "", "responseHeaders" : { "Content-Type" : "application/xml" } }
+  ]
+}

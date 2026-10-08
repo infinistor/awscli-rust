@@ -2,7 +2,8 @@
 
 use std::time::Instant;
 
-use aws_sdk_s3::types::{DeleteMarkerEntry, Object, ObjectVersion};
+use aws_sdk_s3::types::Object;
+use awscli_rest_s3::s3_client::ListVersions;
 use chrono::Local;
 use rust_decimal::Decimal;
 use tracing::info;
@@ -253,65 +254,21 @@ struct VersionItem<'a> {
     latest: bool,
 }
 
-fn from_version(v: &ObjectVersion) -> VersionItem<'_> {
-    VersionItem {
-        key: v.key().unwrap_or_default(),
-        version_id: v.version_id(),
-        modified: v.last_modified(),
-        size: v.size(),
-        delete_marker: false,
-        latest: v.is_latest().unwrap_or(false),
-    }
-}
-
-fn from_marker(m: &DeleteMarkerEntry) -> VersionItem<'_> {
-    VersionItem {
-        key: m.key().unwrap_or_default(),
-        version_id: m.version_id(),
-        modified: m.last_modified(),
-        size: None,
-        delete_marker: true,
-        latest: m.is_latest().unwrap_or(false),
-    }
-}
-
-/// Rust SDK는 `Version`과 `DeleteMarker`를 따로 담아 문서 순서를 잃는다. S3는 키 순으로, 같은 키는 최신부터
-/// 돌려주므로 같은 순서(키 오름차순, 수정 시각 내림차순, 같으면 버전 먼저)로 합쳐 원래 순서를 되살린다.
-fn merge_versions<'a>(
-    versions: &'a [ObjectVersion],
-    markers: &'a [DeleteMarkerEntry],
-) -> Vec<VersionItem<'a>> {
-    let mut merged = Vec::with_capacity(versions.len() + markers.len());
-    let (mut v, mut m) = (0, 0);
-    while v < versions.len() || m < markers.len() {
-        let take_marker = match (versions.get(v), markers.get(m)) {
-            (Some(version), Some(marker)) => {
-                let (vk, mk) = (
-                    version.key().unwrap_or_default(),
-                    marker.key().unwrap_or_default(),
-                );
-                match vk.cmp(mk) {
-                    std::cmp::Ordering::Less => false,
-                    std::cmp::Ordering::Greater => true,
-                    std::cmp::Ordering::Equal => {
-                        // 수정 시각이 더 최신인 쪽이 먼저
-                        matches!((version.last_modified(), marker.last_modified()),
-                            (Some(vt), Some(mt)) if mt > vt)
-                    }
-                }
-            }
-            (None, Some(_)) => true,
-            _ => false,
-        };
-        if take_marker {
-            merged.push(from_marker(&markers[m]));
-            m += 1;
-        } else {
-            merged.push(from_version(&versions[v]));
-            v += 1;
-        }
-    }
-    merged
+/// 응답의 버전과 삭제 마커를 문서 순서로(`S3Client::list_versions`가 기록한 순서).
+fn version_items(response: &ListVersions) -> Vec<VersionItem<'_>> {
+    response
+        .entries()
+        .unwrap_or_default()
+        .iter()
+        .map(|entry| VersionItem {
+            key: entry.key().unwrap_or_default(),
+            version_id: entry.version_id(),
+            modified: entry.last_modified(),
+            size: entry.size(),
+            delete_marker: entry.is_delete_marker(),
+            latest: entry.is_latest().unwrap_or(false),
+        })
+        .collect()
 }
 
 pub(super) async fn list_object_versions(ctx: &CommandContext) -> CommandResult {
@@ -343,7 +300,7 @@ pub(super) async fn list_object_versions(ctx: &CommandContext) -> CommandResult 
             .output;
         listing_count += 1;
 
-        let items = merge_versions(response.versions(), response.delete_markers());
+        let items = version_items(&response);
         if !items.is_empty() {
             if !o.all {
                 end = true;
@@ -432,37 +389,5 @@ mod tests {
         let time = DateTime::from_secs(1_772_600_767);
         assert_eq!(modified_text(Some(&time)), "2026-03-04 05:06:07");
         assert_eq!(modified_text(None), "");
-    }
-
-    fn version(key: &str, id: &str, secs: i64) -> ObjectVersion {
-        ObjectVersion::builder()
-            .key(key)
-            .version_id(id)
-            .last_modified(DateTime::from_secs(secs))
-            .build()
-    }
-
-    fn marker(key: &str, id: &str, secs: i64) -> DeleteMarkerEntry {
-        DeleteMarkerEntry::builder()
-            .key(key)
-            .version_id(id)
-            .last_modified(DateTime::from_secs(secs))
-            .build()
-    }
-
-    #[test]
-    fn versions_and_markers_merge_in_document_order() {
-        let versions = [
-            version("a.txt", "v2", 200),
-            version("a.txt", "v1", 100),
-            version("b.txt", "v3", 100),
-            version("c.txt", "v5", 100),
-        ];
-        let markers = [marker("b.txt", "v4", 300), marker("d.txt", "v6", 100)];
-        let order: Vec<&str> = merge_versions(&versions, &markers)
-            .iter()
-            .map(|i| i.version_id.unwrap())
-            .collect();
-        assert_eq!(order, ["v2", "v1", "v4", "v3", "v5", "v6"]);
     }
 }

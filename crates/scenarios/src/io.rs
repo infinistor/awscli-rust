@@ -64,11 +64,9 @@ impl IoTest {
 
         // 버킷 생성
         let bucket = bucket_name.unwrap_or_default();
-        // 버킷 이름이 비어 있으면 원본은 `GET /?acl`을 보내고(응답이 200이면 있는 것으로 본다) 이어서 `Upload`가
-        // `InvalidOperationException`으로 실패한다. 요청을 만들 수 없는 이름이라 `GET /?acl`은 보내지 않는다.
-        if !bucket.is_empty() {
-            client.create_bucket(bucket).await;
-        }
+        // 버킷 이름이 비어 있어도 원본은 `GET /?acl`을 보내고(응답이 200이면 있는 것으로 본다, 없으면 `PutBucket`이
+        // `ArgumentException`), 이어서 `Upload`가 `InvalidOperationException`으로 실패한다.
+        client.create_bucket(bucket).await;
         tokio::time::sleep(Duration::from_millis(100)).await;
 
         // 입력된 경로의 파일 업로드

@@ -19,6 +19,7 @@
 //!   청크 서명(`STREAMING-AWS4-HMAC-SHA256-PAYLOAD`)을 쓰므로 트레일러 두 줄만 다르다.
 //!   `false`면 `WhenRequired`로 본문 전체를 서명해 한 번에 보낸다(.NET과 같음).
 //! - Rust SDK가 붙이는 `x-id` 쿼리 매개변수는 서명 전에 지운다.
+//! - 키가 `/`로 시작하면 .NET처럼 요청 경로에서 `/` 하나를 뺀다(`TrimKeySlash`).
 
 pub mod error;
 mod interceptors;
@@ -33,7 +34,7 @@ use aws_sdk_s3::config::{
 use awscli_rest_config::UserData;
 
 pub use error::S3Error;
-use interceptors::{AdminHeaders, StripOperationId};
+use interceptors::{AdminHeaders, StripOperationId, TrimKeySlash};
 
 /// 원본 `S3_TIMEOUT`(초).
 pub const S3_TIMEOUT: u64 = 3600;
@@ -69,8 +70,9 @@ pub struct S3Client {
 /// - `config = Builder`: 이 요청만 클라이언트 설정을 바꾼다(`checksum`과 함께 쓰지 않는다).
 /// - `mutate = |request| ...`: 서명 전에 요청(헤더 등)을 고친다.
 /// - `empty_body = "Root"`: 성공 응답의 본문이 비어 있으면 `<Root/>`로 읽는다(.NET은 빈 결과로 읽는다).
+/// - `interceptor = ...`: 이 요청에만 인터셉터를 더한다.
 macro_rules! send {
-    ($builder:expr $(, checksum = $checksum:expr)? $(, config = $config:expr)? $(, mutate = $mutate:expr)? $(, empty_body = $root:expr)? $(,)?) => {{
+    ($builder:expr $(, checksum = $checksum:expr)? $(, config = $config:expr)? $(, mutate = $mutate:expr)? $(, empty_body = $root:expr)? $(, interceptor = $extra:expr)? $(,)?) => {{
         let capture = $crate::s3_client::interceptors::StatusCapture::default();
         let slot = capture.slot();
         let customized = $builder.customize().interceptor(capture);
@@ -88,6 +90,9 @@ macro_rules! send {
         $(
             let customized = customized
                 .interceptor($crate::s3_client::interceptors::EmptyBodyAsRoot($root));
+        )?
+        $(
+            let customized = customized.interceptor($extra);
         )?
         let output = customized
             .send()
@@ -109,12 +114,14 @@ mod object_config;
 mod presign;
 mod transfer;
 mod unset;
+mod versions;
 
 pub use multipart::PartETag;
 pub use object::{PutBody, PutObjectRequest};
 pub use presign::HttpVerb;
 pub use unset::UNSET;
-pub(crate) use unset::{strip_unset, strip_unset_crc32, strip_unset_md5};
+pub(crate) use unset::{strip_unset, strip_unset_crc32, strip_unset_md5, strip_unset_query};
+pub use versions::{ListVersions, VersionEntry};
 
 /// SDK 빌더의 `build()` 오류(필수 값 누락)를 [`S3Error`]로 바꾼다.
 pub(crate) fn built<T>(result: Result<T, aws_sdk_s3::error::BuildError>) -> Result<T, S3Error> {
@@ -225,7 +232,10 @@ impl S3Client {
             )
             .request_checksum_calculation(checksum)
             .response_checksum_validation(ResponseChecksumValidation::WhenRequired)
-            .interceptor(StripOperationId);
+            .interceptor(StripOperationId)
+            .interceptor(TrimKeySlash {
+                path_style: url.is_some(),
+            });
         config = match url {
             Some(url) => config
                 .endpoint_url(with_scheme(url))

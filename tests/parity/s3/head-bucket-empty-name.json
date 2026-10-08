@@ -1,0 +1,1 @@
+{"op": "head-bucket-exists", "bucket": "", "responseBody": "<AccessControlPolicy xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Owner><ID>o</ID></Owner><AccessControlList/></AccessControlPolicy>"}

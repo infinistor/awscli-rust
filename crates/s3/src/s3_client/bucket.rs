@@ -11,6 +11,23 @@ use tracing::{error, info};
 
 use super::{S3Client, S3Error, S3Response};
 
+/// 빈 버킷 이름 대신 쓰는 자리표시 이름(실제 버킷 이름 규칙에 맞는 소문자·숫자·`-`).
+const EMPTY_BUCKET: &str = "awscli-rest-empty-bucket-placeholder";
+
+/// 경로 방식 주소 `/자리표시...`에서 자리표시 이름을 지운다(`/?acl`).
+fn strip_empty_bucket(request: &mut aws_sdk_s3::config::http::HttpRequest) {
+    let uri = request.uri().to_string();
+    let marker = format!("/{EMPTY_BUCKET}");
+    if let Some(at) = uri.find(&marker) {
+        let mut rest = &uri[at + marker.len()..];
+        // `/자리표시/` 뒤의 `/`는 남기고, `/자리표시?`이면 `/`를 넣는다.
+        if rest.starts_with('/') {
+            rest = &rest[1..];
+        }
+        let _ = request.set_uri(format!("{}/{rest}", &uri[..at]));
+    }
+}
+
 impl S3Client {
     /// 원본 `ListBuckets(string prefix = null, int maxBuckets = 10000, string continuationToken = null)`.
     pub async fn list_buckets(
@@ -37,6 +54,7 @@ impl S3Client {
         object_lock_enabled_for_bucket: Option<bool>,
         ownership: Option<ObjectOwnership>,
     ) -> Result<S3Response<CreateBucketOutput>, S3Error> {
+        super::error::required(bucket_name, "BucketName", "PutBucketRequest")?;
         send!(
             self.client
                 .create_bucket()
@@ -77,14 +95,25 @@ impl S3Client {
     ///
     /// 원본 `AmazonS3Util.DoesS3BucketExistV2Async`는 버킷 ACL 조회(`GET /{bucket}?acl`)로 확인하고,
     /// `NoSuchBucket`이면 `false`, 그 밖의 서비스 오류(예: 접근 거부)는 버킷이 있는 것으로 본다.
+    ///
+    /// 버킷 이름이 비어 있어도 .NET은 `GET /?acl`을 보낸다. Rust SDK는 빈 버킷으로 요청을 만들지 못하므로 경로 방식
+    /// 주소에서는 자리표시 이름으로 만들고 서명 전에 경로에서 지운다(`EMPTY_BUCKET`).
     pub async fn does_s3_bucket_exist(&self, bucket_name: &str) -> bool {
-        match self
-            .client
-            .get_bucket_acl()
-            .bucket(bucket_name)
-            .send()
-            .await
-        {
+        let empty = bucket_name.is_empty() && self.presign.endpoint.is_some();
+        let request =
+            self.client
+                .get_bucket_acl()
+                .bucket(if empty { EMPTY_BUCKET } else { bucket_name });
+        let result = if empty {
+            request
+                .customize()
+                .mutate_request(strip_empty_bucket)
+                .send()
+                .await
+        } else {
+            request.send().await
+        };
+        match result {
             Ok(_) => true,
             Err(e) => match S3Error::from(e) {
                 S3Error::Service { code, .. } => code != "NoSuchBucket",

@@ -44,12 +44,9 @@ TESTCore `Test/*.cs`를 옮긴 크레이트다. 원본 클래스 하나를 모�
 -   시간으로 끝나는 시나리오는 `Times=1`과 응답 지연(`delays`)으로 요청 수를 정한다. 통계 숫자는 가린다.
 -   MultiDownloadTest의 65,536개 디렉터리 미리 만들기는 사례에서 첫 디렉터리가 바로 실패하게 해 건너뛴다. 생성 로직은 단위 테스트로 확인한다.
 
-## 알려진 차이 (3단계 S3 클라이언트, 사례에서 피했다)
+## 알려진 차이
 
--   `HeadObject` 응답에 `x-amz-version-id`가 없으면 빈 문자열이다. .NET은 `null`이다. 그래서 AWSTest의 Delete에 `?versionId=`가 붙는다.
--   멀티파트 완료 요청에서 ETag가 없는 파트에 `<ETag></ETag>`를 보낸다. .NET은 생략한다.
--   본문이 빈 200 목록 응답(ListObjects·ListVersions)은 해석 오류다. .NET은 `null` 목록이다.
--   `DeleteObjects` 응답의 `Error`에 대해 .NET은 `DeleteObjectsException`을 던진다. Rust는 던지지 않는다.
--   키가 `/`로 시작할 때 .NET은 URL의 `//`를 합친다. Rust는 합치지 않는다.
--   빈 버킷 이름으로는 요청을 만들지 못한다. .NET은 `GET /?acl` 등을 보낸다.
--   `ListObjectVersions`의 Version과 DeleteMarker가 섞이면, 버전 다음에 삭제 마커 순으로 합친다.
+-   CompareTest 메타데이터 비교: .NET은 서버가 보낸 `x-amz-meta-*` 헤더 이름의 대소문자를 그대로 두고 이름의 서수(ordinal) 순서로 비교한다. Rust(hyper)는 헤더 이름을 소문자로 바꾸므로, 대문자가 섞인 메타데이터 헤더는 로그의 이름과 비교 순서가 다를 수 있다(S3는 소문자로 보낸다). 받은 대소문자를 얻으려면 HTTP 전송을 바꿔야 해서 그대로 두었다.
+-   빈 버킷 이름: `DoesS3BucketExist`(`GET /?acl`, 경로 방식 주소일 때만)와 `PutBucket`(`ArgumentException`)만 .NET과 맞췄다. 그 밖의 연산은 빈 버킷으로 부르는 곳이 없어 확인하지 않았다.
+
+3단계에서 피했던 차이(`HeadObject`의 `null` 버전 ID, ETag 없는 파트, `UploadId` 없는 시작 응답, 본문이 빈 목록 응답, `DeleteObjectsException`, `/`로 시작하는 키, 빈 버킷 이름의 `GET /?acl`, 버전·삭제 마커의 문서 순서, `ContentLength` 없음)는 고쳤다. 동작은 [s3-client.md](s3-client.md)의 ".NET 응답·예외와 맞춘 것"에 있고, 사례는 이름에 `sdk-`가 붙은 `cli/run` 사례와 `s3/`의 `*-leading-slash`·`*-empty-*`·`delete-objects-errors`다.

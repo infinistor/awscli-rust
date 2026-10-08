@@ -1,0 +1,6 @@
+{
+  "args" : [ "--list-multipart-uploads", "-b", "bucket1" ],
+  "routes" : [
+    { "contains" : "?uploads", "status" : 200, "responseBody" : "", "responseHeaders" : { "Content-Type" : "application/xml" } }
+  ]
+}

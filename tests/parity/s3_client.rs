@@ -44,6 +44,7 @@ const CASES: &[&str] = &[
     "put-object-admin",
     "get-object",
     "get-object-range",
+    "get-object-leading-slash",
     "head-object",
     "list-objects-v2",
     "delete-objects",
@@ -124,6 +125,10 @@ const NEW_CASES: &[&str] = &[
     "copy-object",
     "copy-object-special",
     "list-versions",
+    "list-versions-empty-body",
+    "head-bucket-empty-name",
+    "put-bucket-empty-name",
+    "delete-objects-errors",
     "get-object-tagging",
     "put-object-tagging",
     "delete-object-tagging",
@@ -724,6 +729,8 @@ const PRESIGN_CASES: &[&str] = &[
     "presign-v2-get",
     "presign-v2-put",
     "presign-v2-special-key",
+    // 키가 `/`로 시작하면 .NET은 경로에서 `/` 하나를 뺀다(사례의 `key`가 op 기본 키를 대신한다).
+    "presign-leading-slash",
 ];
 
 struct PresignParams {
@@ -822,7 +829,9 @@ async fn presigned_urls_match_dotnet() {
         let actual_url = client
             .generate_presigned_url(
                 "my-bucket",
-                params.key,
+                spec.get("key")
+                    .and_then(Value::as_str)
+                    .unwrap_or(params.key),
                 params.expires,
                 params.verb,
                 params.sse,

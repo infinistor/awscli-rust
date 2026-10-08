@@ -298,27 +298,20 @@ impl ClearTest {
     }
 }
 
-/// 응답의 버전과 삭제 마커(`is_marker`로 거른다). 원본 `Versions`는 둘을 한 목록으로 담는다.
+/// 원본 `Versions`(버전과 삭제 마커를 문서 순서로 담은 목록)를 `keep(is_marker)`로 거른 키·버전 ID.
 fn version_keys(
-    output: &aws_sdk_s3::operation::list_object_versions::ListObjectVersionsOutput,
+    output: &awscli_rest_s3::s3_client::ListVersions,
     keep: impl Fn(bool) -> bool,
 ) -> Keys {
-    let versions = output
-        .versions()
+    output
+        .entries()
+        .unwrap_or_default()
         .iter()
-        .filter(|_| keep(false))
-        .map(|v| (v.key(), v.version_id()));
-    let markers = output
-        .delete_markers()
-        .iter()
-        .filter(|_| keep(true))
-        .map(|m| (m.key(), m.version_id()));
-    versions
-        .chain(markers)
-        .map(|(key, version)| {
+        .filter(|entry| keep(entry.is_delete_marker()))
+        .map(|entry| {
             (
-                key.unwrap_or_default().to_string(),
-                version.map(str::to_string),
+                entry.key().unwrap_or_default().to_string(),
+                entry.version_id().map(str::to_string),
             )
         })
         .collect()

@@ -2212,6 +2212,46 @@
       "----------------------------"
     ]
   },
+  "test-mix-v2": {
+    "exitCode": 0,
+    "requests": [
+      {
+        "body": null,
+        "headers": [],
+        "method": "GET",
+        "path": "/",
+        "query": [
+          "acl"
+        ]
+      }
+    ],
+    "stderr": [],
+    "stdout": [
+      "INFO  <TIME> : Main start",
+      "--test-mix-v2",
+      "\t[--bucket <string>]",
+      "",
+      "----- Config Setting -------",
+      "[Default]BucketName = [string] : 버킷 이름",
+      "ObjectPrefix = [string] : 생성할 오브젝트 접두어",
+      "FileSize = [string] : 생성할 파일 크기(ex> 128K, 10M, 1G)",
+      "Retry = [int] : 재시도 횟수",
+      "[UpDown]BucketType[int] : 버킷 생성 방식(0:설정없음, 1:단일버킷 업로드, 2: 쓰레드당 버킷 1개로 업로드, 3:시간당 하나의 폴더, 4:단일 버킷. 오브젝트 prefix에 {Random:10} 형식의 변수 추가 가능)",
+      "ThreadCount = [int] : 쓰레드 개수",
+      "FileCount = [int] : 스레드 당 생성할 파일 개수",
+      "Times = [int] : 테스트 할 시간(sec)",
+      "DivisionCount[int] : 오브젝트의 폴더 분리 분기",
+      "ETagCheck = [bool] : ETag 비교 여부",
+      "[Main User]",
+      "AccessKey = [string] : AccessKey",
+      "SecretKey = [string] : SecretKey",
+      "----------------------------",
+      "",
+      "INFO  <TIME> : MIX V2 Test Initialize",
+      "INFO  <TIME> : MIX V2 Test Start",
+      "ERROR <TIME> : Task Start Failed"
+    ]
+  },
   "test-mover": {
     "exitCode": 0,
     "requests": [],

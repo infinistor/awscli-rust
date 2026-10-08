@@ -1,0 +1,6 @@
+{
+  "port": 58224,
+  "requests": [],
+  "result": "http://127.0.0.1:58224/my-bucket/a.txt?X-Amz-Expires=3600&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAEXAMPLE%2F20261008%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261008T014413Z&X-Amz-SignedHeaders=host&X-Amz-Signature=e25a864f647981219a584d7a2d4b2731c69d84c300ab45381a314ceb3bfbff1d",
+  "error": null
+}

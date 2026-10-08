@@ -635,10 +635,8 @@ impl UpDownClient {
             if self.quit.get() {
                 break;
             }
-            let versions = response
-                .versions
-                .as_ref()
-                .ok_or(UpDownError::NullReference)?;
+            // 원본 `Versions`는 버전과 삭제 마커를 문서 순서로 담는다(`null`이면 `NullReferenceException`).
+            let versions = response.entries().ok_or(UpDownError::NullReference)?;
             if bulk {
                 let keys: Vec<(String, Option<String>)> = versions
                     .iter()
@@ -1012,8 +1010,8 @@ impl UpDownClient {
             if self.quit.get() {
                 break;
             }
-            // 원본은 Head 결과의 버전 ID(실패하면 빈 문자열)를 그대로 넘긴다.
-            self.count_delete(&object_name, Some(&version_id)).await;
+            // 원본은 Head 결과의 버전 ID(실패하면 빈 문자열, 헤더가 없으면 null)를 그대로 넘긴다.
+            self.count_delete(&object_name, version_id.as_deref()).await;
             if self.quit.get() {
                 break;
             }

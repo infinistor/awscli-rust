@@ -1,0 +1,6 @@
+{
+  "args" : [ "--current-clear=bucket1" ],
+  "routes" : [
+    { "contains" : "GET /bucket1", "status" : 200, "responseBody" : "", "responseHeaders" : { "Content-Type" : "application/xml" } }
+  ]
+}

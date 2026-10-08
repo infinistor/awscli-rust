@@ -1,0 +1,60 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": "1000 bytes md5=427008b3fe192f663d665f56cd75716c",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/big.bin",
+      "query": [
+        "partNumber=1",
+        "uploadId=U1"
+      ]
+    },
+    {
+      "body": "1000 bytes md5=427008b3fe192f663d665f56cd75716c",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/big.bin",
+      "query": [
+        "partNumber=2",
+        "uploadId=U1"
+      ]
+    },
+    {
+      "body": "500 bytes md5=a65d3aa5a434f44ec9cdb75c16978033",
+      "headers": [],
+      "method": "PUT",
+      "path": "/bucket1/big.bin",
+      "query": [
+        "partNumber=3",
+        "uploadId=U1"
+      ]
+    },
+    {
+      "body": "<CompleteMultipartUpload><Part><PartNumber>1</PartNumber></Part><Part><PartNumber>2</PartNumber></Part><Part><PartNumber>3</PartNumber></Part></CompleteMultipartUpload>",
+      "headers": [],
+      "method": "POST",
+      "path": "/bucket1/big.bin",
+      "query": [
+        "uploadId=U1"
+      ]
+    },
+    {
+      "body": null,
+      "headers": [],
+      "method": "POST",
+      "path": "/bucket1/big.bin",
+      "query": [
+        "uploads"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : Upload Start",
+    "INFO  <TIME> : Upload : complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

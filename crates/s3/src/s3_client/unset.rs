@@ -77,6 +77,29 @@ pub(crate) fn strip_unset(request: &mut HttpRequest) {
     }
 }
 
+/// 값이 [`UNSET`]인 쿼리 매개변수(`name=표식`)를 주소에서 지운다(.NET은 `null` 값을 쿼리에 넣지 않는다).
+pub(crate) fn strip_unset_query(request: &mut HttpRequest) {
+    let Some(uri) = strip_unset_query_text(request.uri()) else {
+        return;
+    };
+    // 주소를 바꿀 수 없으면 그대로 보낸다(표식이 서버로 간다).
+    let _ = request.set_uri(uri);
+}
+
+fn strip_unset_query_text(uri: &str) -> Option<String> {
+    let (base, query) = uri.split_once('?')?;
+    let marked = |p: &&str| p.split_once('=').is_some_and(|(_, v)| v == UNSET);
+    if !query.split('&').any(|p| marked(&p)) {
+        return None;
+    }
+    let kept: Vec<&str> = query.split('&').filter(|p| !marked(p)).collect();
+    Some(if kept.is_empty() {
+        base.to_string()
+    } else {
+        format!("{base}?{}", kept.join("&"))
+    })
+}
+
 /// [`strip_unset`] 뒤 `Content-MD5`를 넣는다(인벤토리·메트릭·분석).
 pub(crate) fn strip_unset_md5(request: &mut HttpRequest) {
     strip_unset(request);
@@ -119,6 +142,20 @@ mod tests {
         assert_eq!(request.headers().get("content-length"), Some("15"));
         let md5 = base64::engine::general_purpose::STANDARD.encode(Md5::digest(expected));
         assert_eq!(request.headers().get("content-md5"), Some(md5.as_str()));
+    }
+
+    #[test]
+    fn strips_query_parameters() {
+        assert_eq!(
+            strip_unset_query_text(&format!("http://h/b/k?partNumber=1&uploadId={UNSET}"))
+                .as_deref(),
+            Some("http://h/b/k?partNumber=1")
+        );
+        assert_eq!(
+            strip_unset_query_text(&format!("http://h/b/k?uploadId={UNSET}")).as_deref(),
+            Some("http://h/b/k")
+        );
+        assert_eq!(strip_unset_query_text("http://h/b/k?uploadId=u1"), None);
     }
 
     #[test]

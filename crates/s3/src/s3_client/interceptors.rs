@@ -60,6 +60,55 @@ impl Intercept for StripOperationId {
     }
 }
 
+/// 키가 `/`로 시작하면 .NET SDK는 요청 경로에서 그 `/` 하나를 뺀다(`/버킷//a` → `/버킷/a`, `//a` 키는 `/버킷//a`).
+/// Rust SDK는 키를 그대로 붙이므로 서명 전에 같은 모양으로 바꾼다. `path_style`이면 첫 경로 조각이 버킷이다.
+#[derive(Debug)]
+pub struct TrimKeySlash {
+    pub path_style: bool,
+}
+
+impl Intercept for TrimKeySlash {
+    fn name(&self) -> &'static str {
+        "TrimKeySlash"
+    }
+
+    fn modify_before_signing(
+        &self,
+        context: &mut BeforeTransmitInterceptorContextMut<'_>,
+        _runtime_components: &RuntimeComponents,
+        _cfg: &mut ConfigBag,
+    ) -> Result<(), BoxError> {
+        let request = context.request_mut();
+        if let Some(uri) = trim_key_slash(request.uri(), self.path_style) {
+            request.set_uri(uri)?;
+        }
+        Ok(())
+    }
+}
+
+/// 키 앞의 `/` 하나를 뺀 주소. 바꿀 것이 없으면 `None`.
+fn trim_key_slash(uri: &str, path_style: bool) -> Option<String> {
+    // 스킴과 호스트 뒤의 경로 시작 위치
+    let after_scheme = uri.find("://").map_or(0, |i| i + 3);
+    let path_start = after_scheme + uri[after_scheme..].find('/')?;
+    let path_end = uri[path_start..]
+        .find(['?', '#'])
+        .map_or(uri.len(), |i| path_start + i);
+    let path = &uri[path_start..path_end];
+    // 키가 시작하는 위치(경로 방식이면 `/버킷/` 다음, 아니면 `/` 다음)
+    let key_start = if path_style {
+        let bucket_end = path[1..].find('/')? + 1;
+        bucket_end + 1
+    } else {
+        1
+    };
+    if !path[key_start..].starts_with('/') {
+        return None;
+    }
+    let at = path_start + key_start;
+    Some(format!("{}{}", &uri[..at], &uri[at + 1..]))
+}
+
 /// 쿼리에서 `x-id=...`를 지운 주소. 없으면 `None`.
 fn strip_x_id(uri: &str) -> Option<String> {
     let (base, query) = uri.split_once('?')?;
@@ -145,7 +194,28 @@ impl Intercept for StatusCapture {
 
 #[cfg(test)]
 mod tests {
-    use super::strip_x_id;
+    use super::{strip_x_id, trim_key_slash};
+
+    #[test]
+    fn trims_one_leading_key_slash() {
+        assert_eq!(
+            trim_key_slash("http://h:1/b//a.txt?tagging", true).as_deref(),
+            Some("http://h:1/b/a.txt?tagging")
+        );
+        assert_eq!(
+            trim_key_slash("http://h/b///a.txt", true).as_deref(),
+            Some("http://h/b//a.txt")
+        );
+        assert_eq!(trim_key_slash("http://h/b/dir//a.txt", true), None);
+        assert_eq!(trim_key_slash("http://h/b/", true), None);
+        assert_eq!(trim_key_slash("http://h/b", true), None);
+        assert_eq!(trim_key_slash("http://h/", true), None);
+        assert_eq!(
+            trim_key_slash("https://b.s3.amazonaws.com//a", false).as_deref(),
+            Some("https://b.s3.amazonaws.com/a")
+        );
+        assert_eq!(trim_key_slash("https://b.s3.amazonaws.com/a", false), None);
+    }
 
     #[test]
     fn strips_operation_id() {

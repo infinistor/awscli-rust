@@ -1,0 +1,20 @@
+{
+  "args": [
+    "--test-delete-version",
+    "--bulk"
+  ],
+  "config": "[Default]\nBucketName = bkt\nObjectPrefix = temp\nFileSize = 1K\nPartSize = 5M\nFilePath = data\n\n[UpDown]\nThreadCount = 1\nFileCount = 3\nTimes = 1\nBucketType = 0\nReadRatio = 1\nWriteRatio = 1\nDeleteRatio = 0\n\n[Main User]\nURL = {URL}\nAccessKey = testcore-access\nSecretKey = testcore-secret-key-0123456789abcdefghij\n",
+  "routes": [
+    {
+      "status": 200,
+      "responseBody": "<ListVersionsResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Name>bkt</Name><Prefix></Prefix><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Version><Key>a</Key><VersionId>v1</VersionId><IsLatest>false</IsLatest></Version><DeleteMarker><Key>a</Key><VersionId>m1</VersionId><IsLatest>true</IsLatest></DeleteMarker><Version><Key>b</Key><VersionId>v3</VersionId><IsLatest>true</IsLatest></Version></ListVersionsResult>",
+      "contains": "versions"
+    },
+    {
+      "status": 200,
+      "responseBody": "<DeleteResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Deleted><Key>a</Key><VersionId>v1</VersionId></Deleted><Error><Key>a</Key><VersionId>m1</VersionId><Code>AccessDenied</Code><Message>Access Denied</Message></Error><Error><Key>b</Key><VersionId>v3</VersionId><Code>InternalError</Code><Message>oops</Message></Error></DeleteResult>",
+      "contains": "POST /bkt"
+    }
+  ],
+  "stats": true
+}

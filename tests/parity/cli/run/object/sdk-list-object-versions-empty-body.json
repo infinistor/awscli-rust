@@ -1,0 +1,6 @@
+{
+  "args" : [ "--list-object-versions", "-b", "bucket1" ],
+  "routes" : [
+    { "contains" : "?versions", "status" : 200, "responseBody" : "", "responseHeaders" : { "Content-Type" : "application/xml" } }
+  ]
+}

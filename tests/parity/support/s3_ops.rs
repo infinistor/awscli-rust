@@ -702,7 +702,10 @@ pub async fn run_op(op: &str, c: &S3Client, s: &Spec) -> OpResult {
                 b,
                 k,
                 "upload-1",
-                &[PartETag::new(1, "\"etag1\""), PartETag::new(2, "\"etag2\"")],
+                &[
+                    PartETag::new(1, Some("\"etag1\"")),
+                    PartETag::new(2, Some("\"etag2\"")),
+                ],
             )
             .await,
         ),

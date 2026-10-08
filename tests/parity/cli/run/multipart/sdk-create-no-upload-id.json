@@ -1,0 +1,6 @@
+{
+  "args" : [ "--create-multipart-upload", "-b", "bucket1", "-k", "a.txt" ],
+  "routes" : [
+    { "contains" : "?uploads", "status" : 200, "responseBody" : "<InitiateMultipartUploadResult xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><Bucket>bucket1</Bucket><Key>a.txt</Key></InitiateMultipartUploadResult>", "responseHeaders" : { "Content-Type" : "application/xml" } }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "dump" : true,
+  "args" : [ "--get-object-tagging", "-b", "bucket1", "-k", "/x/../a.txt" ],
+  "routes" : [
+    { "contains" : "tagging", "status" : 200, "responseBody" : "<Tagging xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><TagSet></TagSet></Tagging>", "responseHeaders" : { "Content-Type" : "application/xml" } }
+  ]
+}

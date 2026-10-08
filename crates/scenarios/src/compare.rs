@@ -21,10 +21,10 @@
 //! - `Versions`는 `Version`과 `DeleteMarker`를 한 목록으로 담지만 SDK 응답에서는 문서 순서를 잃어 버전 다음에 삭제 마커 순이다.
 //! - `Size`·`ContentLength` 등 `null`일 수 있는 값은 로그에서 빈 문자열이 된다.
 
-use aws_sdk_s3::operation::list_object_versions::ListObjectVersionsOutput;
 use aws_sdk_s3::types::{ChecksumType, Tag};
 use awscli_rest_config::{CompareConfig, UserData};
 use awscli_rest_s3::S3Client;
+use awscli_rest_s3::s3_client::ListVersions;
 use chrono::{DateTime, Utc};
 use tracing::{error, info};
 
@@ -80,30 +80,23 @@ pub(crate) struct ListedObject {
     pub is_delete_marker: bool,
 }
 
-/// 원본 `ListVersionsResponse.Versions`: 버전 다음에 삭제 마커. 하나도 없으면 원본은 `null`이라 `None`.
-pub(crate) fn version_entries(output: &ListObjectVersionsOutput) -> Option<Vec<ListedObject>> {
+/// 원본 `ListVersionsResponse.Versions`: 버전과 삭제 마커를 응답 문서 순서로. 하나도 없으면 원본은 `null`이라 `None`.
+pub(crate) fn version_entries(output: &ListVersions) -> Option<Vec<ListedObject>> {
     let bucket = output.name().map(str::to_string);
-    let versions = output.versions().iter().map(|v| ListedObject {
-        bucket: bucket.clone(),
-        key: v.key().map(str::to_string),
-        e_tag: v.e_tag().map(str::to_string),
-        size: v.size(),
-        version_id: v.version_id().map(str::to_string),
-        is_latest: v.is_latest(),
-        last_modified: v.last_modified().copied(),
-        is_delete_marker: false,
-    });
-    let markers = output.delete_markers().iter().map(|m| ListedObject {
-        bucket: bucket.clone(),
-        key: m.key().map(str::to_string),
-        e_tag: None,
-        size: None,
-        version_id: m.version_id().map(str::to_string),
-        is_latest: m.is_latest(),
-        last_modified: m.last_modified().copied(),
-        is_delete_marker: true,
-    });
-    let all: Vec<ListedObject> = versions.chain(markers).collect();
+    let all: Vec<ListedObject> = output
+        .entries()?
+        .iter()
+        .map(|entry| ListedObject {
+            bucket: bucket.clone(),
+            key: entry.key().map(str::to_string),
+            e_tag: entry.e_tag().map(str::to_string),
+            size: entry.size(),
+            version_id: entry.version_id().map(str::to_string),
+            is_latest: entry.is_latest(),
+            last_modified: entry.last_modified().copied(),
+            is_delete_marker: entry.is_delete_marker(),
+        })
+        .collect();
     (!all.is_empty()).then_some(all)
 }
 
@@ -499,12 +492,13 @@ impl CompareTest {
         }
 
         // 메타데이터 비교
-        if source.content_length() != target.content_length() {
-            error!(
-                "{source_key} Does not match! ContentLength {} != {}",
-                number(source.content_length()),
-                number(target.content_length())
-            );
+        // .NET `ContentLength`는 `long`이라 헤더가 없으면 0이다.
+        let (source_length, target_length) = (
+            source.content_length().unwrap_or(0),
+            target.content_length().unwrap_or(0),
+        );
+        if source_length != target_length {
+            error!("{source_key} Does not match! ContentLength {source_length} != {target_length}");
             return Ok(false);
         }
         if source.last_modified() != target.last_modified() {
@@ -578,6 +572,9 @@ impl CompareTest {
             return Ok(false);
         }
         let mut keys: Vec<&String> = source_metadata.keys().collect();
+        // .NET `Metadata.Keys`는 받은 순서가 아니라 헤더 이름의 서수(ordinal) 순서다(오라클로 확인,
+        // `sdk-metadata-header-order`). 다만 .NET은 서버가 보낸 대소문자를 그대로 두고, Rust(hyper)는 헤더 이름을
+        // 소문자로 바꾸므로 대문자가 섞인 메타데이터 헤더는 이름과 순서가 다를 수 있다.
         keys.sort();
         for item in keys {
             // `MetadataCollection`의 키는 `x-amz-meta-` 접두사가 붙는다.

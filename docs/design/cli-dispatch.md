@@ -66,7 +66,7 @@ TESTCore `Util/TestCoreApplication.cs`, `Util/ConfigBootstrapper.cs`, `Commands/
 }
 ```
 
-`routes`는 요청 줄에 `contains`가 들어 있는 첫 항목, 없으면 `default`(기본 빈 200)로 응답한다. 요청은 받은 순서대로 비교한다. 멀티파트 전송·버킷 비우기처럼 요청을 동시에 보내는 사례는 `"unordered": true`로 순서를 무시한다. `config`를 주지 않으면 `cli_harness::DEFAULT_CONFIG`(버킷 이름 없음)를 쓴다.
+`HEAD` 응답의 `responseHeaders`에 `Transfer-Encoding`을 넣으면 서버가 `Content-Length`를 붙이지 않는다(크기 헤더 없는 응답). `routes`는 요청 줄에 `contains`가 들어 있는 첫 항목, 없으면 `default`(기본 빈 200)로 응답한다. 요청은 받은 순서대로 비교한다. 멀티파트 전송·버킷 비우기처럼 요청을 동시에 보내는 사례는 `"unordered": true`로 순서를 무시한다. `config`를 주지 않으면 `cli_harness::DEFAULT_CONFIG`(버킷 이름 없음)를 쓴다.
 
 시나리오 사례(`cli/run/scenarios/<시나리오>/`)용 옵션:
 

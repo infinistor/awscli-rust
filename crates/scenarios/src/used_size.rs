@@ -113,12 +113,11 @@ enum Db {
 
 /// `AmazonS3Exception`이면 `e.Message`를 로그로 남기고 `false`, 그 밖의 오류는 그대로 던진다.
 fn caught(error: S3Error) -> Result<bool, ScenarioError> {
-    match error {
-        S3Error::Service { .. } => {
-            error!("{error}");
-            Ok(false)
-        }
-        other => Err(other.into()),
+    if error.is_amazon_s3_exception() {
+        error!("{error}");
+        Ok(false)
+    } else {
+        Err(error.into())
     }
 }
 
@@ -496,10 +495,7 @@ impl UsedSizeTest {
                         true,
                     )
                     .await?;
-                parts.push(PartETag::new(
-                    part_number,
-                    response.output.e_tag().unwrap_or_default(),
-                ));
+                parts.push(PartETag::new(part_number, response.output.e_tag()));
                 part_number += 1;
             }
             self.client
@@ -549,11 +545,7 @@ impl UsedSizeTest {
                         None,
                     )
                     .await?;
-                let e_tag = response
-                    .output
-                    .copy_part_result()
-                    .and_then(|r| r.e_tag())
-                    .unwrap_or_default();
+                let e_tag = response.output.copy_part_result().and_then(|r| r.e_tag());
                 parts.push(PartETag::new(part_number, e_tag));
 
                 part_number += 1;
@@ -601,13 +593,12 @@ impl UsedSizeTest {
             Err(e) => return caught(e).map(|_| false),
         };
         // `response.Versions`가 `null`이면 `Select`에서 ArgumentNullException
-        let versions = response.output.versions();
-        if versions.is_empty() {
+        let Some(versions) = response.output.entries() else {
             return Err(ScenarioError::new(
                 "System.ArgumentNullException",
                 "Value cannot be null. (Parameter 'source')",
             ));
-        }
+        };
         let keys: Vec<(String, Option<String>)> = versions
             .iter()
             .map(|v| {
