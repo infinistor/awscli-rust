@@ -12,7 +12,7 @@ param(
 	[string]$Out = (Join-Path ([IO.Path]::GetTempPath()) "awscli-rest-testcore-head")
 )
 $ErrorActionPreference = "Stop"
-$commit = git -C $TestCore rev-parse --short $Ref
+$commit = git -C $TestCore rev-parse --short "$Ref^{commit}"
 $src = Join-Path $Out $commit
 $bin = Join-Path $src "bin\TestCore"
 if (-not (Test-Path (Join-Path $bin "TestCore.dll"))) {
