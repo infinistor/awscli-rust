@@ -220,7 +220,8 @@ impl S3Client {
                 .set_prefix(prefix.map(str::to_string))
                 .set_delimiter(delimiter.map(str::to_string))
                 .set_upload_id_marker(upload_id_marker.map(str::to_string))
-                .set_key_marker(key_marker.map(str::to_string))
+                .set_key_marker(key_marker.map(str::to_string)),
+            empty_body = "ListMultipartUploadsResult"
         )
     }
 
@@ -244,7 +245,8 @@ impl S3Client {
                 .max_parts(max_keys)
                 .set_part_number_marker(
                     (part_number_marker > 0).then(|| part_number_marker.to_string())
-                )
+                ),
+            empty_body = "ListPartsResult"
         )
     }
 }

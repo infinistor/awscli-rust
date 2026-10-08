@@ -1,0 +1,25 @@
+{
+  "exitCode": 0,
+  "requests": [
+    {
+      "body": null,
+      "headers": [],
+      "method": "GET",
+      "path": "/bucket1/",
+      "query": [
+        "list-type=2",
+        "max-keys=1000"
+      ]
+    }
+  ],
+  "stderr": [],
+  "stdout": [
+    "INFO  <TIME> : Main start",
+    "INFO  <TIME> : ListObjectsV2 Start",
+    "--------------------------------------------------------------------------",
+    "--------------------------------------------------------------------------",
+    "0 Folders, 0 Objects.",
+    "INFO  <TIME> : 0 files. 0 Byte. ListingCount Count = 1. complete time = <N>ms",
+    "INFO  <TIME> : Main complete time = <N>ms"
+  ]
+}

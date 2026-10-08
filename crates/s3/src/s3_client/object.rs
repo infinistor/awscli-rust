@@ -355,7 +355,8 @@ impl S3Client {
                 .max_keys(max_keys)
                 .set_delimiter(delimiter.map(str::to_string))
                 .set_marker(marker.map(str::to_string))
-                .set_prefix(prefix.map(str::to_string))
+                .set_prefix(prefix.map(str::to_string)),
+            empty_body = "ListBucketResult"
         )
     }
 
@@ -377,7 +378,8 @@ impl S3Client {
                 .set_delimiter(delimiter.map(str::to_string))
                 .set_continuation_token(continuation_token.map(str::to_string))
                 .set_prefix(prefix.map(str::to_string))
-                .set_start_after(start_after.map(str::to_string))
+                .set_start_after(start_after.map(str::to_string)),
+            empty_body = "ListBucketResult"
         )
     }
 
