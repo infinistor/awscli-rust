@@ -196,11 +196,18 @@ async fn serve(
             .iter()
             .map(|(n, v)| format!("{n}: {v}\r\n"))
             .collect();
-        let head = format!(
-            "HTTP/1.1 {} Status\r\n{extra}Content-Length: {}\r\n\r\n",
-            response.status,
-            response.body.len()
-        );
+        // `HEAD` 응답에 `Transfer-Encoding`을 지정하면 `Content-Length`를 붙이지 않는다(크기 헤더 없는 응답).
+        let no_length = is_head
+            && response
+                .headers
+                .iter()
+                .any(|(n, _)| n.eq_ignore_ascii_case("Transfer-Encoding"));
+        let length = if no_length {
+            String::new()
+        } else {
+            format!("Content-Length: {}\r\n", response.body.len())
+        };
+        let head = format!("HTTP/1.1 {} Status\r\n{extra}{length}\r\n", response.status);
         socket.write_all(head.as_bytes()).await.ok()?;
         if !is_head {
             socket.write_all(response.body.as_bytes()).await.ok()?;

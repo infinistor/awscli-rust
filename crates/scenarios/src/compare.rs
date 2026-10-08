@@ -492,12 +492,13 @@ impl CompareTest {
         }
 
         // 메타데이터 비교
-        if source.content_length() != target.content_length() {
-            error!(
-                "{source_key} Does not match! ContentLength {} != {}",
-                number(source.content_length()),
-                number(target.content_length())
-            );
+        // .NET `ContentLength`는 `long`이라 헤더가 없으면 0이다.
+        let (source_length, target_length) = (
+            source.content_length().unwrap_or(0),
+            target.content_length().unwrap_or(0),
+        );
+        if source_length != target_length {
+            error!("{source_key} Does not match! ContentLength {source_length} != {target_length}");
             return Ok(false);
         }
         if source.last_modified() != target.last_modified() {
@@ -571,6 +572,9 @@ impl CompareTest {
             return Ok(false);
         }
         let mut keys: Vec<&String> = source_metadata.keys().collect();
+        // .NET `Metadata.Keys`는 받은 순서가 아니라 헤더 이름의 서수(ordinal) 순서다(오라클로 확인,
+        // `sdk-metadata-header-order`). 다만 .NET은 서버가 보낸 대소문자를 그대로 두고, Rust(hyper)는 헤더 이름을
+        // 소문자로 바꾸므로 대문자가 섞인 메타데이터 헤더는 이름과 순서가 다를 수 있다.
         keys.sort();
         for item in keys {
             // `MetadataCollection`의 키는 `x-amz-meta-` 접두사가 붙는다.
