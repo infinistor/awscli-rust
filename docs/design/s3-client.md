@@ -74,6 +74,16 @@ Rust SDK가 기본으로 보내지 않지만 .NET이 항상 보내는 헤더는 
 
 `Content-Type` 기본값은 AWSSDK의 확장자 표(`mime.rs`)를 따른다: `PutObject`는 파일이면 파일 경로, 아니면 키의 확장자로 정하고 확장자가 없으면 `text/plain`; `CreateMultipartUpload`는 키의 확장자로 정하고 없으면 헤더를 보내지 않는다; `TransferUtility`는 파일이면 파일 확장자(없으면 `application/octet-stream`).
 
+## .NET 응답·예외와 맞춘 것(오라클로 확인)
+
+-   본문이 빈 200 응답: 목록 연산(`ListBuckets`, `ListDirectoryBuckets`, `ListObjects`(V2), `ListVersions`, `ListMultipartUploads`, `ListParts`, 인벤토리·메트릭·분석 목록)은 `send!(..., empty_body = "루트")`로 빈 결과(목록은 `None` = .NET `null`)로 읽는다.
+-   `DeleteObjects` 응답에 `<Error>`가 있으면 `S3Error::DeleteObjects`(`Amazon.S3.DeleteObjectsException`, `Error deleting objects. Deleted objects: N. Delete errors: M`, `StatusCode` 0, `ErrorCode` 없음). `AmazonS3Exception`의 하위 형식이므로 `is_amazon_s3_exception()`이 참이다.
+-   `UploadId`가 빈 값: `UploadPart`·`CopyPart`는 `uploadId` 쿼리 없이 보낸다(.NET은 `null`을 쿼리에 넣지 않는다). `CompleteMultipartUpload`·`AbortMultipartUpload`·`ListParts`는 요청 없이 `AmazonS3Exception`(`Request object does not have required field UploadId set`, `StatusCode` 0).
+-   `PartETag::new(번호, Option<&str>)`: 응답에 ETag가 없으면 완료 요청 XML에서 `<ETag>`를 뺀다.
+-   키가 `/`로 시작하면 요청 경로에서 그 `/` 하나를 뺀다(`/a` → `/버킷/a`, `//a` → `/버킷//a`, 서명된 URL 포함). `x-amz-copy-source`는 키를 그대로 쓴다. 클라이언트 인터셉터 `TrimKeySlash`.
+-   빈 버킷 이름: `DoesS3BucketExist("")`는 `GET /?acl`을 보낸다. 경로 방식 주소에서만 자리표시 버킷 이름으로 요청을 만들고 서명 전에 경로에서 지운다. `PutBucket("")`는 요청 없이 `ArgumentException`.
+-   `ListVersions`: .NET은 `Version`과 `DeleteMarker`를 문서 순서로 한 목록(`Versions`)에 담는다. `list_versions`는 응답 본문에서 순서를 기록한 `ListVersions`(SDK 출력으로 `Deref`)를 돌려주고, `entries()`가 그 순서의 `VersionEntry` 목록(둘 다 없으면 `None`)을 만든다.
+
 ## `TransferUtility` 동작(캡처로 확인)
 
 -   크기 < `partSize`: `PutObject` 한 번(청크 서명). 크기 >= `partSize`: 멀티파트(크기가 `partSize`와 같아도 파트 1개짜리 멀티파트).
