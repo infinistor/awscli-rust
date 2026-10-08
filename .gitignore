@@ -9,3 +9,5 @@ worker-data/
 tools/dotnet-oracle/bin/
 tools/dotnet-oracle/obj/
 .claude/worktrees/
+ksan.ini
+dist/

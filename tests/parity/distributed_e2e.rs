@@ -257,3 +257,17 @@ async fn distributed_mixed_configurations() {
         );
     }
 }
+
+/// 성능 비교 묶음(`tools/perf`) 검증용: `MOCK_S3_ADDR`(기본 `0.0.0.0:19000`)에서 가짜 S3를 `MOCK_S3_SECONDS`초(기본 600) 연다.
+#[tokio::test(flavor = "multi_thread")]
+#[ignore = "수동 실행: 가짜 S3 서버"]
+async fn mock_s3_server() {
+    let addr = std::env::var("MOCK_S3_ADDR").unwrap_or_else(|_| "0.0.0.0:19000".to_string());
+    let seconds: u64 = std::env::var("MOCK_S3_SECONDS")
+        .ok()
+        .and_then(|s| s.parse().ok())
+        .unwrap_or(600);
+    let s3 = MockS3::start_on(&addr).await;
+    eprintln!("가짜 S3: {}", s3.url);
+    tokio::time::sleep(Duration::from_secs(seconds)).await;
+}

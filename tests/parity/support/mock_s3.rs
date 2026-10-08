@@ -31,13 +31,18 @@ impl Drop for MockS3 {
 
 impl MockS3 {
     pub async fn start() -> Self {
+        Self::start_on("127.0.0.1:0").await
+    }
+
+    /// 지정한 주소에서 연다(컨테이너에서 접근할 때는 `0.0.0.0:포트`).
+    pub async fn start_on(addr: &str) -> Self {
         let state = Arc::new(Mutex::new(State::default()));
         let shared = state.clone();
         let app = axum::Router::new().fallback(move |request: Request<Body>| {
             let state = shared.clone();
             async move { handle(state, request).await }
         });
-        let listener = tokio::net::TcpListener::bind("127.0.0.1:0").await.unwrap();
+        let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
         let url = format!("http://{}", listener.local_addr().unwrap());
         let task = tokio::spawn(async move {
             axum::serve(listener, app).await.unwrap();
